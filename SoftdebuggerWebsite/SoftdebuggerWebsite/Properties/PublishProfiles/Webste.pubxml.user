@@ -1,0 +1,514 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>F:\Website</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="Areas/Globalization/css/bootstrap.min.css">
+      <publishTime>08/21/2017 00:11:36</publishTime>
+    </File>
+    <File Include="Areas/Globalization/css/camera.css">
+      <publishTime>04/23/2012 14:34:18</publishTime>
+    </File>
+    <File Include="Areas/Globalization/css/font-awesome.min.css">
+      <publishTime>08/21/2017 00:13:01</publishTime>
+    </File>
+    <File Include="Areas/Globalization/css/less/style.less">
+      <publishTime>08/18/2017 19:23:24</publishTime>
+    </File>
+    <File Include="Areas/Globalization/css/Login.css">
+      <publishTime>08/20/2017 21:17:51</publishTime>
+    </File>
+    <File Include="Areas/Globalization/css/main.css">
+      <publishTime>10/22/2017 14:12:49</publishTime>
+    </File>
+    <File Include="Areas/Globalization/css/New Text Document.txt">
+      <publishTime>08/19/2017 00:00:32</publishTime>
+    </File>
+    <File Include="Areas/Globalization/css/Registration.css">
+      <publishTime>08/20/2017 21:09:40</publishTime>
+    </File>
+    <File Include="Areas/Globalization/css/style.css">
+      <publishTime>10/22/2017 11:28:56</publishTime>
+    </File>
+    <File Include="Areas/Globalization/css/templatemo_style.css">
+      <publishTime>10/22/2017 10:23:59</publishTime>
+    </File>
+    <File Include="Areas/Globalization/fonts/fontawesome-webfont.eot">
+      <publishTime>08/21/2017 00:07:30</publishTime>
+    </File>
+    <File Include="Areas/Globalization/fonts/fontawesome-webfont.svg">
+      <publishTime>06/23/2014 15:43:04</publishTime>
+    </File>
+    <File Include="Areas/Globalization/fonts/fontawesome-webfont.ttf">
+      <publishTime>06/23/2014 15:43:04</publishTime>
+    </File>
+    <File Include="Areas/Globalization/fonts/FontAwesome.otf">
+      <publishTime>06/23/2014 15:43:04</publishTime>
+    </File>
+    <File Include="Areas/Globalization/fonts/glyphicons-halflings-regular.svg">
+      <publishTime>02/13/2014 08:24:42</publishTime>
+    </File>
+    <File Include="Areas/Globalization/fonts/glyphicons-halflings-regular.ttf">
+      <publishTime>02/13/2014 08:24:42</publishTime>
+    </File>
+    <File Include="Areas/Globalization/images/2016-09-10 03-26-28.JPG">
+      <publishTime>08/21/2017 00:31:29</publishTime>
+    </File>
+    <File Include="Areas/Globalization/images/accent.png">
+      <publishTime>08/18/2017 23:42:04</publishTime>
+    </File>
+    <File Include="Areas/Globalization/images/arrow_left.png">
+      <publishTime>06/09/2014 19:56:12</publishTime>
+    </File>
+    <File Include="Areas/Globalization/images/arrow_right.png">
+      <publishTime>06/09/2014 20:02:28</publishTime>
+    </File>
+    <File Include="Areas/Globalization/images/banner_bg.jpg">
+      <publishTime>05/22/2014 09:43:20</publishTime>
+    </File>
+    <File Include="Areas/Globalization/images/BG_IMG/A.jpg">
+      <publishTime>11/26/2014 20:05:33</publishTime>
+    </File>
+    <File Include="Areas/Globalization/images/BG_IMG/B.jpg">
+      <publishTime>11/26/2014 19:42:08</publishTime>
+    </File>
+    <File Include="Areas/Globalization/images/bullet.png">
+      <publishTime>08/18/2017 23:42:04</publishTime>
+    </File>
+    <File Include="Areas/Globalization/images/heroAccent.png">
+      <publishTime>08/18/2017 23:42:04</publishTime>
+    </File>
+    <File Include="Areas/Globalization/images/LocalizationBanner.jpg">
+      <publishTime>05/21/2014 22:25:30</publishTime>
+    </File>
+    <File Include="Areas/Globalization/images/logo.JPG">
+      <publishTime>08/20/2017 19:59:02</publishTime>
+    </File>
+    <File Include="Areas/Globalization/images/orderedList0.png">
+      <publishTime>08/18/2017 23:42:04</publishTime>
+    </File>
+    <File Include="Areas/Globalization/images/orderedList1.png">
+      <publishTime>08/18/2017 23:42:04</publishTime>
+    </File>
+    <File Include="Areas/Globalization/images/orderedList2.png">
+      <publishTime>08/18/2017 23:42:04</publishTime>
+    </File>
+    <File Include="Areas/Globalization/images/orderedList3.png">
+      <publishTime>08/18/2017 23:42:04</publishTime>
+    </File>
+    <File Include="Areas/Globalization/images/orderedList4.png">
+      <publishTime>08/18/2017 23:42:04</publishTime>
+    </File>
+    <File Include="Areas/Globalization/images/orderedList5.png">
+      <publishTime>08/18/2017 23:42:04</publishTime>
+    </File>
+    <File Include="Areas/Globalization/images/orderedList6.png">
+      <publishTime>08/18/2017 23:42:04</publishTime>
+    </File>
+    <File Include="Areas/Globalization/images/orderedList7.png">
+      <publishTime>08/18/2017 23:42:04</publishTime>
+    </File>
+    <File Include="Areas/Globalization/images/orderedList8.png">
+      <publishTime>08/18/2017 23:42:04</publishTime>
+    </File>
+    <File Include="Areas/Globalization/images/orderedList9.png">
+      <publishTime>08/18/2017 23:42:04</publishTime>
+    </File>
+    <File Include="Areas/Globalization/images/templatemo_banner_slide_01.jpg">
+      <publishTime>10/15/2017 01:50:42</publishTime>
+    </File>
+    <File Include="Areas/Globalization/images/templatemo_banner_slide_01_old.jpg">
+      <publishTime>05/22/2014 08:13:34</publishTime>
+    </File>
+    <File Include="Areas/Globalization/images/templatemo_banner_slide_02.jpg">
+      <publishTime>10/12/2017 21:00:44</publishTime>
+    </File>
+    <File Include="Areas/Globalization/images/templatemo_banner_slide_02old.jpg">
+      <publishTime>05/22/2014 10:59:16</publishTime>
+    </File>
+    <File Include="Areas/Globalization/images/templatemo_banner_slide_03.jpg">
+      <publishTime>05/22/2014 08:13:30</publishTime>
+    </File>
+    <File Include="Areas/Globalization/images/templatemo_event_01.jpg">
+      <publishTime>05/21/2014 22:25:10</publishTime>
+    </File>
+    <File Include="Areas/Globalization/images/templatemo_event_02.jpg">
+      <publishTime>05/21/2014 22:25:48</publishTime>
+    </File>
+    <File Include="Areas/Globalization/images/templatemo_event_03.jpg">
+      <publishTime>05/21/2014 22:26:02</publishTime>
+    </File>
+    <File Include="Areas/Globalization/images/templatemo_logo.JPG">
+      <publishTime>08/20/2017 19:59:02</publishTime>
+    </File>
+    <File Include="Areas/Globalization/images/templatemo_logo12.jpg">
+      <publishTime>05/28/2014 18:54:34</publishTime>
+    </File>
+    <File Include="Areas/Globalization/images/templatemo_member_01.png">
+      <publishTime>10/15/2017 15:20:51</publishTime>
+    </File>
+    <File Include="Areas/Globalization/images/templatemo_member_011.jpg">
+      <publishTime>05/31/2014 20:34:30</publishTime>
+    </File>
+    <File Include="Areas/Globalization/images/templatemo_member_02.jpg">
+      <publishTime>08/21/2017 00:29:37</publishTime>
+    </File>
+    <File Include="Areas/Globalization/images/templatemo_member_03.jpg">
+      <publishTime>05/31/2014 20:34:38</publishTime>
+    </File>
+    <File Include="Areas/Globalization/images/templatemo_member_03ghgh.jpg">
+      <publishTime>05/31/2014 20:34:42</publishTime>
+    </File>
+    <File Include="Areas/Globalization/images/templatemo_member_04.jpg">
+      <publishTime>05/31/2014 20:34:46</publishTime>
+    </File>
+    <File Include="Areas/Globalization/images/time_line_bg.jpg">
+      <publishTime>05/22/2014 16:06:02</publishTime>
+    </File>
+    <File Include="Areas/Globalization/images/Wait.gif">
+      <publishTime>08/20/2017 17:09:07</publishTime>
+    </File>
+    <File Include="Areas/Globalization/js/bootstrap.min.js">
+      <publishTime>02/13/2014 08:24:42</publishTime>
+    </File>
+    <File Include="Areas/Globalization/js/jquery-3.2.1.js">
+      <publishTime>08/14/2017 00:16:20</publishTime>
+    </File>
+    <File Include="Areas/Globalization/js/jquery-ui.min.js">
+      <publishTime>05/22/2014 13:08:26</publishTime>
+    </File>
+    <File Include="Areas/Globalization/js/jquery.min.js">
+      <publishTime>03/24/2012 18:00:04</publishTime>
+    </File>
+    <File Include="Areas/Globalization/js/jquery.singlePageNav.min.js">
+      <publishTime>05/08/2014 08:28:22</publishTime>
+    </File>
+    <File Include="Areas/Globalization/js/main.js">
+      <publishTime>10/22/2017 14:10:46</publishTime>
+    </File>
+    <File Include="Areas/Globalization/js/templatemo_script.js">
+      <publishTime>08/10/2014 17:09:28</publishTime>
+    </File>
+    <File Include="Areas/Globalization/js/unslider.min.js">
+      <publishTime>06/03/2014 11:51:10</publishTime>
+    </File>
+    <File Include="Areas/Globalization/Views/Globalization/AddUpdateResource.cshtml">
+      <publishTime>10/22/2017 13:07:19</publishTime>
+    </File>
+    <File Include="Areas/Globalization/Views/Globalization/Index.cshtml">
+      <publishTime>10/22/2017 14:04:02</publishTime>
+    </File>
+    <File Include="Areas/Globalization/Views/Globalization/Login.cshtml">
+      <publishTime>10/22/2017 14:43:56</publishTime>
+    </File>
+    <File Include="Areas/Globalization/Views/Shared/_Header.cshtml">
+      <publishTime>10/22/2017 14:07:49</publishTime>
+    </File>
+    <File Include="Areas/Globalization/Views/web.config">
+      <publishTime>10/15/2017 13:24:51</publishTime>
+    </File>
+    <File Include="bin/App_global.asax.compiled">
+      <publishTime>10/22/2017 21:52:04</publishTime>
+    </File>
+    <File Include="bin/App_global.asax.dll">
+      <publishTime>10/22/2017 21:52:03</publishTime>
+    </File>
+    <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
+      <publishTime>06/15/2015 14:36:24</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Web.Infrastructure.dll">
+      <publishTime>04/24/2012 03:53:58</publishTime>
+    </File>
+    <File Include="bin/Newtonsoft.Json.dll">
+      <publishTime>06/18/2017 13:57:10</publishTime>
+    </File>
+    <File Include="bin/roslyn/csc.exe">
+      <publishTime>06/19/2015 08:49:46</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.Build.Tasks.CodeAnalysis.dll">
+      <publishTime>06/19/2015 08:49:46</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.CSharp.dll">
+      <publishTime>06/19/2015 08:49:46</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.dll">
+      <publishTime>06/19/2015 08:49:44</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.VisualBasic.dll">
+      <publishTime>06/19/2015 08:49:46</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CSharp.Core.targets">
+      <publishTime>06/19/2015 08:49:46</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.VisualBasic.Core.targets">
+      <publishTime>06/19/2015 08:49:46</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Collections.Immutable.dll">
+      <publishTime>06/19/2015 08:49:46</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Reflection.Metadata.dll">
+      <publishTime>06/19/2015 08:49:46</publishTime>
+    </File>
+    <File Include="bin/roslyn/vbc.exe">
+      <publishTime>06/19/2015 08:49:46</publishTime>
+    </File>
+    <File Include="bin/roslyn/VBCSCompiler.exe">
+      <publishTime>06/19/2015 08:49:46</publishTime>
+    </File>
+    <File Include="bin/roslyn/VBCSCompiler.exe.config">
+      <publishTime>06/19/2015 08:49:46</publishTime>
+    </File>
+    <File Include="bin/SoftdebuggerWebsite.dll">
+      <publishTime>10/22/2017 21:51:18</publishTime>
+    </File>
+    <File Include="bin/SoftdebuggerWebsite.dll.config">
+      <publishTime>10/22/2017 11:48:35</publishTime>
+    </File>
+    <File Include="bin/System.Web.Helpers.dll">
+      <publishTime>01/28/2015 16:34:30</publishTime>
+    </File>
+    <File Include="bin/System.Web.Mvc.dll">
+      <publishTime>01/28/2015 16:32:18</publishTime>
+    </File>
+    <File Include="bin/System.Web.Razor.dll">
+      <publishTime>01/28/2015 16:32:32</publishTime>
+    </File>
+    <File Include="bin/System.Web.Webpages.Deployment.dll">
+      <publishTime>01/28/2015 16:34:30</publishTime>
+    </File>
+    <File Include="bin/System.Web.Webpages.dll">
+      <publishTime>01/28/2015 16:34:30</publishTime>
+    </File>
+    <File Include="bin/System.Web.Webpages.Razor.dll">
+      <publishTime>01/28/2015 16:34:30</publishTime>
+    </File>
+    <File Include="css/bootstrap.min.css">
+      <publishTime>08/21/2017 00:11:36</publishTime>
+    </File>
+    <File Include="css/camera.css">
+      <publishTime>04/23/2012 14:34:18</publishTime>
+    </File>
+    <File Include="css/font-awesome.min.css">
+      <publishTime>08/21/2017 00:13:01</publishTime>
+    </File>
+    <File Include="css/less/style.less">
+      <publishTime>08/18/2017 19:23:24</publishTime>
+    </File>
+    <File Include="css/Login.css">
+      <publishTime>08/20/2017 21:17:51</publishTime>
+    </File>
+    <File Include="css/New Text Document.txt">
+      <publishTime>08/19/2017 00:00:32</publishTime>
+    </File>
+    <File Include="css/Registration.css">
+      <publishTime>08/20/2017 21:09:40</publishTime>
+    </File>
+    <File Include="css/style.css">
+      <publishTime>10/22/2017 11:28:56</publishTime>
+    </File>
+    <File Include="css/templatemo_style.css">
+      <publishTime>10/22/2017 10:23:59</publishTime>
+    </File>
+    <File Include="fonts/fontawesome-webfont.eot">
+      <publishTime>08/21/2017 00:07:30</publishTime>
+    </File>
+    <File Include="fonts/fontawesome-webfont.svg">
+      <publishTime>06/23/2014 15:43:04</publishTime>
+    </File>
+    <File Include="fonts/fontawesome-webfont.ttf">
+      <publishTime>06/23/2014 15:43:04</publishTime>
+    </File>
+    <File Include="fonts/FontAwesome.otf">
+      <publishTime>06/23/2014 15:43:04</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.svg">
+      <publishTime>02/13/2014 08:24:42</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.ttf">
+      <publishTime>02/13/2014 08:24:42</publishTime>
+    </File>
+    <File Include="images/2016-09-10 03-26-28.JPG">
+      <publishTime>08/21/2017 00:31:29</publishTime>
+    </File>
+    <File Include="images/accent.png">
+      <publishTime>08/18/2017 23:42:04</publishTime>
+    </File>
+    <File Include="images/arrow_left.png">
+      <publishTime>06/09/2014 19:56:12</publishTime>
+    </File>
+    <File Include="images/arrow_right.png">
+      <publishTime>06/09/2014 20:02:28</publishTime>
+    </File>
+    <File Include="images/banner_bg.jpg">
+      <publishTime>05/22/2014 09:43:20</publishTime>
+    </File>
+    <File Include="images/BG_IMG/A.jpg">
+      <publishTime>11/26/2014 20:05:33</publishTime>
+    </File>
+    <File Include="images/BG_IMG/B.jpg">
+      <publishTime>11/26/2014 19:42:08</publishTime>
+    </File>
+    <File Include="images/bullet.png">
+      <publishTime>08/18/2017 23:42:04</publishTime>
+    </File>
+    <File Include="images/heroAccent.png">
+      <publishTime>08/18/2017 23:42:04</publishTime>
+    </File>
+    <File Include="images/logo.JPG">
+      <publishTime>08/20/2017 19:59:02</publishTime>
+    </File>
+    <File Include="images/orderedList0.png">
+      <publishTime>08/18/2017 23:42:04</publishTime>
+    </File>
+    <File Include="images/orderedList1.png">
+      <publishTime>08/18/2017 23:42:04</publishTime>
+    </File>
+    <File Include="images/orderedList2.png">
+      <publishTime>08/18/2017 23:42:04</publishTime>
+    </File>
+    <File Include="images/orderedList3.png">
+      <publishTime>08/18/2017 23:42:04</publishTime>
+    </File>
+    <File Include="images/orderedList4.png">
+      <publishTime>08/18/2017 23:42:04</publishTime>
+    </File>
+    <File Include="images/orderedList5.png">
+      <publishTime>08/18/2017 23:42:04</publishTime>
+    </File>
+    <File Include="images/orderedList6.png">
+      <publishTime>08/18/2017 23:42:04</publishTime>
+    </File>
+    <File Include="images/orderedList7.png">
+      <publishTime>08/18/2017 23:42:04</publishTime>
+    </File>
+    <File Include="images/orderedList8.png">
+      <publishTime>08/18/2017 23:42:04</publishTime>
+    </File>
+    <File Include="images/orderedList9.png">
+      <publishTime>08/18/2017 23:42:04</publishTime>
+    </File>
+    <File Include="images/templatemo_banner_slide_01.jpg">
+      <publishTime>10/15/2017 01:50:42</publishTime>
+    </File>
+    <File Include="images/templatemo_banner_slide_01_old.jpg">
+      <publishTime>05/22/2014 08:13:34</publishTime>
+    </File>
+    <File Include="images/templatemo_banner_slide_02.jpg">
+      <publishTime>10/12/2017 21:00:44</publishTime>
+    </File>
+    <File Include="images/templatemo_banner_slide_02old.jpg">
+      <publishTime>05/22/2014 10:59:16</publishTime>
+    </File>
+    <File Include="images/templatemo_banner_slide_03.jpg">
+      <publishTime>05/22/2014 08:13:30</publishTime>
+    </File>
+    <File Include="images/templatemo_event_01.jpg">
+      <publishTime>05/21/2014 22:25:10</publishTime>
+    </File>
+    <File Include="images/templatemo_event_02.jpg">
+      <publishTime>05/21/2014 22:25:48</publishTime>
+    </File>
+    <File Include="images/templatemo_event_03.jpg">
+      <publishTime>05/21/2014 22:26:02</publishTime>
+    </File>
+    <File Include="images/templatemo_event_04.jpg">
+      <publishTime>05/21/2014 22:25:30</publishTime>
+    </File>
+    <File Include="images/templatemo_logo.JPG">
+      <publishTime>08/20/2017 19:59:02</publishTime>
+    </File>
+    <File Include="images/templatemo_logo12.jpg">
+      <publishTime>05/28/2014 18:54:34</publishTime>
+    </File>
+    <File Include="images/templatemo_member_01.png">
+      <publishTime>10/15/2017 15:20:51</publishTime>
+    </File>
+    <File Include="images/templatemo_member_011.jpg">
+      <publishTime>05/31/2014 20:34:30</publishTime>
+    </File>
+    <File Include="images/templatemo_member_02.jpg">
+      <publishTime>08/21/2017 00:29:37</publishTime>
+    </File>
+    <File Include="images/templatemo_member_03.jpg">
+      <publishTime>05/31/2014 20:34:38</publishTime>
+    </File>
+    <File Include="images/templatemo_member_03ghgh.jpg">
+      <publishTime>05/31/2014 20:34:42</publishTime>
+    </File>
+    <File Include="images/templatemo_member_04.jpg">
+      <publishTime>05/31/2014 20:34:46</publishTime>
+    </File>
+    <File Include="images/time_line_bg.jpg">
+      <publishTime>05/22/2014 16:06:02</publishTime>
+    </File>
+    <File Include="images/Wait.gif">
+      <publishTime>08/20/2017 17:09:07</publishTime>
+    </File>
+    <File Include="js/bootstrap.min.js">
+      <publishTime>02/13/2014 08:24:42</publishTime>
+    </File>
+    <File Include="js/jquery-3.2.1.js">
+      <publishTime>08/14/2017 00:16:20</publishTime>
+    </File>
+    <File Include="js/jquery-ui.min.js">
+      <publishTime>05/22/2014 13:08:26</publishTime>
+    </File>
+    <File Include="js/jquery.min.js">
+      <publishTime>03/24/2012 18:00:04</publishTime>
+    </File>
+    <File Include="js/jquery.singlePageNav.min.js">
+      <publishTime>05/08/2014 08:28:22</publishTime>
+    </File>
+    <File Include="js/templatemo_script.js">
+      <publishTime>08/10/2014 17:09:28</publishTime>
+    </File>
+    <File Include="js/unslider.min.js">
+      <publishTime>06/03/2014 11:51:10</publishTime>
+    </File>
+    <File Include="LangConversion/Globalization/Header/Header_en-US.json">
+      <publishTime>10/22/2017 13:48:32</publishTime>
+    </File>
+    <File Include="LangConversion/Header/Header_en-US.json">
+      <publishTime>10/15/2017 14:35:47</publishTime>
+    </File>
+    <File Include="LangConversion/Index/Index_en-US.json">
+      <publishTime>10/22/2017 07:09:23</publishTime>
+    </File>
+    <File Include="LangConversion/SoftDebugger/Header/Header_en-US.json">
+      <publishTime>10/22/2017 15:19:45</publishTime>
+    </File>
+    <File Include="LangConversion/SoftDebugger/Index/Index_en-US.json">
+      <publishTime>10/22/2017 07:09:23</publishTime>
+    </File>
+    <File Include="packages.config">
+      <publishTime>10/12/2017 23:24:20</publishTime>
+    </File>
+    <File Include="PrecompiledApp.config">
+      <publishTime>10/22/2017 21:51:33</publishTime>
+    </File>
+    <File Include="Views/Home/Contactus.cshtml">
+      <publishTime>10/22/2017 11:27:30</publishTime>
+    </File>
+    <File Include="Views/Home/Index.cshtml">
+      <publishTime>10/22/2017 10:32:01</publishTime>
+    </File>
+    <File Include="Views/web.config">
+      <publishTime>10/12/2017 23:24:00</publishTime>
+    </File>
+    <File Include="Views/_Shared/_Footer.cshtml">
+      <publishTime>10/22/2017 12:56:59</publishTime>
+    </File>
+    <File Include="Views/_Shared/_Header.cshtml">
+      <publishTime>10/22/2017 12:37:50</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>10/22/2017 21:51:25</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

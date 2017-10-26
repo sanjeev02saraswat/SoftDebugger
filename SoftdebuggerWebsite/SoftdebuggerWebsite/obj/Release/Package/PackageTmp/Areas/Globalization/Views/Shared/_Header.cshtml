@@ -1,0 +1,75 @@
+﻿
+@using Newtonsoft.Json.Linq;
+
+@{
+    string LanguageText = Convert.ToString(Session["LangFile"]);
+    JObject objLanguagerequiredText = JObject.Parse(LanguageText);
+
+}
+
+<link href="~/Areas/Globalization/css/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Areas/Globalization/css/style.css" rel="stylesheet" />
+<header class="topnav">
+    <div class="main-header">
+        <!-- Logo -->
+        <a href="dashboard.html" class="logo">
+            <!-- mini logo for sidebar mini 50x50 pixels -->
+            <span class="logo-mini"><b><img src="~/Assets/Image/Common/short-logo.png"></b></span>
+            <!-- logo for regular state and mobile devices -->
+            <span class="logo-lg"><b><img src="~/Assets/Image/Common/logo.png"></b></span>
+        </a>
+        <!-- Header Navbar: style can be found in header.less -->
+        <nav class="navbar navbar-static-top" role="navigation">
+            <!-- Sidebar toggle button-->
+            <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                <span class="sr-only">Toggle navigation</span>
+            </a>
+            <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">
+                    <li class="notify-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-bell-o" aria-hidden="true"></i>
+                            <span class="notify_show">15</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <span class="notify-heading">Notification</span>
+                            <li>
+                                <span class="user-notify">RK</span>
+                                <p>
+                                    Ticket from Contact Name | Account Name was assigned to rajananimator in QuadLabs<br>
+                                    <small>12/12/2016</small>
+                                </p>
+                            </li>
+                            <li>
+                                <span class="user-notify">RK</span>
+                                <p>
+                                    Ticket from Contact Name | Account Name was assigned to rajananimator in QuadLabs<br>
+                                    <small>12/12/2016</small>
+                                </p>
+                            </li>
+                            <li>
+                                <span class="user-notify">RK</span>
+                                <p>
+                                    Ticket from Contact Name | Account Name was assigned to rajananimator in QuadLabs<br>
+                                    <small>12/12/2016</small>
+                                </p>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- User Account: style can be found in dropdown.less -->
+                    <li class="dropdown user user-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <img src="~/Assets/Image/Common/defult-user-img.png" class="user-image" alt="User Image" />
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Settings</a></li>
+                            <li><a href="#">Logout</a></li>
+                        </ul>
+                    </li>
+                    <!-- Control Sidebar Toggle Button -->
+
+                </ul>
+            </div>
+        </nav>
+    </div>
+</header>
