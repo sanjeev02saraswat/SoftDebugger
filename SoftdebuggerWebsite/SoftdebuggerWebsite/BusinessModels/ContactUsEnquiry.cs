@@ -14,5 +14,7 @@ namespace SoftdebuggerWebsite.BusinessModels
         public string CustomerMessage { get; set; }
 
         public string QueryType { get; set;   }
+
+        public string Email { get; set; }
     }
 }

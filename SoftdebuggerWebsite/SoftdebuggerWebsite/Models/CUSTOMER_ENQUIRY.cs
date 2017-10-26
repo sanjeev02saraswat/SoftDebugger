@@ -13,9 +13,34 @@ namespace SoftdebuggerWebsite.Models
 
         public void InsertCustomerEnquiry(ContactUsEnquiry objContactUsEnquiry)
         {
-            using (SqlConnection con=new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaulWebsite"].ToString()))
+            if (Convert.ToBoolean(System.Configuration.ConfigurationManager.AppSettings["DBReady"].ToString()))
             {
+                try
+                {
+                    using (SqlConnection con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaulWebsite"].ToString()))
+                    {
+                        using (SqlCommand sqlcmd = new SqlCommand("FSP_INSERTCONTACTDETAILS"))
+                        {
+                            sqlcmd.CommandType = CommandType.StoredProcedure;
+                            sqlcmd.Parameters.AddWithValue("@QUERYTYPE", objContactUsEnquiry.QueryType);
 
+                            sqlcmd.Parameters.AddWithValue("@NAME", objContactUsEnquiry.CustomerName);
+
+                            sqlcmd.Parameters.AddWithValue("@MOBILE", objContactUsEnquiry.CustomerMobile);
+
+                            sqlcmd.Parameters.AddWithValue("@EMAIL", objContactUsEnquiry.Email);
+
+                            sqlcmd.Parameters.AddWithValue("@MOBILE", objContactUsEnquiry.CustomerMobile);
+
+                            sqlcmd.ExecuteNonQuery();
+
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw;
+                }
             }
 
 
