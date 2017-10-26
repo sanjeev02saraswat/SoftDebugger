@@ -1,10 +1,10 @@
 ﻿ using SoftdebuggerWebsite.BusinessModels;
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Data.SqlClient;
 using System.Net.Mail;
 using System.Text;
-using System.Web;
+using System.Data;
 
 namespace SoftdebuggerWebsite.Models
 {
@@ -13,6 +13,10 @@ namespace SoftdebuggerWebsite.Models
 
         public void InsertCustomerEnquiry(ContactUsEnquiry objContactUsEnquiry)
         {
+            using (SqlConnection con=new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaulWebsite"].ToString()))
+            {
+
+            }
 
 
         }
