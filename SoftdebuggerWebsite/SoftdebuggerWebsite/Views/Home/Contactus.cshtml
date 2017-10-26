@@ -2,7 +2,7 @@
 @{
     Layout = null;
 }
-
+<script src="~/js/angular.min.js"></script>
 @Html.Partial("~/Views/_Shared/_Header.cshtml");
 <div class="content">
     <div class="wrap">
@@ -47,11 +47,11 @@
                     <form>
                         <div>
                             <span><label>NAME</label></span>
-                            <span><input type="text" class="textbox" id="NAME"></span>
+                            <span><input type="text" class="textbox" id="CustomerName" ng-model="CustomerName"></span>
                         </div>
                         <div>
                             <span><label>E-MAIL</label></span>
-                            <span><input type="text" class="textbox" id="EMAIL"></span>
+                            <span><input type="text" class="textbox" id="Email" ng-model="Email"></span>
                         </div>
                         <!---728x90--->
                         <div style="text-align: center;">
@@ -66,14 +66,14 @@
                         </div>
                         <div>
                             <span><label>MOBILE</label></span>
-                            <span><input type="text" class="textbox" id="MOBILE"></span>
+                            <span><input type="text" class="textbox" id="CustomerMobile" ng-model="CustomerMobile"></span>
                         </div>
                         <div>
                             <span><label>ENQUIRY</label></span>
-                            <span><textarea id="ENQIRY"> </textarea></span>
+                            <span><textarea id="CustomerMessage" ng-model="CustomerMessage"> </textarea></span>
                         </div>
                         <div>
-                            <span><input type="submit" value="Submit" id="SUBMIT"></span>
+                            <span><input type="submit" value="Submit" id="SUBMIT" ng-click="SubmitEnquiry()"></span>
                         </div>
                     </form>
 
@@ -85,3 +85,13 @@
     <div class="clear"> </div>
 </div>
 @Html.Partial("~/Views/_Shared/_Footer.cshtml");
+
+
+<script>
+    var ContactApp = angular.module("CustomerModule",[]);
+    var ContactAppController = ContactApp.controller("ContactController", ["$scope","$http", function ($scope,$http) {
+
+
+    }]);
+
+</script>

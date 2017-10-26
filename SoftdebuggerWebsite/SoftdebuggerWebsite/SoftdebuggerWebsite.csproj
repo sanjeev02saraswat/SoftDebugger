@@ -229,6 +229,7 @@
     <Content Include="images\templatemo_member_04.jpg" />
     <Content Include="images\time_line_bg.jpg" />
     <Content Include="images\Wait.gif" />
+    <Content Include="js\angular.min.js" />
     <Content Include="js\bootstrap.min.js" />
     <Content Include="js\jquery-3.2.1.js" />
     <Content Include="js\jquery-ui.min.js" />
