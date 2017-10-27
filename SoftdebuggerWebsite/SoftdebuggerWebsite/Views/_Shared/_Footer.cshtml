@@ -6,53 +6,53 @@
 
 }
 
-    <div class="footer">
-        <div class="wrap">
-            <div class="footer-grids">
-                <div class="footer-grid">
-                    <h2>@objLanguagerequiredText.SelectToken("ExtrasKey").ToString()</h2>
-                    <p>@objLanguagerequiredText.SelectToken("ExtrasContentKey").ToString()</p>
-                    <div class="logo">
-                        <a href="../aspx/home.aspx"><img src="../images/logo.jpg" title="logo" /></a>
-                    </div>
+<div class="footer container_wapper">
+    <div class="wrap">
+        <div class="footer-grids">
+            <div class="footer-grid col-sm-6 col-md-3">
+                <h2>@objLanguagerequiredText.SelectToken("ExtrasKey").ToString()</h2>
+                <p>@objLanguagerequiredText.SelectToken("ExtrasContentKey").ToString()</p>
+                <div class="logo">
+                    <a href="../aspx/home.aspx"><img src="../images/logo.jpg" title="logo" /></a>
                 </div>
-              
-                <div class="footer-grid">
-                    <h3>@objLanguagerequiredText.SelectToken("OurServicesKey").ToString()</h3>
-                    <ul>
-                        <li><a href="#">@objLanguagerequiredText.SelectToken("TravelTechnologyServiceKey").ToString()</a></li>
-                        <li><a href="#">@objLanguagerequiredText.SelectToken("MedicalServicesKey").ToString()</a></li>                       
-                        <li><a href="#">@objLanguagerequiredText.SelectToken("AutomobileServicesKey").ToString()</a></li>
-                        <li><a href="#">@objLanguagerequiredText.SelectToken("EducationTrainingService").ToString()</a></li>
-                    </ul>
-                </div>
-                <div class="footer-grid">
-                    <h3>@objLanguagerequiredText.SelectToken("UsefulInfoKey").ToString()</h3>
-                    <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">About US</a></li>
-                        <li><a href="#">Login/Sign UP</a></li>
-                        <li><a href="#">Contact US </a></li>
-                    </ul>
-                </div>
-                <div class="footer-grid footer-lastgrid">
-                    <h3>connect SoftDebugger</h3>
-                    <p>SoftDebugger</p>
-                    <div class="footer-grid-address">
-                        <p>Tel.982-145-7769</p>
-                        @*<p>Fax: 1234 568</p>*@
-                        <p>Email:<a class="email-link" href="mailto:developer.softdebugger@gmail.com">developer.softdebugger@gmail.com</a></p>
-                    </div>
-                </div>
-                <div class="clear"> </div>
             </div>
+
+            <div class="footer-grid col-sm-6 col-md-3">
+                <h3>@objLanguagerequiredText.SelectToken("OurServicesKey").ToString()</h3>
+                <ul>
+                    <li><a href="#">@objLanguagerequiredText.SelectToken("TravelTechnologyServiceKey").ToString()</a></li>
+                    <li><a href="#">@objLanguagerequiredText.SelectToken("MedicalServicesKey").ToString()</a></li>
+                    <li><a href="#">@objLanguagerequiredText.SelectToken("AutomobileServicesKey").ToString()</a></li>
+                    <li><a href="#">@objLanguagerequiredText.SelectToken("EducationTrainingService").ToString()</a></li>
+                </ul>
+            </div>
+            <div class="footer-grid col-sm-6 col-md-3">
+                <h3>@objLanguagerequiredText.SelectToken("UsefulInfoKey").ToString()</h3>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About US</a></li>
+                    <li><a href="#">Login/Sign UP</a></li>
+                    <li><a href="#">Contact US </a></li>
+                </ul>
+            </div>
+            <div class="footer-grid footer-lastgrid col-sm-6 col-md-3">
+                <h3>connect SoftDebugger</h3>
+                <p>SoftDebugger</p>
+                <div class="footer-grid-address">
+                    <p>Tel.982-145-7769</p>
+                    @*<p>Fax: 1234 568</p>*@
+                    <p>Email:<a class="email-link" href="mailto:developer.softdebugger@gmail.com">developer.softdebugger@gmail.com</a></p>
+                </div>
+            </div>
+            <div class="clear"> </div>
         </div>
     </div>
-    <!---End-footer---->
-    <div class="clear"> </div>
-    <div class="copy-right">
-        <p> &copy; 2017 www.softdebugger.com | All rights reserved | Design by <a href="http://www.softdebugger.com/">Soft-Debugger</a></p>
-    </div>
+</div>
+<!---End-footer---->
+<div class="clear"> </div>
+<div class="copy-right" style="display:none">
+    <p> &copy; 2017 www.softdebugger.com | All rights reserved | Design by <a href="http://www.softdebugger.com/">Soft-Debugger</a></p>
+</div>
 <script>
     $(document).ready(function () {
         $(".contactus").click(function () {
@@ -64,12 +64,12 @@
             }
                     });
 
-       
+
         $(".aboutsus").click(function () {
             if (location.href.toString().indexOf("contact")>-1) {
                 location.href = "Index#templatemo_about";
             }
-            
+
         });
         $(".events").click(function () {
             if (location.href.toString().indexOf("contact") > -1) {
@@ -85,8 +85,8 @@
             $(".timeline").click(function () {
                 if (location.href.toString().indexOf("contact") > -1) {
                     location.href = "Index#templatemo_timeline";
-                }            
-           
+                }
+
 
             });
             $(".homepage").click(function () {

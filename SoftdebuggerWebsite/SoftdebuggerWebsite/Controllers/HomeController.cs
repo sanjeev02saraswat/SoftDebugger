@@ -39,18 +39,25 @@ namespace SoftdebuggerWebsite.Controllers
         [Route("~/contact")]  
         public ActionResult Contactus()
         {
+            string LangConversion = string.Empty;
+            string mapPath = string.Empty;
             if (Session["LangFile"] ==null)
             {
-                string LangConversion = string.Empty;
-                string mapPath = System.Web.HttpContext.Current.Server.MapPath(@"~/LangConversion/SoftDebugger/Header/Header_en-US.json");
+                 mapPath = System.Web.HttpContext.Current.Server.MapPath(@"~/LangConversion/SoftDebugger/Header/Header_en-US.json");
                 using (StreamReader r = new StreamReader(mapPath))
                 {
                     LangConversion = r.ReadToEnd();
                 }
 
                 Session["LangFile"] = JsonConvert.DeserializeObject(LangConversion);
-
             }
+            mapPath= System.Web.HttpContext.Current.Server.MapPath(@"~/LangConversion/SoftDebugger/Contactus/Contactus_en-US.json");
+
+            using (StreamReader r = new StreamReader(mapPath))
+            {
+                LangConversion = r.ReadToEnd();
+            }
+            ViewBag.ContactusLangFile = JsonConvert.DeserializeObject(LangConversion);
             return View("~/Views/Home/Contactus.cshtml");
         }
 
