@@ -46,7 +46,7 @@ img{max-width:100%;}
 	padding: 40px 25px;
 	display: block;
 	position: relative;
-	text-transform: uppercase;
+	
 	transition: 0.5s ease;
 	-o-transition: 0.5s ease;
 	-webkit-transition: 0.5s ease;
@@ -75,7 +75,7 @@ img{max-width:100%;}
 	margin-right: 2%;
 }
 .grid h3{
-	text-transform: uppercase;
+	
 	padding: 8px 0;
 	margin-bottom: 8px;
 	font-size: 1.6em;
@@ -95,7 +95,7 @@ img{max-width:100%;}
 	color: #ffffff;
 	background-color: #289cd8;
 	display: inline-block;
-	text-transform: uppercase;
+	
 	padding: 10px 20px;
 	font-size: 0.875em;
 	transition: 0.5s ease;
@@ -123,7 +123,7 @@ img{max-width:100%;}
 	font-size: 2em;
 	color: #012231;
 	text-align: center;
-	text-transform: uppercase;
+	
 }
 .specials-heading {
 	width: 90%;
@@ -140,7 +140,7 @@ img{max-width:100%;}
 	width:100%;
 }
 .special-grid a{
-	text-transform: uppercase;
+	
 	font-size: 1.2em;
 	font-family: 'PT Sans Narrow', sans-serif;
 	color: #555;
@@ -175,7 +175,7 @@ img{max-width:100%;}
 	font-size: 2em;
 	color: #012231;
 	text-align: center;
-	text-transform: uppercase;
+	
 	padding: 0.5em 0 0.5em 0;
 }
 .testmonial-grid p{
@@ -208,7 +208,7 @@ img{max-width:100%;}
 .footer-grid h3{
 	font-size: 1.4em;
 	color: #fff;
-	text-transform: uppercase;
+	
 	font-family: 'PT Sans Narrow', sans-serif;
 	margin-bottom: 20px;
 }
@@ -254,7 +254,7 @@ img{max-width:100%;}
 .copy-right p{
 	font-size: 1.4em;
 	color: #fff;
-	text-transform: uppercase;
+	
 	font-family: 'PT Sans Narrow', sans-serif;
 }
 .copy-right p a{
@@ -284,14 +284,14 @@ img{max-width:100%;}
 	font-size: 2em;
 	color: #012231;
 	text-align: center;
-	text-transform: uppercase;
+	
 }
 .about-header {
 	width: 90%;
 	margin: 0 auto;
 }
 .about-info a{
-	text-transform: uppercase;
+	
 	font-size: 1.2em;
 	font-family: 'PT Sans Narrow', sans-serif;
 	color: #555;
@@ -328,7 +328,7 @@ img{max-width:100%;}
 	font-size: 2em;
 	color: #012231;
 	text-align: center;
-	text-transform: uppercase;
+	
 	padding: 0 0 0.5em 0;
 }
 .services-header {
@@ -340,7 +340,7 @@ img{max-width:100%;}
 	float:left;
 }
 .services-grid a{
-	text-transform: uppercase;
+	
 	font-size: 1.2em;
 	font-family: 'PT Sans Narrow', sans-serif;
 	color: #555;
@@ -419,7 +419,7 @@ img{max-width:100%;}
 	font-size: 1.5em;
 	padding: 0.5em 0;
 	color: #012231;
-	text-transform: uppercase;
+	
 }
 .contact-form{
 	position:relative;
@@ -434,7 +434,7 @@ img{max-width:100%;}
 	font-size: 0.9em;
 	padding-bottom:5px;
 	color: #012231;
-	text-transform: uppercase;
+	
 }
 .contact-form input[type="text"],.contact-form textarea{
 		   padding: 8px;
@@ -458,7 +458,7 @@ img{max-width:100%;}
 	color: #d6d6d6;
 	padding: 15px 40px;
 	font-size: 0.875em;
-	text-transform: uppercase;
+	
 	display: block;
 	transition: 0.5s ease;
 	-o-transition: 0.5s ease;

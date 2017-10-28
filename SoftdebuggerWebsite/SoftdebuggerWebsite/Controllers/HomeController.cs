@@ -15,6 +15,7 @@ namespace SoftdebuggerWebsite.Controllers
     [RoutePrefix("Home")]
     public class HomeController : Controller
     {
+        const string AssemblyName = "SoftDebuggerWebsite";
         // GET: Home
         [ActionName("Index")]
         public ActionResult Index()
@@ -64,8 +65,18 @@ namespace SoftdebuggerWebsite.Controllers
         [AjaxChildActionOnlyAttribute]
         public void InsertCustomerEnquiry(ContactUsEnquiry objContactUsEnquiry)
         {
-            CUSTOMER_ENQUIRY objCUSTOMER_ENQUIRY = new CUSTOMER_ENQUIRY();
-            objCUSTOMER_ENQUIRY.InsertCustomerEnquiry(objContactUsEnquiry);
+            try
+            {
+                SoftLogger.SoftLogger.WriteLogImmediate("One New Enquiry With Below Details: Name:"+objContactUsEnquiry.CustomerName+"Mobile:"+objContactUsEnquiry.CustomerMobile+"Email:"+objContactUsEnquiry.Email+"Message:"+objContactUsEnquiry.CustomerMessage, "Homecontroller", AssemblyName);
+                CUSTOMER_ENQUIRY objCUSTOMER_ENQUIRY = new CUSTOMER_ENQUIRY();
+                objCUSTOMER_ENQUIRY.InsertCustomerEnquiry(objContactUsEnquiry);
+                SoftLogger.SoftLogger.WriteLogImmediate("Enquiry Submitted Successfully", "Homecontroller", AssemblyName);
+            }
+            catch (Exception ex)
+            {
+                SoftLogger.SoftLogger.WriteLogImmediate("Error During Insert Customer Enquiry:" + ex.ToString(), "Homecontroller", AssemblyName);
+            }
+          
 
         }
        

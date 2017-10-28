@@ -5,24 +5,28 @@ using System.Data.SqlClient;
 using System.Net.Mail;
 using System.Text;
 using System.Data;
+using SendMail;
+using SoftLogger;
 
 namespace SoftdebuggerWebsite.Models
 {
     public class CUSTOMER_ENQUIRY
     {
-
+        const string AssemblyName = "SoftDebuggerWebsite";
         public void InsertCustomerEnquiry(ContactUsEnquiry objContactUsEnquiry)
         {
             if (Convert.ToBoolean(System.Configuration.ConfigurationManager.AppSettings["DBReady"].ToString()))
             {
                 try
                 {
-                    using (SqlConnection con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaulWebsite"].ToString()))
+
+                    using (SqlConnection con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultWebsite"].ToString()))
                     {
-                        using (SqlCommand sqlcmd = new SqlCommand("FSP_INSERTCONTACTDETAILS"))
+                        using (SqlCommand sqlcmd = new SqlCommand("FSP_INSERTCONTACTDETAILS",con))
                         {
                             sqlcmd.CommandType = CommandType.StoredProcedure;
                             sqlcmd.Parameters.AddWithValue("@QUERYTYPE", objContactUsEnquiry.QueryType);
+                            sqlcmd.Parameters.AddWithValue("@ENQUIRY", objContactUsEnquiry.CustomerMessage);
 
                             sqlcmd.Parameters.AddWithValue("@NAME", objContactUsEnquiry.CustomerName);
 
@@ -30,16 +34,22 @@ namespace SoftdebuggerWebsite.Models
 
                             sqlcmd.Parameters.AddWithValue("@EMAIL", objContactUsEnquiry.Email);
 
-                            sqlcmd.Parameters.AddWithValue("@MOBILE", objContactUsEnquiry.CustomerMobile);
-
+                            //sqlcmd.Parameters.AddWithValue("@MOBILE", objContactUsEnquiry.CustomerMobile);
+                            con.Open();
                             sqlcmd.ExecuteNonQuery();
-
+                            con.Close();
+                            SendMail.SendMail objSendMail = new SendMail.SendMail();
+                       bool status=     objSendMail.SendMailtoUser(objContactUsEnquiry.Email, objContactUsEnquiry.QueryType);
+                            if (status)
+                            {
+                                SoftLogger.SoftLogger.WriteLogImmediate("Mail Send Successfully", "Customer Enquiry", AssemblyName);
+                            }
                         }
                     }
                 }
                 catch (Exception ex)
                 {
-                    throw;
+                    SoftLogger.SoftLogger.WriteLogImmediate("Error During Insert Customer Enquiry:"+ex.ToString(), "Customer Enquiry", AssemblyName);
                 }
             }
 

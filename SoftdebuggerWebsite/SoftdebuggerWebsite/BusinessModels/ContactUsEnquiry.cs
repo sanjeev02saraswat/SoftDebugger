@@ -11,6 +11,12 @@ namespace SoftdebuggerWebsite.BusinessModels
 
         public string CustomerMobile { get; set; }
 
+        public string CustomerCompany { get; set; }
+
+        public string PopupISD { get; set; }
+
+        public string Country { get; set; }
+
         public string CustomerMessage { get; set; }
 
         public string QueryType { get; set;   }
