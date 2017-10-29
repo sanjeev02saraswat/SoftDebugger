@@ -22,7 +22,7 @@ namespace SoftdebuggerWebsite.Models
 
                     using (SqlConnection con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultWebsite"].ToString()))
                     {
-                        using (SqlCommand sqlcmd = new SqlCommand("FSP_INSERTCONTACTDETAILS",con))
+                        using (SqlCommand sqlcmd = new SqlCommand("FSP_INSERTCONTACTDETAILS", con))
                         {
                             sqlcmd.CommandType = CommandType.StoredProcedure;
                             sqlcmd.Parameters.AddWithValue("@QUERYTYPE", objContactUsEnquiry.QueryType);
@@ -38,14 +38,44 @@ namespace SoftdebuggerWebsite.Models
                             con.Open();
                             sqlcmd.ExecuteNonQuery();
                             con.Close();
-                            SendMail.SendMail objSendMail = new SendMail.SendMail();
-                       bool status=     objSendMail.SendMailtoUser(objContactUsEnquiry.Email, objContactUsEnquiry.QueryType);
-                            if (status)
-                            {
-                                SoftLogger.SoftLogger.WriteLogImmediate("Mail Send Successfully", "Customer Enquiry", AssemblyName);
-                            }
                         }
                     }
+
+                    DataSet ds = null;
+                    using (SqlConnection scon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultWebsite"].ToString()))
+                    {
+                        using (SqlCommand scmd = new SqlCommand("GetMailTeplate", scon))
+                        {
+                            scmd.CommandType = CommandType.StoredProcedure;
+                            scmd.Parameters.AddWithValue("@ApplicationName", "SoftDebugger");
+                            scmd.Parameters.AddWithValue("@MailType", "Contact");
+                            SqlDataAdapter da = new SqlDataAdapter(scmd);
+                            ds = new DataSet();
+                            da.Fill(ds);
+
+                        }
+                    }
+                    string MailSubject = string.Empty;
+                    string MailBody = string.Empty;
+                    if (ds != null && ds.Tables.Count > 0)
+                    {
+                        MailSubject = ds.Tables[0].Rows[0]["MAILSUBJECT"].ToString();
+                        MailBody = ds.Tables[0].Rows[0]["MAILBODY"].ToString();
+                       
+                    }
+                    else
+                    {
+                        SoftLogger.SoftLogger.WriteLogImmediate("No Template Found", "Customer Enquiry", AssemblyName);
+                        //log no ecord found for smtp
+                    }
+                    SendMail.SendMail objSendMail = new SendMail.SendMail();
+                        bool status = objSendMail.SendMailtoUser(objContactUsEnquiry.Email, MailSubject,MailBody,"",true);
+                        if (status)
+                        {
+                            SoftLogger.SoftLogger.WriteLogImmediate("Mail Send Successfully", "Customer Enquiry", AssemblyName);
+                        }
+
+                    
                 }
                 catch (Exception ex)
                 {

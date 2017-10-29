@@ -8,5 +8,7 @@
   "IdeaSuggestionKey": "Ideas, suggestions, interested in partnerships?",
   "MobileKey": "Mobile*",
   "NameKey": "Name*",
-  "SubmitKey": "Submit"
+  "SubmitKey": "Submit",
+  "CompanyNameKey": "Company Name*",
+  "FillAlldetailKey": "Please fill the all *marked details"
 }
