@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,6 +12,7 @@ using SoftdebuggerWebsite.Filters;
 namespace SoftdebuggerWebsite.Controllers
 {
     [RoutePrefix("Home")]
+    [LocalizationFilter]
     public class HomeController : Controller
     {
         const string AssemblyName = "SoftDebuggerWebsite";
@@ -21,14 +21,15 @@ namespace SoftdebuggerWebsite.Controllers
         public ActionResult Index()
         {
             string LangConversion = string.Empty;
-            string mapPath = System.Web.HttpContext.Current.Server.MapPath(@"~/LangConversion/SoftDebugger/Header/Header_en-US.json");
+            string FileCulture = GetFileCulture();
+            string mapPath = System.Web.HttpContext.Current.Server.MapPath(@"~/LangConversion/SoftDebugger/Header/Header_"+ FileCulture + ".json");
             using (StreamReader r = new StreamReader(mapPath))
             {
                 LangConversion = r.ReadToEnd();
             }
           
             Session["LangFile"] = JsonConvert.DeserializeObject(LangConversion);
-             mapPath = System.Web.HttpContext.Current.Server.MapPath(@"~/LangConversion/SoftDebugger/Index/Index_en-US.json");
+             mapPath = System.Web.HttpContext.Current.Server.MapPath(@"~/LangConversion/SoftDebugger/Index/Index_" + FileCulture + ".json");
             using (StreamReader r = new StreamReader(mapPath))
             {
                 LangConversion = r.ReadToEnd();
@@ -42,9 +43,10 @@ namespace SoftdebuggerWebsite.Controllers
         {
             string LangConversion = string.Empty;
             string mapPath = string.Empty;
+            string FileCulture = GetFileCulture();
             if (Session["LangFile"] ==null)
             {
-                 mapPath = System.Web.HttpContext.Current.Server.MapPath(@"~/LangConversion/SoftDebugger/Header/Header_en-US.json");
+                 mapPath = System.Web.HttpContext.Current.Server.MapPath(@"~/LangConversion/SoftDebugger/Header/Header_" + FileCulture + ".json");
                 using (StreamReader r = new StreamReader(mapPath))
                 {
                     LangConversion = r.ReadToEnd();
@@ -52,7 +54,7 @@ namespace SoftdebuggerWebsite.Controllers
 
                 Session["LangFile"] = JsonConvert.DeserializeObject(LangConversion);
             }
-            mapPath= System.Web.HttpContext.Current.Server.MapPath(@"~/LangConversion/SoftDebugger/Contactus/Contactus_en-US.json");
+            mapPath= System.Web.HttpContext.Current.Server.MapPath(@"~/LangConversion/SoftDebugger/Contactus/Contactus_" + FileCulture + ".json");
 
             using (StreamReader r = new StreamReader(mapPath))
             {
@@ -78,6 +80,17 @@ namespace SoftdebuggerWebsite.Controllers
             }
           
 
+        }
+
+        public string GetFileCulture()
+        {
+            if (Session["objWrapper"]!=null)
+            {
+                Languages objLanguages = new Languages();
+                objLanguages = (Languages)Session["objWrapper"];
+                return objLanguages.CultureCode;
+            }
+            return "en-US";
         }
        
     }

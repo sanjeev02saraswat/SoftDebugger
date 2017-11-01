@@ -1,21 +1,18 @@
 ﻿{
   "TitleKey": "SoftDebugger",
   "HomeKey": "Home",
-  "AskDemo":"Ask For Demo",
   "AboutKey": "About",
   "ServicesKey": "Services",
   "TimelineKey": "Timeline",
   "Loginkey": "Login",
   "ContactKey": "Contact",
-  "CompanyName":"SoftDebugger",
   "ExtrasKey": "Extras",
   "ExtrasContentKey": "We are IT Technology service provider, You can contact us for any enquiry.",
   "OurServicesKey": "Our Services",
   "TravelTechnologyServiceKey": "Travel Technology Service's",
   "MedicalServicesKey":"Medical Service's",
-  "AutomobileServicesKey":"IT Service's",
+  "AutomobileServicesKey":"Automobiles IT Service's",
   "EducationTrainingService":"Educational and Training Service's",
-  "UsefulInfoKey":"Useful Info",
-  "QuickEnquiry":"Quick Enquiry"
+  "UsefulInfoKey":"Useful Info"
 
 }

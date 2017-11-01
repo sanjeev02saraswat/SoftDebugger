@@ -23,21 +23,21 @@
     </style>
 </head>
 <body>
-    <div class="banner" id="templatemo_banner_slide">
+    <div class="banner" id="SoftDebugger_banner_slide">
         <ul>
-            <li class="templatemo_banner_slide_02">
+            <li class="SoftDebugger_banner_slide_02">
                 <div class="slide_caption">
                     <h1>@objLanguagerequiredText.SelectToken("MedicalServices").ToString()</h1>
                     <p>@objLanguagerequiredText.SelectToken("MedicalServiceContent").ToString()</p>
                 </div>
             </li>
-            <li class="templatemo_banner_slide_01">
+            <li class="SoftDebugger_banner_slide_01">
                 <div class="slide_caption">
                     <h1>@objLanguagerequiredText.SelectToken("ITServices").ToString()</h1>
                     <p>@objLanguagerequiredText.SelectToken("ITServicesContent").ToString()</p>
                 </div>
             </li>
-            <li class="templatemo_banner_slide_03">
+            <li class="SoftDebugger_banner_slide_03">
                 <div class="slide_caption">
                     <h1>@objLanguagerequiredText.SelectToken("TravelTechnologyKey").ToString()</h1>
                     <p>@objLanguagerequiredText.SelectToken("TravelTechnologyContent").ToString()</p>
@@ -45,7 +45,7 @@
             </li>
         </ul>
     </div>
-    <div id="templatemo_about" class="container_wapper">
+    <div id="SoftDebugger_about" class="AboutTravelTab container_wapper">
         <div class="container-fluid">
             <h1>@objLanguagerequiredText.SelectToken("AboutourOrganizationKey").ToString()</h1>
             <div class="col-sm-6 col-md-3 about_icon">
@@ -100,7 +100,7 @@
                     <div class="col-sm-9">
                         <h2><a href="https://www.linkedin.com/in/nihal-elazher-52b100b0/" target="_blank">Nihal Elazher</a></h2>
                         <h3>Marketing Executive</h3>
-                        <p>Maecenas nec rhoncus orci. Morbi tempus ut leo ac varius. Cras convallis sagittis dignissim. Aenean diam libero, venenatis eu risus eu, tincidunt porttitor orci. Nulla consequat mi et lectus vehicula condimentum. Nulla ullamcorper dolor vehicula dolor interdum, eget fermentum ligula bibendum. Sed vel dolor libero.</p>
+                        <p>@objLanguagerequiredText.SelectToken("AboutJulia").ToString()</p>
                     </div>
                 </div><!--.testimonial_text-->
                 <div class="testimonial_text">
@@ -110,7 +110,7 @@
                     <div class="col-sm-9">
                         <h2>Raghwendra Singh</h2>
                         <h3>Server Engineer</h3>
-                        <p>Donec lacinia erat quis venenatis varius. Suspendisse non turpis vitae libero interdum lacinia. Nulla in nibh arcu. Donec quam neque, porta at pellentesque at, imperdiet ut velit. Pellentesque luctus ac nunc et hendrerit. Aliquam eu scelerisque eros. Vestibulum scelerisque mi nec augue condimentum rhoncus.</p>
+                        <p>@objLanguagerequiredText.SelectToken("AboutRaghwendra").ToString()<a href="https://www.linkedin.com/in/raghwendra-singh-ab668466/" target="_blank"> Click Here</a></p>
                     </div>
                 </div><!--.testimonial_text-->
             </div><!--#testimonial_text_wap-->
@@ -119,14 +119,14 @@
             </div>
             <div class="clearfix testimonial_top_bottom_spacer"></div>
         </div>
-    </div><!--templatemo_about-->
-    <div id="templatemo_events" class="container_wapper">
+    </div><!--SoftDebugger_about-->
+    <div id="SoftDebugger_events" class="container_wapper">
         <div class="container-fluid">
             <h1>Services</h1>
             <div class="col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-0">
                 <div class="event_box_wap event_animate_left">
                     <div class="event_box_img">
-                        <img src="../images/templatemo_event_01.jpg" class="img-responsive" alt="Web Design Trends" />
+                        <img src="../images/TRAVELSMART.jpg" class="img-responsive" style="width: -webkit-fill-available;" alt="SoftDebugger Makes Your Travel Booking Easy from fly to ride and ride to stay." />
                     </div>
                     <div class="event_box_caption">
                         <h1>Travel Technology Services</h1>
@@ -148,22 +148,22 @@
                 </div>
             </div>
             <div class="clearfix"></div>
-            <div class="col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-0">
+            <div class="col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-0" style="height:400px">
                 <div class="event_box_wap event_animate_left">
                     <div class="event_box_img">
-                        <img src="../images/templatemo_event_03.jpg" class="img-responsive" alt="" />
+                        <img src="../images/SoftDebugger_ITServices.jpeg" style="width: -webkit-fill-available;" class="img-responsive" alt="" />
                     </div>
                     <div class="event_box_caption">
-                        <h1>AutoMobile Services</h1>
+                        <h1>IT Services</h1>
                         @*<p><span class="glyphicon glyphicon-map-marker"></span> Old Town Center, Mandalay, Myanmar &nbsp;&nbsp; <span class="glyphicon glyphicon-time"></span> 3:30 PM to 6:30 PM </p>*@
                         <p>When your aim to find automate the things in your life, We can help you better... </p>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-0">
+            <div class="col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-0" style="height:400px;">
                 <div class="event_box_wap event_animate_right">
                     <div class="event_box_img">
-                        <img src="../images/templatemo_event_04.jpg" class="img-responsive" alt="" />
+                        <img src="../images/SoftDebugger_Education.jpg" style="width: -webkit-fill-available;" class="img-responsive" alt="" />
                     </div>
                     <div class="event_box_caption">
                         <h1>Education Services</h1>
@@ -252,7 +252,7 @@
             </div>
         </div>*@
 
-
+    @Html.Partial("~/Views/_Shared/_Footer.cshtml");
 </body>
 
 <script src="../js/jquery.min.js"></script>
@@ -263,4 +263,4 @@
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false"></script>
 <script src="../js/templatemo_script.js"></script>
 </html>
-@Html.Partial("~/Views/_Shared/_Footer.cshtml");
+
