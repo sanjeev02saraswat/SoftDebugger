@@ -13,7 +13,14 @@ namespace SoftdebuggerWebsite.BusinessModels
 
         public string CustomerCompany { get; set; }
 
-        public string PopupISD { get; set; }
+        public string ISD { get; set; }
+        public string CustomerBusiness { get; set; }
+
+        public string Website { get; set; }
+
+        public string Designation { get; set; }
+
+        public string RequestType { get; set; }
 
         public string Country { get; set; }
 
