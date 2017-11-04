@@ -16,6 +16,11 @@ namespace SoftdebuggerWebsite.Controllers
     public class HomeController : Controller
     {
         const string AssemblyName = "SoftDebuggerWebsite";
+
+        public ActionResult Selector()
+        {
+            return View();
+        }
         // GET: Home
         [ActionName("Index")]
         public ActionResult Index()

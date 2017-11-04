@@ -26,20 +26,9 @@ $(document).ready(function () {
         SaveEnquiry();
     });
 });
-//var ContactUsApp = angular.module("ContactUsApp", []);
-//ContactUsApp.controller("ConatctUsController", ["$scope", function ($scope) {
 
 
-//    $scope.InsertEnquiry = function ($scope, $http) {
-//        debugger;
-//        $http.post('../Home/InsertCustomerEnquiry').data($scope).then(function () {
-//            alert('Inserted Successfully');
-//        });
-//    };
-
-//}]);
-
-function ValidatePopupEnquiryForm() {
+function ValidateContactusEnquiryForm() {
     var flag = true;
     debugger;
     if ($("#CustomerName").val() == "") {
@@ -65,10 +54,7 @@ function ValidatePopupEnquiryForm() {
         $("#PopupISD").addClass("errorClass");
         flag = false;
     }
-    //if ($("#PopupDesignation").val() == "") {
-    //    $("#PopupDesignation").addClass("errorClass");
-    //    flag = false;
-    //}
+   
     if ($("#CustomerMessage").val() == "") {
         $("#CustomerMessage").addClass("errorClass");
         flag = false;
@@ -77,10 +63,7 @@ function ValidatePopupEnquiryForm() {
         $("#ddlCountry").addClass("errorClass");
         flag = false;
     }
-    //if ($("#PopupddlBusiness")[0].selectedIndex == 0) {
-    //    $("#PopupddlBusiness").addClass("errorClass");
-    //    flag = false;
-    //}
+    
     var validemail = true;
     if ($("#Email").val() != "") {
         var email = $("#Email").val();
@@ -88,84 +71,17 @@ function ValidatePopupEnquiryForm() {
     }
 
     if (validemail == false && flag == false) {
-        $("#Popupspnerrormessage").css("display", "block");
-        $("#Popupspnemailmessage").css("display", "block");
+        $("#contactusspnerrormessage").css("display", "block");
+        $("#contactusspnemailmessage").css("display", "block");
     }
     else if (validemail == false) {
         flag = false;
-        $("#Popupspnemailmessage").css("display", "block");
+        $("#contactusspnemailmessage").css("display", "block");
     }
     else if (flag == false) {
-        $("#Popupspnerrormessage").css("display", "block");
-    }
-
-    //var requesttype = window.location.href;
-    //requesttype = requesttype.split('/');
-    //$("#PopupRequestType").val(requesttype[requesttype.length - 1]);
+        $("#contactusspnerrormessage").css("display", "block");
+    }   
     return flag;
 
 }
 
-function isEmail(email) {
-    // var regex = /^([a-zA-Z0-9_.+-])+\@@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-    //    var emailReg = /^([\w-\.]+@@([\w-]+\.)+[\w-]{2,8})?$/;
-    var pattern = /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i
-    return emailReg.test(email);
-}
-
-
-
-function emptyvalues() {
-    $("#CustomerName").val('');
-    $("#CustomerCompany").val('');
-    $("#CustomerMobile").val('');
-    $("#Email").val('');
-    $("#RequestType").val('');
-    $("#Website").val('');
-    $("#CustomerMessage").val('');
-    $("#ISD").val('');
-    $("#ddlCountry").val('');
-    $("#PopupFullName").val('');
-    $("#PopupCompanyName").val('');
-    $("#PopupPhoneNo").val('');
-    $("#PopupEmailAddress").val('');
-    $("#PopupRequestType").val('');
-    $("#PopupWebsite").val('');
-    $("#PopupDetails").val('');
-    $("#PopupISD").val('');
-    $("#PopupDesignation").val('');
-    $("#PopupddlCountry").selectedIndex = 0;
-    $("#PopupddlBusiness").selectedIndex = 0;
-}
-
-$('html').click(function (e) {
-    debugger;
-    if ($(e.target).hasClass('btn-block')) {
-        return;
-    }
-    $("#CustomerName").removeClass("errorClass");
-    $("#CustomerMobile").removeClass("errorClass");
-    $("#CustomerCompany").removeClass("errorClass");
-    $("#ddlCountry").removeClass("errorClass");
-    $("#CustomerMessage").removeClass("errorClass");
-    $("#Email").removeClass("errorClass");
-    $("#Designation").removeClass("errorClass");
-    $("#ddlBusiness").removeClass("errorClass");
-    $("#EmailAddress").removeClass("errorClass");
-    $("#spnerrormessage").css("display", "none");
-    $("#spnemailmessage").css("display", "none");
-    $("#PopupFullName").removeClass("errorClass");
-    $("#PopupCompanyName").removeClass("errorClass");
-    $("#PopupDesignation").removeClass("errorClass");
-    $("#PopupddlBusiness").removeClass("errorClass");
-    $("#PopupPhoneNo").removeClass("errorClass");
-    $("#PopupddlCountry").removeClass("errorClass");
-    $("#PopupISD").removeClass("errorClass");
-    $("#PopupDetails").removeClass("errorClass");
-    $("#PopupEmailAddress").removeClass("errorClass");
-    $("#Popupspnerrormessage").css("display", "none");
-    $("#Popupspnemailmessage").css("display", "none");
-    $("#popupenquiryConfirmationmessage").css("display", "none");
-    //  $("#subscribermessage").text('');
-    //  $("#enquiryConfirmationmessage").css("display", "none");
-});

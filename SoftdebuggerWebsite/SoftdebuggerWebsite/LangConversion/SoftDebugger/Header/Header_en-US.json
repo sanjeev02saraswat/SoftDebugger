@@ -16,6 +16,19 @@
   "AutomobileServicesKey":"IT Service's",
   "EducationTrainingService":"Educational and Training Service's",
   "UsefulInfoKey":"Useful Info",
-  "QuickEnquiry":"Quick Enquiry"
-
+  "QuickEnquiry": "Quick Enquiry",
+  "SelectBusiness": "Select Business* ",
+  "AllKey": "All",
+  "TravelManagementCompany": "Travel Management Company",
+  "OnlineTravelAgency": "Online Travel Agency",
+  "B2BConsolidator": "B2B Consolidator",
+  "SubmitKey": "Submit",
+  "TourOperator": "Tour Operator",
+  "ProvideValidEmailAddressKey": "*Please Provide Valid Email Address",
+  "SelectCountryKey": "Select Country*",
+  "FillAlldetailKey": "Please fill the all *marked details",
+  "AgreementContentKey1":"By submiting you agree with our ",
+  "AgreementContentKey2": "Terms and Conditions",
+  "OthersKey": "Others",
+  "PleaseWaitKey": "Please wait..."
 }

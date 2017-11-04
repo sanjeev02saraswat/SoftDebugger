@@ -1,73 +1,84 @@
-﻿@using Newtonsoft.Json.Linq;
-@{
-    string LanguageText = Convert.ToString(ViewBag.ContactusLangFile);
-    JObject objLanguagerequiredText = JObject.Parse(LanguageText);
-}
+﻿<div class="modal fade quick-enquiry-modal in" tabindex="-1" role="dialog" id="enquiryModal" style="display: none;">
+    <div class="modal-dialog  modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
 
 
-<script src="../js/jquery.min.js"></script>
-<script src="../js/jquery-ui.min.js"></script>
-<script src="../js/bootstrap.min.js"></script>
-<style>
-
-</style>
-
-<div class="content">
-
-    @Html.Partial("~/Views/_Shared/_Header.cshtml");
-
-    <div class="wrap">
-
-        <div class="section group">
-            <div class="col span_1_of_3">
-                <div class="contact_info">
-                    <h3>@objLanguagerequiredText.SelectToken("FindusKey").ToString()</h3>
-                    <div class="map">
-                        <iframe width="100%" height="175" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.co.in/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=Noida+City+Center,+UP,+India&amp;aq=4&amp;oq=light&amp;sll=26.275636,-80.087265&amp;sspn=0.04941,0.104628&amp;ie=UTF8&amp;hq=&amp;hnear=Noida+City+Center,+Noida,+Uttar+Pradesh,+India&amp;t=m&amp;z=2&amp;ll=20.593684,78.96288&amp;output=embed"></iframe><br><small><a href="https://maps.google.co.in/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=Noida+City+Center,+UP,+India&amp;aq=4&amp;oq=light&amp;sll=20.593684,78.96288&amp;sspn=0.04941,0.104628&amp;ie=UTF8&amp;hq=&amp;hnear=Noda+City+Center,+Noida,+Uttar+Pradesh,+India&amp;t=m&amp;z=14&amp;ll=26.275636,-80.087265" style="color:#666;text-align:left;font-size:12px">View Larger Map</a></small>
+                <div class="quick-enquiry-form">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h1><i class="fa fa-paper-plane-o"></i> Quick Enquiry</h1>
+                        </div>
                     </div>
-                </div>
-                <div class="company_address">
-                    <h3>@objLanguagerequiredText.SelectToken("CompanyInfoKey").ToString()</h3>
-                    <p>@objLanguagerequiredText.SelectToken("CompanyNameKey").ToString(),</p>
-                    <p>Gurgaon, Haryana,</p>
-                    <p>INDIA</p>
-                    <p>Phone:(+91) 982 145 7769</p>
-                    <p>Phone:(+91) 805 742 4300</p>
-                    <p>Email: <span><a href="mailto:developer.softdebugger@gmail.com">developer.softdebugger@gmail.com</a></span></p>
-                    <p>Follow on: <span><a href="https://www.facebook.com/SoftDebugger/">Facebook</a></span>, <span>Twitter</span></p>
-                </div>
-            </div>
-            <div class="col span_2_of_3">
-                <div class="common-hdng common-hdng-with-p">
-                    <h1>@objLanguagerequiredText.SelectToken("IdeaSuggestionKey").ToString()</h1>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
 
-                </div>
-                <div class="contact-form" ng-app="conatctusapp">
-                    <h3>@objLanguagerequiredText.SelectToken("Conatctuskey").ToString()</h3>
-                    <form>
-                        <div>
-                            <span><label>@objLanguagerequiredText.SelectToken("NameKey").ToString()</label></span>
-                            <span><input type="text" class="textbox" id="CustomerName"></span>
+                                <input type="text" class="form-control" maxlength="150" id="PopupFullName" placeholder="Full name*">
+                            </div>
                         </div>
-                        <div>
-                            <span><label>@objLanguagerequiredText.SelectToken("Emailkey").ToString()</label></span>
-                            <span><input type="text" class="textbox" id="Email"></span>
-                            <span id="contactusspnemailmessage" style="color:red;display:none;">*Please Provide Valid Email Address</span>
-                        </div>
-                   <div>
-                            <span><label>@objLanguagerequiredText.SelectToken("MobileKey").ToString()</label></span>
+                        <div class="col-sm-6">
+                            <div class="form-group">
 
-                            <span>    <input type="text" class="textbox" maxlength="12" id="CustomerMobile"></span>
+                                <input type="text" class="form-control" maxlength="100" id="PopupDesignation" placeholder="Designation*">
+                            </div>
                         </div>
-                        <div>
-                            <span><label>@objLanguagerequiredText.SelectToken("CompanyNameLabelKey").ToString()</label></span>
-                            <span><input type="text" class="textbox" id="CustomerCompany"></span>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+
+                                <input type="text" class="form-control" maxlength="100" id="PopupCompanyName" placeholder="Company name*">
+                            </div>
                         </div>
-                        <div>
-                            <span><label>Country Name*</label></span>
-                            <span>
-                                <select id="ddlCountry" class="form-control">
-                                    <option value="select" selected="selected">Select Country</option>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <select id="PopupddlBusiness" class="form-control">
+                                    <option value="select" selected="selected">Select Business* </option>
+                                    <option value="All">All</option>
+                                    <option value="Travel Management Company">Travel Management Company</option>
+                                    <option value="Online Travel Agency">Online Travel Agency</option>
+                                    <option value="B2B Consolidator">B2B Consolidator</option>
+                                    <option value="Tour Operator">Tour Operator</option>
+                                    <option value="Others">Others</option>
+                                </select>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <div class="input-group input-input-combine">
+                                    <span class="input-group-addon">
+
+                                        <input type="text" class="form-control" maxlength="4" id="PopupISD" placeholder="ISD*">
+                                    </span>
+
+                                    <input type="text" class="form-control" maxlength="12" id="PopupPhoneNo" placeholder="Phone number*">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+
+                                <input type="text" class="form-control" maxlength="100" id="PopupEmailAddress" placeholder="Email Address*">
+                                <span id="Popupspnemailmessage" style="color:red;display:none;">*Please Provide Valid Email Address</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+
+                                <input type="text" class="form-control" id="PopupWebsite" placeholder="http://">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <select id="PopupddlCountry" class="form-control">
+                                    <option value="select" selected="selected"> Select Country* </option>
                                     <option value="Afghanistan">Afghanistan</option>
                                     <option value="Albania">Albania</option>
                                     <option value="Algeria">Algeria</option>
@@ -308,115 +319,100 @@
                                     <option value="Zambia">Zambia</option>
                                     <option value="Zimbabwe">Zimbabwe</option>
                                 </select>
-                            </span>
-                        </div>
-
-                        <div>
-                            <span><label>@objLanguagerequiredText.SelectToken("EnquiryKey").ToString()</label></span>
-                            <span><textarea id="CustomerMessage"></textarea></span>
-                        </div>
-                        <div class="row">
-
-                            <div class="form-group form-btns text-center col-sm-6 col-sm-offset-3" style="display:none;" id="contactuswaitplatform">
-                                <span>Please wait...</span>
-                                <div class="progress"> <div style="width:100%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="45" role="progressbar" class="progress-bar progress-bar-striped active"><span class="sr-only">45% Complete</span></div> </div>
-                            </div>
-
-
-                            <div class="form-group form-btns text-center col-sm-6 col-sm-offset-3" id="contactusconfirmmessage">
-                                <span id="contactusspnerrormessage" style="color:red;display:none;">@objLanguagerequiredText.SelectToken("FillAlldetailKey").ToString()</span>
-                                <span id="ContactusenquiryConfirmationmessage" style="display:none;color:green;"></span>
                             </div>
                         </div>
-                        <div class="form-group form-btns text-center col-sm-6 col-md-12">
-                            <input type="button" class="btn btn-default btn-block btn-more" id="btnsubmitresult" value="@objLanguagerequiredText.SelectToken("SubmitKey").ToString()" />
-                            <br /><span class="contact-accept-tnc">@objLanguagerequiredText.SelectToken("AgreementContentKey1").ToString()<a href="">@objLanguagerequiredText.SelectToken("AgreementContentKey2").ToString()</a></span>
-                        </div>
-                    </form>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
 
+                                <textarea class="form-control" style="resize:none;" rows="4" id="PopupDetails" placeholder="More Details*"></textarea>
+                            </div>
+                            <span id="Popupspnerrormessage" style="color:red;display:none;">Please fill the all *marked details</span>
+                        </div>
+                    </div>
+
+                    <input type="hidden" id="PopupRequestType">                  
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group text-center">
+                                <input type="button" class="btn btn-default btn-block btn-submit" id="popupsubmitmyenquiry" value="Submit" />
+                                <span class="contact-accept-tnc">By submiting you agree with our <a href="/terms-of-use">Terms and Conditions</a></span>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group form-btns text-center col-sm-6 col-sm-offset-3" style="display:none;" id="PopUpwaitplatform">
+                            <span>Please wait...</span>
+                            <div class="progress"> <div style="width:100%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="45" role="progressbar" class="progress-bar progress-bar-striped active"><span class="sr-only">45% Complete</span></div> </div>
+                        </div>
+
+
+                        <div class="form-group form-btns text-center col-sm-6 col-sm-offset-3" id="Popupconfirmmessage">
+                            <span id="popupenquiryConfirmationmessage" style="display:none;color:green;"></span>
+                        </div>
+                    </div>
                 </div>
+
+                <script>
+
+                    $("#popupsubmitmyenquiry").click(function () {
+                        debugger;
+                        $("#popupenquiryConfirmationmessage").css("display", "none");
+                        var flag = ValidatePopupEnquiryForm();
+                        if (flag == false) {
+                            // grecaptcha.reset(widgetId1);
+                            return flag;
+                        }
+
+
+                        var messangername = $("#PopupFullName").val();
+                        var ObjLogInDto = new Object();
+                        ObjLogInDto.CustomerName = $("#PopupFullName").val();
+                        ObjLogInDto.CustomerCompany = $("#PopupCompanyName").val();
+                        ObjLogInDto.CustomerMobile = $("#PopupPhoneNo").val();
+                        ObjLogInDto.Email = $("#PopupEmailAddress").val();
+                        ObjLogInDto.Website = $("#PopupWebsite").val();
+                        ObjLogInDto.CustomerMessage = $("#PopupDetails").val();
+                        ObjLogInDto.CustomerBusiness = $("#PopupddlBusiness").val();
+                        ObjLogInDto.Designation = $("#PopupDesignation").val();
+                        ObjLogInDto.RequestType = $("#PopupRequestType").val();
+                        ObjLogInDto.Country = $("#PopupddlCountry").val();
+                        ObjLogInDto.ISD = $("#PopupISD").val();
+                        var StringifiedData = JSON.stringify(ObjLogInDto)
+                        var confirmmessage = 'Dear ' + messangername + ', Thank you for your request! We will get back to you soon. ';
+                        $("#PopUpwaitplatform").css("display", "block");
+                        setInterval(
+function () {
+    $("#PopUpwaitplatform").css("display", "none");
+    $("#Popupconfirmmessage").css("display", "block");
+    $("#popupenquiryConfirmationmessage").html(confirmmessage);
+    $("#popupenquiryConfirmationmessage").css("display", "block");
+    emptyvalues();
+},
+5000
+);
+                        $.ajax({
+                            url: '@Url.Action("InsertCustomerEnquiry", "Home")',
+                            async: true,
+                            type: "POST",
+                            data: StringifiedData,
+                            //  dataType: "json",
+                            contentType: "application/json; charset=utf-8",
+                            success: function (response) {
+                            
+                            },
+                            error: function (response) {
+                            }
+                        });
+                    });
+
+                </script>
+
             </div>
         </div>
-
+        <!-- /.modal-content -->
     </div>
-    <!---End-contact---->
-    @Html.Partial("~/Views/_Shared/_Footer.cshtml");
+    <!-- /.modal-dialog -->
 </div>
-
-<script>
-    $(document).ready(function () {
-
-        $(".SoftDebugger_navigation").removeClass("active");
-
-        $("#conatctlink").addClass("active");
-    });
-
-
-    function SaveEnquiry() {
-        $("#ContactusenquiryConfirmationmessage").css("display", "none");
-        var flag = ValidateContactusEnquiryForm();
-        if (flag == false) {
-            // grecaptcha.reset(widgetId1);
-            return flag;
-        }
-      
-
-        debugger;
-        var messangername = $("#CustomerName").val();
-        var ObjLogInDto = new Object();
-        ObjLogInDto.CustomerName = $("#CustomerName").val();
-        ObjLogInDto.CustomerCompany = $("#CustomerCompany").val();
-        ObjLogInDto.CustomerMobile = $("#CustomerMobile").val();
-        ObjLogInDto.Email = $("#Email").val();
-        //  ObjLogInDto.Website = $("#PopupWebsite").val();
-        ObjLogInDto.CustomerMessage = $("#CustomerMessage").val();
-        //ObjLogInDto.Business = $("#PopupddlBusiness").val();
-        //ObjLogInDto.Designation = $("#PopupDesignation").val();
-        //ObjLogInDto.RequestType = $("#PopupRequestType").val();
-        ObjLogInDto.Country = $("#ddlCountry").val();
-        //ObjLogInDto.ISD = $("#PopupISD").val();
-        var StringifiedData = JSON.stringify(ObjLogInDto)
-        var confirmmessage = 'Dear ' + messangername + ', Thank you for your request! We will get back to you soon. ';
-        $("#contactuswaitplatform").css("display", "block");
-        setInterval(
-  function () {
-      $("#contactuswaitplatform").css("display", "none");
-      $("#contactusconfirmmessage").css("display", "block");
-      $("#ContactusenquiryConfirmationmessage").html(confirmmessage);
-      $("#ContactusenquiryConfirmationmessage").css("display", "block");
-      emptyvalues();
-  },
-  5000
-);
-        $.ajax({
-            url: '@Url.Action("InsertCustomerEnquiry","Home")',
-            async: true,
-            type: "POST",
-            data: StringifiedData,
-            //  dataType: "json",
-            contentType: "application/json; charset=utf-8",
-            success: function (response) {
-                          
-                //$("#contactuswaitplatform").css("display", "none");
-                //$("#contactusconfirmmessage").css("display", "block");
-                //$("#ContactusenquiryConfirmationmessage").html(confirmmessage);
-                //$("#ContactusenquiryConfirmationmessage").css("display", "block");--//
-                //   grecaptcha.reset(widgetId1);
-            },
-            error: function (response) {
-                
-              //  emptyvalues();
-                // window.location.href = "/thankyou?redirect=contact";
-               // $("#contactuswaitplatform").css("display", "none");
-                // $("#contactusconfirmmessage").css("display", "block");
-                // $("#ContactusenquiryConfirmationmessage").html(confirmmessage);
-                // $("#ContactusenquiryConfirmationmessage").css("display", "block");
-            }
-        });
-    }
-
-</script>
-
-<script src="~/js/Conatctus.js"></script>
-
-
