@@ -25,7 +25,7 @@ jQuery(function(){
         }else{
             $('.banner .slide_caption').hide();
         }
-        $("#templatemo_banner_slide > ul > li").css({"background-size":"cover"});
+        $("#SoftDebugger_banner_slide > ul > li").css({"background-size":"cover"});
     });
     //about icon
     $(window).on("load scroll resize", function(){
@@ -39,7 +39,7 @@ jQuery(function(){
                                                     'width': about_icon_width,
                                                     'height': about_icon_width,
                                                     });
-        $("#templatemo_about .about_icon .imgwap i").css({
+        $("#SoftDebugger_about .about_icon .imgwap i").css({
                                                                                     "font-size":about_icon_size,
                                                                                     "padding-top":about_icon_padding_top,
                                                                                   });
@@ -252,30 +252,30 @@ jQuery(function(){
     //about
     $(document).scroll(function(){
         document_top = $(document).scrollTop();
-        event_wapper_top = $("#templatemo_about").position().top - $('#templatemo_banner_menu').outerHeight();
+        event_wapper_top = $("#SoftDebugger_about").position().top - $('#templatemo_banner_menu').outerHeight();
         if(document_top<event_wapper_top){
             degree = (360/event_wapper_top)*(document_top);
             event_animate_num = event_wapper_top - document_top;
             event_animate_alpha = (1/document_top)*(event_wapper_top);
-            $("#templatemo_about .imgwap").css({
+            $("#SoftDebugger_about .imgwap").css({
                         '-webkit-transform': 'rotate(' + degree + 'deg)',
                         '-moz-transform': 'rotate(' + degree + 'deg)',
                         '-ms-transform': 'rotate(' + degree + 'deg)',
                         '-o-transform': 'rotate(' + degree + 'deg)',
                         'transform': 'rotate(' + degree + 'deg)',
             });
-            $("#templatemo_about .about_icon").css({
+            $("#SoftDebugger_about .about_icon").css({
                         'opacity':event_animate_alpha
             });
         }else{
-            $("#templatemo_about .imgwap").css({
+            $("#SoftDebugger_about .imgwap").css({
                         '-webkit-transform': 'rotate(' + 360 + 'deg)',
                         '-moz-transform': 'rotate(' + 360 + 'deg)',
                         '-ms-transform': 'rotate(' + 360 + 'deg)',
                         '-o-transform': 'rotate(' + 360 + 'deg)',
                         'transform': 'rotate(' + 360 + 'deg)',
             });
-            $("#templatemo_about .about_icon").css({
+            $("#SoftDebugger_about .about_icon").css({
                         'opacity':1
             });
         }
@@ -284,15 +284,15 @@ jQuery(function(){
     //event
     $(document).scroll(function(){
         document_top = $(document).scrollTop();
-        event_wapper_top = $("#templatemo_events").position().top - $('#templatemo_banner_menu').outerHeight();
+        event_wapper_top = $("#SoftDebugger_events").position().top - $('#templatemo_banner_menu').outerHeight();
         if(document_top<event_wapper_top){
             event_animate_num = event_wapper_top - document_top;
             event_animate_alpha = (1/event_wapper_top)*(document_top);
-            $("#templatemo_events .event_animate_left").css({'left': -event_animate_num,'opacity':event_animate_alpha});
-            $("#templatemo_events .event_animate_right").css({'left':event_animate_num,'opacity':event_animate_alpha});
+            $("#SoftDebugger_events .event_animate_left").css({'left': -event_animate_num,'opacity':event_animate_alpha});
+            $("#SoftDebugger_events .event_animate_right").css({'left':event_animate_num,'opacity':event_animate_alpha});
         }else{
-            $("#templatemo_events .event_animate_left").css({'left': 0,'opacity':1});
-            $("#templatemo_events .event_animate_right").css({'left':0,'opacity':1});
+            $("#SoftDebugger_events .event_animate_left").css({'left': 0,'opacity':1});
+            $("#SoftDebugger_events .event_animate_right").css({'left':0,'opacity':1});
         }
     }); 
 });

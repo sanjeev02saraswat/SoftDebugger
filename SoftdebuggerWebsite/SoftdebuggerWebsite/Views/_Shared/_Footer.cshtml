@@ -6,74 +6,57 @@
 
 }
 
-    <div class="footer">
-        <div class="wrap">
-            <div class="footer-grids">
-                <div class="footer-grid">
-                    <h2>@objLanguagerequiredText.SelectToken("ExtrasKey").ToString()</h2>
-                    <p>@objLanguagerequiredText.SelectToken("ExtrasContentKey").ToString()</p>
-                    <div class="logo">
-                        <a href="../aspx/home.aspx"><img src="../images/logo.jpg" title="logo" /></a>
-                    </div>
-                </div>
-              
-                <div class="footer-grid">
-                    <h3>@objLanguagerequiredText.SelectToken("OurServicesKey").ToString()</h3>
-                    <ul>
-                        <li><a href="#">@objLanguagerequiredText.SelectToken("TravelTechnologyServiceKey").ToString()</a></li>
-                        <li><a href="#">@objLanguagerequiredText.SelectToken("MedicalServicesKey").ToString()</a></li>                       
-                        <li><a href="#">@objLanguagerequiredText.SelectToken("AutomobileServicesKey").ToString()</a></li>
-                        <li><a href="#">@objLanguagerequiredText.SelectToken("EducationTrainingService").ToString()</a></li>
-                    </ul>
-                </div>
-                <div class="footer-grid">
-                    <h3>@objLanguagerequiredText.SelectToken("UsefulInfoKey").ToString()</h3>
-                    <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">About US</a></li>
-                        <li><a href="#">Login/Sign UP</a></li>
-                        <li><a href="#">Contact US </a></li>
-                    </ul>
-                </div>
-                <div class="footer-grid footer-lastgrid">
-                    <h3>connect SoftDebugger</h3>
-                    <p>SoftDebugger</p>
-                    <div class="footer-grid-address">
-                        <p>Tel.982-145-7769</p>
-                        @*<p>Fax: 1234 568</p>*@
-                        <p>Email:<a class="email-link" href="mailto:developer.softdebugger@gmail.com">developer.softdebugger@gmail.com</a></p>
-                    </div>
-                </div>
-                <div class="clear"> </div>
-            </div>
-        </div>
+
+<footer class="footer-distributed">
+
+    <div class="footer-right">
+
+        <a href="https://www.facebook.com/SoftDebugger/"><i class="fa fa-facebook"></i></a>
+        <a href="#"><i class="fa fa-twitter"></i></a>
+        <a href="#"><i class="fa fa-linkedin"></i></a>
+        <a href="#"><i class="fa fa-github"></i></a>
+
     </div>
-    <!---End-footer---->
-    <div class="clear"> </div>
-    <div class="copy-right">
-        <p> &copy; 2017 www.softdebugger.com | All rights reserved | Design by <a href="http://www.softdebugger.com/">Soft-Debugger</a></p>
+
+    <div class="footer-left">
+
+        <p class="footer-links">
+            <a href="~/Home/Index#">@objLanguagerequiredText.SelectToken("HomeKey").ToString()</a>
+            ·
+            <a href="~/Home/Index#SoftDebugger_about">@objLanguagerequiredText.SelectToken("AboutKey").ToString()</a>
+            ·
+            <a href="~/Home/Index#SoftDebugger_events">@objLanguagerequiredText.SelectToken("ServicesKey").ToString()</a>
+            ·           
+            <a href="~/Home/Contact">Contact</a>
+        </p>
+
+        <p>@objLanguagerequiredText.SelectToken("CompanyName").ToString() &copy; 2017</p>
     </div>
+
+</footer>
+
+
 <script>
     $(document).ready(function () {
         $(".contactus").click(function () {
             if (location.href.toString().indexOf("contact") > -1) {
                 location.reload();
             }
-            else{
+            else {
                 location.href = "@Url.Action("contact","Home")";
             }
-                    });
+        });
 
-       
+
         $(".aboutsus").click(function () {
-            if (location.href.toString().indexOf("contact")>-1) {
-                location.href = "Index#templatemo_about";
+            if (location.href.toString().indexOf("contact") > -1) {
+                location.href = "Index#SoftDebugger_about";
             }
-            
+
         });
         $(".events").click(function () {
             if (location.href.toString().indexOf("contact") > -1) {
-                location.href = "Index#templatemo_events";
+                location.href = "Index#SoftDebugger_events";
             }
 
         });
@@ -82,11 +65,49 @@
                 location.href = "Index#templatemo_timeline";
             }
         });
-            $(".timeline").click(function () {
-                if (location.href.toString().indexOf("contact") > -1) {
-                    location.href = "Index#templatemo_timeline";
-                }            
-           
+        $(".timeline").click(function () {
+            if (location.href.toString().indexOf("contact") > -1) {
+                location.href = "Index#templatemo_timeline";
+            }
+
+
+        });
+    });
+        $(document).ready(function () {
+            //code to change Language
+         
+            $("#lanPortuguese,#lanArabic,#lanEnglish").click(function () {
+                var ObjLogInDto = new Object();
+                if (this.id == "lanEnglish") {
+                    ObjLogInDto.LanguageCode = "US";
+                }
+                else if (this.id == "lanArabic") {
+                    ObjLogInDto.LanguageCode = "ar-sa";
+                }
+                else {
+
+                    ObjLogInDto.LanguageCode = "BR";
+                }
+                var currenturl = window.location.href;
+
+                var messangername = $("#FullName").val();
+
+                var StringifiedData = JSON.stringify(ObjLogInDto)
+
+                $.ajax({
+                    //url: 'Url.Action("ChangeLanguage", "Home")',
+                    url: '/Home/ChangeLanguage',
+                    async: false,
+                    type: "POST",
+                    data: StringifiedData,
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data, textStatus, jqXHR) {
+                        location.reload();
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        location.reload();
+                    }
+                });
 
             });
             $(".homepage").click(function () {
@@ -95,6 +116,6 @@
                 }
                 $('html, body').animate({ scrollTop: 0 }, 0);
             });
-
-    });
+            
+        });
 </script>

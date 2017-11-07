@@ -9,10 +9,8 @@
 <meta charset="utf-8">
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-@*<title>@objLanguagerequiredText.SelectToken("TitleKey").ToString()</title>*@
 <meta name="description" content="" />
-<!-- templatemo 411 dragonfruit -->
+
 <meta name="author" content="softdebugger">
 <!-- Favicon-->
 <link rel="shortcut icon" href="./favicon.png" />
@@ -26,44 +24,122 @@
 <!-- Template  -->
 <link href="../css/templatemo_style.css" rel="stylesheet">
 <link href="~/css/style.css" rel="stylesheet" />
+<link href="~/css/Common.css" rel="stylesheet" />
 
 <!--Add Jquery Reference-->
 <script src="../js/jquery-3.2.1.js"></script>
 
-<div id="templatemo_mobile_menu">
-    <ul class="nav nav-pills nav-stacked">
-        <li><a  class="homepage"><i class="glyphicon glyphicon-home"></i>&nbsp; @objLanguagerequiredText.SelectToken("HomeKey").ToString()</a></li>
-        <li><a href="#templatemo_about" class="aboutsus"><i class="glyphicon glyphicon-briefcase"></i>&nbsp; @objLanguagerequiredText.SelectToken("AboutKey").ToString()</a></li>
-        <li><a href="#templatemo_events" class="events"><i class="glyphicon glyphicon-bullhorn"></i>&nbsp; @objLanguagerequiredText.SelectToken("ServicesKey").ToString()</a></li>
-        <li><a href="#templatemo_timeline" class="timeline"><i class="glyphicon glyphicon-calendar"></i>&nbsp; @objLanguagerequiredText.SelectToken("TimelineKey").ToString()</a></li>
-        <li><a rel="nofollow" href="#" class="external-link"><i class="glyphicon glyphicon-export"></i>&nbsp; @objLanguagerequiredText.SelectToken("Loginkey").ToString()</a></li>
-        <li><a  class="contactus"><i class="glyphicon glyphicon-phone-alt"></i>&nbsp; @objLanguagerequiredText.SelectToken("ContactKey").ToString()</a></li>
+<style>
+    .scroll-top-wrapper {
+        position: fixed;
+        opacity: 0;
+        visibility: hidden;
+        overflow: hidden;
+        text-align: center;
+        z-index: 99999999;
+        background-color: #777777;
+        color: #eeeeee;
+        width: 50px;
+        height: 48px;
+        line-height: 48px;
+        right: 30px;
+        bottom: 30px;
+        padding-top: 2px;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+        -webkit-transition: all 0.5s ease-in-out;
+        -moz-transition: all 0.5s ease-in-out;
+        -ms-transition: all 0.5s ease-in-out;
+        -o-transition: all 0.5s ease-in-out;
+        transition: all 0.5s ease-in-out;
+    }
+
+        .scroll-top-wrapper:hover {
+            background-color: #888888;
+        }
+
+        .scroll-top-wrapper.show {
+            visibility: visible;
+            cursor: pointer;
+            opacity: 1.0;
+        }
+
+        .scroll-top-wrapper i.fa {
+            line-height: inherit;
+        }
+</style>
+
+<script>
+
+$(function(){
+
+	$(document).on( 'scroll', function(){
+
+		if ($(window).scrollTop() > 100) {
+			$('.scroll-top-wrapper').addClass('show');
+		} else {
+			$('.scroll-top-wrapper').removeClass('show');
+		}
+	});
+
+	$('.scroll-top-wrapper').on('click', scrollToTop);
+});
+
+function scrollToTop() {
+	verticalOffset = typeof(verticalOffset) != 'undefined' ? verticalOffset : 0;
+	element = $('body');
+	offset = element.offset();
+	offsetTop = offset.top;
+	$('html, body').animate({scrollTop: offsetTop}, 500, 'linear');
+}
+</script>
+<script>
+
+$(function(){
+
+	$(document).on( 'scroll', function(){
+
+		if ($(window).scrollTop() > 100) {
+			$('.scroll-top-wrapper').addClass('show');
+		} else {
+			$('.scroll-top-wrapper').removeClass('show');
+		}
+	});
+});
+</script>
+<div class="scroll-top-wrapper ">
+    <span class="scroll-top-inner">
+        <i class="fa fa-2x fa-arrow-circle-up"></i>
+    </span>
+</div>
+
+<header class="well_bg" id="HeaderDiv">
+
+    <h1>@objLanguagerequiredText.SelectToken("CompanyName").ToString()</h1>
+    @*<h2><a href="#">@objLanguagerequiredText.SelectToken("AskDemo").ToString()</a></h2>*@
+  <h2><a data-toggle="modal" data-target="#enquiryModal" style="cursor:pointer">@objLanguagerequiredText.SelectToken("AskDemo").ToString()</a></h2>
+    <ul>
+        <li><a href="~/Home/Index"  class="SoftDebugger_navigation">@objLanguagerequiredText.SelectToken("HomeKey").ToString()</a></li>
+        <li><a href="~/Home/Index#SoftDebugger_about" class="SoftDebugger_navigation">@objLanguagerequiredText.SelectToken("AboutKey").ToString()</a></li>
+        
+        
+        <li><a href="~/Home/Index#SoftDebugger_events"  class="SoftDebugger_navigation">@objLanguagerequiredText.SelectToken("ServicesKey").ToString()</a></li>
+        
+        <li><a href="@Url.Action("Contact","Home")"  class="SoftDebugger_navigation">@objLanguagerequiredText.SelectToken("QuickEnquiry").ToString()</a></li>
+        <li><a href="@Url.Action("Contact","Home")" id="conatctlink" class="SoftDebugger_navigation">@objLanguagerequiredText.SelectToken("ContactKey").ToString()</a></li>
     </ul>
-</div>
-<div class="container_wapper">
-    <div id="templatemo_banner_menu">
-        <div class="container-fluid">
-            <div class="col-xs-4 templatemo_logo">
-                <a href="#"  class="homepage">
-                    <img src="../images/templatemo_logo.jpg" id="logo_img" alt="SoftDebugger" title="SoftDebugger" />
-                    @*<h1 id="logo_text">Soft-<span>Debugger</span></h1>*@
-                </a>
-            </div>
-            <div class="col-sm-8 hidden-xs">
-                <ul class="nav nav-justified">
-                    <li><a  class="homepage">@objLanguagerequiredText.SelectToken("HomeKey").ToString()</a></li>
-                    <li><a href="#templatemo_about" class="aboutsus">@objLanguagerequiredText.SelectToken("AboutKey").ToString()</a></li>
-                    <li><a href="#templatemo_events" class="events">@objLanguagerequiredText.SelectToken("ServicesKey").ToString()</a></li>
-                    <li><a href="#templatemo_timeline"  class="timeline">@objLanguagerequiredText.SelectToken("TimelineKey").ToString()</a></li>
-                    <li><a rel="nofollow" href="#" class="external-link">@objLanguagerequiredText.SelectToken("Loginkey").ToString()</a></li>
-                    <li><a  class="contactus">@objLanguagerequiredText.SelectToken("ContactKey").ToString()</a></li>
-                    
-                </ul>
-              
-            </div>
-            <div class="col-xs-8 visible-xs">
-                <a href="#" id="mobile_menu"><span class="glyphicon glyphicon-th-list"></span></a>
-            </div>
-        </div>
-    </div>
-</div>
+
+</header>
+
+
+@Html.Partial("~/Views/_Shared/EnquiryPopUp.cshtml");
+
+<script src="../js/jquery.min.js"></script>
+<script src="../js/jquery-ui.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/jquery.singlePageNav.min.js"></script>
+<script src="../js/unslider.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false"></script>
+<script src="~/js/common.js"></script>

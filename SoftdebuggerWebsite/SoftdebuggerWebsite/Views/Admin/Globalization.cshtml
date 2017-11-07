@@ -1,0 +1,40 @@
+﻿
+@{
+    Layout = null;
+}
+
+
+<link href="~/css/style.css" rel="stylesheet" />
+<link href="~/css/bootstrap.min.css" rel="stylesheet" />
+
+<script src="~/js/jquery-3.2.1.js"></script>
+<section>
+    <div class="col-lg-12 col-md-12 col-sm-12">
+        <select id="ddlApplication"  class="form-control">
+            <option>--Select Application--</option>
+        </select>
+    </div>
+</section>
+<script>
+
+    $(document).ready(function(){
+
+
+    });
+
+
+    function GetApplicationList() {
+        $.ajax({
+            url: '@Url.Action("InsertCustomerEnquiry","Home")',
+            async: true,
+            type: "GET",
+            contentType: "application/json; charset=utf-8",
+            success: function (response) {
+               
+            },
+            error: function (response) {
+              
+            }
+        });
+    }
+</script>

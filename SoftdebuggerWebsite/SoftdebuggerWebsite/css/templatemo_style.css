@@ -140,119 +140,119 @@ h1 {
 .banner div.slide_caption p {
     font-size: 16px;
 }
-.templatemo_banner_slide_01 {
-    background: url('../images/templatemo_banner_slide_01.jpg');
+.SoftDebugger_banner_slide_01 {
+    background: url('../images/SoftDebugger_banner_slide_01.jpg');
     background-size: cover;
 }
-.templatemo_banner_slide_02 {
-    background: url('../images/templatemo_banner_slide_02.jpg');
+.SoftDebugger_banner_slide_02 {
+    background: url('../images/SoftDebugger_banner_slide_02.jpg');
     background-size: cover;
 }
-.templatemo_banner_slide_03 {
-    background: url('../images/templatemo_banner_slide_03.jpg');
+.SoftDebugger_banner_slide_03 {
+    background: url('../images/SoftDebugger_banner_slide_03.jpg');
     background-size: cover;
 }
 /*about our organization*/
-#templatemo_about {
+#SoftDebugger_about {
     background: #ffffff;
     float: left;
 }
-#templatemo_about .about_icon img {
+#SoftDebugger_about .about_icon img {
     width: 100%;
 }
-#templatemo_about .about_icon h2 {
+#SoftDebugger_about .about_icon h2 {
     text-align: center;
     font: normal normal normal 20px/25px 'Century Gothic', sans-serif;
 }
-#templatemo_about .about_icon .imgwap {
+#SoftDebugger_about .about_icon .imgwap {
     text-align: center;
     border-radius: 75px;
 }
-#templatemo_about .about_icon p {
+#SoftDebugger_about .about_icon p {
     text-align: center;
     font: normal normal normal 14px/23px 'Century Gothic', sans-serif;
 }
-#templatemo_about .mission {
+#SoftDebugger_about .mission {
     background-color: #bd3e25;
     color: #f5bd48;
 }
-#templatemo_about .product {
+#SoftDebugger_about .product {
     background-color: #334d5c;
     color: #f5bd48;
 }
-#templatemo_about .testimonial {
+#SoftDebugger_about .testimonial {
     background-color: #efc84a;
     color: #ab4921;
 }
-#templatemo_about .statistic {
+#SoftDebugger_about .statistic {
     background-color: #334d5c;
     color: #efc84a;
 }
-#templatemo_about #testimonial_text_wap {
+#SoftDebugger_about #testimonial_text_wap {
     overflow: hidden;
 }
-#templatemo_about #testimonial_text_wap h2 {
+#SoftDebugger_about #testimonial_text_wap h2 {
     font-size: 24px;
     margin: 0;
     padding: 12px 0;
 }
-#templatemo_about #testimonial_text_wap h3 {
+#SoftDebugger_about #testimonial_text_wap h3 {
     font-size: 20px;
     margin: 0;
     padding: 12px 0;
 }
-#templatemo_about #testimonial_text_wap img {
+#SoftDebugger_about #testimonial_text_wap img {
     margin-bottom: 20px ;
 }
-#templatemo_about #testimonial_text_wap p {
+#SoftDebugger_about #testimonial_text_wap p {
     font-size: 14px;
     line-height: 2em;
 }
-#templatemo_about .testimonial_text {
+#SoftDebugger_about .testimonial_text {
     width: 100%;
     float: left;
 }
-#templatemo_about .pre_next {
+#SoftDebugger_about .pre_next {
     font-size: 70px;
     top: 50%;
     margin-top: -35px;
     position: absolute;
 }
-#templatemo_about .pre_next a {
+#SoftDebugger_about .pre_next a {
     color: #6698b5;
     float: left;
 }
-#templatemo_about .pre_next a:hover {
+#SoftDebugger_about .pre_next a:hover {
     color: #334d5c;
 }
-#templatemo_about #testimonial_text_wap h1 {
+#SoftDebugger_about #testimonial_text_wap h1 {
     font-size: 70px;
     top: 50%;
     margin-top: -35px;
 }
-#templatemo_about .testimonial_top_bottom_spacer {
+#SoftDebugger_about .testimonial_top_bottom_spacer {
     padding-bottom: 80px;
 }
 /*events*/
-#templatemo_events {
+#SoftDebugger_events {
     background: #6698b5;
     float: left;
     overflow: hidden;
 }
-#templatemo_events h1{
+#SoftDebugger_events h1{
     color: #fff;
 }
-#templatemo_events .event_box_wap {
+#SoftDebugger_events .event_box_wap {
     overflow:hidden;
     margin-bottom: 30px;
     cursor: pointer;
     position: relative;
 }
-#templatemo_events .event_box_wap .event_box_img {
+#SoftDebugger_events .event_box_wap .event_box_img {
     position: relative;
     top: 0;
 }
-#templatemo_events .event_box_wap .event_box_caption {
+#SoftDebugger_events .event_box_wap .event_box_caption {
     position: relative;
     top: 0;
     padding-bottom: 10px;
@@ -260,16 +260,16 @@ h1 {
     width: 100%;
     border-top: 3px solid #3c6f8c;
 }
-#templatemo_events .event_box_wap h1,
-#templatemo_events .event_box_wap p {
+#SoftDebugger_events .event_box_wap h1,
+#SoftDebugger_events .event_box_wap p {
     margin: 0;
     color: #000000;
     text-align: left;
 }
-#templatemo_events .event_box_wap p {
+#SoftDebugger_events .event_box_wap p {
     padding: 5px 20px 15px 20px;
 }
-#templatemo_events .event_box_wap h1 {
+#SoftDebugger_events .event_box_wap h1 {
     padding: 20px 20px 20px 20px;
     font-size: 24px;
     line-height: 24px;
@@ -440,7 +440,7 @@ h1 {
 }
 /*  Small devices (tablets, 768px and up)  */
 @media (max-width: 768px ) { 
-    #templatemo_about .pre_next {
+    #SoftDebugger_about .pre_next {
         font-size: 15px;
     }
     #templatemo_timeline .right_timer {
