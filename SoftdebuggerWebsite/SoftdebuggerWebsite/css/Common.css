@@ -196,7 +196,7 @@ body{
 header{
 	text-align: center;
 	padding-top: 100px;
-	margin-bottom:200px;
+	/*margin-bottom:200px;*/
 }
 
 header h1{
