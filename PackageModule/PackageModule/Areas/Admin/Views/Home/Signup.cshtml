@@ -1,0 +1,92 @@
+﻿@using Newtonsoft.Json.Linq;
+@{
+    ViewBag.Title = "Index";
+    string LanguageText = Convert.ToString(ViewBag.SignUpLangFile);
+    JObject objLanguagerequiredText = JObject.Parse(LanguageText);
+
+}
+<script src="~/JS/jquery.min.js"></script>
+<link href="~/CSS/style.css" rel="stylesheet" />
+<link href="~/CSS/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Areas/Admin/Assets/css/SignUp.css" rel="stylesheet" />
+<script src="~/JS/jquery-1.10.2.js"></script>
+<script src="~/JS/angular.min.js"></script>
+
+<div class="form" ng-app="Signupapp">
+
+    <ul class="tab-group">
+        <li class="tab active"><a href="#signup">@objLanguagerequiredText.SelectToken("SignUpKey").ToString()</a></li>
+        <li class="tab"><a href="#login">@objLanguagerequiredText.SelectToken("LogInKey").ToString()</a></li>
+    </ul>
+
+    <div class="tab-content">
+        <div id="signup" ng-controller="signupcontroller">
+            <h1>@objLanguagerequiredText.SelectToken("SignupFreeKey").ToString()</h1>
+
+
+            <div class="top-row">
+                <div class="field-wrap">
+                    <label>
+                        @objLanguagerequiredText.SelectToken("FirstNameKey").ToString()<span class="req">*</span>
+                    </label>
+                    <input type="text" required autocomplete="off" ng-model="User.FirstName" />
+                </div>
+
+                <div class="field-wrap">
+                    <label>
+                        @objLanguagerequiredText.SelectToken("LastNameKey").ToString()<span class="req">*</span>
+                    </label>
+                    <input type="text" required autocomplete="off" ng-model="User.LastName" />
+                </div>
+            </div>
+
+            <div class="field-wrap">
+                <label>
+                    @objLanguagerequiredText.SelectToken("EmailAddressKey").ToString()<span class="req">*</span>
+                </label>
+                <input type="email" required autocomplete="off" ng-model="User.Email" />
+            </div>
+
+            <div class="field-wrap">
+                <label>
+                    @objLanguagerequiredText.SelectToken("SetPasswordKey").ToString()<span class="req">*</span>
+                </label>
+                <input type="password" required autocomplete="off" ng-model="User.Password" />
+            </div>
+
+            <button type="submit" class="button button-block" ng-click="SignUpuser(User)" />@objLanguagerequiredText.SelectToken("GetStartedKey").ToString()</button>
+
+
+
+        </div>
+
+        <div id="login" ng-controller="logincontroller">
+            <h1>@objLanguagerequiredText.SelectToken("WelcomeBackKey").ToString()</h1>
+
+
+
+            <div class="field-wrap">
+                <label>
+                    @objLanguagerequiredText.SelectToken("EmailAddressKey").ToString()<span class="req">*</span>
+                </label>
+                <input type="email" ng-model="Loginuser.Email" required autocomplete="off" />
+            </div>
+
+            <div class="field-wrap">
+                <label>
+                    @objLanguagerequiredText.SelectToken("PasswordKey").ToString()<span class="req">*</span>
+                </label>
+                <input type="password" ng-model="Loginuser.Password" required autocomplete="off" />
+            </div>
+
+            <p class="forgot"><a href="#">@objLanguagerequiredText.SelectToken("ForgetPasswordKey").ToString()</a></p>
+
+            <button class="button button-block" ng-click="Login(Loginuser)" />@objLanguagerequiredText.SelectToken("LogInKey").ToString()</button>
+
+
+
+        </div>
+
+    </div>
+</div>
+<script src="~/Areas/Admin/Assets/script/signup.js"></script>

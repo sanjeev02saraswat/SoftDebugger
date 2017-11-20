@@ -1,0 +1,12 @@
+E:\MailSender\MailSender\bin\Debug\MailSender.exe.config
+E:\MailSender\MailSender\bin\Debug\MailSender.exe
+E:\MailSender\MailSender\bin\Debug\MailSender.pdb
+E:\MailSender\MailSender\bin\Debug\SendMail.dll
+E:\MailSender\MailSender\bin\Debug\SoftLogger.dll
+E:\MailSender\MailSender\bin\Debug\SendMail.pdb
+E:\MailSender\MailSender\bin\Debug\SoftLogger.pdb
+E:\MailSender\MailSender\obj\Debug\MailSender.Form1.resources
+E:\MailSender\MailSender\obj\Debug\MailSender.Properties.Resources.resources
+E:\MailSender\MailSender\obj\Debug\MailSender.csproj.GenerateResource.Cache
+E:\MailSender\MailSender\obj\Debug\MailSender.exe
+E:\MailSender\MailSender\obj\Debug\MailSender.pdb
