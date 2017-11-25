@@ -26,6 +26,10 @@ namespace WEBAPI2.Models
         public string Password { get; set; }
 
         public string FullName { get; set; }
+
+        public string CompanyID { get; set; }
+
+        public string Tokenid { get; set; }
     }
 
 
