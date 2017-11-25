@@ -1,9 +1,11 @@
-﻿using PackageModule.Filters;
+﻿using ConnectorAPI;
+using PackageModule.Filters;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+
 
 namespace WEBAPI2.Models
 {
@@ -24,11 +26,16 @@ namespace WEBAPI2.Models
             try
             {
                 _logger.addMessage.Add("Registeruser", "Registeruser Method is goint to Execute");
-                using (SqlConnection con = new SqlConnection("Test"))
-                {
+                Dictionary<string, object> objparamlist = new Dictionary<string, object>();
+                objparamlist.Add("FirstName", objSignupuser.FirstName);
+                objparamlist.Add("LastName", objSignupuser.LastName);
+                objparamlist.Add("Email", objSignupuser.Email);
+                objparamlist.Add("Password", objSignupuser.Password);
+                objparamlist.Add("CultureCode", objSignupuser.CultureCode);
 
-                }
-
+                IConnector objConnector = new Connector();
+                bool status = objConnector.ExecuteNonQuery("PackageModule", "FSP_SignUpAgentUser", objparamlist);
+                _logger.addMessage.Add("Registeruser", "Agent User sign up successfully");
             }
             catch (Exception ex)
             {

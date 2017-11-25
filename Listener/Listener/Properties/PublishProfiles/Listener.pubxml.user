@@ -10,13 +10,16 @@ by editing this MSBuild file. In order to learn more about this please visit htt
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/App_global.asax.compiled">
-      <publishTime>11/20/2017 21:14:46</publishTime>
+      <publishTime>11/23/2017 00:27:35</publishTime>
     </File>
     <File Include="bin/App_global.asax.dll">
-      <publishTime>11/20/2017 21:14:45</publishTime>
+      <publishTime>11/23/2017 00:27:34</publishTime>
+    </File>
+    <File Include="bin/Connector.dll">
+      <publishTime>11/23/2017 00:08:32</publishTime>
     </File>
     <File Include="bin/Listener.dll">
-      <publishTime>11/20/2017 21:14:08</publishTime>
+      <publishTime>11/23/2017 00:26:35</publishTime>
     </File>
     <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
       <publishTime>06/15/2015 14:36:24</publishTime>
@@ -61,7 +64,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/19/2015 08:49:46</publishTime>
     </File>
     <File Include="bin/SoftLogger.dll">
-      <publishTime>10/28/2017 18:54:40</publishTime>
+      <publishTime>11/22/2017 22:25:02</publishTime>
     </File>
     <File Include="bin/System.Net.Http.Formatting.dll">
       <publishTime>01/28/2015 16:32:42</publishTime>
@@ -82,10 +85,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/20/2017 21:03:10</publishTime>
     </File>
     <File Include="PrecompiledApp.config">
-      <publishTime>11/20/2017 21:14:23</publishTime>
+      <publishTime>11/23/2017 00:27:07</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>11/20/2017 21:14:10</publishTime>
+      <publishTime>11/23/2017 00:26:43</publishTime>
     </File>
   </ItemGroup>
 </Project>

@@ -11,7 +11,7 @@ using SoftdebuggerWebsite.Filters;
 
 namespace SoftdebuggerWebsite.Controllers
 {
-    [RoutePrefix("Home")]
+   
     [LocalizationFilter]
     public class HomeController : Controller
     {
