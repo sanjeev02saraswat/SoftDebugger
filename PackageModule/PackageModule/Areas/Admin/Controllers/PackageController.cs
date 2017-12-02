@@ -1,5 +1,4 @@
-﻿using PackageModule.Filters;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -7,20 +6,21 @@ using System.Web.Mvc;
 
 namespace PackageModule.Areas.Admin.Controllers
 {
-    public class AdminController : Controller
+    public class PackageController : Controller
     {
-        // GET: Admin/Admin
-        [Tokenizer]
+        // GET: Admin/Package
         public ActionResult Index()
         {
             return View();
         }
 
-       // [Tokenizer]
-        public ActionResult CreateUser()
+
+        public ActionResult CreateNewPackage()
         {
-            ViewBag.title = "Create New User";
             return View();
         }
+
+
+
     }
 }

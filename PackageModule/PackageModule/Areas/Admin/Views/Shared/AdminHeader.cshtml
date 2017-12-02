@@ -1,24 +1,46 @@
-﻿
-<link href="~/Areas/Admin/Assets/css/demo.css" rel="stylesheet" />
-<link href="~/Areas/Admin/Assets/css/Header.css" rel="stylesheet" />
-<header class="header-user-dropdown">
-    <div class="header-limiter">
-        <h1><a href="#">Company<span>logo</span></a></h1>
-        <nav>
-            <a href="#">Overview</a>
-            <a href="#">Surveys</a>
-            <a href="#">Reports</a>
-            <a href="#">Roles <span class="header-new-feature">new</span></a>
-        </nav>
-
-        <div class="header-user-menu">
-            <img src="~/Images/user_01.PNG" alt="Sanjeev Saraswat" />            
-            <ul>
-                <li><a href="#">Settings</a></li>
-                <li><a href="#">Payments</a></li>
-                <li><a href="#" class="highlight">Logout</a></li>
-            </ul>
-        </div>
+﻿<aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <div class="sidebar" id="scrollspy">
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+        <ul class="nav sidebar-menu">
+            <li class="header">TABLE OF CONTENTS</li>
+            <li class="active"><a href="@Url.Action("CreateUser","Admin","Admin")"><i class="fa fa-circle-o"></i> Add New User</a></li>
+            <li id="CreateNewPackageli"><a href="@Url.Action("CreateNewPackage","Package","Admin")"><i class="fa fa-circle-o"></i> Package Management</a></li>
+            <li><a href="#dependencies"><i class="fa fa-circle-o"></i> Dependencies</a></li>
+            <li><a href="#advice"><i class="fa fa-circle-o"></i> Advice</a></li>
+            <li><a href="#layout"><i class="fa fa-circle-o"></i> Layout</a></li>
+            <li><a href="#adminlte-options"><i class="fa fa-circle-o"></i> Javascript Options</a></li>
+            <li class="treeview" id="scrollspy-components">
+                <a href="javascript:void(0)"><i class="fa fa-circle-o"></i> Components</a>
+                <ul class="nav treeview-menu">
+                    <li><a href="#component-main-header">Main Header</a></li>
+                    <li><a href="#component-sidebar">Sidebar</a></li>
+                    <li><a href="#component-control-sidebar">Control Sidebar</a></li>
+                    <li><a href="#component-info-box">Info Box</a></li>
+                    <li><a href="#component-box">Boxes</a></li>
+                    <li><a href="#component-direct-chat">Direct Chat</a></li>
+                </ul>
+            </li>
+            <li><a href="#plugins"><i class="fa fa-circle-o"></i> Plugins</a></li>
+            <li><a href="#browsers"><i class="fa fa-circle-o"></i> Browser Support</a></li>
+            <li><a href="#upgrade"><i class="fa fa-circle-o"></i> Upgrade Guide</a></li>
+            <li><a href="#implementations"><i class="fa fa-circle-o"></i> Implementations</a></li>
+            <li><a href="#faq"><i class="fa fa-circle-o"></i> FAQ</a></li>
+            <li><a href="#license"><i class="fa fa-circle-o"></i> License</a></li>
+        </ul>
     </div>
-</header>
+    <!-- /.sidebar -->
+</aside>
 
+
+<!-- jQuery 3 -->
+<script src="~/JS/jquery.min.js"></script>
+<!-- Bootstrap 3.3.7 -->
+<script src="~/JS/bootstrap.min.js"></script>
+<!-- FastClick -->
+<script src="~/JS/fastclick.js"></script>
+<!-- AdminLTE App -->
+<script src="~/JS/adminlte.min.js"></script>
+<!-- SlimScroll -->
+<script src="~/JS/jquery.slimscroll.min.js"></script>
+<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>

@@ -2,8 +2,20 @@
 <html>
 <head>
     <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap 3.3.7 -->
+    <link rel="stylesheet" href="~/CSS/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="~/CSS/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="~/CSS/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/CSS/AdminLTE.min.css">
+    <link rel="stylesheet" href="~/CSS/_all-skins.min.css">
 
+    <link href="~/CSS/style.css" rel="stylesheet" />
+    @*<link href="~/CSS/bootstrap.min.css" rel="stylesheet" />*@
     @*@Styles.Render("~/Content/css")
         @Scripts.Render("~/bundles/modernizr")*@
     @{
@@ -13,20 +25,56 @@
             listenertoken = Session["listenertoken"].ToString();
         }    }
 </head>
-<body>
-    @Html.Partial("~/Areas/Admin/Views/Shared/AdminHeader.cshtml");
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <input type="hidden" value="@listenertoken" />
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
+<body class="skin-blue" data-spy="scroll" data-target="#scrollspy">
+    <div class="wrapper">
+        <header class="main-header">
+            <!-- Logo -->
+            <a href="../index2.html" class="logo">
+                <!-- mini logo for sidebar mini 50x50 pixels -->
+                <span class="logo-mini"><b>S</b>D</span>
+                <!-- logo for regular state and mobile devices -->
+                <span class="logo-lg"><b>Soft</b>Debugger</span>
+            </a>
+            <!-- Header Navbar: style can be found in header.less -->
+            <nav class="navbar navbar-static-top" role="navigation">
+                <!-- Sidebar toggle button-->
+                <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                </a>
+                <!-- Navbar Right Menu -->
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+                        <li><a href="#">Pooja Saraswat</a></li>
+                        <li><a href="@Url.Action("Home","LogOut")">LogOut</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
 
-    @*@Scripts.Render("~/bundles/jquery")
-        @Scripts.Render("~/bundles/bootstrap")
-        @RenderSection("scripts", required: false)*@
+
+        @Html.Partial("~/Areas/Admin/Views/Shared/AdminHeader.cshtml")
+
+        @RenderBody()
+
+
+        <footer class="main-footer">
+            <div class="pull-right hidden-xs">
+                <b>Version</b> 2.3.12
+            </div>
+            <strong>Copyright &copy; 2014-2016 <a href="https://www.softdebugger.com">SoftDebugger</a>.</strong> All rights
+            reserved.
+        </footer>
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Create the tabs -->
+            <div class="pad">
+                This is an example of the control sidebar.
+            </div>
+        </aside><!-- /.control-sidebar -->
+        <!-- Add the sidebar's background. This div must be placed
+             immediately after the control sidebar -->
+        <div class="control-sidebar-bg"></div>
+        </div>
 </body>
 </html>
 
