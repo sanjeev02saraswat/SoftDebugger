@@ -97,7 +97,7 @@ namespace SoftLoggerAPI
                 Directory.CreateDirectory(path);
 
             }
-            path += logFileName + DateTime.Now.ToString("dd-MMM-yyyy") + ".txt";
+            path += logFileName + DateTime.Now.ToString("dd-MMM-yyyy") + ".xml";
             using (StreamWriter writer = new StreamWriter(path, true))
             {
                 writer.WriteLine(logfile);

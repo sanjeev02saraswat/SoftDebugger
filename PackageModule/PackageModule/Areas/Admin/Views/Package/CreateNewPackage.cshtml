@@ -1,7 +1,51 @@
-﻿
+﻿<script src="~/JS/ui-bootstrap-tpls-0.9.0.js"></script> 
+<style>
+    body{
+	font-family: 'Open Sans', sans-serif;
+}
+a {
+color: #E1704B;
+transition: color 0.5s ease;
+}
+a:hover{
+    cursor:pointer;
+}
+h1{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 2.5em;
+    font-weight: 500;
+}
 
+.filter{
+    margin-top: 6px;
+}
+.strike{
+	text-decoration:line-through;
+}
+.header-elements-margin {
+	margin: 5px;
+}
+.add-task{
+	margin-top: 10px;
+}
+.nav-button-margin{
+	margin: 10px 20px 0 0;
+}
+.navbar{
+border-radius: 0;
+background: #438EB9;
+color: #fff;
+}
+.navbar .navbar-brand {
+color: #FFF;
+font-size: 24px;
+text-shadow: none;
+}
+</style>
 <title>Create New Package</title>
-
+<script id="customTemplate.html" type="text/ng-template">
+    <a><span bind-html-unsafe="match.label | typeaheadHighlight:query"><i>({{match.model.capital}})
+</script>  
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
@@ -10,34 +54,50 @@
             <small>Add Basic Package Details</small>
         </h1>
     </div>
+    <script type="text/ng-template" id="customTemplate.html">
+        <a>
+            <span bind-html-unsafe="match.label | typeaheadHighlight:query"></span>
+            <i>({{match.model.capital}})</i>
+        </a>
+    </script>
+
+   
+
     <!-- Main content -->
-    <div class="content body">
-        <div class="container" ng-app="CreateUserapp" ng-controller="CreateNewUsercontroller">
-            @*<section id="basicuserdetail">
+    <div class="content body" ng-app="CreateNewPackageapp">
+        <div class="container"  ng-controller="CreateNewPackagecontroller">
+            <section id="basicuserdetail">
                 <div class="row">
-                    <div class="col-sm-3 col-md-3 col-lg-3">Employee Id<!--Column left--></div>
-                    <div class="col-sm-8 col-md-8 col-lg-8"><input type="text" class="form-control" required autocomplete="off" ng-model="CreateNewuser.EmployeeID" /><!--Column right--></div>
+                    <div class="col-sm-3 col-md-3 col-lg-3">Package Code</div>
+                    <div class="col-sm-8 col-md-8 col-lg-8"><input type="text" readonly="readonly" class="form-control" required autocomplete="off" ng-model="PackageStep1.PackageCode" /><!--Column right--></div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-3 col-md-3 col-lg-3">First Name</div>
-                    <div class="col-sm-8 col-md-8 col-lg-8"><input type="text" class="form-control" required autocomplete="off" ng-model="CreateNewuser.FirstName" /></div>
+                    <div class="col-sm-3 col-md-3 col-lg-3">Package Name</div>
+                    <div class="col-sm-8 col-md-8 col-lg-8"><input type="text" class="form-control" required autocomplete="off" ng-model="PackageStep1.PackageName" /></div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-3 col-md-3 col-lg-3">Last Name<!--Column left--></div>
-                    <div class="col-sm-8 col-md-8 col-lg-8"><input type="text" class="form-control" required autocomplete="off" ng-model="CreateNewuser.LastName" /><!--Column right--></div>
+                    <div class="col-sm-3 col-md-3 col-lg-3">Language</div>
+                    <div class="col-sm-8 col-md-8 col-lg-8">
+                        Selected Country: {{selectedCountries}}
+                        <br><br>
+                        <input type="text" ng-model="selectedCountries" placeholder="Search Countries" typeahead="c as c.country for c in countries | filter:$viewValue | limitTo:10" typeahead-min-length='1' typeahead-on-select='onSelectPart($item, $model, $label)' typeahead-template-url="customTemplate.html" class="form-control" style="width:350px;">
+                        <i class="icon-search nav-search-icon"></i>
+                    
+                    </div>
+                   
                 </div>
                 <div class="row">
-                    <div class="col-sm-3 col-md-3 col-lg-3">Email<!--Column left--></div>
-                    <div class="col-sm-8 col-md-8 col-lg-8"><input type="text" class="form-control" required autocomplete="off" ng-model="CreateNewuser.Email" /><!--Column right--></div>
+                    <div class="col-sm-3 col-md-3 col-lg-3">Package Title</div>
+                    <div class="col-sm-8 col-md-8 col-lg-8"><input type="text" class="form-control" required autocomplete="off" ng-model="PackageStep1.PackageTitle" /><!--Column right--></div>
                 </div>
                 <div class="row" style="margin-top:10px;">
                     <div class="col-sm-3 col-md-3 col-lg-3"></div>
                     <div class="col-sm-8 col-md-8 col-lg-8">
-                        <button ng-click="RegisterNewuser(CreateNewuser);" type="button" class="btn btn-primary btn-lg btn-block">Create User</button>
-                       
+                        <button  type="button" class="btn btn-primary btn-lg btn-block">Add Package</button>
+                        @*<a href="#"  class="btn btn-primary btn-lg"><i class="icon-edit icon-white"></i> Next Step</a>*@
                     </div>
                 </div>
-            </section>*@
+            </section>
         </div>
 
     </div>
@@ -49,5 +109,38 @@
 
         $("li").removeClass("active");
         $("#CreateNewPackageli").addClass("active");
+    });
+
+
+    var app = angular.module('CreateNewPackageapp', ['ui.bootstrap']).controller('CreateNewPackagecontroller', function ($scope, $http) {
+        $scope.selectedCountries = [];
+        $scope.PackageStep1 = {
+            PackageCode: '',
+            PackageName: '',
+            PackageLanguage: '',
+            PackageTitle: '',
+            PackageMarket: '',
+            PackageDuration: '',//it will be in Days
+            PackageSupplier: '',
+            PackageType:''
+
+        };
+
+        getCountries(); // Load all countries with capitals  
+        function getCountries(){  
+           
+            $http({
+                method: "GET",
+                contentType: "application/json; charset=utf-8",
+                url: "http://localhost:2849/Home/GetLanguages"
+            }).then(function (success) {
+                debugger;
+                alert(success.data);
+            }, function (error) {
+                debugger;
+                alert(error.data);
+            });
+
+        }; 
     });
 </script>
