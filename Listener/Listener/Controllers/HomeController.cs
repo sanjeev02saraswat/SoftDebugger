@@ -1,6 +1,8 @@
-﻿using PackageModule.Filters;
+﻿using Newtonsoft.Json;
+using PackageModule.Filters;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -56,6 +58,26 @@ namespace WEBAPI2.Controllers
             }
 
         }
+
+
+        [HttpGet]
+        [Route("GetLanguages")]
+        public HttpResponseMessage GetLanguages()
+        {
+           
+            string LangConversion = "";
+            string mapPath = System.Web.HttpContext.Current.Server.MapPath(@"~/App_Data/Language.json");
+            using (StreamReader r = new StreamReader(mapPath))
+            {
+                LangConversion = r.ReadToEnd();
+            }
+            List<LanguageList> objAllList = JsonConvert.DeserializeObject<List<LanguageList>>(LangConversion);
+            return CommonUtility.CreateResponse(HttpStatusCode.OK, objAllList);
+        }
+
+
+
+
 
         [HttpPost]
         [Route("Loginuser")]

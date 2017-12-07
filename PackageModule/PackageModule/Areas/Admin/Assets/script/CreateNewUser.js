@@ -12,7 +12,7 @@
         var request = $http({
             method: "post",
             contentType: "application/json; charset=utf-8",
-            url: "http://localhost:2849/Home/PostSignupuser",
+            url: "" + $("#listenerurl").val() + "Home/PostSignupuser",
             data: JSON.stringify(data)
         }).then(function (success) {
             debugger;

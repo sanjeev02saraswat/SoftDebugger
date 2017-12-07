@@ -5,13 +5,13 @@ using System.Web;
 
 namespace WEBAPI2.Models
 {
-    public class CountryList
+    public class LanguageList
     {
-        public string code { get; set; }
+        public string LanguageCode { get; set; }
 
-        public string name { get; set; }
+        public string LanguageName { get; set; }
 
-        public string dial_code { get; set; }
+        public string nativeLanguageName { get; set; }
     }
 
     public class Signupuser
