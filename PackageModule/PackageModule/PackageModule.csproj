@@ -54,8 +54,9 @@
     <Reference Include="SendMail">
       <HintPath>C:\Users\Sanjeev\YandexDisk\Softdebugger_Website\SoftdebuggerWebsite\SoftdebuggerWebsite\bin\SendMail.dll</HintPath>
     </Reference>
-    <Reference Include="SoftLogger">
-      <HintPath>..\..\Soft-Debugger\Softdebugger\SoftLogger\bin\Debug\SoftLogger.dll</HintPath>
+    <Reference Include="SoftLogger, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\SoftLogger\bin\Debug\SoftLogger.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -100,6 +101,8 @@
   <ItemGroup>
     <Content Include="Areas\Admin\Assets\css\demo.css" />
     <Content Include="Areas\Admin\Assets\css\Header.css" />
+    <Content Include="Areas\Admin\Assets\script\CreateNewUser.js" />
+    <Content Include="Areas\Admin\Assets\script\Package\CreateNewPackage.js" />
     <Content Include="Areas\Admin\Assets\script\signup.js" />
     <Content Include="Global.asax" />
     <Content Include="Images\user_01.PNG" />
@@ -110,6 +113,7 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PackageController.cs" />
     <Compile Include="Filters\AsyncLogger.cs" />
     <Compile Include="Filters\LocalizationFilter.cs" />
     <Compile Include="Filters\Tokenizer.cs" />
@@ -130,6 +134,8 @@
     <Content Include="Areas\Admin\Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="LangConversion\PackageModule\Admin\Home\signUp_en-US.json" />
+    <Content Include="Areas\Admin\Views\Package\CreateNewPackage.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\CreateUser.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -140,7 +146,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="Areas\Admin\Views\Admin\" />
     <Folder Include="Controllers\" />
     <Folder Include="Models\" />
   </ItemGroup>

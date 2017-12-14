@@ -22,8 +22,9 @@ namespace SoftLoggerAPI
         /// It will used to write Async Log
         /// </summary>
         /// <param name="Logger">List of Key value Log Collection  </param>
-        public static void WriteLogImmediateAsync(SoftLogger Logger)
+        public static void WriteLogImmediateAsync(SoftLogger Logger,string Token="")
         {
+            StringBuilder strlog = new StringBuilder();
             NameValueCollection LoggerCollection = null;
             if (Logger != null)
             {
@@ -47,20 +48,23 @@ namespace SoftLoggerAPI
                              new XElement("Response", XDocument.Parse(LoggerCollection["" + item + ""].ToString()).Root)));
                                 }
                             }
-
+                            strlog.Append( doc.ToString());
                         }
                         catch (XmlException)
                         {
+                           
                             var i = 0;
                             // JSon or other non-xml format
                             foreach (var item in LoggerCollection.AllKeys)
                             {
-                                doc.Add(new XElement("ApiLog",
-                         new XElement("Request", item.ToString().Replace(" ", "") + "" + i++ + ""),
-                         new XElement("Response", LoggerCollection["" + item + ""].ToString())));
+                                strlog.Append(item.ToString().Replace(" ", "") +":"+ LoggerCollection["" + item + ""].ToString());
+                                //       doc.Add(new XElement("ApiLog",
+                                //new XElement("Request", item.ToString().Replace(" ", "") + "" + i++ + ""),
+                                //new XElement("Response", LoggerCollection["" + item + ""].ToString())));
+                               // doc.Add(strlog.ToString());
                             }
                         }
-                        SoftLogger.WriteLogImmediate(doc.ToString(), Logger.FileCollector, "Listener");
+                        SoftLogger.WriteLogImmediate(strlog.ToString(), Logger.FileCollector+ Token, "Listener");
                     }
                 });
 
@@ -97,7 +101,7 @@ namespace SoftLoggerAPI
                 Directory.CreateDirectory(path);
 
             }
-            path += logFileName + DateTime.Now.ToString("dd-MMM-yyyy") + ".xml";
+            path += logFileName + DateTime.Now.ToString("dd-MMM-yyyy") + ".log";
             using (StreamWriter writer = new StreamWriter(path, true))
             {
                 writer.WriteLine(logfile);

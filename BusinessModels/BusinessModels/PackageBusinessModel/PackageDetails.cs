@@ -3,9 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Listener.Models
+namespace PackageBusinessModel.Models
 {
     public class PackageDetails
+    {
+        public BasicPackageDetails BasicPackageDetails { get; set; }
+
+        public BasicPackageCreteria BasicPackageCreteria { get; set; }
+    }
+    public class BasicPackageDetails
     {
         public string PackageCode { get; set; }
 
@@ -17,15 +23,41 @@ namespace Listener.Models
 
         public string SupplierRef { get; set; }
 
-        public string PackageRemarks { get; set; }
+        public int PackageDuration { get; set; }
 
-        public PackageCriteria PackageCriteria { get; set; }
+        public string PackageMarket { get; set; }
+
+        public string PackageSupplier { get; set; }
+
+        public string PackageType { get; set; }
 
     }
 
-    public class PackageItinerary
+    public class BasicPackageCreteria
     {
-        public string MyProperty { get; set; }
+        public string PackageMarket { get; set; }
+
+        public string PackageSaleMarket { get; set; }
+
+        public string PackageValidityStartDate { get; set; }
+
+        public string PackageValidityEndDate { get; set; }
+
+        public string PackageBookingStartDate { get; set; }
+
+        public string PackageBookingEndDate { get; set; }
+
+        public int PackageDuration { get; set; }
+
+        public int ChildMinAge { get; set; }
+
+        public int ChildMaxAge { get; set; }
+
+        public int PackageLastPaymentDue { get; set; }
+
+        public int PackagePaymentCutOffDay { get; set; }
+
+        public string DiscountonFullPayment { get; set; }
     }
     public class PackageValidDays
     {

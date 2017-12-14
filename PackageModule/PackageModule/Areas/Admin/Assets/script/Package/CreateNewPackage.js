@@ -8,7 +8,24 @@ var LanguageList = [];
 var app = angular.module('CreateNewPackageapp', ['ejangular']).controller('CreateNewPackagecontroller', function ($scope, $http) {
     $scope.selectedCountries = [];
   
-    $scope.BasicPackageDetails = {
+    $scope.PackageDetails = {
+
+    }
+    $scope.HideShowProvider = function (showdiv, hidediv, STEP1) {
+        var validate = true;
+        if (STEP1 == "STEP1") {
+           validate=  ValidateStep1();
+        } else if (STEP1 == "STEP2") {
+            //validate = ValidateStep2();
+        }
+        if (validate) {
+            $("#" + showdiv).css("display", "block");
+            $("#" + hidediv).css("display", "none");
+        } else {
+            return false;
+        }
+    }
+    $scope.PackageDetails.BasicPackageDetails = {
         PackageCode: '',
         PackageName: '',
         PackageLanguage: '',
@@ -19,7 +36,7 @@ var app = angular.module('CreateNewPackageapp', ['ejangular']).controller('Creat
         PackageType: ''
 
     };
-    $scope.BasicPackageCreteria = {
+    $scope.PackageDetails.BasicPackageCreteria = {
         PackageMarket: '',
         PackageSaleMarket: '',
         PackageValidityStartDate: '',
@@ -30,10 +47,26 @@ var app = angular.module('CreateNewPackageapp', ['ejangular']).controller('Creat
         ChildMinAge: '',
         ChildMaxAge: '',
         PackageLastPaymentDue: '',
-        PackagePaymentCutOffDate: '',
+        PackagePaymentCutOffDay: '',
         DiscountonFullPayment: ''
 
     };
+    debugger;
+    $scope.SavePackage = function (data) {
+        debugger;
+        var request = $http({
+            method: "post",
+            contentType: "application/json; charset=utf-8",
+            url: "http://localhost:2849/Package/CreateNewPackage",
+            data: JSON.stringify(data)
+        }).then(function (success) {
+            debugger;
+            alert(success.data);
+        }, function (error) {
+            debugger;
+            alert(error.data);
+        });
+    }
     $scope.dataList = LanguageList;
     //$scope.nameField = { text: "languageName" };
 
@@ -59,7 +92,7 @@ var app = angular.module('CreateNewPackageapp', ['ejangular']).controller('Creat
 });
 
 
-$('#autocomplete').ejAutocomplete({
+$('#PackageLanguage').ejAutocomplete({
     change: "showCurrentSearch",
     fields: { text: "languageCode", key: "languageName" }
 
@@ -68,9 +101,43 @@ $('#autocomplete').ejAutocomplete({
 
 function showCurrentSearch(args) {
     debugger;
-    var data = $("#autocomplete").ejAutocomplete("instance");
+    var data = $("#PackageLanguage").ejAutocomplete("instance");
     if (LanguageList.length > 0)
         data.suggestionListItems = JSON.parse(JSON.stringify(LanguageList));
     data._doneRemaining();
     args.model.dataSource = LanguageList;
 }
+
+//Validation Logic
+
+function ValidateStep1() {
+    var status = true;
+    if ($("#PackageTitle").val()=="") {
+        $("#PackageTitle").addClass("errorClass");
+        status = false;
+    }
+
+    if ($("#PackageName").val() == "") {
+        $("#PackageName").addClass("errorClass");
+        status = false;
+    }
+
+    //if ($("#PackageCode").val() == "") {
+    //    $("#PackageCode").addClass("errorClass");
+    //}
+
+    if ($("#PackageLanguage").val() == "") {
+        $("#PackageLanguage").addClass("errorClass");
+        status = false;
+    }
+    return status;
+
+    
+}
+
+
+
+
+//remove error class from controls
+
+
