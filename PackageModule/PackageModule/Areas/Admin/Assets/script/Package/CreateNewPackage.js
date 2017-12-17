@@ -51,7 +51,7 @@ var app = angular.module('CreateNewPackageapp', ['ejangular']).controller('Creat
         DiscountonFullPayment: ''
 
     };
-    debugger;
+    //debugger;
     $scope.SavePackage = function (data) {
         debugger;
         var request = $http({
@@ -93,7 +93,7 @@ var app = angular.module('CreateNewPackageapp', ['ejangular']).controller('Creat
 
 
 $('#PackageLanguage').ejAutocomplete({
-    change: "showCurrentSearch",
+    change: "showCurrentSearch",enableRTL:true,highlightSearch:true,
     fields: { text: "languageCode", key: "languageName" }
 
 })

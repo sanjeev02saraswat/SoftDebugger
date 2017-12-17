@@ -75,7 +75,7 @@ namespace Listener.Models.PackageModel
 
 
                 IConnector objConnector = new Connector();
-                bool status = objConnector.ExecuteNonQuery("PackageModule", "FSP_SignUpAgentUser", objparamlist);
+                bool status = objConnector.ExecuteNonQuery("PackageModule", "FSP_InsertPackageDetails", objparamlist);
                 _logger.addMessage.Add("Registeruser", "Agent User sign up successfully");
             }
             catch (Exception ex)
