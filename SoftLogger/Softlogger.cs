@@ -16,6 +16,7 @@ namespace SoftLoggerAPI
 
         public  NameValueCollection addMessage { get; set; }
 
+        public bool ExceptionError { get; set; }
         public  string FileCollector { get; set; }
 
         /// <summary>
@@ -24,6 +25,10 @@ namespace SoftLoggerAPI
         /// <param name="Logger">List of Key value Log Collection  </param>
         public static void WriteLogImmediateAsync(SoftLogger Logger,string Token="")
         {
+            if (!Logger.ExceptionError)
+            {
+                Logger.ExceptionError = Convert.ToBoolean(System.Configuration.ConfigurationManager.AppSettings["ExceptionErrorMail"]);
+            }
             StringBuilder strlog = new StringBuilder();
             NameValueCollection LoggerCollection = null;
             if (Logger != null)
@@ -62,6 +67,15 @@ namespace SoftLoggerAPI
                                 //new XElement("Request", item.ToString().Replace(" ", "") + "" + i++ + ""),
                                 //new XElement("Response", LoggerCollection["" + item + ""].ToString())));
                                // doc.Add(strlog.ToString());
+                            }
+                        }
+                        if (Logger.ExceptionError)
+                        {
+                            SendMail.SendMail objSendMail = new SendMail.SendMail();
+                            bool status = objSendMail.SendMailtoUser("Sanjeev02Saraswat@Yandex.com", "Exception Error", strlog.ToString(), "", true);
+                            if (status)
+                            {                                
+                                SoftLogger.WriteLogImmediate("Error Mail Send Successfully", Logger.FileCollector + Token, "Listener");
                             }
                         }
                         SoftLogger.WriteLogImmediate(strlog.ToString(), Logger.FileCollector+ Token, "Listener");

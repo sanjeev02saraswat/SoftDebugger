@@ -17,7 +17,7 @@ namespace Listener.Controllers
     [RoutePrefix("Package")]
     public class PackageController : ApiController
     {
-
+      
         private AsyncLogger _logger = null;
         public PackageController()
         {
@@ -33,13 +33,14 @@ namespace Listener.Controllers
         {
             try
             {
+                _logger.addMessage.Add("CreatePackage", "CreatePackage Method is goint to Execute");
                 CreatePackage objCreatePackage = new CreatePackage();
 
                 objCreatePackage.AddPackage(objPackageDetails);
             }
             catch (Exception ex)
             {
-
+                _logger.ExceptionError = true;
                 throw;
             }
             finally
@@ -49,5 +50,31 @@ namespace Listener.Controllers
             return null;
         }
 
+        [HttpGet]
+        //[Tokenizer]
+        [Route("GetPackageCode")]
+        public HttpResponseMessage GetPackageCode()
+        {
+            
+            try
+            {
+                _logger.addMessage.Add("GetPackageCode", "GetPackageCode Method is goint to Execute");
+                PackageInfo objPackageInfo = new PackageInfo();
+                string PackageCode = objPackageInfo.GetPackageCode();
+                _logger.addMessage.Add("PackageCode", PackageCode);
+
+            }
+            catch (Exception ex)
+            {
+                _logger.ExceptionError = true;
+                _logger.addMessage.Add("GetPackageCode", "Error During getting Package Code"+ex.ToString());
+            }
+            finally
+            {
+                AsyncLogger.LogMessage(_logger);
+
+            }
+            return null;
+        }
     }
 }
