@@ -1,5 +1,61 @@
-﻿
+﻿<script src="~/JS/ui-bootstrap-tpls-0.9.0.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.4/angular-messages.min.js"></script>
 
+@*<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>*@
+<style>
+    body {
+        font-family: 'Open Sans', sans-serif;
+    }
+
+    a {
+        color: #E1704B;
+        transition: color 0.5s ease;
+    }
+
+        a:hover {
+            cursor: pointer;
+        }
+
+    h1 {
+        font-family: 'Open Sans', sans-serif;
+        font-size: 2.5em;
+        font-weight: 500;
+    }
+
+    .filter {
+        margin-top: 6px;
+    }
+
+    .strike {
+        text-decoration: line-through;
+    }
+
+    .header-elements-margin {
+        margin: 5px;
+    }
+
+    .add-task {
+        margin-top: 10px;
+    }
+
+    .nav-button-margin {
+        margin: 10px 20px 0 0;
+    }
+
+    .navbar {
+        border-radius: 0;
+        background: #438EB9;
+        color: #fff;
+    }
+
+        .navbar .navbar-brand {
+            color: #FFF;
+            font-size: 24px;
+            text-shadow: none;
+        }
+</style>
 <title>Create New Package</title>
 
 <div class="content-wrapper">
@@ -10,44 +66,172 @@
             <small>Add Basic Package Details</small>
         </h1>
     </div>
-    <!-- Main content -->
-    <div class="content body">
-        <div class="container" ng-app="CreateUserapp" ng-controller="CreateNewUsercontroller">
-            @*<section id="basicuserdetail">
-                <div class="row">
-                    <div class="col-sm-3 col-md-3 col-lg-3">Employee Id<!--Column left--></div>
-                    <div class="col-sm-8 col-md-8 col-lg-8"><input type="text" class="form-control" required autocomplete="off" ng-model="CreateNewuser.EmployeeID" /><!--Column right--></div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-3 col-md-3 col-lg-3">First Name</div>
-                    <div class="col-sm-8 col-md-8 col-lg-8"><input type="text" class="form-control" required autocomplete="off" ng-model="CreateNewuser.FirstName" /></div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-3 col-md-3 col-lg-3">Last Name<!--Column left--></div>
-                    <div class="col-sm-8 col-md-8 col-lg-8"><input type="text" class="form-control" required autocomplete="off" ng-model="CreateNewuser.LastName" /><!--Column right--></div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-3 col-md-3 col-lg-3">Email<!--Column left--></div>
-                    <div class="col-sm-8 col-md-8 col-lg-8"><input type="text" class="form-control" required autocomplete="off" ng-model="CreateNewuser.Email" /><!--Column right--></div>
-                </div>
-                <div class="row" style="margin-top:10px;">
-                    <div class="col-sm-3 col-md-3 col-lg-3"></div>
-                    <div class="col-sm-8 col-md-8 col-lg-8">
-                        <button ng-click="RegisterNewuser(CreateNewuser);" type="button" class="btn btn-primary btn-lg btn-block">Create User</button>
-                       
-                    </div>
-                </div>
-            </section>*@
-        </div>
+   
 
-    </div>
+    <!-- Main content -->
+    <div class="content body" ng-app="CreateNewPackageapp">
+        <form name="exampleForm" class="elegant-aero">
+            <div class="container" ng-controller="CreateNewPackagecontroller">
+                <fieldset id="basicuserdetail">
+                    <legend>
+                        Basic Package Details
+                    </legend>
+                    <section>
+                        <div class="row">
+                            <div class="col-sm-3 col-md-3 col-lg-3">Package Code</div>
+                            <div class="col-sm-8 col-md-8 col-lg-8"><input type="text" readonly="readonly" class="form-control" required autocomplete="off" id="PackageCode" ng-model="PackageDetails.BasicPackageDetails.PackageCode" /></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3 col-md-3 col-lg-3">Package Name</div>
+                            <div class="col-sm-8 col-md-8 col-lg-8">
+                                <input type="text" class="form-control" required autocomplete="off" name="PackageName"  id="PackageName" ng-model="PackageDetails.BasicPackageDetails.PackageName" />
+                             
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3 col-md-3 col-lg-3">Language</div>
+                            <div class="col-sm-8 col-md-8 col-lg-8">
+                                <input type="text" id="PackageLanguage" ej-autocomplete e-width="100%" e-fields-key="languageCode" e-fields-text="languageName"   e-datasource="dataList" />
+                                <input type="hidden" id="hdnPackageLanguage" ng-model="PackageDetails.BasicPackageDetails.PackageLanguage" />
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3 col-md-3 col-lg-3">Package Title</div>
+                            <div class="col-sm-8 col-md-8 col-lg-8"><input type="text" class="form-control" required id="PackageTitle" autocomplete="off" ng-model="PackageDetails.BasicPackageDetails.PackageTitle" /><!--Column right--></div>
+                        </div>
+                        <div class="row" style="margin-top:10px;">
+                            <div class="col-sm-5 col-md-5 col-lg-5"></div>
+                            <div class="col-sm-5 col-md-5 col-lg-5">
+                                <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="HideShowProvider('basicpackagecriteriadetails','basicuserdetail','STEP1')">Next Step</button>                               
+                            </div>
+                        </div>
+                    </section>
+                </fieldset>
+
+                <fieldset id="basicpackagecriteriadetails" style="display:none;">
+                    <legend>
+                        Basic Package Criteria
+                    </legend>
+                    <section>
+                        <div class="row">
+                            <div class="col-sm-3 col-md-3 col-lg-3">Package Market</div>
+                            <div class="col-sm-8 col-md-8 col-lg-8">
+                            <select class="form-control" required autocomplete="off" id="PackageMarket" ng-model="PackageDetails.BasicPackageCreteria.PackageMarket" >
+                                <option value="">Select</option>
+                                <option value="DOM">Domestic</option>
+                                <option value="INT">International</option>
+                            </select>
+                            
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3 col-md-3 col-lg-3">Package Sale Market</div>
+                            <div class="col-sm-8 col-md-8 col-lg-8">
+                                
+                                <select class="form-control" id="PackageSaleMarket" required autocomplete="off" ng-model="PackageDetails.BasicPackageCreteria.PackageSaleMarket">
+                                    <option value="">Select</option>
+                                    <option value="DOM">Domestic</option>
+                                    <option value="INT">International</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3 col-md-3 col-lg-3">Package Validity Start Date</div>
+                            <div class="col-sm-8 col-md-8 col-lg-8">
+                                
+                                @*<md-datepicker ng-model="BasicPackageCreteria.PackageValidityStartDate" md-placeholder="Enter date"></md-datepicker>*@
+
+                                <input type="date" ng-model="PackageDetails.BasicPackageCreteria.PackageValidityStartDate" id="PackageValidityStartDate" class="form-control" />
+
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3 col-md-3 col-lg-3">Package Validity End Date</div>
+                            <div class="col-sm-8 col-md-8 col-lg-8">
+                                <input type="date" ng-model="BasicPackageCreteria.PackageValidityEndDate" id="PackageValidityEndDate" class="form-control" />
+                        </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3 col-md-3 col-lg-3">Package Booking Start Date</div>
+                            <div class="col-sm-8 col-md-8 col-lg-8">
+                                <input type="date" ng-model="PackageDetails.BasicPackageCreteria.PackageBookingStartDate" id="PackageBookingStartDate" class="form-control" />
+                            <!--Column right--></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3 col-md-3 col-lg-3">Package Booking End Date</div>
+                            <div class="col-sm-8 col-md-8 col-lg-8">
+                                <input type="date" ng-model="PackageDetails.BasicPackageCreteria.PackageBookingEndDate" id="PackageBookingEndDate" class="form-control" />
+                            
+                            
+                            <!--Column right--></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3 col-md-3 col-lg-3">Package Duration(*In Days)</div>
+                            <div class="col-sm-8 col-md-8 col-lg-8"><input type="text" class="form-control" required autocomplete="off" ng-model="PackageDetails.BasicPackageCreteria.PackageDuration" id="PackageDuration" /><!--Column right--></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3 col-md-3 col-lg-3">Child Min Age</div>
+                            <div class="col-sm-8 col-md-8 col-lg-8"><input type="text" class="form-control" required autocomplete="off" ng-model="PackageDetails.BasicPackageCreteria.ChildMinAge" id="ChildMinAge" /><!--Column right--></div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-3 col-md-3 col-lg-3">Child Max Age</div>
+                            <div class="col-sm-8 col-md-8 col-lg-8"><input type="text" class="form-control" required autocomplete="off" ng-model="PackageDetails.BasicPackageCreteria.ChildMaxAge" id="ChildMaxAge" /><!--Column right--></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3 col-md-3 col-lg-3">Package Last Payment Due</div>
+                            <div class="col-sm-8 col-md-8 col-lg-8"><input type="text" class="form-control" required autocomplete="off" ng-model="PackageDetails.BasicPackageCreteria.PackageLastPaymentDue" id="PackageLastPaymentDue" /><!--Column right--></div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-3 col-md-3 col-lg-3">Package Payment CutOff Date</div>
+                            <div class="col-sm-8 col-md-8 col-lg-8"><input type="text" class="form-control" required autocomplete="off" ng-model="PackageDetails.BasicPackageCreteria.PackagePaymentCutOffDay" id="PackagePaymentCutOffDay" /><!--Column right--></div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-3 col-md-3 col-lg-3">Discount on Full Payment(% in case of percentage)</div>
+                            <div class="col-sm-8 col-md-8 col-lg-8"><input type="text" class="form-control" required autocomplete="off" ng-model="PackageDetails.BasicPackageCreteria.DiscountonFullPayment" id="DiscountonFullPayment"/><!--Column right--></div>
+                        </div>
+                        <div class="row" style="margin-top:10px;">
+                            <div class="col-sm-5 col-md-5 col-lg-5"><button type="button" ng-click="HideShowProvider('basicuserdetail','basicpackagecriteriadetails','')" class="btn btn-primary btn-lg btn-block">Previous Step</button></div>
+                            <div class="col-sm-5 col-md-5 col-lg-5">
+                                <button type="button" ng-click="HideShowProvider('basicuserdetail','basicpackagecriteriadetails','STEP2');SavePackage(PackageDetails);" class="btn btn-primary btn-lg btn-block">Next Step</button>
+                            </div>
+                        </div>
+                    </section>
+                </fieldset>
+            </div>
+        </form>
+</div>
 
 </div>
 
-<script>
-    $(document).ready(function () {
+<script src="~/Areas/Admin/Assets/script/Package/CreateNewPackage.js"></script>
+<style>
 
-        $("li").removeClass("active");
-        $("#CreateNewPackageli").addClass("active");
-    });
-</script>
+.elegant-aero label>span {
+  float: left;
+  margin-top: 10px;
+  color: red;
+}
+</style>
+
+<style>
+       .e-datewidget.e-input.ng-touched.ng-pristine, input.ng-touched.ng-pristine {
+            background-color: lightgray;
+        }
+
+        .e-datewidget.e-input.ng-touched.ng-dirty, input.ng-touched.ng-dirty {
+            background-color: lightsteelblue;
+        }
+
+        .e-datewidget.e-input.ng-untouched, input.ng-untouched  {
+            background-color: lightyellow;
+        }
+
+        .e-datewidget.e-input.ng-untouched.ng-dirty {
+                background-color: lightcyan;
+        }
+</style>

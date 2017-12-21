@@ -1,0 +1,44 @@
+﻿<script src="~/JS/jquery.min.js"></script>
+<link href="~/CSS/style.css" rel="stylesheet" />
+<link href="~/CSS/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Areas/Admin/Assets/css/SignUp.css" rel="stylesheet" />
+<script src="~/JS/jquery-1.10.2.js"></script>
+<script src="~/JS/angular.min.js"></script>
+
+
+<form>
+    <div class="form" ng-app="Signupapp">
+        <ul class="tab-group">
+           
+            <li class="tab active"><a href="#login">Log In</a></li>
+        </ul>
+        <div class="container">
+
+
+            <div ng-controller="logincontroller">
+                <h1>Welcome Back</h1>
+                <div class="row">
+                    <span>
+                        Email Address<span class="req">*</span>
+                    </span>
+                    <input type="email" ng-model="Loginuser.Email" required autocomplete="off" />
+                </div>
+
+                <div class="row">
+                    <span>
+                        Password<span class="req">*</span>
+                    </span>
+                    <input type="password" ng-model="Loginuser.Password" required autocomplete="off" />
+                </div>
+
+                <p class="forgot"><a href="#">Forget Password</a></p>
+
+                <button class="button button-block" ng-click="Login(Loginuser)" value="Login Me" />
+
+
+
+            </div>
+
+        </div>
+    </div>
+</form>

@@ -30,7 +30,7 @@
     });
 
     $('.tab a').on('click', function (e) {
-
+        debugger;
         e.preventDefault();
 
         $(this).parent().addClass('active');
@@ -43,6 +43,7 @@
         $(target).fadeIn(600);
 
     });
+   
 });
 
 

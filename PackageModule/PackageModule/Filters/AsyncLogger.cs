@@ -1,4 +1,5 @@
-﻿using System.Collections.Specialized;
+﻿using SoftLoggerAPI;
+using System.Collections.Specialized;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
@@ -50,7 +51,7 @@ namespace PackageModule.Filters
                          new XElement("Response", LoggerCollection["" + item + ""].ToString())));
                             }
                         }
-                        SoftLogger.SoftLogger.WriteLogImmediate(doc.ToString(), Logger.FileCollector, "Listener");
+                        SoftLogger.WriteLogImmediate(doc.ToString(), Logger.FileCollector, "Listener");
                     }
                 });
 
