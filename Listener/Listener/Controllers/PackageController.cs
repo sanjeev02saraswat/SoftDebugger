@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using WEBAPI2.Filters;
+using WEBAPI2.Utilities;
 
 namespace Listener.Controllers
 {
@@ -41,11 +42,11 @@ namespace Listener.Controllers
             catch (Exception ex)
             {
                 _logger.ExceptionError = true;
-                throw;
+              
             }
             finally
             {
-
+                AsyncLogger.LogMessage(_logger);
             }
             return null;
         }
@@ -55,12 +56,14 @@ namespace Listener.Controllers
         [Route("GetPackageCode")]
         public HttpResponseMessage GetPackageCode()
         {
-            
+            string PackageCode = "";
+
+
             try
             {
                 _logger.addMessage.Add("GetPackageCode", "GetPackageCode Method is goint to Execute");
                 PackageInfo objPackageInfo = new PackageInfo();
-                string PackageCode = objPackageInfo.GetPackageCode();
+                 PackageCode = objPackageInfo.GetPackageCode();
                 _logger.addMessage.Add("PackageCode", PackageCode);
 
             }
@@ -74,7 +77,7 @@ namespace Listener.Controllers
                 AsyncLogger.LogMessage(_logger);
 
             }
-            return null;
+            return CommonUtility.CreateResponse(HttpStatusCode.OK, PackageCode);
         }
     }
 }

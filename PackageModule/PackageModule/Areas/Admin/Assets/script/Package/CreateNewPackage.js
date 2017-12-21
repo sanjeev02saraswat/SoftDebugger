@@ -86,7 +86,21 @@ var app = angular.module('CreateNewPackageapp', ['ejangular']).controller('Creat
         });
 
     };
+    function getPackageCode() {
 
+        $http({
+            method: "GET",
+            contentType: "application/json; charset=utf-8",
+            url: "" + $("#listenerurl").val() + "Package/GetPackageCode"
+        }).then(function (success) {
+            $("#PackageCode").val(success.data);
+        }, function (error) {
+            debugger;
+            alert(error.data);
+        });
+
+    };
+    getPackageCode();
     getCountries();
 
 });
@@ -100,7 +114,7 @@ $('#PackageLanguage').ejAutocomplete({
 
 
 function showCurrentSearch(args) {
-    debugger;
+    
     var data = $("#PackageLanguage").ejAutocomplete("instance");
     if (LanguageList.length > 0)
         data.suggestionListItems = JSON.parse(JSON.stringify(LanguageList));

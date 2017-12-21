@@ -12,5 +12,8 @@ namespace ConnectorAPI
         bool ExecuteNonQuery(string ConnectionStringName,string StoredProcedureName,Dictionary<string,object> Parameters =null);
 
         DataTable ExecuteDataTable(string ConnectionStringName, string StoredProcedureName, Dictionary<string, object> Parameters = null);
+
+
+        object  ExecuteScalar(string ConnectionStringName, string StoredProcedureName, Dictionary<string, object> Parameters = null);
     }
 }
