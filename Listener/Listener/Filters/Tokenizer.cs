@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Web;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
+using WEBAPI2.Models;
 
 namespace WEBAPI2.Filters
 {
@@ -17,9 +18,20 @@ namespace WEBAPI2.Filters
             if (actioncontext.Request.Headers.Contains("tokenid") && actioncontext.Request.Headers.GetValues("tokenid") != null)
             {
                 string TokenID = ((string[])(actioncontext.Request.Headers.GetValues("tokenid")))[0];
-                if (string.IsNullOrEmpty(TokenID))
+                string CompanyID= ((string[])(actioncontext.Request.Headers.GetValues("CompanyID")))[0];
+                if (string.IsNullOrEmpty(TokenID) || string.IsNullOrEmpty(CompanyID))
                 {
                     actioncontext.Response = new HttpResponseMessage(System.Net.HttpStatusCode.Unauthorized);
+                }
+                else
+                {
+                    TokenManagement objTokenManagement = new TokenManagement();
+                    bool status = objTokenManagement.VALIDATETokenforAgent(TokenID,CompanyID);
+                    if (!status)
+                    {
+                        actioncontext.Response = new HttpResponseMessage(System.Net.HttpStatusCode.Unauthorized);
+
+                    }
                 }
             }
             else

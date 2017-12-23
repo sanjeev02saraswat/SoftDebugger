@@ -27,22 +27,20 @@ namespace PackageModule.Areas.Admin.Controllers
         public ActionResult Index()
         {
             string LangConversion = string.Empty;
-            string FileCulture = CommonFunction.GetFileCulture();
-            _logger.addMessage.Add("ActionEntry", "Method is goint to Execute");
+            string FileCulture = CommonFunction.GetFileCulture();          
             string mapPath = System.Web.HttpContext.Current.Server.MapPath(@"" + RootLangPath + "/Index_" + FileCulture + ".json");
             using (StreamReader r = new StreamReader(mapPath))
             {
                 LangConversion = r.ReadToEnd();
             }
-            ViewBag.IndexLangFile = JsonConvert.DeserializeObject(LangConversion);
-            string s = "Sanjeev";
-            AsyncLogger.LogMessage(_logger);
+            ViewBag.IndexLangFile = JsonConvert.DeserializeObject(LangConversion);                     
             return View();
         }
 
         //user can sign up or admin as well by default every admin will be considered as user ..Admin roles will be added internally
         public ActionResult SignUp()
         {
+            Session["listenertoken"] = null;
             string LangConversion = string.Empty;
             string FileCulture = CommonFunction.GetFileCulture();
             _logger.addMessage.Add("ActionEntry", "Method is goint to Execute");
@@ -66,6 +64,7 @@ namespace PackageModule.Areas.Admin.Controllers
             myCookie["Color"] = "Blue";
             myCookie.Expires = DateTime.Now.AddDays(1d);
             Response.Cookies.Add(myCookie);
+            Session["listenertoken"] = TokenID;
             return true;
 
         }

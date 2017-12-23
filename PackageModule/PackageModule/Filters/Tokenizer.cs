@@ -18,14 +18,14 @@ namespace PackageModule.Filters
 
             if (cookie != null)
             {
-                string TokenServiceURl = WebConfigurationManager.AppSettings["ListenerUrl"].ToString();
-                HttpContext.Current.Session["listenertoken"] = cookie.Values["listenertoken"].ToString();
-                string Success = CommonFunction.HITAPI("", TokenServiceURl + "Home/ValidateToken?TokenID=" + cookie.Values["listenertoken"].ToString(), "Get");
+                //string TokenServiceURl = WebConfigurationManager.AppSettings["ListenerUrl"].ToString();
+                //HttpContext.Current.Session["listenertoken"] = cookie.Values["listenertoken"].ToString();
+                //string Success = CommonFunction.HITAPI("", TokenServiceURl + "Home/ValidateToken?TokenID=" + cookie.Values["listenertoken"].ToString(), "Get");
 
-                if (Convert.ToBoolean(Success))
-                {
+                //if (Convert.ToBoolean(Success))
+                //{
 
-                }
+                //}
 
             }
             else

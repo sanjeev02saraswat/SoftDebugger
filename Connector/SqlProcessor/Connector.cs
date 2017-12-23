@@ -34,21 +34,21 @@ namespace ConnectorAPI
             SqlConnection objSqlConnection = null;
             try
             {
-                _logger.addMessage.Add("ExecuteDataTable", "ExecuteNonQuery Method is goint to Execute");
+                _logger.addMessage.Add("ExecuteScalar", "ExecuteScalar Method is goint to Execute");
                 SqlContactor objSqlContactor = new SqlContactor();
                 objSqlConnection = objSqlContactor.OpenConnection(ConnectionStringName);
-                _logger.addMessage.Add("ExecuteDataTable", "SqlContactor Open Connection Successfully for " + ConnectionStringName);
+                _logger.addMessage.Add("ExecuteScalar", "SqlContactor Open Connection Successfully for " + ConnectionStringName);
                 using (SqlCommand objSqlCommand = new SqlCommand(StoredProcedureName, objSqlConnection))
                 {
                     objSqlCommand.CommandType = CommandType.StoredProcedure;
                     if (Parameters != null)
                     {
-                        _logger.addMessage.Add("ExecuteDataTable", "Parameters is going to Add");
+                        _logger.addMessage.Add("ExecuteScalar", "Parameters is going to Add");
                         foreach (KeyValuePair<string, object> item in Parameters)
                         {
                             if (item.Value != null)
                             {
-                                _logger.addMessage.Add("ExecuteDataTable", "Parameters Key:" + item.Key + "-Value:" + item.Value.ToString());
+                                _logger.addMessage.Add("ExecuteScalar", "Parameters Key:" + item.Key + "-Value:" + item.Value.ToString());
                                 objSqlCommand.Parameters.AddWithValue("@" + item.Key, item.Value);
                             }
 
@@ -56,10 +56,10 @@ namespace ConnectorAPI
                     }
                     SqlDataAdapter da = new SqlDataAdapter(objSqlCommand);
                     objSqlConnection.Open();
-                    _logger.addMessage.Add("ExecuteDataTable", "Connection open Successfully");
+                    _logger.addMessage.Add("ExecuteScalar", "Connection open Successfully");
                     DataSet ds = new DataSet();
                     da.Fill(ds);
-                    _logger.addMessage.Add("ExecuteDataTable", "Record fetached Successfully Successfully");
+                    _logger.addMessage.Add("ExecuteScalar", "Record fetached Successfully Successfully");
                     if (ds.Tables.Count > 0)
                     {
                         dt = ds.Tables[0];
@@ -68,20 +68,21 @@ namespace ConnectorAPI
                             return dt.Rows[0][0];
                         }
                     }
-                    else { _logger.addMessage.Add("ExecuteDataTable", "No Record found against this Login"); }
+                    else { _logger.addMessage.Add("ExecuteScalar", "No Record found against this Login"); }
                 }
 
             }
             catch (Exception ex)
             {
-                _logger.addMessage.Add("ExecuteNonQuery", "SqlContactor Error during Execution " + ex.ToString());
+                _logger.addMessage.Add("ExecuteScalar", "SqlContactor Error during Execution " + ex.ToString());
                 return null;
             }
             finally
             {
-                SoftLogger.WriteLogImmediateAsync(_logger);
+               
                 objSqlConnection.Close();
                 objSqlConnection.Dispose();
+                SoftLogger.WriteLogImmediateAsync(_logger);
             }
             return null;
 
@@ -101,7 +102,7 @@ namespace ConnectorAPI
             SqlConnection objSqlConnection = null;
             try
             {
-                _logger.addMessage.Add("ExecuteDataTable", "ExecuteNonQuery Method is goint to Execute");
+                _logger.addMessage.Add("ExecuteDataTable", "ExecuteDataTable Method is goint to Execute");
                 SqlContactor objSqlContactor = new SqlContactor();
                 objSqlConnection = objSqlContactor.OpenConnection(ConnectionStringName);
                 _logger.addMessage.Add("ExecuteDataTable", "SqlContactor Open Connection Successfully for " + ConnectionStringName);
@@ -136,7 +137,7 @@ namespace ConnectorAPI
             }
             catch (Exception ex)
             {
-                _logger.addMessage.Add("ExecuteNonQuery", "SqlContactor Error during Execution " + ex.ToString());
+                _logger.addMessage.Add("ExecuteDataTable", "SqlContactor Error during Execution " + ex.ToString());
                 return dt;
             }
             finally

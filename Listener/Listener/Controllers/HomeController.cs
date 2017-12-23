@@ -28,7 +28,7 @@ namespace WEBAPI2.Controllers
         }
 
         [HttpPost]
-        [Tokenizer]
+        //[Tokenizer]
         [Route("PostSignupuser")]
         public HttpResponseMessage PostSignupuser(Signupuser objSignupuser)
         {
@@ -86,21 +86,17 @@ namespace WEBAPI2.Controllers
             try
             {
                 _logger.addMessage.Add("Loginuser", "Loginuser Method is goint to Execute");
-                SignUpUserModel objSignUpUsermodel = new SignUpUserModel();
-                bool Status = objSignUpUsermodel.Registeruser(objSignupuser);
-                if (Status)
-                {
+               
                     string Token = Guid.NewGuid().ToString();
-                    //will save same token against the user
-
-                    return CommonUtility.CreateResponse(HttpStatusCode.OK, Token);
-                }
-                else
+                //will save same token against the user
+                TokenManagement objTokenManagement = new TokenManagement();
+                bool status = objTokenManagement.CreateTokenforAgent(objSignupuser,Token);
+                if (status)
                 {
-                    _logger.addMessage.Add("Loginuser", "Login Failed Against USer:" + objSignupuser.Email.ToString());
-                    return CommonUtility.CreateResponse(HttpStatusCode.Unauthorized, "Login Failed");
+                    objSignupuser.Tokenid = Token;
                 }
-
+                    return CommonUtility.CreateResponse(HttpStatusCode.OK, objSignupuser);
+               
             }
             catch (System.Exception ex)
             {

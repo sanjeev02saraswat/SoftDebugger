@@ -28,7 +28,7 @@ namespace Listener.Controllers
         }
 
         [HttpPost]
-        //[Tokenizer]
+        [Tokenizer]
         [Route("CreateNewPackage")]
         public HttpResponseMessage CreatePackage(PackageDetails objPackageDetails)
         {
@@ -52,7 +52,7 @@ namespace Listener.Controllers
         }
 
         [HttpGet]
-        //[Tokenizer]
+        [Tokenizer]
         [Route("GetPackageCode")]
         public HttpResponseMessage GetPackageCode()
         {

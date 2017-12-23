@@ -23,9 +23,10 @@
     <script src="http://cdn.syncfusion.com/js/assets/external/angular.min.js"></script>
     <link href="~/CSS/bootstrap.min.css" rel="stylesheet" />
     <link href="~/CSS/ej.web.all.min.css" rel="stylesheet" />
-    
+
     <script type="text/javascript" src="~/JS/ej.web.all.min.js "></script>
     <script src="~/JS/ej.widget.angular.min.js"></script>
+    <script src="~/JS/Common.js"></script>
 
     <style>
         .btn.btn-success {
@@ -47,10 +48,10 @@
         }
 
         .errorClass {
-        border: 1px solid red;
-    }
+            border: 1px solid red;
+        }
     </style>
- 
+
     @{
         string listenertoken = "";
         string listenerurl = "";
@@ -59,59 +60,66 @@
             listenertoken = Session["listenertoken"].ToString();
         }
         listenerurl = System.Configuration.ConfigurationManager.AppSettings["ListnerUrl"].ToString();
-        }
+    }
 </head>
 <body class="skin-blue" data-spy="scroll" data-target="#scrollspy">
     <input type="hidden" id="listenerurl" value="@listenerurl" />
     <div class="wrapper">
-        <header class="main-header">
-            <!-- Logo -->
-            <a href="../index2.html" class="logo">
-                <!-- mini logo for sidebar mini 50x50 pixels -->
-                <span class="logo-mini"><b>S</b>D</span>
-                <!-- logo for regular state and mobile devices -->
-                <span class="logo-lg"><b>Soft</b>Debugger</span>
-            </a>
-            <!-- Header Navbar: style can be found in header.less -->
-            <nav class="navbar navbar-static-top" role="navigation">
-                <!-- Sidebar toggle button-->
-                <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-                    <span class="sr-only">Toggle navigation</span>
+
+
+
+        @if (Session["listenertoken"] != null)
+        {
+            <input type="hidden" value="@listenertoken" id="listenertoken" />
+            <header class="main-header">
+                <!-- Logo -->
+                <a href="../index2.html" class="logo">
+                    <!-- mini logo for sidebar mini 50x50 pixels -->
+                    <span class="logo-mini"><b>S</b>D</span>
+                    <!-- logo for regular state and mobile devices -->
+                    <span class="logo-lg"><b>Soft</b>Debugger</span>
                 </a>
-                <!-- Navbar Right Menu -->
-                <div class="navbar-custom-menu">
-                    <ul class="nav navbar-nav">
-                        <li><a href="#">Sanjeev Saraswat</a></li>
-                        <li><a href="@Url.Action("Home","LogOut")">LogOut</a></li>
-                    </ul>
-                </div>
-            </nav>
-        </header>
+                <!-- Header Navbar: style can be found in header.less -->
+                <nav class="navbar navbar-static-top" role="navigation">
+                    <!-- Sidebar toggle button-->
+                    <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                        <span class="sr-only">Toggle navigation</span>
+                    </a>
+                    <!-- Navbar Right Menu -->
+                    <div class="navbar-custom-menu">
+                        <ul class="nav navbar-nav">
+                            <li><a href="#">Sanjeev Saraswat</a></li>
+                            <li><a href="@Url.Action("SignUp","Home")">LogOut</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </header>
+            @Html.Partial("~/Areas/Admin/Views/Shared/AdminHeader.cshtml")
 
-
-        @Html.Partial("~/Areas/Admin/Views/Shared/AdminHeader.cshtml")
+        }
 
         @RenderBody()
+        @if (Session["listenertoken"] != null)
+        {
 
-
-        <footer class="main-footer">
-            <div class="pull-right hidden-xs">
-                <b>Version</b> 2.3.12
-            </div>
-            <strong>Copyright &copy; 2014-2016 <a href="https://www.softdebugger.com">SoftDebugger</a>.</strong> All rights
-            reserved.
-        </footer>
+            <footer class="main-footer">
+                <div class="pull-right hidden-xs">
+                    <b>Version</b> 1.0.0
+                </div>
+                <strong>Copyright &copy; 2017-2018 <a href="https://www.softdebugger.com">SoftDebugger</a>.</strong> All rights
+                reserved.
+            </footer>
         <!-- Control Sidebar -->
-        <aside class="control-sidebar control-sidebar-dark">
-            <!-- Create the tabs -->
-            <div class="pad">
-                This is an example of the control sidebar.
-            </div>
-        </aside><!-- /.control-sidebar -->
-        <!-- Add the sidebar's background. This div must be placed
-             immediately after the control sidebar -->
-        <div class="control-sidebar-bg"></div>
-        </div>
+            <aside class="control-sidebar control-sidebar-dark">
+                <!-- Create the tabs -->
+                <div class="pad">
+                    This is an example of the control sidebar.
+                </div>
+            </aside><!-- /.control-sidebar -->
+            <!-- Add the sidebar's background. This div must be placed
+                 immediately after the control sidebar -->
+            <div class="control-sidebar-bg"></div>
+        }
+    </div>
 </body>
 </html>
-

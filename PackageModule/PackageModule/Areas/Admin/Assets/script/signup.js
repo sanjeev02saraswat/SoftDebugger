@@ -83,28 +83,34 @@ var app = angular.module('Signupapp', []).controller('signupcontroller', functio
     };
     debugger;
     $scope.Login = function (data) {
+        debugger;
         var request = $http({
             method: "post",
             contentType: "application/json; charset=utf-8",
-            url: "http://localhost/Listener/Home/Loginuser",
+            url: "http://localhost:2849/Home/Loginuser",
             data: JSON.stringify(data)
         }).then(function (success) {
             debugger;
-            if (success.status === 200) {
+            if (success.status === 200 && success.data.tokenid != '' && success.data.tokenid!=null) {
                 $http({
                     method: "Get",
                     contentType: "application/json; charset=utf-8",
-                    url: "CreateTokenCookie?TokenID=" + success.data,
+                    url: "CreateTokenCookie?TokenID=" + success.data.tokenid,
 
                 }).then(function (success) {
-                    window.location.href = "/Admin/Admin/Index";
+                    window.location.href = "/Admin/Package/CreateNewPackage";
 
                 }, function (error) {
 
                 });
 
             }
-
+            else if(success.status==401){
+                SessionEndManager();
+            }
+            else {
+                alert('Login attempt Failed....');
+            }
         }, function (error) {
             debugger;
             alert(error.data);

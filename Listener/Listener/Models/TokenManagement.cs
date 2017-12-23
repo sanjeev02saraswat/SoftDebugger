@@ -1,8 +1,10 @@
-﻿using PackageModule.Filters;
+﻿using ConnectorAPI;
+using PackageModule.Filters;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 
@@ -56,5 +58,94 @@ namespace WEBAPI2.Models
             }
             return status;
         }
+
+
+
+        internal bool CreateTokenforAgent(Signupuser objSignupuser,string Tokenid)
+        {
+            bool LoginStatus = false;
+            try
+            {
+                _logger.addMessage.Add("CreateTokenforAgent", "CreateTokenforAgent Method is goint to Execute");
+                Dictionary<string, object> objparamlist = new Dictionary<string, object>();
+                _logger.addMessage.Add("CompnayID", "SD");
+                objparamlist.Add("CompnayID", "SD");
+                _logger.addMessage.Add("Email", objSignupuser.Email);
+                objparamlist.Add("Email", objSignupuser.Email);
+                _logger.addMessage.Add("Password", objSignupuser.Password);
+                objparamlist.Add("Password", objSignupuser.Password);
+                _logger.addMessage.Add("TokenID", Tokenid);
+                objparamlist.Add("TokenID", Tokenid);
+                DateTime CurrentTime = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture);
+                _logger.addMessage.Add("Token Generated TimeStamp", CurrentTime.ToString());
+                objparamlist.Add("TimeStamp", CurrentTime);
+                IConnector objConnector = new Connector();
+                LoginStatus = Convert.ToBoolean(objConnector.ExecuteScalar("PackageModule", "FSP_Agentlogin", objparamlist));
+                _logger.addMessage.Add("CreateTokenforAgent", "CreateTokenforAgent Status is"+LoginStatus);
+            }
+            catch (Exception ex)
+            {
+                _logger.addMessage.Add("CreateTokenforAgent", "Error during CreateTokenforAgent  Method Execution:" + ex.ToString());
+            }
+            finally
+            {
+                AsyncLogger.LogMessage(_logger);
+            }
+            return LoginStatus;
+        }
+
+        internal bool VALIDATETokenforAgent(string Tokenid,string CompanyID)
+        {
+            bool LoginStatus = false;
+            try
+            {
+                int ExpireMinute = 20;
+                if (System.Configuration.ConfigurationSettings.AppSettings.AllKeys.Contains("ExpireMinute"))
+                {
+                    ExpireMinute = Convert.ToInt16(System.Configuration.ConfigurationSettings.AppSettings["ExpireMinute"]);
+                }
+                
+
+                _logger.addMessage.Add("VALIDATETokenforAgent", "VALIDATETokenforAgent Method is goint to Execute");
+                Dictionary<string, object> objparamlist = new Dictionary<string, object>();
+                _logger.addMessage.Add("CompanyID", CompanyID);
+                objparamlist.Add("CompanyID", CompanyID);
+                _logger.addMessage.Add("TokenID", Tokenid);
+                objparamlist.Add("TokenID", Tokenid);
+                _logger.addMessage.Add("ExpireMinute", ExpireMinute.ToString());
+                objparamlist.Add("ExpireMinute", ExpireMinute);
+              
+                IConnector objConnector = new Connector();
+                DataTable LoginUserDetail = objConnector.ExecuteDataTable("PackageModule", "ValidateToken", objparamlist);
+                if (LoginUserDetail.Rows.Count>0)
+                {
+                    
+                    
+                    DateTime CurrentTime = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture);
+                    double SessionMinutes= CurrentTime.Subtract(Convert.ToDateTime(LoginUserDetail.Rows[0]["TimeStamp"])).TotalMinutes;
+                    _logger.addMessage.Add("SessionMinutes", SessionMinutes.ToString());
+
+                    if (SessionMinutes< ExpireMinute)
+                    {
+                        LoginStatus = true;
+                    }
+
+                }else
+                {
+                    _logger.addMessage.Add("VALIDATETokenforAgent", "VALIDATETokenforAgent return no Login Result..Access Denied");
+                }
+               
+            }
+            catch (Exception ex)
+            {
+                _logger.addMessage.Add("CreateTokenforAgent", "Error during CreateTokenforAgent  Method Execution:" + ex.ToString());
+            }
+            finally
+            {
+                AsyncLogger.LogMessage(_logger);
+            }
+            return LoginStatus;
+        }
+
     }
 }
