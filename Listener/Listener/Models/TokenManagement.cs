@@ -61,7 +61,7 @@ namespace WEBAPI2.Models
 
 
 
-        internal bool CreateTokenforAgent(Signupuser objSignupuser,string Tokenid)
+        internal Signupuser CreateTokenforAgent(Signupuser objSignupuser,string Tokenid)
         {
             bool LoginStatus = false;
             try
@@ -81,6 +81,13 @@ namespace WEBAPI2.Models
                 objparamlist.Add("TimeStamp", CurrentTime);
                 IConnector objConnector = new Connector();
                 LoginStatus = Convert.ToBoolean(objConnector.ExecuteScalar("PackageModule", "FSP_Agentlogin", objparamlist));
+                if (LoginStatus)
+                {
+                    objSignupuser.LoginStatus = true;                    
+                    objSignupuser.FullName = Convert.ToString(objConnector.ExecuteScalar("PackageModule", "GetAgentDetails", objparamlist));
+
+                }
+               
                 _logger.addMessage.Add("CreateTokenforAgent", "CreateTokenforAgent Status is"+LoginStatus);
             }
             catch (Exception ex)
@@ -91,7 +98,7 @@ namespace WEBAPI2.Models
             {
                 AsyncLogger.LogMessage(_logger);
             }
-            return LoginStatus;
+            return objSignupuser;
         }
 
         public void UpdateTimestamp(string CompanyID,string TokenID, DateTime CurrentTime)

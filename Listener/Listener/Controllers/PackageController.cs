@@ -52,7 +52,7 @@ namespace Listener.Controllers
             {
                 AsyncLogger.LogMessage(_logger);
             }
-            return null;
+            return CommonUtility.CreateResponse(HttpStatusCode.OK, null);
         }
 
         [HttpGet]
@@ -101,7 +101,7 @@ namespace Listener.Controllers
                     var httpPostedPackageFile = HttpContext.Current.Request.Files["UploadedImage"];
 
                     if (httpPostedPackageFile != null)
-                    {                      
+                    {
                         string fname;
                         fname = System.Web.Hosting.HostingEnvironment.MapPath("~/PackageImages/" + objPackageImages.CompanyID + "/" + objPackageImages.PackageCode);
                         if (!Directory.Exists(fname))
@@ -109,27 +109,58 @@ namespace Listener.Controllers
                             Directory.CreateDirectory(fname);
 
                         }
-                        fname = Path.Combine(fname, objPackageImages.PackageImageName+"."+ httpPostedPackageFile.FileName.Split('.')[1].ToString());
-                        objPackageImages.OriginalImagePath = fname;
+                        fname = Path.Combine(fname, objPackageImages.PackageImageName + "." + httpPostedPackageFile.FileName.Split('.')[1].ToString());
+                        objPackageImages.PackageImageName = objPackageImages.PackageImageName + "." + httpPostedPackageFile.FileName.Split('.')[1].ToString();
                         httpPostedPackageFile.SaveAs(fname);
                     }
                 }
-
-
-                
+                ManagePackageImages objManagePackageImages = new ManagePackageImages();
+                objManagePackageImages.AddPackageImages(objPackageImages);
+                _logger.addMessage.Add("SavePackageImages", "Package Images Inserted Successfully");
+                return CommonUtility.CreateResponse(HttpStatusCode.OK, null);
             }
             catch (Exception ex)
             {
                 _logger.ExceptionError = true;
                 _logger.addMessage.Add("SavePackageImages", "Error During SavePackageImages" + ex.ToString());
+                return CommonUtility.CreateResponse(HttpStatusCode.BadRequest, null);
             }
             finally
             {
                 AsyncLogger.LogMessage(_logger);
 
             }
-            return CommonUtility.CreateResponse(HttpStatusCode.OK, null);
+         
         }
 
+        [HttpGet]
+        [Tokenizer]
+        [Route("GetPackageImages")]
+        public HttpResponseMessage GetPackageImages(string PackageCode,string CompanyID)
+        {
+            List<PackageImages> objPackageImages = null;
+            try
+            {
+                _logger.addMessage.Add("GetPackageImages", "GetPackageImages Method is goint to Execute");
+                _logger.addMessage.Add("PackageCode", PackageCode);
+                _logger.addMessage.Add("CompanyID", CompanyID);
+                ManagePackageImages objManagePackageImages = new ManagePackageImages();
+               objPackageImages = objManagePackageImages.GetPackageImages(PackageCode, CompanyID);
+               
+
+            }
+            catch (Exception ex)
+            {
+                _logger.ExceptionError = true;
+                _logger.addMessage.Add("GetPackageImages", "Error During getting Package Images" + ex.ToString());
+            }
+            finally
+            {
+                AsyncLogger.LogMessage(_logger);
+
+            }
+            return CommonUtility.CreateResponse(HttpStatusCode.OK, objPackageImages);
+
+        }
     }
 }

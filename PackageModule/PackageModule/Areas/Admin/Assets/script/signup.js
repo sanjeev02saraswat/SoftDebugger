@@ -97,7 +97,7 @@ var app = angular.module('Signupapp', []).controller('signupcontroller', functio
                 $http({
                     method: "Get",
                     contentType: "application/json; charset=utf-8",
-                    url: "CreateTokenCookie?TokenID=" + success.data.tokenid + "&CompanyID=" + success.data.companyID,
+                    url: "CreateTokenCookie?TokenID=" + success.data.tokenid + "&CompanyID=" + success.data.companyID+"&AgentName="+success.data.fullName,
 
                 }).then(function (success) {
                     window.location.href = "/Admin/Package/CreateNewPackage";

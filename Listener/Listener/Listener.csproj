@@ -179,7 +179,7 @@
     </Compile>
     <Compile Include="Models\CountryList.cs" />
     <Compile Include="Models\PackageModel\CreatePackage.cs" />
-    <Compile Include="Models\PackageModel\PackageImages.cs" />
+    <Compile Include="Models\PackageModel\ManagePackageImages.cs" />
     <Compile Include="Models\PackageModel\PackageInfo.cs" />
     <Compile Include="Models\SignUpUserModel.cs" />
     <Compile Include="Models\TokenManagement.cs" />

@@ -91,8 +91,8 @@ namespace WEBAPI2.Controllers
                     string Token = Guid.NewGuid().ToString();
                 //will save same token against the user
                 TokenManagement objTokenManagement = new TokenManagement();
-                bool status = objTokenManagement.CreateTokenforAgent(objSignupuser,Token);
-                if (status)
+                 objSignupuser = objTokenManagement.CreateTokenforAgent(objSignupuser,Token);
+                if (objSignupuser.LoginStatus)
                 {
                     objSignupuser.Tokenid = Token;
                 }

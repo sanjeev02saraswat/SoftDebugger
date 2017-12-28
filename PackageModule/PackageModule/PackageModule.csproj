@@ -104,6 +104,7 @@
     <Content Include="Areas\Admin\Assets\css\Package\NewPackage.css" />
     <Content Include="Areas\Admin\Assets\script\CreateNewUser.js" />
     <Content Include="Areas\Admin\Assets\script\Package\CreateNewPackage.js" />
+    <Content Include="Areas\Admin\Assets\script\Package\UpdatePackage.js" />
     <Content Include="Areas\Admin\Assets\script\signup.js" />
     <Content Include="Global.asax" />
     <Content Include="Images\user_01.PNG" />
@@ -148,6 +149,7 @@
     <Content Include="LangConversion\PackageModule\Admin\Home\signUp_en-US.json" />
     <Content Include="Areas\Admin\Views\Package\CreateNewPackage.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\CreateUser.cshtml" />
+    <Content Include="Areas\Admin\Views\Package\UpdatePackage.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -1,0 +1,159 @@
+﻿.col-sm-5 {
+    margin-top:10px;
+}
+
+
+ .e-datewidget.e-input.ng-touched.ng-pristine, input.ng-touched.ng-pristine {
+        background-color: lightgray;
+    }
+
+    .e-datewidget.e-input.ng-touched.ng-dirty, input.ng-touched.ng-dirty {
+        background-color: lightsteelblue;
+    }
+
+    .e-datewidget.e-input.ng-untouched, input.ng-untouched {
+        background-color: lightyellow;
+    }
+
+        .e-datewidget.e-input.ng-untouched.ng-dirty {
+            background-color: lightcyan;
+        }
+
+    .attach-field {
+        position: relative;
+        margin-top: 15px;
+    }
+
+        .attach-field .attchment_icon {
+            background: transparent none repeat scroll 0 0;
+            border: 1px solid #00a3fe;
+            border-radius: 100px;
+            color: #00a3fe;
+            float: left;
+            height: 45px;
+            overflow: hidden;
+            width: 45px;
+            margin: -6px 10px 0 0;
+        }
+
+    .attchment_icon i {
+        padding: 13px 0;
+    }
+
+    .attchment_icon span {
+        color: #00a3fe;
+    }
+
+    .attach-field .fileattch-head {
+        font-size: 14px;
+        color: #666;
+        margin: 0 0 5px 0;
+        cursor: default;
+    }
+
+    .attach-field .btn {
+        float: left;
+        line-height: 3rem;
+    }
+
+        .attach-field .btn.btn-primary {
+            background: #fff;
+            margin: 0;
+            border: none;
+            box-shadow: none;
+            border-radius: 0;
+            padding: 0;
+            color: #00a3fe;
+        }
+
+            .attach-field .btn.btn-primary:focus, .attach-field .btn.btn-primary:active, .attach-field .btn.btn-primary:active:focus {
+                background: #fff;
+                color: #8c8c8c;
+            }
+
+    .attach-field input[type=file] {
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        font-size: 1px;
+        cursor: pointer;
+        opacity: 0;
+        filter: alpha(opacity=0);
+        border: none;
+    }
+
+    .attach-field .file-path-wrapper {
+        overflow: hidden;
+        padding-left: 10px;
+        height: 2.5rem;
+        padding-top: 4px;
+    }
+
+    .attach-field input.file-path {
+        width: 100%;
+        height: 2.1rem;
+        border: none;
+        font-size: 12px;
+    }
+
+       .elegant-aero label > span {
+        float: left;
+        margin-top: 10px;
+        color: red;
+    }
+
+          body {
+        font-family: 'Open Sans', sans-serif;
+    }
+
+    a {
+        color: #E1704B;
+        transition: color 0.5s ease;
+    }
+
+        a:hover {
+            cursor: pointer;
+        }
+
+    h1 {
+        font-family: 'Open Sans', sans-serif;
+        font-size: 2.5em;
+        font-weight: 500;
+    }
+
+    .filter {
+        margin-top: 6px;
+    }
+
+    .strike {
+        text-decoration: line-through;
+    }
+
+    .header-elements-margin {
+        margin: 5px;
+    }
+
+    .add-task {
+        margin-top: 10px;
+    }
+
+    .nav-button-margin {
+        margin: 10px 20px 0 0;
+    }
+
+    .navbar {
+        border-radius: 0;
+        background: #438EB9;
+        color: #fff;
+    }
+
+        .navbar .navbar-brand {
+            color: #FFF;
+            font-size: 24px;
+            text-shadow: none;
+        }

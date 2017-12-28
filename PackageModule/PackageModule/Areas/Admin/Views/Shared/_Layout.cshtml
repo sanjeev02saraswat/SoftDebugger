@@ -93,8 +93,8 @@
                     <!-- Navbar Right Menu -->
                     <div class="navbar-custom-menu">
                         <ul class="nav navbar-nav">
-                            <li><a href="#">Sanjeev Saraswat</a></li>
-                            <li><a href="@Url.Action("SignUp","Home")">LogOut</a></li>
+                            <li><a href="#">@Convert.ToString(Session["AgentName"])</a></li>
+                            <li><a href="@Url.Action("SignUp","Home")">Logout Me</a></li>
                         </ul>
                     </div>
                 </nav>

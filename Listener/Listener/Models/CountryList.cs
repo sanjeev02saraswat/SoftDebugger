@@ -34,6 +34,8 @@ namespace WEBAPI2.Models
         public string EmployeeID { get; set; }
 
         public string Mobile { get; set; }
+
+        public bool LoginStatus { get; set; }
     }
 
 

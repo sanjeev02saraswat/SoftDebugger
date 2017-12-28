@@ -47,19 +47,20 @@
             $("#removeattachment").css("display", "none");
         }
     });
+
 });
 
 var LanguageList = [];
 var app = angular.module('CreateNewPackageapp', ['ejangular']).controller('CreateNewPackagecontroller', function ($scope, $http) {
     $scope.selectedCountries = [];
-  
+
     $scope.PackageDetails = {
         CompanyID: '' + $("#CompanyID").val() + ''
     }
     $scope.HideShowProvider = function (showdiv, hidediv, STEP1) {
         var validate = true;
         if (STEP1 == "STEP1") {
-           validate=  ValidateStep1();
+            validate = ValidateStep1();
         } else if (STEP1 == "STEP2") {
             validate = ValidateStep2();
             if (validate) {
@@ -110,7 +111,7 @@ var app = angular.module('CreateNewPackageapp', ['ejangular']).controller('Creat
             headers: { "tokenid": "" + $("#listenertoken").val() + "", "CompanyID": "" + $("#CompanyID").val() + "" },
             url: "http://localhost:2849/Package/CreateNewPackage",
             data: JSON.stringify(data)
-        }).then(function (success) {           
+        }).then(function (success) {
             alert(success.data);
         }, function (error) {
             if (error.status == 401) {
@@ -147,10 +148,10 @@ var app = angular.module('CreateNewPackageapp', ['ejangular']).controller('Creat
             headers: { "tokenid": "" + $("#listenertoken").val() + "", "CompanyID": "" + $("#CompanyID").val() + "" },
             url: "" + $("#listenerurl").val() + "Package/GetPackageCode"
         }).then(function (success) {
-           
+
             $("#PackageCode").val(success.data);
         }, function (error) {
-            if (error.status==401) {
+            if (error.status == 401) {
                 SessionEndManager();
             }
         });
@@ -163,14 +164,14 @@ var app = angular.module('CreateNewPackageapp', ['ejangular']).controller('Creat
 
 
 $('#PackageLanguage').ejAutocomplete({
-    change: "showCurrentSearch",enableRTL:false,highlightSearch:true,
+    change: "showCurrentSearch", enableRTL: false, highlightSearch: true,
     fields: { text: "languageCode", key: "languageName" }
 
 })
 
 
 function showCurrentSearch(args) {
-    
+
     var data = $("#PackageLanguage").ejAutocomplete("instance");
     if (LanguageList.length > 0)
         data.suggestionListItems = JSON.parse(JSON.stringify(LanguageList));
@@ -186,13 +187,13 @@ function ValidateStep1() {
     status = BlankChecker(IDCollection);
     return status;
 
-    
+
 }
 
 
 function ValidateStep2() {
     var status = true;
-    if ($("#PackageMarket")[0].selectedIndex==0) {
+    if ($("#PackageMarket")[0].selectedIndex == 0) {
         $("#PackageMarket").addClass("errorClass");
         status = false;
     }
@@ -201,7 +202,7 @@ function ValidateStep2() {
         status = false;
     }
     var IDCollection = ['PackageValidityStartDate', 'PackageValidityEndDate', 'PackageBookingStartDate', 'PackageBookingEndDate', 'PackageDuration', 'ChildMinAge', 'ChildMaxAge', 'PackageLastPaymentDue', 'PackagePaymentCutOffDay', 'DiscountonFullPayment'];
-    status= BlankChecker(IDCollection);
+    status = BlankChecker(IDCollection);
     return status;
 }
 
@@ -233,7 +234,7 @@ $("#AddPackageImage").click(function () {
     fileData.append('PackageCode', $("#PackageCode").val());
     fileData.append('PackageImageName', $("#ImageName").val());
     fileData.append('PackageImageTitle', $("#ImageTitle").val());
-    
+
     $.ajax({
         type: "POST",
         headers: { "tokenid": "" + $("#listenertoken").val() + "", "CompanyID": "" + $("#CompanyID").val() + "" },
@@ -241,11 +242,11 @@ $("#AddPackageImage").click(function () {
         contentType: false,
         processData: false,
         data: fileData,
-        success: function (response) {
-            if (response.status == 200) {
+        success: function (response) {           
                 alert('Image Uploaded Successfully...');
                 RemoveImageTile();
-            }
+                GetPackageImages();
+           
         },
         error: function (response) {
             debugger;
@@ -312,14 +313,34 @@ function GetPackageImages() {
     $.ajax({
         type: "GET",
         headers: { "tokenid": "" + $("#listenertoken").val() + "", "CompanyID": "" + $("#CompanyID").val() + "" },
-        url: "" + $("#listenerurl").val() + "Package/GetPackageImages",
+        url: "" + $("#listenerurl").val() + "Package/GetPackageImages?PackageCode=" + $("#PackageCode").val() + "&CompanyID=" + $("#CompanyID").val() + "",
         contentType: "application/json; charset=utf-8",
-        data: fileData,
+
         success: function (response) {
+            var image_holder = "";
             debugger;
+            if (response != null && response.length > 0) {
+                var divcnt = 0;
+                for (var i = 0; i < response.length; i++) {
+                    divcnt++;
+
+                    image_holder += "<div class='col-sm-3 col-md-3 col-lg-3'>";
+                    image_holder += "<a href='" + $("#listenerurl").val() + "/PackageImages/" + $("#CompanyID").val() + "/" + $("#PackageCode").val() + "/" + response[i].packageImageName + "' download><img src= '" + $("#listenerurl").val() + "/PackageImages/" + $("#CompanyID").val() + "/" + $("#PackageCode").val() + "/" + response[i].packageImageName + "' title='" + response[i].packageImageTitle + "' class='thumb-image'/></a></div>";
+                    image_holder += "</div>";
+                }
+                $("#preattach").css("display", "block");
+                $("#preattach").html(image_holder);
+                if (image_holder != "") {
+                    $("#preattachparent").css("display", "block");
+                }
+            }
+            else if (response.status == 401) {
+                SessionEndManager();
+            }
+
         },
         error: function (response) {
-            debugger;
+            SessionEndManager();
         }
 
     });

@@ -20,6 +20,11 @@ namespace PackageModule.Areas.Admin.Controllers
             return View();
         }
 
+        public ActionResult UpdatePackage()
+        {
+            return View();
+        }
+
 
 
     }
