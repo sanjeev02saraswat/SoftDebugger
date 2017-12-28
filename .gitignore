@@ -22,3 +22,7 @@
 
 /PackageModule/PackageModule/bin
 /PackageModule/PackageModule/obj
+bin
+obj
+/BusinessModels/BusinessModels/obj
+/BusinessModels/BusinessModels/bin
