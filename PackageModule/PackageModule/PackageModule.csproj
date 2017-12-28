@@ -101,6 +101,7 @@
   <ItemGroup>
     <Content Include="Areas\Admin\Assets\css\demo.css" />
     <Content Include="Areas\Admin\Assets\css\Header.css" />
+    <Content Include="Areas\Admin\Assets\css\Package\NewPackage.css" />
     <Content Include="Areas\Admin\Assets\script\CreateNewUser.js" />
     <Content Include="Areas\Admin\Assets\script\Package\CreateNewPackage.js" />
     <Content Include="Areas\Admin\Assets\script\signup.js" />

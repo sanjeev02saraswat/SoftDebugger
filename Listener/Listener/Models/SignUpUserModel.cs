@@ -32,6 +32,7 @@ namespace WEBAPI2.Models
                 objparamlist.Add("Email", objSignupuser.Email);
                 objparamlist.Add("Password", objSignupuser.Password);
                 objparamlist.Add("CultureCode", objSignupuser.CultureCode);
+                objparamlist.Add("CompanyID", objSignupuser.CompanyID);
 
                 IConnector objConnector = new Connector();
                 bool status = objConnector.ExecuteNonQuery("PackageModule", "FSP_SignUpAgentUser", objparamlist);

@@ -57,7 +57,7 @@ namespace PackageModule.Areas.Admin.Controllers
 
         [HttpGet]
 
-        public bool CreateTokenCookie(string TokenID)
+        public bool CreateTokenCookie(string TokenID,string CompanyID)
         {
             HttpCookie myCookie = new HttpCookie("PackageModule");
             myCookie["listenertoken"] = TokenID;
@@ -65,8 +65,9 @@ namespace PackageModule.Areas.Admin.Controllers
             myCookie.Expires = DateTime.Now.AddDays(1d);
             Response.Cookies.Add(myCookie);
             Session["listenertoken"] = TokenID;
+            Session["CompanyID"] = CompanyID;          
             return true;
-
+           
         }
 
     }

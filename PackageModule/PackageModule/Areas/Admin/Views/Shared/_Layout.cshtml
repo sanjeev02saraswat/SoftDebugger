@@ -53,11 +53,15 @@
     </style>
 
     @{
-        string listenertoken = "";
+        string listenertoken = "", CompanyID="";
         string listenerurl = "";
         if (Session["listenertoken"] != null)
         {
             listenertoken = Session["listenertoken"].ToString();
+        }
+        if (Session["CompanyID"] != null)
+        {
+            CompanyID = Session["CompanyID"].ToString();
         }
         listenerurl = System.Configuration.ConfigurationManager.AppSettings["ListnerUrl"].ToString();
     }
@@ -70,6 +74,7 @@
 
         @if (Session["listenertoken"] != null)
         {
+            <input type="hidden" value="@CompanyID" id="CompanyID" />
             <input type="hidden" value="@listenertoken" id="listenertoken" />
             <header class="main-header">
                 <!-- Logo -->

@@ -12,6 +12,7 @@ SET ANSI_PADDING ON
 GO
 
 CREATE TABLE [dbo].[PackageDetails](
+CompanyID VARCHAR(2),
 	[PackageCode] [varchar](10) NOT NULL Primary KEY,
 	[PackageName] [varchar](200) NULL,
 	[PackageLangauge] [varchar](5) NULL,

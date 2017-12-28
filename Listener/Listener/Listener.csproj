@@ -65,6 +65,10 @@
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="MultipartDataMediaFormatter, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MultipartDataMediaFormatter.V2.2.0.0\lib\net45\MultipartDataMediaFormatter.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="SendMail">
       <HintPath>..\..\SendMail\SendMail\bin\Debug\SendMail.dll</HintPath>
     </Reference>
@@ -175,6 +179,7 @@
     </Compile>
     <Compile Include="Models\CountryList.cs" />
     <Compile Include="Models\PackageModel\CreatePackage.cs" />
+    <Compile Include="Models\PackageModel\PackageImages.cs" />
     <Compile Include="Models\PackageModel\PackageInfo.cs" />
     <Compile Include="Models\SignUpUserModel.cs" />
     <Compile Include="Models\TokenManagement.cs" />

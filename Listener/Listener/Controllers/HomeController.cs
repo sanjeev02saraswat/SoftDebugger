@@ -61,6 +61,7 @@ namespace WEBAPI2.Controllers
 
 
         [HttpGet]
+        [Tokenizer]
         [Route("GetLanguages")]
         public HttpResponseMessage GetLanguages()
         {

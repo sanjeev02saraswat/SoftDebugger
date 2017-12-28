@@ -3,13 +3,17 @@ using PackageBusinessModel.Models;
 using PackageModule.Filters;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using WEBAPI2.Filters;
 using WEBAPI2.Utilities;
+
+
 
 namespace Listener.Controllers
 {
@@ -18,7 +22,7 @@ namespace Listener.Controllers
     [RoutePrefix("Package")]
     public class PackageController : ApiController
     {
-      
+
         private AsyncLogger _logger = null;
         public PackageController()
         {
@@ -42,7 +46,7 @@ namespace Listener.Controllers
             catch (Exception ex)
             {
                 _logger.ExceptionError = true;
-              
+
             }
             finally
             {
@@ -63,14 +67,14 @@ namespace Listener.Controllers
             {
                 _logger.addMessage.Add("GetPackageCode", "GetPackageCode Method is goint to Execute");
                 PackageInfo objPackageInfo = new PackageInfo();
-                 PackageCode = objPackageInfo.GetPackageCode();
+                PackageCode = objPackageInfo.GetPackageCode();
                 _logger.addMessage.Add("PackageCode", PackageCode);
 
             }
             catch (Exception ex)
             {
                 _logger.ExceptionError = true;
-                _logger.addMessage.Add("GetPackageCode", "Error During getting Package Code"+ex.ToString());
+                _logger.addMessage.Add("GetPackageCode", "Error During getting Package Code" + ex.ToString());
             }
             finally
             {
@@ -79,5 +83,53 @@ namespace Listener.Controllers
             }
             return CommonUtility.CreateResponse(HttpStatusCode.OK, PackageCode);
         }
+
+        [HttpPost]
+        [Tokenizer]
+        [Route("UploadPackageImage")]
+        //before working it properly install further ste
+        //Install-Package MultipartDataMediaFormatter.V2 from nuget
+        //add multi media type in global.asax https://www.codeproject.com/Tips/652633/ASP-NET-WebApi-MultipartDataMediaFormatter
+        public HttpResponseMessage SavePackageImages(PackageImages objPackageImages)
+        {
+
+            try
+            {
+                if (HttpContext.Current.Request.Files.AllKeys.Any())
+                {
+                    // Get the uploaded image from the Files collection
+                    var httpPostedPackageFile = HttpContext.Current.Request.Files["UploadedImage"];
+
+                    if (httpPostedPackageFile != null)
+                    {                      
+                        string fname;
+                        fname = System.Web.Hosting.HostingEnvironment.MapPath("~/PackageImages/" + objPackageImages.CompanyID + "/" + objPackageImages.PackageCode);
+                        if (!Directory.Exists(fname))
+                        {
+                            Directory.CreateDirectory(fname);
+
+                        }
+                        fname = Path.Combine(fname, objPackageImages.PackageImageName+"."+ httpPostedPackageFile.FileName.Split('.')[1].ToString());
+                        objPackageImages.OriginalImagePath = fname;
+                        httpPostedPackageFile.SaveAs(fname);
+                    }
+                }
+
+
+                
+            }
+            catch (Exception ex)
+            {
+                _logger.ExceptionError = true;
+                _logger.addMessage.Add("SavePackageImages", "Error During SavePackageImages" + ex.ToString());
+            }
+            finally
+            {
+                AsyncLogger.LogMessage(_logger);
+
+            }
+            return CommonUtility.CreateResponse(HttpStatusCode.OK, null);
+        }
+
     }
 }

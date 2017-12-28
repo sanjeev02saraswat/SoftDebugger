@@ -5,11 +5,22 @@
         <ul class="nav sidebar-menu">
             <li class="header">TABLE OF CONTENTS</li>
             <li class="active"><a href="@Url.Action("CreateUser","Admin","Admin")"><i class="fa fa-circle-o"></i> Add New User</a></li>
-            <li id="CreateNewPackageli"><a href="@Url.Action("CreateNewPackage","Package","Admin")"><i class="fa fa-circle-o"></i> Package Management</a></li>
+            <li id="CreateNewPackageli" class="treeview menu-open"><a href="#"><i class="fa fa-circle-o"></i> Package Management</a>                
+                <ul class="treeview-menu">
+                    <li><a href="@Url.Action("CreateNewPackage","Package","Admin")">Create New Package</a></li>
+                    <li><a href="@Url.Action("CreateNewPackage","Package","Admin")">Update Package</a></li>
+                    <li><a href="#component-control-sidebar">Control Sidebar</a></li>
+                    <li><a href="#component-info-box">Info Box</a></li>
+                    <li><a href="#component-box">Boxes</a></li>
+                    <li><a href="#component-direct-chat">Direct Chat</a></li>
+                </ul>
+            </li>
+            
             <li><a href="#dependencies"><i class="fa fa-circle-o"></i> Dependencies</a></li>
             <li><a href="#advice"><i class="fa fa-circle-o"></i> Advice</a></li>
             <li><a href="#layout"><i class="fa fa-circle-o"></i> Layout</a></li>
             <li><a href="#adminlte-options"><i class="fa fa-circle-o"></i> Javascript Options</a></li>
+           
             <li class="treeview" id="scrollspy-components">
                 <a href="javascript:void(0)"><i class="fa fa-circle-o"></i> Components</a>
                 <ul class="nav treeview-menu">
@@ -29,6 +40,8 @@
             <li><a href="#license"><i class="fa fa-circle-o"></i> License</a></li>
         </ul>
     </div>
+
+    
     <!-- /.sidebar -->
 </aside>
 

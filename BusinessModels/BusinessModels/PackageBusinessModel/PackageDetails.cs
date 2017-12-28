@@ -7,6 +7,7 @@ namespace PackageBusinessModel.Models
 {
     public class PackageDetails
     {
+        public string CompanyID { get; set; }
         public BasicPackageDetails BasicPackageDetails { get; set; }
 
         public BasicPackageCreteria BasicPackageCreteria { get; set; }
@@ -101,5 +102,18 @@ namespace PackageBusinessModel.Models
         //will be in % only
         public string Discountonfullpayment { get; set; }
     }
-    
+
+    public class PackageImages
+    {
+        public string PackageCode { get; set; }
+        public string CompanyID { get; set; }
+        public string PackageImageName { get; set; }
+
+        public string PackageImageTitle { get; set; }
+        public string Browser { get; set; }
+
+        public string OriginalImagePath { get; set; }
+
+    }
+
 }

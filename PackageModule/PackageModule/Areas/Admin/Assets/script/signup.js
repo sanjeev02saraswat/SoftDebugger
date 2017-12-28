@@ -51,6 +51,7 @@
 var app = angular.module('Signupapp', []).controller('signupcontroller', function ($scope, $http) {
 
     $scope.User = {
+        CompanyID:'',
         FirstName: '',
         LastName: '',
         FullName: '',
@@ -79,7 +80,8 @@ var app = angular.module('Signupapp', []).controller('signupcontroller', functio
     $scope.Loginuser = {
 
         Email: '',
-        Password: ''
+        Password: '',
+        CompanyID: ''
     };
     debugger;
     $scope.Login = function (data) {
@@ -95,7 +97,7 @@ var app = angular.module('Signupapp', []).controller('signupcontroller', functio
                 $http({
                     method: "Get",
                     contentType: "application/json; charset=utf-8",
-                    url: "CreateTokenCookie?TokenID=" + success.data.tokenid,
+                    url: "CreateTokenCookie?TokenID=" + success.data.tokenid + "&CompanyID=" + success.data.companyID,
 
                 }).then(function (success) {
                     window.location.href = "/Admin/Package/CreateNewPackage";

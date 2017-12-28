@@ -26,6 +26,10 @@ namespace Listener.Models.PackageModel
             {
                 _logger.addMessage.Add("AddPackage", "AddPackage Method is going to Execute");
                 Dictionary<string, object> objparamlist = new Dictionary<string, object>();
+
+                _logger.addMessage.Add("CompanyID", objPackageDetails.CompanyID);
+                objparamlist.Add("CompanyID", objPackageDetails.CompanyID);
+
                 _logger.addMessage.Add("PackageCode", objPackageDetails.BasicPackageDetails.PackageCode.ToString());
                 objparamlist.Add("PackageCode", objPackageDetails.BasicPackageDetails.PackageCode);
                 _logger.addMessage.Add("PackageName", objPackageDetails.BasicPackageDetails.PackageName.ToString());

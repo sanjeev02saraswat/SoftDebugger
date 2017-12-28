@@ -23,8 +23,13 @@
         <div id="signup" ng-controller="signupcontroller">
             <h1>@objLanguagerequiredText.SelectToken("SignupFreeKey").ToString()</h1>
 
-
-            <div class="top-row">
+            <div class="field-wrap">
+                <label>
+                    Company ID<span class="req">*</span>
+                </label>
+                <input type="text" ng-model="User.CompanyID" required autocomplete="off" />
+            </div>
+            <div class="top-row">                
                 <div class="field-wrap">
                     <label>
                         @objLanguagerequiredText.SelectToken("FirstNameKey").ToString()<span class="req">*</span>
@@ -63,6 +68,12 @@
         <div id="login" ng-controller="logincontroller">
             <h1>@objLanguagerequiredText.SelectToken("WelcomeBackKey").ToString()</h1>
 
+            <div class="field-wrap">
+                <label>
+                    Company ID<span class="req">*</span>
+                </label>
+                <input type="text" ng-model="Loginuser.CompanyID" required autocomplete="off" />
+            </div>
 
 
             <div class="field-wrap">

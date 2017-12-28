@@ -68,8 +68,8 @@ namespace WEBAPI2.Models
             {
                 _logger.addMessage.Add("CreateTokenforAgent", "CreateTokenforAgent Method is goint to Execute");
                 Dictionary<string, object> objparamlist = new Dictionary<string, object>();
-                _logger.addMessage.Add("CompnayID", "SD");
-                objparamlist.Add("CompnayID", "SD");
+                _logger.addMessage.Add("CompnayID", objSignupuser.CompanyID);
+                objparamlist.Add("CompnayID", objSignupuser.CompanyID);
                 _logger.addMessage.Add("Email", objSignupuser.Email);
                 objparamlist.Add("Email", objSignupuser.Email);
                 _logger.addMessage.Add("Password", objSignupuser.Password);
@@ -94,6 +94,33 @@ namespace WEBAPI2.Models
             return LoginStatus;
         }
 
+        public void UpdateTimestamp(string CompanyID,string TokenID, DateTime CurrentTime)
+        {
+            try
+            {
+                _logger.addMessage.Add("UpdateTimestamp", "UpdateTimestamp Method is goint to Execute");
+                Dictionary<string, object> objparamlist = new Dictionary<string, object>();
+                _logger.addMessage.Add("CompanyID", CompanyID);
+                objparamlist.Add("CompanyID", CompanyID);
+                _logger.addMessage.Add("TokenID", TokenID);
+                objparamlist.Add("TokenID", TokenID);
+                _logger.addMessage.Add("TimeStamp", CurrentTime.ToString());
+                objparamlist.Add("TimeStamp", CurrentTime);
+
+                IConnector objConnector = new Connector();
+                bool UpdateTokenStatus = objConnector.ExecuteNonQuery("PackageModule", "UPDATE_TIMESTAMP", objparamlist);
+
+                _logger.addMessage.Add("UpdateTokenStatus", "Timestamp Has been updated Successfully for Token ID: "+ TokenID+ " with Timestamp  "+ CurrentTime.ToString());
+            }
+            catch (Exception ex)
+            {
+                _logger.addMessage.Add("UpdateTimestamp", "Error during UpdateTimestamp  Method Execution:" + ex.ToString());
+            }
+            finally
+            {
+                AsyncLogger.LogMessage(_logger);
+            }
+        }
         internal bool VALIDATETokenforAgent(string Tokenid,string CompanyID)
         {
             bool LoginStatus = false;
@@ -127,6 +154,7 @@ namespace WEBAPI2.Models
 
                     if (SessionMinutes< ExpireMinute)
                     {
+                        UpdateTimestamp(CompanyID, Tokenid, CurrentTime);
                         LoginStatus = true;
                     }
 
