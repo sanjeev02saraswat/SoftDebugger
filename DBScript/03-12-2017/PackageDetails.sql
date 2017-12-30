@@ -15,7 +15,7 @@ CREATE TABLE [dbo].[PackageDetails](
 CompanyID VARCHAR(2),
 	[PackageCode] [varchar](10) NOT NULL Primary KEY,
 	[PackageName] [varchar](200) NULL,
-	[PackageLangauge] [varchar](5) NULL,
+	[PackageLanguage] [varchar](5) NULL,
 	[PackageTitle] [varchar](200) NULL,
 	[SupplierRef] [varchar](100) NULL,
 	[PackageRemarks] [varchar](500) NULL

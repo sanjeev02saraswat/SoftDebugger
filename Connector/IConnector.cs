@@ -14,6 +14,9 @@ namespace ConnectorAPI
         DataTable ExecuteDataTable(string ConnectionStringName, string StoredProcedureName, Dictionary<string, object> Parameters = null);
 
 
+        DataSet ExecuteDataSet(string ConnectionStringName, string StoredProcedureName, Dictionary<string, object> Parameters = null);
+
+
         object  ExecuteScalar(string ConnectionStringName, string StoredProcedureName, Dictionary<string, object> Parameters = null);
     }
 }

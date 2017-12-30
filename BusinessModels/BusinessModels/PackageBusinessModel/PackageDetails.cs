@@ -116,4 +116,17 @@ namespace PackageBusinessModel.Models
 
     }
 
+    public class PackageList
+    {
+        public string PackageCode { get; set; }
+
+        public string PackageName { get; set; }
+
+        public string CompanyID { get; set; }
+
+        public string PackageLanguage { get; set; }
+
+        public string query { get; set; }
+    }
+
 }

@@ -150,6 +150,71 @@ namespace ConnectorAPI
 
         }
 
+
+        /// <summary>
+        /// Call this function to Execute stored procedure specific Db that will return DataSet
+        /// </summary>
+        /// <param name="ConnectionStringName">Pass connection String Name Mention in Configuration</param>
+        /// <param name="StoredProcedureName">Pass stored Procedure Name That you have created</param>
+        /// <param name="Parameters">Pass List of Params if you have else you can skip</param>
+        /// <returns>DataSet  if operation will successfull</returns>
+        public DataSet ExecuteDataSet(string ConnectionStringName, string StoredProcedureName, Dictionary<string, object> Parameters = null)
+        {
+            DataSet ds = new DataSet();
+            SqlConnection objSqlConnection = null;
+            try
+            {
+                _logger.addMessage.Add("ExecuteDataSet", "ExecuteDataSet Method is goint to Execute");
+                SqlContactor objSqlContactor = new SqlContactor();
+                objSqlConnection = objSqlContactor.OpenConnection(ConnectionStringName);
+                _logger.addMessage.Add("ExecuteDataSet", "SqlContactor Open Connection Successfully for " + ConnectionStringName);
+                using (SqlCommand objSqlCommand = new SqlCommand(StoredProcedureName, objSqlConnection))
+                {
+                    objSqlCommand.CommandType = CommandType.StoredProcedure;
+                    if (Parameters != null)
+                    {
+                        _logger.addMessage.Add("ExecuteDataSet", "Parameters is going to Add");
+                        foreach (KeyValuePair<string, object> item in Parameters)
+                        {
+                            if (item.Value != null)
+                            {
+                                _logger.addMessage.Add("ExecuteDataSet", "Parameters Key:" + item.Key + "-Value:" + item.Value.ToString());
+                                objSqlCommand.Parameters.AddWithValue("@" + item.Key, item.Value);
+                            }
+
+                        }
+                    }
+                    SqlDataAdapter da = new SqlDataAdapter(objSqlCommand);
+                    objSqlConnection.Open();
+                    _logger.addMessage.Add("ExecuteDataSet", "Connection open Successfully");
+                   
+                    da.Fill(ds);
+                    if (ds.Tables.Count>0)
+                    {
+                        _logger.addMessage.Add("ExecuteDataSet", "Record fetached Successfully Successfully");
+                    }
+                    
+                    else { _logger.addMessage.Add("ExecuteDataSet", "No Record found against this Login"); }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                _logger.addMessage.Add("ExecuteDataSet", "SqlContactor Error during Execution " + ex.ToString());
+                
+            }
+            finally
+            {
+                SoftLogger.WriteLogImmediateAsync(_logger);
+                objSqlConnection.Close();
+                objSqlConnection.Dispose();
+            }
+            return ds;
+
+        }
+
+
+
         /// <summary>
         /// Call this function to Insert Data into specific Db
         /// </summary>

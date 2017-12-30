@@ -22,26 +22,26 @@
     <div class="tab-content">
         <div id="signup" ng-controller="signupcontroller">
             <h1>@objLanguagerequiredText.SelectToken("SignupFreeKey").ToString()</h1>
-
+            <h1 style="color:red;display:none;" id="spnSignUPValidationError">Please fill all required details...</h1>
             <div class="field-wrap">
                 <label>
                     Company ID<span class="req">*</span>
                 </label>
-                <input type="text" ng-model="User.CompanyID" required autocomplete="off" />
+                <input type="text" ng-model="User.CompanyID" id="UserCompanyID" required autocomplete="off" />
             </div>
             <div class="top-row">                
                 <div class="field-wrap">
                     <label>
                         @objLanguagerequiredText.SelectToken("FirstNameKey").ToString()<span class="req">*</span>
                     </label>
-                    <input type="text" required autocomplete="off" ng-model="User.FirstName" />
+                    <input type="text" required autocomplete="off" ng-model="User.FirstName" id="UserFirstName" />
                 </div>
 
                 <div class="field-wrap">
                     <label>
                         @objLanguagerequiredText.SelectToken("LastNameKey").ToString()<span class="req">*</span>
                     </label>
-                    <input type="text" required autocomplete="off" ng-model="User.LastName" />
+                    <input type="text" required autocomplete="off" ng-model="User.LastName" id="UserLastName" />
                 </div>
             </div>
 
@@ -49,14 +49,14 @@
                 <label>
                     @objLanguagerequiredText.SelectToken("EmailAddressKey").ToString()<span class="req">*</span>
                 </label>
-                <input type="email" required autocomplete="off" ng-model="User.Email" />
+                <input type="email" required autocomplete="off" ng-model="User.Email" id="UserEmail" />
             </div>
 
             <div class="field-wrap">
                 <label>
                     @objLanguagerequiredText.SelectToken("SetPasswordKey").ToString()<span class="req">*</span>
                 </label>
-                <input type="password" required autocomplete="off" ng-model="User.Password" />
+                <input type="password" required autocomplete="off" ng-model="User.Password" id="UserPassword" />
             </div>
 
             <button type="submit" class="button button-block" ng-click="SignUpuser(User)" />@objLanguagerequiredText.SelectToken("GetStartedKey").ToString()</button>
@@ -67,12 +67,13 @@
 
         <div id="login" ng-controller="logincontroller">
             <h1>@objLanguagerequiredText.SelectToken("WelcomeBackKey").ToString()</h1>
+            <h1 style="color:red;display:none;" id="spnValidationError">Please fill all required details...</h1>
 
             <div class="field-wrap">
                 <label>
                     Company ID<span class="req">*</span>
                 </label>
-                <input type="text" ng-model="Loginuser.CompanyID" required autocomplete="off" />
+                <input type="text" ng-model="Loginuser.CompanyID" id="LoginUserCompanyID" required autocomplete="off" />
             </div>
 
 
@@ -80,14 +81,14 @@
                 <label>
                     @objLanguagerequiredText.SelectToken("EmailAddressKey").ToString()<span class="req">*</span>
                 </label>
-                <input type="email" ng-model="Loginuser.Email" required autocomplete="off" />
+                <input type="email" ng-model="Loginuser.Email" id="LoginUserEmail" required autocomplete="off" />
             </div>
 
             <div class="field-wrap">
                 <label>
                     @objLanguagerequiredText.SelectToken("PasswordKey").ToString()<span class="req">*</span>
                 </label>
-                <input type="password" ng-model="Loginuser.Password" required autocomplete="off" />
+                <input type="password" ng-model="Loginuser.Password" id="LoginUserPassword" required autocomplete="off" />
             </div>
 
             <p class="forgot"><a href="#">@objLanguagerequiredText.SelectToken("ForgetPasswordKey").ToString()</a></p>

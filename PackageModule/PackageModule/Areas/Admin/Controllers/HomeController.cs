@@ -28,12 +28,7 @@ namespace PackageModule.Areas.Admin.Controllers
         {
             string LangConversion = string.Empty;
             string FileCulture = CommonFunction.GetFileCulture();          
-            string mapPath = System.Web.HttpContext.Current.Server.MapPath(@"" + RootLangPath + "/Index_" + FileCulture + ".json");
-            using (StreamReader r = new StreamReader(mapPath))
-            {
-                LangConversion = r.ReadToEnd();
-            }
-            ViewBag.IndexLangFile = JsonConvert.DeserializeObject(LangConversion);                     
+                              
             return View();
         }
 

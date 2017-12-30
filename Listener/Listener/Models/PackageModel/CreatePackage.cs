@@ -84,6 +84,7 @@ namespace Listener.Models.PackageModel
             }
             catch (Exception ex)
             {
+                _logger.ExceptionError = true;
                 _logger.addMessage.Add("Registeruser", "Error during Register user Method Execution:" + ex.ToString());
                 
             }

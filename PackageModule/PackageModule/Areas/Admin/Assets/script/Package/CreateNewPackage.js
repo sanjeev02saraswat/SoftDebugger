@@ -1,5 +1,11 @@
 ﻿$(document).ready(function () {
-
+    $("#PackageValidityStartDate,#PackageValidityEndDate,#PackageBookingStartDate,#PackageBookingEndDate").datepicker({
+        dateFormat: "yy-mm-dd",
+        closeText: "Close",
+        changeYear: true,
+        changeMonth: true,
+        autoSize: true
+    });
     $("li").removeClass("active");
     $("#CreateNewPackageli").addClass("active");
     $("#removeattachment").click(function () {
@@ -64,7 +70,6 @@ var app = angular.module('CreateNewPackageapp', ['ejangular']).controller('Creat
         } else if (STEP1 == "STEP2") {
             validate = ValidateStep2();
             if (validate) {
-                debugger;
                 this.SavePackage(this.PackageDetails);
             }
         }
@@ -101,7 +106,7 @@ var app = angular.module('CreateNewPackageapp', ['ejangular']).controller('Creat
         DiscountonFullPayment: ''
 
     };
-    //debugger;
+  
     $scope.SavePackage = function (data) {
         data.BasicPackageDetails.PackageCode = $("#PackageCode").val();
         data.BasicPackageDetails.PackageLanguage = $("#hdnPackageLanguage").val();
@@ -112,7 +117,7 @@ var app = angular.module('CreateNewPackageapp', ['ejangular']).controller('Creat
             url: "http://localhost:2849/Package/CreateNewPackage",
             data: JSON.stringify(data)
         }).then(function (success) {
-            alert(success.data);
+            alert('Package create successfully.');
         }, function (error) {
             if (error.status == 401) {
                 SessionEndManager();
@@ -249,7 +254,9 @@ $("#AddPackageImage").click(function () {
            
         },
         error: function (response) {
-            debugger;
+            if (response.status == 401) {
+                SessionEndManager();
+            }
         }
 
     });
@@ -318,7 +325,7 @@ function GetPackageImages() {
 
         success: function (response) {
             var image_holder = "";
-            debugger;
+            
             if (response != null && response.length > 0) {
                 var divcnt = 0;
                 for (var i = 0; i < response.length; i++) {

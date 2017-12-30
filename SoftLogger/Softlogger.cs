@@ -62,11 +62,7 @@ namespace SoftLoggerAPI
                             // JSon or other non-xml format
                             foreach (var item in LoggerCollection.AllKeys)
                             {
-                                strlog.Append(item.ToString().Replace(" ", "") +"  :  "+ LoggerCollection["" + item + ""].ToString()+Environment.NewLine);
-                                //       doc.Add(new XElement("ApiLog",
-                                //new XElement("Request", item.ToString().Replace(" ", "") + "" + i++ + ""),
-                                //new XElement("Response", LoggerCollection["" + item + ""].ToString())));
-                               // doc.Add(strlog.ToString());
+                                strlog.Append(item.ToString().Replace(" ", "") +"  :  "+ Convert.ToString(LoggerCollection["" + item + ""]) +Environment.NewLine);                               
                             }
                         }
                         if (Logger.ExceptionError)

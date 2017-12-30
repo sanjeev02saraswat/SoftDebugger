@@ -4,7 +4,8 @@
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="nav sidebar-menu">
             <li class="header">TABLE OF CONTENTS</li>
-            <li class="active"><a href="@Url.Action("CreateUser","Admin","Admin")"><i class="fa fa-circle-o"></i> Add New User</a></li>
+            <li class="active"><a href="@Url.Action("Index","Home","Admin")"><i class="fa fa-circle-o"></i>Dashboard</a></li>
+            <li><a href="@Url.Action("CreateUser","Admin","Admin")"><i class="fa fa-circle-o"></i> Add New User</a></li>
             <li id="CreateNewPackageli" class="treeview menu-open"><a href="#"><i class="fa fa-circle-o"></i> Package Management</a>                
                 <ul class="treeview-menu">
                     <li><a href="@Url.Action("CreateNewPackage","Package","Admin")">Create New Package</a></li>

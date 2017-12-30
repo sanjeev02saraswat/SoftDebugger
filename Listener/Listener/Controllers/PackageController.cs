@@ -1,8 +1,10 @@
 ﻿using Listener.Models.PackageModel;
+using Newtonsoft.Json;
 using PackageBusinessModel.Models;
 using PackageModule.Filters;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -54,6 +56,67 @@ namespace Listener.Controllers
             }
             return CommonUtility.CreateResponse(HttpStatusCode.OK, null);
         }
+
+        [HttpPost]
+        [Tokenizer]
+        [Route("GetPackages")]
+        public HttpResponseMessage GetPackages(PackageList objPackageList)
+        {
+            string JSONResult = "";
+            try
+            {
+                _logger.addMessage.Add("GetPackages", "GetPackages Method is goint to Execute");
+                PackageListAutoComplete objPackageListAutoComplete = new PackageListAutoComplete();
+
+                 JSONResult = objPackageListAutoComplete.GetPackageList(objPackageList);
+
+
+
+            }
+            catch (Exception ex)
+            {
+                _logger.addMessage.Add("GetPackages", "Error during GetPackages  Method Execution:" + ex.ToString());
+                _logger.ExceptionError = true;
+
+            }
+            finally
+            {
+                AsyncLogger.LogMessage(_logger);
+            }
+            return CommonUtility.CreateResponse(HttpStatusCode.OK, JSONResult);
+        }
+
+        [HttpPost]
+        [Tokenizer]
+        [Route("GetPackageDetail")]
+        public HttpResponseMessage GetPackageDetail(PackageList objPackageList)
+        {
+            string JSONResult = "";
+            try
+            {
+                _logger.addMessage.Add("GetPackageDetail", "GetPackageDetail Method is goint to Execute");
+                PackageInfo objPackageInfo = new PackageInfo();
+
+                JSONResult = objPackageInfo.GetPackageDetails(objPackageList);
+                //PackageDetails data = JsonConvert.DeserializeObject<PackageDetails>(JSONResult);
+                //PackageDetails objPackageDetails = new PackageDetails();
+                //objPackageDetails.BasicPackageCreteria = null;
+
+            }
+            catch (Exception ex)
+            {
+                _logger.addMessage.Add("GetPackageDetail", "Error during GetPackageDetail  Method Execution:" + ex.ToString());
+                _logger.ExceptionError = true;
+
+            }
+            finally
+            {
+                AsyncLogger.LogMessage(_logger);
+            }
+            return CommonUtility.CreateResponse(HttpStatusCode.OK, JSONResult);
+        }
+
+
 
         [HttpGet]
         [Tokenizer]
@@ -136,7 +199,7 @@ namespace Listener.Controllers
         [HttpGet]
         [Tokenizer]
         [Route("GetPackageImages")]
-        public HttpResponseMessage GetPackageImages(string PackageCode,string CompanyID)
+        public HttpResponseMessage GetPackageImages(string PackageCode,string CompanyID,string PackageLanguage)
         {
             List<PackageImages> objPackageImages = null;
             try

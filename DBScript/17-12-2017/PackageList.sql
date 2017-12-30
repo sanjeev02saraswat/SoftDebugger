@@ -4,3 +4,5 @@ PackageCode VARCHAR(10) Primary Key,
 
 PackageName VARCHAR(200)
 )
+
+Alter Table PackageList Add PackageLanguage VARCHAR(5)

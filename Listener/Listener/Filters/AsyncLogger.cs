@@ -53,7 +53,7 @@ namespace PackageModule.Filters
                           
                             foreach (var item in LoggerCollection.AllKeys)
                             {
-                                strlog.Append(item.ToString().Replace(" ", "") + ":" + LoggerCollection["" + item + ""].ToString());
+                                strlog.Append(item.ToString().Replace(" ", "") + "  :  " + Convert.ToString(LoggerCollection["" + item + ""]) + Environment.NewLine);
                             }
                         }
                         if (Logger.ExceptionError)

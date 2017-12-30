@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 using System.Data;
 using System.Net.Mail;
 using System.Security.Cryptography;
-using SoftLogger;
 using System.Data.SqlClient;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Configuration;
-
+using SoftLoggerAPI;
 
 namespace SendMail
 {
@@ -159,17 +158,17 @@ BCCAddress = System.Configuration.ConfigurationManager.AppSettings["BCCEMAILADDR
                     Client_Server_Name.EnableSsl = TLS_SSL;
 
                     Client_Server_Name.Send(objmsg);
-                    SoftLogger.SoftLogger.WriteLogImmediate("Mail Status : "+"Mail Type :"+mailsubject+" ,Mail Sent Successfully to : "+mailto+", CC TO :"+CCAddress+ ", BCC TO :"+BCCAddress, "SendMail", AssemblyName);
+                    SoftLogger.WriteLogImmediate("Mail Status : "+"Mail Type :"+mailsubject+" ,Mail Sent Successfully to : "+mailto+", CC TO :"+CCAddress+ ", BCC TO :"+BCCAddress, "SendMail", AssemblyName);
                 }
                 else
                 {
-                    SoftLogger.SoftLogger.WriteLogImmediate("  //SMTP DETAILS IS NOT ACTIVE YET !!", "SendMail", AssemblyName);
+                    SoftLogger.WriteLogImmediate("  //SMTP DETAILS IS NOT ACTIVE YET !!", "SendMail", AssemblyName);
                 }
                 
             }
             catch (Exception ex)
             {
-                SoftLogger.SoftLogger.WriteLogImmediate(ex.ToString(), "SendMail", AssemblyName);
+                SoftLogger.WriteLogImmediate(ex.ToString(), "SendMail", AssemblyName);
                 return false;
             }
             return true;
@@ -270,18 +269,18 @@ BCCAddress = System.Configuration.ConfigurationManager.AppSettings["BCCEMAILADDR
                     Client_Server_Name.EnableSsl = TLS_SSL;
 
                     Client_Server_Name.Send(objmsg);
-                    SoftLogger.SoftLogger.WriteLogImmediate("Mail Sent Successfully", "SendMail", AssemblyName);
+                    SoftLogger.WriteLogImmediate("Mail Sent Successfully", "SendMail", AssemblyName);
                 }
                 else
                 {
-                    SoftLogger.SoftLogger.WriteLogImmediate("  //SMTP DETAILS IS NOT ACTIVE YET !!", "SendMail", AssemblyName);
+                    SoftLogger.WriteLogImmediate("  //SMTP DETAILS IS NOT ACTIVE YET !!", "SendMail", AssemblyName);
                 }
             
 
             }
             catch (Exception ex)
             {
-                SoftLogger.SoftLogger.WriteLogImmediate(ex.ToString(), "SendMail", AssemblyName);
+                SoftLogger.WriteLogImmediate(ex.ToString(), "SendMail", AssemblyName);
 
                 return false;
             }

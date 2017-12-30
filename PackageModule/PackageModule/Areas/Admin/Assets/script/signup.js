@@ -61,6 +61,13 @@ var app = angular.module('Signupapp', []).controller('signupcontroller', functio
 
     debugger
     $scope.SignUpuser = function (data) {
+        var status = true;
+        var IDCollection = ['UserPassword', 'UserEmail', 'UserLastName', 'UserFirstName', 'UserCompanyID'];
+        status = BlankChecker(IDCollection);
+        if (!status) {
+            $("#spnSignUPValidationError").css("display", "block");
+            return status;
+        }
         var request = $http({
             method: "post",
             contentType: "application/json; charset=utf-8",
@@ -84,8 +91,14 @@ var app = angular.module('Signupapp', []).controller('signupcontroller', functio
         CompanyID: ''
     };
     debugger;
-    $scope.Login = function (data) {
-        debugger;
+    $scope.Login = function (data) {        
+        var status = true;
+        var IDCollection = ['LoginUserCompanyID', 'LoginUserEmail', 'LoginUserPassword'];
+        status = BlankChecker(IDCollection);
+        if (!status) {
+            $("#spnValidationError").css("display", "block");
+return status;
+        }
         var request = $http({
             method: "post",
             contentType: "application/json; charset=utf-8",

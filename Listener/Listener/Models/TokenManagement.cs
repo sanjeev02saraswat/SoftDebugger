@@ -80,11 +80,11 @@ namespace WEBAPI2.Models
                 _logger.addMessage.Add("Token Generated TimeStamp", CurrentTime.ToString());
                 objparamlist.Add("TimeStamp", CurrentTime);
                 IConnector objConnector = new Connector();
-                LoginStatus = Convert.ToBoolean(objConnector.ExecuteScalar("PackageModule", "FSP_Agentlogin", objparamlist));
+                LoginStatus = Convert.ToBoolean(objConnector.ExecuteScalar("CompanyAdmin", "FSP_Agentlogin", objparamlist));
                 if (LoginStatus)
                 {
                     objSignupuser.LoginStatus = true;                    
-                    objSignupuser.FullName = Convert.ToString(objConnector.ExecuteScalar("PackageModule", "GetAgentDetails", objparamlist));
+                    objSignupuser.FullName = Convert.ToString(objConnector.ExecuteScalar("CompanyAdmin", "GetAgentDetails", objparamlist));
 
                 }
                
@@ -115,7 +115,7 @@ namespace WEBAPI2.Models
                 objparamlist.Add("TimeStamp", CurrentTime);
 
                 IConnector objConnector = new Connector();
-                bool UpdateTokenStatus = objConnector.ExecuteNonQuery("PackageModule", "UPDATE_TIMESTAMP", objparamlist);
+                bool UpdateTokenStatus = objConnector.ExecuteNonQuery("CompanyAdmin", "UPDATE_TIMESTAMP", objparamlist);
 
                 _logger.addMessage.Add("UpdateTokenStatus", "Timestamp Has been updated Successfully for Token ID: "+ TokenID+ " with Timestamp  "+ CurrentTime.ToString());
             }
@@ -150,7 +150,7 @@ namespace WEBAPI2.Models
                 objparamlist.Add("ExpireMinute", ExpireMinute);
               
                 IConnector objConnector = new Connector();
-                DataTable LoginUserDetail = objConnector.ExecuteDataTable("PackageModule", "ValidateToken", objparamlist);
+                DataTable LoginUserDetail = objConnector.ExecuteDataTable("CompanyAdmin", "ValidateToken", objparamlist);
                 if (LoginUserDetail.Rows.Count>0)
                 {
                     
