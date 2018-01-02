@@ -62,6 +62,7 @@ namespace PackageModule.Areas.Admin.Controllers
             Session["listenertoken"] = TokenID;
             Session["CompanyID"] = CompanyID;
             Session["AgentName"] = AgentName;
+            Session["Localization"] = "en-US";
             return true;
            
         }

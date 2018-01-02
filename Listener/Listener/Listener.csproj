@@ -148,39 +148,46 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\Site.css" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="PackageImages\SD\1\test.jpg" />
+    <Content Include="PackageImages\SD\2\Desert.jpg" />
+    <Content Include="PackageImages\SD\2\Dubai Burj.jpg" />
+    <Content Include="PackageImages\SD\2\My Favorite PIc.png" />
+    <Content Include="PackageImages\SD\2\Test.png" />
+    <Content Include="PackageImages\SD\3\Marutisus Tour.jpg" />
+    <Content Include="PackageImages\SD\3\Test.jpg" />
+    <Content Include="PackageImages\SD\4\Dubai.jpg" />
+    <Content Include="PackageImages\SD\4\Dubai.png" />
+    <Content Include="PackageImages\SD\5\Dubai Door 2.jpg" />
+    <Content Include="PackageImages\SD\5\Dubai Door 3.jpg" />
+    <Content Include="PackageImages\SD\5\Dubai Door 4.png" />
+    <Content Include="PackageImages\SD\5\Dubai Door.jpg" />
+    <Content Include="PackageImages\SD\5\Dubai.png" />
+    <Content Include="PackageImages\SD\6\Tour.jpg" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LocalizationController.cs" />
     <Compile Include="Controllers\PackageController.cs" />
+    <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Filters\AsyncLogger.cs" />
     <Compile Include="Filters\Tokenizer.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AdminManagement\AdminAccess.cs" />
     <Compile Include="Models\CountryList.cs" />
+    <Compile Include="Models\LocalizationManagement\ManageLocalization.cs" />
     <Compile Include="Models\PackageModel\CreatePackage.cs" />
     <Compile Include="Models\PackageModel\ManagePackageImages.cs" />
     <Compile Include="Models\PackageModel\PackageInfo.cs" />
+    <Compile Include="Models\PackageModel\PackageListAutoComplete.cs" />
     <Compile Include="Models\SignUpUserModel.cs" />
     <Compile Include="Models\TokenManagement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -188,15 +195,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="Properties\PublishProfiles\Listener.pubxml" />
-    <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\web.config" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -206,7 +205,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Package\" />
+    <Folder Include="Localization\PackageModule\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

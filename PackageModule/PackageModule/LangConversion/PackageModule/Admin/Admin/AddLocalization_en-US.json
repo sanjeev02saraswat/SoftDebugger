@@ -1,0 +1,12 @@
+﻿{
+  "errorSelectApplication": "Please Select Application Name First.",
+  "AddLocalizationKey": "Add Localization",
+  "AddLocalizationForAvailableResources": "Add localization for available resources",
+  "SelectApplicationKey": "Select Application",
+  "ApplicationNameKey": "Application Name",
+  "SelectResourcePageKey": "Select Resource Page",
+  "ResourcePageKey": "Resource Page",
+  "NextStepKey": "Next Step",
+  "SelectCultureLanguageKey": "Select Culture Language",
+  "LanguageKey": "Language"
+}

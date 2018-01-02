@@ -55,6 +55,20 @@ namespace WEBAPI2.Utilities
             return JSONResult;
         }
 
+        internal static string GetDataTableResourceToJSON(DataTable dtResourceList)
+        {
+            JavaScriptSerializer jsSerializer = new JavaScriptSerializer();
+            List<Dictionary<string, object>> parentRow = new List<Dictionary<string, object>>();
+            Dictionary<string, object> childRow = new Dictionary<string, object>(); ;
+            foreach (DataRow row in dtResourceList.Rows)
+            {
+                childRow.Add(row.ItemArray[0].ToString(), row.ItemArray[1]);
+
+            }
+            string JSONResult = jsSerializer.Serialize(childRow);
+            return JSONResult;
+        }
+
         public static string DataSettoJSON(DataSet ds)
         {
             return JsonConvert.SerializeObject(ds, Formatting.Indented);

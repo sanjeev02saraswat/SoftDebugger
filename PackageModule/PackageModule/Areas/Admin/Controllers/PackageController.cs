@@ -25,7 +25,11 @@ namespace PackageModule.Areas.Admin.Controllers
             return View();
         }
 
+        public ActionResult AddPackageProduct()
+        {
+            return View();
+        }
 
-
+       
     }
 }

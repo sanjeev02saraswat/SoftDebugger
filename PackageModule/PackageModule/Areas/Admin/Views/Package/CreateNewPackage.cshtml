@@ -1,6 +1,4 @@
-﻿<script src="~/JS/ui-bootstrap-tpls-0.9.0.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.4/angular-messages.min.js"></script>
-
+﻿
 <title>Create New Package</title>
 
 <div class="content-wrapper">
@@ -199,9 +197,29 @@
                         <div class="row" style="margin-top:10px;">
                             <div class="col-sm-5 col-md-5 col-lg-5"><button type="button" ng-click="HideShowProvider('basicpackagecriteriadetails','UploadPackageImages','')" class="btn btn-primary btn-lg btn-block">Previous Step</button></div>
                             <div class="col-sm-5 col-md-5 col-lg-5">
-                                <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="HideShowProvider('UploadPackageImages','basicpackagecriteriadetails','')">Next Step</button>
+                                <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="HideShowProvider('addpackagecosting','UploadPackageImages','')">Add Package Costing</button>
                             </div>
                         </div>
+                    </section>
+                </fieldset>
+
+                <fieldset id="addpackagecosting" style="display:none">
+                    <legend>
+                        Add Package Costing
+                    </legend>
+                    <section>
+                        <div class="row">
+                            <div class="col-sm-3 col-md-3 col-lg-3">Select Product Type</div>
+                            <div class="col-sm-8 col-md-8 col-lg-8">
+                                <select class="form-control" required autocomplete="off" id="PackageMarket" ng-model="PackageDetails.BasicPackageCreteria.PackageMarket">
+                                    <option value="">Select</option>
+                                    <option value="DOM">Domestic</option>
+                                    <option value="INT">International</option>
+                                </select>
+
+                            </div>
+                        </div>
+                        
                     </section>
                 </fieldset>
             </div>

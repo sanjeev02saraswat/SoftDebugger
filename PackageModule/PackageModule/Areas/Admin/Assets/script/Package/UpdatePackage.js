@@ -4,11 +4,7 @@ var PackageFilterModel = [];
 $(document).ready(function () {
     $("#PackageValidityStartDate,#PackageValidityEndDate,#PackageBookingStartDate,#PackageBookingEndDate").datepicker({
         dateFormat: "yy-mm-dd",
-        closeText: "Close",
-        changeYear: true,
-        changeMonth: true,
-        autoSize: true,
-        altFormat: "yy-mm-dd"
+        closeText: "Close"
     });
     $("li").removeClass("active");
     $("#CreateNewPackageli").addClass("active");
@@ -63,7 +59,12 @@ $(document).ready(function () {
 
 var app = angular.module('CreateNewPackageapp', ['ejangular']).controller('CreateNewPackagecontroller', function ($scope, $http) {
     $scope.selectedCountries = [];
-
+    //modelvalidator
+    $scope.modelvalidator = {
+        PackageCode:'',
+        hdnSelectLanguage:''
+    }
+    //end validator
     $scope.PackageDetails = {
         CompanyID: '' + $("#CompanyID").val() + ''
     }
@@ -144,6 +145,18 @@ var app = angular.module('CreateNewPackageapp', ['ejangular']).controller('Creat
         data.PackageCode = $("#SelectPackageCode").val();
         data.PackageLanguage = $("#hdnSelectLanguage").val();
         data.CompanyID = $("#CompanyID").val();
+        if (data.PackageLanguage == "") {
+            $scope.modelvalidator = [];
+            $scope.modelvalidator.hdnSelectLanguage = "Kindly select language first.";
+            return false;
+        } else if (data.PackageCode == "") {
+            $scope.modelvalidator = [];
+            $scope.modelvalidator.PackageCode = "Kindly select package code or name atleast.";
+            return false;
+        
+        }else {
+            $scope.modelvalidator = [];
+        }
         var request = $http({
             method: "post",
             contentType: "application/json; charset=utf-8",
@@ -151,7 +164,7 @@ var app = angular.module('CreateNewPackageapp', ['ejangular']).controller('Creat
             url: "" + $("#listenerurl").val() + "Package/GetPackageDetail",
             data: JSON.stringify(data)
         }).then(function (success) {
-            debugger;
+        
             var PackageData = JSON.parse(success.data);
             $scope.PackageDetails.BasicPackageDetails = PackageData.BasicPackageDetails[0];
             $("#PackageLanguage").val(GetLanguageName(PackageData.BasicPackageDetails[0].PackageLanguage, LanguageList));
@@ -160,6 +173,8 @@ var app = angular.module('CreateNewPackageapp', ['ejangular']).controller('Creat
             $("#PackageLanguage").attr("readonly","readonly");
             $("#PackageFilter").css("display", "none"); 
             $("#basicuserdetail").css("display", "block");
+            $("#PackageValidityStartDate,#PackageValidityEndDate,#PackageBookingStartDate,#PackageBookingEndDate").datepicker("setDate", "2010/12/12");
+
         }, function (error) {
             if (error.status == 401) {
                 SessionEndManager();
@@ -224,7 +239,7 @@ function getPackages() {
         PackageCode: '' + $("#SelectPackageCode").val() + '',
         PackageLanguage: '' + $("#hdnSelectLanguage").val() + ''
     }
-    debugger;
+   
     $.ajax({
         type: "POST",
         headers: { "tokenid": "" + $("#listenertoken").val() + "", "CompanyID": "" + $("#CompanyID").val() + "" },
@@ -491,7 +506,7 @@ $('#SelectLanguage').ejAutocomplete({
 function showFilteredCurrentSearch(args) {
 
     var data = $("#SelectLanguage").ejAutocomplete("instance");
-    debugger;
+   
     if (LanguageList != null && LanguageList.length > 0) {
         data.suggestionListItems = JSON.parse(JSON.stringify(LanguageList));
         data._doneRemaining();

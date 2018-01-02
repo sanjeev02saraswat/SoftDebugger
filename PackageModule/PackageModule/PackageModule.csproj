@@ -102,6 +102,7 @@
     <Content Include="Areas\Admin\Assets\css\demo.css" />
     <Content Include="Areas\Admin\Assets\css\Header.css" />
     <Content Include="Areas\Admin\Assets\css\Package\NewPackage.css" />
+    <Content Include="Areas\Admin\Assets\script\Admin\AddLocalization.js" />
     <Content Include="Areas\Admin\Assets\script\CreateNewUser.js" />
     <Content Include="Areas\Admin\Assets\script\Package\CreateNewPackage.js" />
     <Content Include="Areas\Admin\Assets\script\Package\UpdatePackage.js" />
@@ -150,6 +151,9 @@
     <Content Include="Areas\Admin\Views\Package\CreateNewPackage.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\CreateUser.cshtml" />
     <Content Include="Areas\Admin\Views\Package\UpdatePackage.cshtml" />
+    <Content Include="Areas\Admin\Views\Package\AddPackageProduct.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\AddLocalization.cshtml" />
+    <Content Include="LangConversion\PackageModule\Admin\Admin\AddLocalization_en-US.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

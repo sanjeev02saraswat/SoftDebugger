@@ -1,0 +1,88 @@
+﻿@{ string Resources = Convert.ToString(ViewBag.AddLocalizationLangFile);}
+
+
+<div class="content-wrapper" ng-app="AddLocalizationApp" ng-controller="CreateNewLocalizationcontroller">
+    <title>{{Localization.AddLocalizationKey}}</title>
+    <div class="content-header">
+        <h1>
+            {{Localization.AddLocalizationKey}}
+            <small>{{Localization.AddLocalizationForAvailableResources}}</small>
+        </h1>
+    </div>
+
+    <div class="content body" >
+        <form name="exampleForm" class="elegant-aero">
+            <div class="container" >
+                <input type="hidden" id="hdnResources" value="@Resources" />
+                <fieldset id="SelectApplication">
+                    <legend>
+                        {{Localization.SelectApplicationKey}}
+                    </legend>
+                    <section>
+                        <div class="row">
+                            <div class="col-sm-3 col-md-3 col-lg-3">{{Localization.ApplicationNameKey}}</div>
+                            <div class="col-sm-8 col-md-8 col-lg-8">
+                                <input type="text" id="ApplicationName" ng-model="AddLocalization.ApplicationName" ej-autocomplete e-width="100%" e-fields-key="ApplicationName" e-fields-text="ApplicationName" e-datasource="applicationList" />
+                                <input type="hidden" id="hdnApplicationName" ng-model="AddLocalization.ApplicationID" />
+                                <span class="modelerror">{{Localization.errorSelectApplication}}</span>
+                            </div>
+
+                        </div>
+                        <div class="row" style="margin-top:10px;">
+                            <div class="col-sm-5 col-md-5 col-lg-5"></div>
+                            <div class="col-sm-5 col-md-5 col-lg-5">
+                                <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="AddApplicationID();HideShowProvider('SelectPageName','SelectApplication','STEP1')">Next Step</button>
+                            </div>
+                        </div>
+                    </section>
+                </fieldset>
+                <fieldset id="SelectPageName" style="display:none;">
+                    <legend>
+                        {{Localization.SelectResourcePageKey}}
+                    </legend>
+                    <section>
+                        <div class="row">
+                            <div class="col-sm-3 col-md-3 col-lg-3">{{Localization.ResourcePageKey}}</div>
+                            <div class="col-sm-8 col-md-8 col-lg-8">
+                                <input type="text" id="PageName" ej-autocomplete e-width="100%" e-fields-key="PageID" ng-model="AddLocalization.PageName"  e-fields-text="PageName" e-datasource="pageList" />
+                                <input type="hidden" id="hdnPageID" ng-model="AddLocalization.PageID" />
+                            </div>
+
+                        </div>
+                        <div class="row" style="margin-top:10px;">
+                            <div class="col-sm-5 col-md-5 col-lg-5"></div>
+                            <div class="col-sm-5 col-md-5 col-lg-5">
+                                <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="AddPageID();HideShowProvider('SelectLanguage','SelectApplication','STEP1')">{{Localization.NextStepKey}}</button>
+                            </div>
+                        </div>
+                    </section>
+                </fieldset>
+
+                <fieldset id="SelectLanguage" style="display:none;">
+                    <legend>
+                        {{Localization.SelectCultureLanguageKey}}
+                    </legend>
+                    <section>
+                        
+                        <div class="row">
+                            <div class="col-sm-3 col-md-3 col-lg-3">{{Localization.LanguageKey}}</div>
+                            <div class="col-sm-8 col-md-8 col-lg-8">
+                                <input type="text" id="PackageLanguage" ej-autocomplete e-width="100%" e-fields-key="languageCode" e-fields-text="languageName" e-datasource="dataList" />
+                                <input type="hidden" id="hdnPackageLanguage" ng-model="AddLocalization.LanguageCode" />
+                            </div>
+
+                        </div>
+                        <div class="row" style="margin-top:10px;">
+                            <div class="col-sm-5 col-md-5 col-lg-5"></div>
+                            <div class="col-sm-5 col-md-5 col-lg-5">
+                                <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="HideShowProvider('AddNewResourceKey','SelectLanguage','STEP1')">{{Localization.NextStepKey}}</button>
+                            </div>
+                        </div>
+                    </section>
+                </fieldset>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="~/Areas/Admin/Assets/script/Admin/AddLocalization.js"></script>
