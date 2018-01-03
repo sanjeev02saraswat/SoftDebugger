@@ -1,4 +1,5 @@
-﻿using Listener.Models.LocalizationManagement;
+﻿using BusinessModels.LocalizationModel;
+using Listener.Models.LocalizationManagement;
 using PackageModule.Filters;
 using System;
 using System.Collections.Generic;
@@ -108,6 +109,34 @@ namespace Listener.Controllers
 
             }
             return CommonUtility.CreateResponse(HttpStatusCode.OK, PagesList);
+        }
+
+
+        [Tokenizer]
+        [Route("AddNewResource")]
+        [HttpPost]
+        public HttpResponseMessage AddNewResource(LocalizationModel objLocalizationModel)
+        {
+           
+
+            try
+            {
+                _logger.addMessage.Add("AddNewResource", "AddNewResource Method is goint to Execute");
+
+                ManageLocalization objManageLocalization = new ManageLocalization();
+                bool status = objManageLocalization.AddNewResourceKey(objLocalizationModel);
+            }
+            catch (Exception ex)
+            {
+                _logger.ExceptionError = true;
+                _logger.addMessage.Add("AddNewResource", "Error During  AddNewResource" + ex.ToString());
+            }
+            finally
+            {
+                AsyncLogger.LogMessage(_logger);
+
+            }
+            return CommonUtility.CreateResponse(HttpStatusCode.OK, null);
         }
 
     }

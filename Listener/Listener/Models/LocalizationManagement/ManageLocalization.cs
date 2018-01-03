@@ -1,4 +1,5 @@
-﻿using ConnectorAPI;
+﻿using BusinessModels.LocalizationModel;
+using ConnectorAPI;
 using PackageModule.Filters;
 using System;
 using System.Collections.Generic;
@@ -118,6 +119,51 @@ namespace Listener.Models.LocalizationManagement
             }
             return ResourceContent;
         }
+
+
+        public bool AddNewResourceKey(LocalizationModel objLocalizationModel)
+        {
+            bool InsertedResource = false;
+
+
+            try
+            {
+                _logger.addMessage.Add("GetResourcesContent", "GetResourcesContent Method is going to Execute");
+                Dictionary<string, object> objparamlist = new Dictionary<string, object>();
+
+                _logger.addMessage.Add("CompanyID", objLocalizationModel.CompanyID);
+                objparamlist.Add("CompanyID", objLocalizationModel.CompanyID);
+                _logger.addMessage.Add("ApplicationID", objLocalizationModel.ApplicationID);
+                objparamlist.Add("ApplicationID", objLocalizationModel.ApplicationID);
+                _logger.addMessage.Add("PageID", objLocalizationModel.PageID);
+                objparamlist.Add("PageID", objLocalizationModel.PageID);
+                _logger.addMessage.Add("Culture", objLocalizationModel.LanguageCode);
+                objparamlist.Add("Culture", objLocalizationModel.LanguageCode);
+
+                _logger.addMessage.Add("ResourceID", objLocalizationModel.ResourceID);
+                objparamlist.Add("ResourceID", objLocalizationModel.ResourceID);
+
+                _logger.addMessage.Add("ResourceValue", objLocalizationModel.ResourceValue);
+                objparamlist.Add("ResourceValue", objLocalizationModel.ResourceValue);
+
+                IConnector objConnector = new Connector();
+                 InsertedResource = Convert.ToBoolean(objConnector.ExecuteScalar("Localization", "FSP_InsertResources", objparamlist));
+                _logger.addMessage.Add("GetResourcesContent", "GetResourcesContent Method executed  successfully");
+              
+            }
+            catch (Exception ex)
+            {
+                _logger.addMessage.Add("GetResourcesContent", "Error during Get Resources Method Execution:" + ex.ToString());
+
+            }
+            finally
+            {
+                AsyncLogger.LogMessage(_logger);
+
+            }
+            return InsertedResource;
+        }
+
 
     }
 }

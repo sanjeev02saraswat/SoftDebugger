@@ -52,7 +52,7 @@
                         <div class="row" style="margin-top:10px;">
                             <div class="col-sm-5 col-md-5 col-lg-5"></div>
                             <div class="col-sm-5 col-md-5 col-lg-5">
-                                <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="AddPageID();HideShowProvider('SelectLanguage','SelectApplication','STEP1')">{{Localization.NextStepKey}}</button>
+                                <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="AddPageID();HideShowProvider('SelectLanguage','SelectPageName','STEP2')">{{Localization.NextStepKey}}</button>
                             </div>
                         </div>
                     </section>
@@ -75,7 +75,36 @@
                         <div class="row" style="margin-top:10px;">
                             <div class="col-sm-5 col-md-5 col-lg-5"></div>
                             <div class="col-sm-5 col-md-5 col-lg-5">
-                                <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="HideShowProvider('AddNewResourceKey','SelectLanguage','STEP1')">{{Localization.NextStepKey}}</button>
+                                <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="AddLanguageCode();HideShowProvider('LocalizationResourceGroup','SelectLanguage','STEP1')">{{Localization.NextStepKey}}</button>
+                            </div>
+                        </div>
+                    </section>
+                </fieldset>
+
+                <fieldset id="LocalizationResourceGroup" style="display:none;">
+                    <legend>
+                        {{Localization.AddNewResources}}
+                    </legend>
+                    <section>
+
+                        <div class="row">
+                            <div class="col-sm-3 col-md-3 col-lg-3">{{Localization.EnterResourceKey}}</div>
+                            <div class="col-sm-8 col-md-8 col-lg-8">
+                                <input type="text" class="form-control" required autocomplete="off" ng-model="AddLocalization.ResourceID" />
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3 col-md-3 col-lg-3">{{Localization.EnterResourceValue}}</div>
+                            <div class="col-sm-8 col-md-8 col-lg-8">
+                                <input type="text" class="form-control" required autocomplete="off" ng-model="AddLocalization.ResourceValue" />
+                            </div>
+
+                        </div>
+                        <div class="row" style="margin-top:10px;">
+                            <div class="col-sm-5 col-md-5 col-lg-5"></div>
+                            <div class="col-sm-5 col-md-5 col-lg-5">
+                                <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="AddNewResource()">{{Localization.SubmitResource}}</button>
                             </div>
                         </div>
                     </section>

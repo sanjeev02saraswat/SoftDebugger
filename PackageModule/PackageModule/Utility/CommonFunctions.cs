@@ -1,4 +1,5 @@
-﻿using SoftdebuggerWebsite.Filters;
+﻿using Newtonsoft.Json;
+using SoftdebuggerWebsite.Filters;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -19,13 +20,13 @@ namespace PackageModule.Utility
         {
 
         }
-        public static string HITAPI(string jsonRequest, string URL, string RequestMethod,Dictionary<string,string>HeaderData=null)
+        public static string HITAPI(string jsonRequest, string URL, string RequestMethod, Dictionary<string, string> HeaderData = null)
         {
             string strTemp = "";
             HttpWebRequest lWebRequest;
             byte[] lPostData; string err = "";
             //lWebRequest.Headers.Add("Accept-Encoding", "deflate,gzip");         
-           
+
             try
             {
                 lWebRequest = (HttpWebRequest)WebRequest.Create(URL);
@@ -34,7 +35,7 @@ namespace PackageModule.Utility
                 lWebRequest.Accept = "application/json, text/javascript";
                 lWebRequest.ContentType = "application/json";
                 lWebRequest.ConnectionGroupName = Guid.NewGuid().ToString();
-                if (HeaderData!=null)
+                if (HeaderData != null)
                 {
                     foreach (KeyValuePair<string, string> item in HeaderData)
                     {
@@ -45,7 +46,7 @@ namespace PackageModule.Utility
 
                     }
                 }
-                
+
                 lWebRequest.AutomaticDecompression = DecompressionMethods.GZip;
                 ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3 | SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
                 if (!string.IsNullOrEmpty(jsonRequest) && RequestMethod == "POST")
@@ -101,16 +102,21 @@ namespace PackageModule.Utility
             return "en-US";
         }
 
-        public static string GetResources(string PageName,string CultureCode)
+        public static object GetResources(string PageName)
         {
+            string CultureCode = CommonFunction.GetFileCulture();
             Dictionary<string, string> objparamlist = new Dictionary<string, string>();
-           
-            objparamlist.Add("CompanyID",Convert.ToString(HttpContext.Current.Session["CompanyID"]));           
-            objparamlist.Add("tokenid", Convert.ToString(HttpContext.Current.Session["listenertoken"]));
-            string LocalizationServiceurl = System.Configuration.ConfigurationManager.AppSettings["ListnerUrl"].ToString()+ "Localization/GetResourcesFile?CompanyID="+ HttpContext.Current.Session["CompanyID"]+ "&ApplicationName=PackageModule&PageName=AddLocalization&Culture=en-US";
-            string Response = CommonFunction.HITAPI("", LocalizationServiceurl, "GET", objparamlist);
+            string TokenID = Convert.ToString(HttpContext.Current.Session["listenertoken"]);
+            objparamlist.Add("CompanyID", Convert.ToString(HttpContext.Current.Session["CompanyID"]));
+            objparamlist.Add("tokenid", TokenID);
+            string LocalizationServiceurl = System.Configuration.ConfigurationManager.AppSettings["ListnerUrl"].ToString() + "Localization/GetResourcesFile?CompanyID=" + HttpContext.Current.Session["CompanyID"] + "&ApplicationName=PackageModule&PageName=AddLocalization&Culture=en-US";
+            if (!string.IsNullOrEmpty(TokenID))
+            {
+                string Response = CommonFunction.HITAPI("", LocalizationServiceurl, "GET", objparamlist);
+                return JsonConvert.DeserializeObject(Response);
 
-            return Response;
+            }
+            return null;
         }
     }
 }

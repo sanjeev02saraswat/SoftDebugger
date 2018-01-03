@@ -13,7 +13,7 @@ var app = angular.module('AddLocalizationApp', ['ejangular']).controller('Create
         hdnResources:''
     }
     debugger;
-    $scope.Localization = JSON.parse($("#hdnResources").val());
+    $scope.Localization = GetParseResources("hdnResources");
     $scope.AddLocalization = {
         ApplicationName: '',
         ApplicationID:'',
@@ -21,10 +21,32 @@ var app = angular.module('AddLocalizationApp', ['ejangular']).controller('Create
         PageName: '',
         LanguageCode: '',
         ResourceID: '',
-        ResourceValue:''
+        ResourceValue: '',
+        CompanyID: '' + $("#CompanyID").val() + ''
 
     };
-
+    $scope.AddNewResource = function () {
+        debugger;
+        var validate = true;
+        if ($scope.AddLocalization.ResourceID == "" || $scope.AddLocalization.ResourceValue == "") {
+            validate = false;
+        }
+        if (validate) {
+            $http({
+                method: "post",
+                contentType: "application/json; charset=utf-8",
+                headers: { "tokenid": "" + $("#listenertoken").val() + "", "CompanyID": "" + $("#CompanyID").val() + "" },
+                url: "http://localhost:2849/Localization/AddNewResource",
+                data: JSON.stringify($scope.AddLocalization)
+            }).then(function (success) {
+                alert('Resource inserted successfully.');
+            }, function (error) {
+                if (error.status == 401) {
+                    SessionEndManager();
+                }
+            });
+        }
+    }
     $scope.HideShowProvider = function (showdiv, hidediv, STEP1) {
         var validate = true;
         if (STEP1 == "STEP1") {
@@ -37,6 +59,9 @@ var app = angular.module('AddLocalizationApp', ['ejangular']).controller('Create
         } else if (STEP1 == "STEP2") {
             if ($scope.AddLocalization.PageID == "") {
                 validate = false;
+            }
+            if (validate) {
+                getLanguage();
             }
         }
         if (validate) {
@@ -66,7 +91,22 @@ var app = angular.module('AddLocalizationApp', ['ejangular']).controller('Create
         });
 
     };
+    function getLanguage() {
 
+        $http({
+            method: "GET",
+            contentType: "application/json; charset=utf-8",
+            headers: { "tokenid": "" + $("#listenertoken").val() + "", "CompanyID": "" + $("#CompanyID").val() + "" },
+            url: "" + $("#listenerurl").val() + "Home/GetLanguages"
+        }).then(function (success) {
+            LanguageList = success.data;
+        }, function (error) {
+            if (error.status == 401) {
+                SessionEndManager();
+            }
+        });
+
+    };
     function getApplication() {
 
         $http({
@@ -98,11 +138,20 @@ var app = angular.module('AddLocalizationApp', ['ejangular']).controller('Create
     $scope.AddPageID = function () {
 
         for (var i = 0; i < PageList.length; i++) {
-            if ($("#ApplicationName").val() == PageList[i].PageName) {
+            if ($("#PageName").val() == PageList[i].PageName) {
                 $scope.AddLocalization.PageID = PageList[i].PageID;
             }
         }
     }
+    $scope.AddLanguageCode = function () {
+
+        for (var i = 0; i < LanguageList.length; i++) {
+            if ($("#PackageLanguage").val() == LanguageList[i].languageName) {
+                $scope.AddLocalization.LanguageCode = LanguageList[i].languageCode;
+            }
+        }
+    }
+
     $scope.applicationList = ApplicationList;
     $scope.pageList = PageList;
     $scope.dataList = LanguageList;
@@ -127,8 +176,27 @@ function showApplicationSearch(args) {
     }
 }
 
+$('#PackageLanguage').ejAutocomplete({
+    change: "showLanguageSearch", enableRTL: false, highlightSearch: true,
+    fields: { text: "languageCode", key: "languageName" }
+
+})
+
+
+
+function showLanguageSearch(args) {
+
+    var data = $("#PackageLanguage").ejAutocomplete("instance");
+    if (LanguageList.length > 0) {
+        data.suggestionListItems = JSON.parse(JSON.stringify(LanguageList));
+        data._doneRemaining();
+        args.model.dataSource = LanguageList;
+    }
+}
+
+
 $('#PageName').ejAutocomplete({
-    change: "showApplicationSearch", enableRTL: false, highlightSearch: true,
+    change: "showPagesSearch", enableRTL: false, highlightSearch: true,
     fields: { text: "PageID", key: "PageName" }
 
 })

@@ -13,6 +13,7 @@ namespace PackageModule.Areas.Admin.Controllers
     public class AdminController : Controller
     {
         const string RootLangPath = "~/LangConversion/PackageModule/Admin/Admin";
+      
         // GET: Admin/Admin
         [Tokenizer]
         public ActionResult Index()
@@ -20,7 +21,7 @@ namespace PackageModule.Areas.Admin.Controllers
             return View();
         }
 
-       // [Tokenizer]
+        // [Tokenizer]
         public ActionResult CreateUser()
         {
             ViewBag.title = "Create New User";
@@ -29,16 +30,19 @@ namespace PackageModule.Areas.Admin.Controllers
 
         public ActionResult AddLocalization()
         {
+            string LangConversion = string.Empty;           
+            ViewBag.AddLocalizationLangFile = CommonFunction.GetResources("AddLocalization");
+
+            return View();
+        }
+
+
+        public ActionResult AgentProfile()
+        {
             string LangConversion = string.Empty;
-            string FileCulture = CommonFunction.GetFileCulture();
-            
-            //string mapPath = System.Web.HttpContext.Current.Server.MapPath(@"" + RootLangPath + "/AddLocalization_" + FileCulture + ".json");
-            //using (StreamReader r = new StreamReader(mapPath))
-            //{
-            //    LangConversion = r.ReadToEnd();
-            //}
-            ViewBag.AddLocalizationLangFile = JsonConvert.DeserializeObject(CommonFunction.GetResources("AddLocalization", FileCulture));
-            ViewBag.title = "AddLocalization";
+
+            ViewBag.AddLocalizationLangFile = CommonFunction.GetResources("AgentProfile");
+
             return View();
         }
     }

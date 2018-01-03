@@ -38,6 +38,14 @@ function GetLanguageName(LanguageCode, LanguageList) {
     }
 
 }
+//this function will return to JSOn object of resource files and blanck in case of empty resources
+
+function GetParseResources(elementID) {
+    if ($("#" + elementID).val() == "") {
+        return [];
+    }
+ return JSON.parse($("#" + elementID).val())
+}
 
 $(document).ready(function () {
 
