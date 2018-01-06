@@ -13,7 +13,9 @@ namespace PackageModule.Filters
         private static object _synRoot = new object();
 
         public NameValueCollection addMessage { get; set; }
-
+        /// <summary>
+        /// Send Value true if you want to send email at time of exception
+        /// </summary>
         public bool ExceptionError { get; set; }
         public string FileCollector { get; set; }
         public static void LogMessage(AsyncLogger Logger,string TokenID="")

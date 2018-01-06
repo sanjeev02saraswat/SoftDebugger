@@ -109,7 +109,7 @@ namespace PackageModule.Utility
             string TokenID = Convert.ToString(HttpContext.Current.Session["listenertoken"]);
             objparamlist.Add("CompanyID", Convert.ToString(HttpContext.Current.Session["CompanyID"]));
             objparamlist.Add("tokenid", TokenID);
-            string LocalizationServiceurl = System.Configuration.ConfigurationManager.AppSettings["ListnerUrl"].ToString() + "Localization/GetResourcesFile?CompanyID=" + HttpContext.Current.Session["CompanyID"] + "&ApplicationName=PackageModule&PageName=AddLocalization&Culture=en-US";
+            string LocalizationServiceurl = System.Configuration.ConfigurationManager.AppSettings["ListnerUrl"].ToString() + "Localization/GetResourcesFile?CompanyID=" + HttpContext.Current.Session["CompanyID"] + "&ApplicationName=PackageModule&PageName="+ PageName + "&Culture="+ CultureCode;
             if (!string.IsNullOrEmpty(TokenID))
             {
                 string Response = CommonFunction.HITAPI("", LocalizationServiceurl, "GET", objparamlist);

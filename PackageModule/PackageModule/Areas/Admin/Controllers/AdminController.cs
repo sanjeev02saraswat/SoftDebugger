@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using PackageModule.Filters;
 using PackageModule.Utility;
+using SoftdebuggerWebsite.Filters;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -27,7 +28,7 @@ namespace PackageModule.Areas.Admin.Controllers
             ViewBag.title = "Create New User";
             return View();
         }
-
+        [LocalizationFilter]
         public ActionResult AddLocalization()
         {
             string LangConversion = string.Empty;           

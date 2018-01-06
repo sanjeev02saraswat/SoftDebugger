@@ -39,7 +39,14 @@ var app = angular.module('AddLocalizationApp', ['ejangular']).controller('Create
                 url: "http://localhost:2849/Localization/AddNewResource",
                 data: JSON.stringify($scope.AddLocalization)
             }).then(function (success) {
-                alert('Resource inserted successfully.');
+                if (success.data==true) {
+                    alert($scope.Localization.RecordExistKey);
+                } else {
+                    alert($scope.Localization.RecordAlreadyExist);
+                }
+                $scope.AddLocalization.ResourceID = '';
+                $scope.AddLocalization.ResourceValue = '';
+                
             }, function (error) {
                 if (error.status == 401) {
                     SessionEndManager();
@@ -115,11 +122,11 @@ var app = angular.module('AddLocalizationApp', ['ejangular']).controller('Create
             headers: { "tokenid": "" + $("#listenertoken").val() + "", "CompanyID": "" + $("#CompanyID").val() + "" },
             url: "" + $("#listenerurl").val() + "Localization/GetApplications?CompanyID=" + $("#CompanyID").val() + ""
         }).then(function (success) {
-            debugger;
+            
             ApplicationList = JSON.parse(success.data);
           
         }, function (error) {
-            debugger;
+            
             if (error.status == 401) {
                 SessionEndManager();
             }

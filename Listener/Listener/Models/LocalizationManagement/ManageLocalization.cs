@@ -40,6 +40,7 @@ namespace Listener.Models.LocalizationManagement
             }
             catch (Exception ex)
             {
+                _logger.ExceptionError = true;
                 _logger.addMessage.Add("GetApplications", "Error during Get Applications Method Execution:" + ex.ToString());
 
             }
@@ -73,6 +74,7 @@ namespace Listener.Models.LocalizationManagement
             }
             catch (Exception ex)
             {
+                _logger.ExceptionError = true;
                 _logger.addMessage.Add("GetPageList", "Error during Get Page List Method Execution:" + ex.ToString());
 
             }
@@ -109,6 +111,7 @@ namespace Listener.Models.LocalizationManagement
             }
             catch (Exception ex)
             {
+                _logger.ExceptionError = true;
                 _logger.addMessage.Add("GetResourcesContent", "Error during Get Resources Method Execution:" + ex.ToString());
 
             }

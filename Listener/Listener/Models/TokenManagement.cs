@@ -83,8 +83,19 @@ namespace WEBAPI2.Models
                 LoginStatus = Convert.ToBoolean(objConnector.ExecuteScalar("CompanyAdmin", "FSP_Agentlogin", objparamlist));
                 if (LoginStatus)
                 {
+                    Dictionary<string, object> objagentparamlist = new Dictionary<string, object>();
+                    _logger.addMessage.Add("CompanyID", objSignupuser.CompanyID);
+                    objagentparamlist.Add("CompanyID", objSignupuser.CompanyID);
+                    _logger.addMessage.Add("TokenID", Tokenid);
+                    objagentparamlist.Add("TokenID", Tokenid);
                     objSignupuser.LoginStatus = true;                    
-                    objSignupuser.FullName = Convert.ToString(objConnector.ExecuteScalar("CompanyAdmin", "GetAgentDetails", objparamlist));
+                    DataTable dtAgentDetails =objConnector.ExecuteDataTable("CompanyAdmin", "FSP_GetAgentProfileDetails", objagentparamlist);
+                    if (dtAgentDetails.Rows.Count>0)
+                    {
+                        objSignupuser.FullName = dtAgentDetails.Rows[0]["FirstName"].ToString() + " " + dtAgentDetails.Rows[0]["LastName"].ToString();
+                        objSignupuser.Language = dtAgentDetails.Rows[0]["Language"].ToString();
+                        objSignupuser.DefaultPage= dtAgentDetails.Rows[0]["DefaultPage"].ToString(); 
+                    }
 
                 }
                

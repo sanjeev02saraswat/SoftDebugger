@@ -59,7 +59,7 @@ var app = angular.module('Signupapp', []).controller('signupcontroller', functio
         Password: ''
     };
 
-    debugger
+    
     $scope.SignUpuser = function (data) {
         var status = true;
         var IDCollection = ['UserPassword', 'UserEmail', 'UserLastName', 'UserFirstName', 'UserCompanyID'];
@@ -90,7 +90,7 @@ var app = angular.module('Signupapp', []).controller('signupcontroller', functio
         Password: '',
         CompanyID: ''
     };
-    debugger;
+    
     $scope.Login = function (data) {        
         var status = true;
         var IDCollection = ['LoginUserCompanyID', 'LoginUserEmail', 'LoginUserPassword'];
@@ -105,15 +105,20 @@ return status;
             url: "http://localhost:2849/Home/Loginuser",
             data: JSON.stringify(data)
         }).then(function (success) {
-            debugger;
+            var returnData = success;
             if (success.status === 200 && success.data.tokenid != '' && success.data.tokenid!=null) {
                 $http({
                     method: "Get",
                     contentType: "application/json; charset=utf-8",
-                    url: "CreateTokenCookie?TokenID=" + success.data.tokenid + "&CompanyID=" + success.data.companyID+"&AgentName="+success.data.fullName,
+                    url: "CreateTokenCookie?TokenID=" + success.data.tokenid + "&CompanyID=" + success.data.companyID + "&AgentName=" + success.data.fullName + "&LanguageCode="+success.data.Language,
 
                 }).then(function (success) {
-                    window.location.href = "/Admin/Package/CreateNewPackage";
+                    debugger;
+                    if (returnData.data.defaultPage != "" && returnData.data.defaultPage != undefined) {
+                        window.location.href = returnData.data.defaultPage;
+                    } else {
+                        window.location.href = "/Admin/Package/CreateNewPackage";
+                    }
 
                 }, function (error) {
 

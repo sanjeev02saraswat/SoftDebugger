@@ -9,7 +9,7 @@ using System.Net.Http;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Cors;
-using WEBAPI2.Filters;
+using Listener.Filters;
 using WEBAPI2.Models;
 using WEBAPI2.Utilities;
 
@@ -76,6 +76,21 @@ namespace WEBAPI2.Controllers
             return CommonUtility.CreateResponse(HttpStatusCode.OK, objAllList);
         }
 
+        [HttpGet]
+        [Tokenizer]
+        [Route("GetCountry")]
+        public HttpResponseMessage GetCountry()
+        {
+
+            string CountryList = "";
+            string mapPath = System.Web.HttpContext.Current.Server.MapPath(@"~/App_Data/Country.json");
+            using (StreamReader r = new StreamReader(mapPath))
+            {
+                CountryList = r.ReadToEnd();
+            }
+            List<CountryList> objAllList = JsonConvert.DeserializeObject<List<CountryList>>(CountryList);
+            return CommonUtility.CreateResponse(HttpStatusCode.OK, objAllList);
+        }
 
 
 

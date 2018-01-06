@@ -24,14 +24,14 @@
                             <div class="col-sm-8 col-md-8 col-lg-8">
                                 <input type="text" id="ApplicationName" ng-model="AddLocalization.ApplicationName" ej-autocomplete e-width="100%" e-fields-key="ApplicationName" e-fields-text="ApplicationName" e-datasource="applicationList" />
                                 <input type="hidden" id="hdnApplicationName" ng-model="AddLocalization.ApplicationID" />
-                                <span class="modelerror">{{Localization.errorSelectApplication}}</span>
+                                <span class="modelerror hiddenmessages">{{Localization.errorSelectApplication}}</span>
                             </div>
 
                         </div>
                         <div class="row" style="margin-top:10px;">
                             <div class="col-sm-5 col-md-5 col-lg-5"></div>
                             <div class="col-sm-5 col-md-5 col-lg-5">
-                                <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="AddApplicationID();HideShowProvider('SelectPageName','SelectApplication','STEP1')">Next Step</button>
+                                <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="AddApplicationID();HideShowProvider('SelectPageName','SelectApplication','STEP1')">{{Localization.NextStepKey}}</button>
                             </div>
                         </div>
                     </section>

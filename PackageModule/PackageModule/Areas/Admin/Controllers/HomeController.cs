@@ -11,7 +11,6 @@ using System.Web.Mvc;
 
 namespace PackageModule.Areas.Admin.Controllers
 {
-    [LocalizationFilter]
     public class HomeController : Controller
     {
         private AsyncLogger _logger = null;
@@ -23,6 +22,8 @@ namespace PackageModule.Areas.Admin.Controllers
             _logger.FileCollector = "PackageModule.Areas.Admin.Controllers";
             _logger.addMessage = new System.Collections.Specialized.NameValueCollection();
         }
+
+        [LocalizationFilter]
         // GET: Admin/Home
         public ActionResult Index()
         {
@@ -32,6 +33,7 @@ namespace PackageModule.Areas.Admin.Controllers
             return View();
         }
 
+        [LocalizationFilter]
         //user can sign up or admin as well by default every admin will be considered as user ..Admin roles will be added internally
         public ActionResult SignUp()
         {
@@ -52,7 +54,7 @@ namespace PackageModule.Areas.Admin.Controllers
 
         [HttpGet]
 
-        public bool CreateTokenCookie(string TokenID,string CompanyID,string AgentName)
+        public bool CreateTokenCookie(string TokenID,string CompanyID,string AgentName,string LanguageCode)
         {
             HttpCookie myCookie = new HttpCookie("PackageModule");
             myCookie["listenertoken"] = TokenID;
@@ -63,8 +65,14 @@ namespace PackageModule.Areas.Admin.Controllers
             Session["CompanyID"] = CompanyID;
             Session["AgentName"] = AgentName;
             Session["Localization"] = "en-US";
+            Session["langCode"] = LanguageCode;
             return true;
            
+        }
+
+        public ActionResult Error()
+        {
+            return View();
         }
 
     }

@@ -36,7 +36,12 @@ namespace WEBAPI2.Utilities
             };
         }
 
-
+        /// <summary>
+        /// This function will resturn JSON Array
+        /// </summary>
+        /// <param name="dtPackageList">DataTable</param>
+        /// Author:Sanjeev Saraswat(01-01-2018)
+        /// <returns>JSON Arrray string</returns>
         internal static string GetDataTableToJSON(DataTable dtPackageList)
         {
             JavaScriptSerializer jsSerializer = new JavaScriptSerializer();
@@ -52,6 +57,32 @@ namespace WEBAPI2.Utilities
                 parentRow.Add(childRow);
             }
             string JSONResult = jsSerializer.Serialize(parentRow);
+            return JSONResult;
+        }
+
+
+        /// <summary>
+        /// This function will resturn JSON Index
+        /// </summary>
+        /// <param name="dtPackageList">DataTable</param>
+        /// Author:Sanjeev Saraswat(07-01-2018)
+        /// <returns>JSON Index string</returns>
+        internal static string GetDataTableToJSONSingleRow(DataTable dtPackageList)
+        {
+            JavaScriptSerializer jsSerializer = new JavaScriptSerializer();
+            List<Dictionary<string, object>> parentRow = new List<Dictionary<string, object>>();
+            Dictionary<string, object> childRow = new Dictionary<string, object>(); ;
+            foreach (DataRow row in dtPackageList.Rows)
+            {
+                
+                foreach (DataColumn col in dtPackageList.Columns)
+                {
+                    childRow.Add(col.ColumnName, row[col]);
+                }
+               
+            }
+            parentRow.Add(childRow);
+            string JSONResult = jsSerializer.Serialize(parentRow[0]);
             return JSONResult;
         }
 

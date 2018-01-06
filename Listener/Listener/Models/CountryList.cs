@@ -14,8 +14,20 @@ namespace WEBAPI2.Models
         public string nativeLanguageName { get; set; }
     }
 
+    public class CountryList
+    {
+        public string CountryCode { get; set; }
+
+        public string CountryName { get; set; }
+
+        
+    }
+
     public class Signupuser
     {
+        public string Language { get; set; }
+
+        public string DefaultPage { get; set; }
         public string CultureCode { get; set; }
         public string FirstName { get; set; }
 

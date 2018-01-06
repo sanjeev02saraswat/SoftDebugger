@@ -15,6 +15,19 @@ function BlankChecker(IDCollection) {
     return status;
 }
 
+function ScopeBlankChecker(scopedata,IDCollection) {
+    debugger;
+    var IDCollection = scopedata;
+    var status = true;
+    for (var i = 0; i < IDCollection.length; i++) {
+        if (scopedata + "." + IDCollection[i] == "" || scopedata + "." + IDCollection[i] == undefined) {
+            status = false;
+            $("#" + IDCollection[i]).addClass("errorClass");
+        }
+    }
+    return status;
+}
+
 
 $('html').click(function (e) {
     
@@ -35,6 +48,18 @@ function GetLanguageName(LanguageCode, LanguageList) {
             }
         }
        
+    }
+
+}
+
+function GetCountryName(CountryCode, CountryList) {
+    if (CountryList != null) {
+        for (var i = 0; i < CountryList.length; i++) {
+            if (CountryCode == CountryList[i].countryCode) {
+                return CountryList[i].countryName;
+            }
+        }
+
     }
 
 }
@@ -68,3 +93,25 @@ $(document).ready(function () {
 
     });
 });
+
+
+//update session at every hit to manage app stable
+
+function SetCookie()
+{
+
+    $.ajax({
+        type: "GET",
+        headers: { "tokenid": "" + $("#listenertoken").val() + "", "CompanyID": "" + $("#CompanyID").val() + "" },
+        url: "CreateTokenCookie?TokenID=" + tokenid + "&CompanyID=" + companyID + "&AgentName=" + fullName,
+        contentType: "application/json; charset=utf-8",
+
+        success: function (response) {
+            
+        },
+        error: function (response) {
+            SessionEndManager();
+        }
+
+    });
+}

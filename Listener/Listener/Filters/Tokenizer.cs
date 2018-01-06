@@ -9,7 +9,7 @@ using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
 using WEBAPI2.Models;
 
-namespace WEBAPI2.Filters
+namespace Listener.Filters
 {
     public class Tokenizer : ActionFilterAttribute
     {

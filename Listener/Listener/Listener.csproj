@@ -176,12 +176,14 @@
     <Compile Include="Controllers\PackageController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Filters\AsyncLogger.cs" />
+    <Compile Include="Filters\ModelValidator.cs" />
     <Compile Include="Filters\Tokenizer.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdminManagement\AdminAccess.cs" />
+    <Compile Include="Models\AdminManagement\ManageAdminProfile.cs" />
     <Compile Include="Models\CountryList.cs" />
     <Compile Include="Models\LocalizationManagement\ManageLocalization.cs" />
     <Compile Include="Models\PackageModel\CreatePackage.cs" />

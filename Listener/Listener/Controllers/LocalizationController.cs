@@ -8,7 +8,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Cors;
-using WEBAPI2.Filters;
+using Listener.Filters;
 using WEBAPI2.Utilities;
 
 namespace Listener.Controllers
@@ -117,14 +117,14 @@ namespace Listener.Controllers
         [HttpPost]
         public HttpResponseMessage AddNewResource(LocalizationModel objLocalizationModel)
         {
-           
 
+            bool status = false;
             try
             {
                 _logger.addMessage.Add("AddNewResource", "AddNewResource Method is goint to Execute");
 
                 ManageLocalization objManageLocalization = new ManageLocalization();
-                bool status = objManageLocalization.AddNewResourceKey(objLocalizationModel);
+                 status = objManageLocalization.AddNewResourceKey(objLocalizationModel);
             }
             catch (Exception ex)
             {
@@ -136,7 +136,7 @@ namespace Listener.Controllers
                 AsyncLogger.LogMessage(_logger);
 
             }
-            return CommonUtility.CreateResponse(HttpStatusCode.OK, null);
+            return CommonUtility.CreateResponse(HttpStatusCode.OK, status);
         }
 
     }

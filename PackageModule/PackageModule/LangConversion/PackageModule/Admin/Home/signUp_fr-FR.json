@@ -1,0 +1,14 @@
+﻿{
+  "SignUpKey": "Sign Up",
+  "LogInKey": "Log In",
+  "SignupFreeKey": "Sign Up for Free",
+  "FirstNameKey": "First Name",
+  "LastNameKey": "Last Name",
+  "EmailAddressKey": "Email Address",
+  "SetPasswordKey": "Set A Password",
+  "GetStartedKey": "Get Started",
+  "WelcomeBackKey": "Welcome Back!",
+  "PasswordKey": "Password",
+  "ForgetPasswordKey": "Forgot Password?",
+  
+}

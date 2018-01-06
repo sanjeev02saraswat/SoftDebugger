@@ -22,5 +22,10 @@ namespace PackageModule.Controllers
             Session.RemoveAll();
             return View();
         }
+
+        public ActionResult Error()
+        {           
+            return View();
+        }
     }
 }

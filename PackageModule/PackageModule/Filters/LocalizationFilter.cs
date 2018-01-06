@@ -27,7 +27,7 @@ namespace SoftdebuggerWebsite.Filters
             // = (Wrapper)(HttpContext.Current.Session["ObjectWrapper"]);
             HttpContextBase context = filterContext.HttpContext;
             string lang = "GB";
-            if (objWrapper.LanguageCode != null)
+            if (objWrapper.LanguageCode != null && objWrapper.LanguageCode.ToString().ToUpperInvariant() == "UNDEFINED")
             {
                 lang = objWrapper.LanguageCode;
             }
@@ -37,9 +37,9 @@ namespace SoftdebuggerWebsite.Filters
             }
             //logCollection["LangCode"] = lang;
             filterContext.HttpContext.Session.Add("Lang", lang);
-            if (lang.ToUpperInvariant()== "SQ")
+            if (lang.ToUpperInvariant()== "FR" || lang.ToUpperInvariant()=="FR-FR")
             {
-                languageCulture = "sq-AL";
+                languageCulture = "fr-FR";
             }else if (lang.ToUpperInvariant()=="ES")
             {
                 languageCulture = "es-ES";

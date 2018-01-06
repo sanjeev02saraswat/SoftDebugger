@@ -1,4 +1,6 @@
-﻿using PackageModule.Filters;
+﻿using Listener.Filters;
+using Listener.Models.AdminManagement;
+using PackageModule.Filters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,9 +8,8 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Cors;
-using WEBAPI2.Filters;
 using WEBAPI2.Utilities;
-
+using BusinessModels.AdminManagement;
 namespace Listener.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
@@ -47,6 +48,69 @@ namespace Listener.Controllers
             }
             return CommonUtility.CreateResponse(HttpStatusCode.OK, null);
         }
+
+
+
+        [HttpGet]
+        [Tokenizer]
+        [Route("GetAgentProfile")]
+        public HttpResponseMessage GetAgentProfile(string TokenID, string CompanyID)
+        {
+            string AdminProfileData = string.Empty;
+            try
+            {
+                _logger.addMessage.Add("GetAgentProfile", "GetAgentProfile Method is goint to Execute");
+
+                ManageAdminProfile objAdminProfile = new ManageAdminProfile();
+
+                 AdminProfileData = objAdminProfile.GetAgentProfile(CompanyID,TokenID);
+
+
+            }
+            catch (Exception ex)
+            {
+                _logger.ExceptionError = true;
+                _logger.addMessage.Add("GetAgentProfile", "Error During getting Agent Profile" + ex.ToString());
+            }
+            finally
+            {
+                AsyncLogger.LogMessage(_logger);
+
+            }
+            return CommonUtility.CreateResponse(HttpStatusCode.OK, AdminProfileData);
+        }
+
+
+        [HttpPost]
+        [Tokenizer]
+        [ModelValidator]
+        [Route("UpdateAgentProfile")]
+        public HttpResponseMessage UpdateAgentProfile(AgentProfile objAdminProfile)
+        {
+            bool status = false;
+            try
+            {
+                _logger.addMessage.Add("GetAdminProfile", "GetAdminProfile Method is goint to Execute");
+
+                ManageAdminProfile objManageAdminProfile = new ManageAdminProfile();
+
+                status = objManageAdminProfile.UpdateAgentProfile(objAdminProfile);
+
+
+            }
+            catch (Exception ex)
+            {
+                _logger.ExceptionError = true;
+                _logger.addMessage.Add("GetAdminProfile", "Error During getting Admin Profile" + ex.ToString());
+            }
+            finally
+            {
+                AsyncLogger.LogMessage(_logger);
+
+            }
+            return CommonUtility.CreateResponse(HttpStatusCode.OK, status);
+        }
+
 
     }
 }

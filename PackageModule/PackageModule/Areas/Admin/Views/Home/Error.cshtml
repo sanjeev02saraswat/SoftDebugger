@@ -1,0 +1,40 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Areas/Admin/Assets/css/Error.css" rel="stylesheet" />
+    <title>Error</title>
+</head>
+<body>
+    <div class="page-container page-container-responsive">
+        <div class="row space-top-8 space-8 row-table">
+            <div class="col-5 col-middle">
+                <h1 class="text-jumbo text-ginormous">Oops!</h1>
+                @*<h2>We can't seem to find the page you're looking for.</h2>*@
+                <h2>We are really sorry for this error...</h2>
+                <h6>Error code: 404</h6>
+                <ul class="list-unstyled">
+                    <li>Here are some helpful links instead:</li>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/search">Search</a></li>
+                    <li><a href="/help">Help</a></li>
+                    <li><a href="/help/getting-started/how-to-travel">Traveling on Airbnb</a></li>
+                    <li><a href="/info/why_host">Hosting on Airbnb</a></li>
+                    <li><a href="/trust">Trust &amp; Safety</a></li>
+                    <li><a href="/sitemaps">Sitemap</a></li>
+                </ul>
+            </div>
+            <div class="col-5 col-middle text-center">
+                @*<span>We are really sorry!!!</span>*@
+                <img src="~/Images/issue-log.jpg"  alt="Sorry">
+            </div>
+        </div>
+    </div>
+</body>
+</html>
