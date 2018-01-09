@@ -37,7 +37,7 @@ namespace PackageModule.Areas.Admin.Controllers
             return View();
         }
 
-
+        [LocalizationFilter]
         public ActionResult AgentProfile()
         {
             string LangConversion = string.Empty;

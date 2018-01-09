@@ -33,7 +33,7 @@ namespace Listener.Controllers
 
         [HttpPost]
         [Tokenizer]
-        [ModelValidator]
+        //[ModelValidator]
         [Route("CreateNewPackage")]
         public HttpResponseMessage CreatePackage(PackageDetails objPackageDetails)
         {

@@ -1,38 +1,38 @@
-﻿
-<title>Create New Package</title>
+﻿@{ string Resources = Convert.ToString(ViewBag.AddLocalizationLangFile);}
 
-<div class="content-wrapper">
-  
+<div class="content-wrapper" ng-app="CreateNewPackageapp" ng-controller="CreateNewPackagecontroller">
+    <title>{{Localization.CreateNewPackageKey}}</title>
     <div class="content-header">
         <h1>
-            Create New Package
-            <small>Add Basic Package Details</small>
+            {{Localization.CreateNewPackageKey}}
+            <small>{{Localization.AddBasicPackageDetailKey}}</small>
         </h1>
     </div>
 
 
     <!-- Main content -->
-    <div class="content body" ng-app="CreateNewPackageapp">
+    <div class="content body" >
         <form name="exampleForm" class="elegant-aero">
-            <div class="container" ng-controller="CreateNewPackagecontroller">
+            <div class="container">
+                <input type="hidden" id="hdnResources" value="@Resources" />
                 <fieldset id="basicuserdetail">
                     <legend>
-                        Basic Package Details
+                        {{Localization.BasicPackageDetailKey}}
                     </legend>
                     <section>
                         <div class="row">
-                            <div class="col-sm-3 col-md-3 col-lg-3">Package Code</div>
+                            <div class="col-sm-3 col-md-3 col-lg-3">{{Localization.PackageCodeKey}}</div>
                             <div class="col-sm-8 col-md-8 col-lg-8"><input type="text" readonly="readonly" class="form-control" required autocomplete="off" id="PackageCode" ng-model="PackageDetails.BasicPackageDetails.PackageCode" /></div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-3 col-md-3 col-lg-3">Package Name</div>
+                            <div class="col-sm-3 col-md-3 col-lg-3">{{Localization.PackageNameKey}}</div>
                             <div class="col-sm-8 col-md-8 col-lg-8">
                                 <input type="text" class="form-control" required autocomplete="off" name="PackageName" id="PackageName" ng-model="PackageDetails.BasicPackageDetails.PackageName" />
 
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-3 col-md-3 col-lg-3">Language</div>
+                            <div class="col-sm-3 col-md-3 col-lg-3">{{Localization.LanguageKey}}</div>
                             <div class="col-sm-8 col-md-8 col-lg-8">
                                 <input type="text" id="PackageLanguage" ej-autocomplete e-width="100%" e-fields-key="languageCode" e-fields-text="languageName" e-datasource="dataList" />
                                 <input type="hidden" id="hdnPackageLanguage"  ng-model="PackageDetails.BasicPackageDetails.PackageLanguage" />
@@ -40,13 +40,13 @@
 
                         </div>
                         <div class="row">
-                            <div class="col-sm-3 col-md-3 col-lg-3">Package Title</div>
+                            <div class="col-sm-3 col-md-3 col-lg-3">{{Localization.PackageTitleKey}}</div>
                             <div class="col-sm-8 col-md-8 col-lg-8"><input type="text" class="form-control" required id="PackageTitle" autocomplete="off" ng-model="PackageDetails.BasicPackageDetails.PackageTitle" /><!--Column right--></div>
                         </div>
                         <div class="row" style="margin-top:10px;">
                             <div class="col-sm-5 col-md-5 col-lg-5"></div>
                             <div class="col-sm-5 col-md-5 col-lg-5">
-                                <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="HideShowProvider('basicpackagecriteriadetails','basicuserdetail','STEP1')">Next Step</button>
+                                <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="HideShowProvider('basicpackagecriteriadetails','basicuserdetail','STEP1')">{{Localization.NextStepKey}}</button>
                             </div>
                         </div>
                     </section>
@@ -54,36 +54,34 @@
 
                 <fieldset id="basicpackagecriteriadetails" style="display:none;">
                     <legend>
-                        Basic Package Criteria
+                        {{Localization.BasicPackageCreteriaKey}}
                     </legend>
                     <section>
                         <div class="row">
-                            <div class="col-sm-3 col-md-3 col-lg-3">Package Market</div>
+                            <div class="col-sm-3 col-md-3 col-lg-3">{{Localization.PackageMarketKey}}</div>
                             <div class="col-sm-8 col-md-8 col-lg-8">
                                 <select class="form-control" required autocomplete="off" id="PackageMarket" ng-model="PackageDetails.BasicPackageCreteria.PackageMarket">
-                                    <option value="">Select</option>
-                                    <option value="DOM">Domestic</option>
-                                    <option value="INT">International</option>
+                                    <option value="">{{Localization.SelectKey}}</option>
+                                    <option value="DOM">{{Localization.DomesticKey}}</option>
+                                    <option value="INT">{{Localization.InternationalKey}}</option>
                                 </select>
 
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-3 col-md-3 col-lg-3">Package Sale Market</div>
+                            <div class="col-sm-3 col-md-3 col-lg-3">{{Localization.PackageSaleMarketKey}}</div>
                             <div class="col-sm-8 col-md-8 col-lg-8">
 
                                 <select class="form-control" id="PackageSaleMarket" required autocomplete="off" ng-model="PackageDetails.BasicPackageCreteria.PackageSaleMarket">
-                                    <option value="">Select</option>
-                                    <option value="DOM">Domestic</option>
-                                    <option value="INT">International</option>
+                                    <option value="">{{Localization.SelectKey}}</option>
+                                    <option value="DOM">{{Localization.DomesticKey}}</option>
+                                    <option value="INT">{{Localization.InternationalKey}}</option>
                                 </select>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-3 col-md-3 col-lg-3">Package Validity Start Date</div>
+                            <div class="col-sm-3 col-md-3 col-lg-3">{{Localization.PackageValidityStartDateKey}}</div>
                             <div class="col-sm-8 col-md-8 col-lg-8">
-
-                                @*<md-datepicker ng-model="BasicPackageCreteria.PackageValidityStartDate" md-placeholder="Enter date"></md-datepicker>*@
 
                                 <input type="text" ng-model="PackageDetails.BasicPackageCreteria.PackageValidityStartDate" id="PackageValidityStartDate" class="form-control" />
 
@@ -91,20 +89,20 @@
 
                         </div>
                         <div class="row">
-                            <div class="col-sm-3 col-md-3 col-lg-3">Package Validity End Date</div>
+                            <div class="col-sm-3 col-md-3 col-lg-3">{{Localization.PackageValidityEndDateKey}}</div>
                             <div class="col-sm-8 col-md-8 col-lg-8">
                                 <input type="text" ng-model="PackageDetails.BasicPackageCreteria.PackageValidityEndDate" id="PackageValidityEndDate" class="form-control" />
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-3 col-md-3 col-lg-3">Package Booking Start Date</div>
+                            <div class="col-sm-3 col-md-3 col-lg-3">{{Localization.PackageBookingStartDateKey}}</div>
                             <div class="col-sm-8 col-md-8 col-lg-8">
                                 <input type="text" ng-model="PackageDetails.BasicPackageCreteria.PackageBookingStartDate" id="PackageBookingStartDate" class="form-control" />
                                 <!--Column right-->
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-3 col-md-3 col-lg-3">Package Booking End Date</div>
+                            <div class="col-sm-3 col-md-3 col-lg-3">{{Localization.PackageBookingEndDateKey}}</div>
                             <div class="col-sm-8 col-md-8 col-lg-8">
                                 <input type="text" ng-model="PackageDetails.BasicPackageCreteria.PackageBookingEndDate" id="PackageBookingEndDate" class="form-control" />
 
@@ -113,36 +111,36 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-3 col-md-3 col-lg-3">Package Duration(*In Days)</div>
+                            <div class="col-sm-3 col-md-3 col-lg-3">{{Localization.PackageDurationKey}}</div>
                             <div class="col-sm-8 col-md-8 col-lg-8"><input type="text" class="form-control" required autocomplete="off" ng-model="PackageDetails.BasicPackageCreteria.PackageDuration" id="PackageDuration" /><!--Column right--></div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-3 col-md-3 col-lg-3">Child Min Age</div>
+                            <div class="col-sm-3 col-md-3 col-lg-3">{{Localization.ChildMinAgeKey}}</div>
                             <div class="col-sm-8 col-md-8 col-lg-8"><input type="text" class="form-control" required autocomplete="off" ng-model="PackageDetails.BasicPackageCreteria.ChildMinAge" max="2" id="ChildMinAge" /><!--Column right--></div>
                         </div>
 
                         <div class="row">
-                            <div class="col-sm-3 col-md-3 col-lg-3">Child Max Age</div>
+                            <div class="col-sm-3 col-md-3 col-lg-3">{{Localization.ChildMaxAgeKey}}</div>
                             <div class="col-sm-8 col-md-8 col-lg-8"><input type="text" class="form-control" required autocomplete="off" ng-model="PackageDetails.BasicPackageCreteria.ChildMaxAge"  max="12" id="ChildMaxAge" /><!--Column right--></div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-3 col-md-3 col-lg-3">Package Last Payment Due</div>
+                            <div class="col-sm-3 col-md-3 col-lg-3">{{Localization.PackageLastPaymentDueKey}}</div>
                             <div class="col-sm-8 col-md-8 col-lg-8"><input type="number" class="form-control" required autocomplete="off" ng-model="PackageDetails.BasicPackageCreteria.PackageLastPaymentDue" id="PackageLastPaymentDue" /><!--Column right--></div>
                         </div>
 
                         <div class="row">
-                            <div class="col-sm-3 col-md-3 col-lg-3">Package Payment CutOff Day</div>
+                            <div class="col-sm-3 col-md-3 col-lg-3">{{Localization.PackagePaymentCutOffKey}}</div>
                             <div class="col-sm-8 col-md-8 col-lg-8"><input type="number" class="form-control" required autocomplete="off" ng-model="PackageDetails.BasicPackageCreteria.PackagePaymentCutOffDay" id="PackagePaymentCutOffDay" /><!--Column right--></div>
                         </div>
 
                         <div class="row">
-                            <div class="col-sm-3 col-md-3 col-lg-3">Discount on Full Payment(% in case of percentage)</div>
+                            <div class="col-sm-3 col-md-3 col-lg-3">{{Localization.DiscountOnFullPaymentKey}}</div>
                             <div class="col-sm-8 col-md-8 col-lg-8"><input type="text" class="form-control" required autocomplete="off" ng-model="PackageDetails.BasicPackageCreteria.DiscountonFullPayment" id="DiscountonFullPayment" /><!--Column right--></div>
                         </div>
                         <div class="row" style="margin-top:10px;">
-                            <div class="col-sm-5 col-md-5 col-lg-5"><button type="button" ng-click="HideShowProvider('basicuserdetail','basicpackagecriteriadetails','')" class="btn btn-primary btn-lg btn-block">Previous Step</button></div>
+                            <div class="col-sm-5 col-md-5 col-lg-5"><button type="button" ng-click="HideShowProvider('basicuserdetail','basicpackagecriteriadetails','')" class="btn btn-primary btn-lg btn-block">{{Localization.PreviousStepKey}}</button></div>
                             <div class="col-sm-5 col-md-5 col-lg-5">
-                                <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="HideShowProvider('UploadPackageImages','basicpackagecriteriadetails','STEP2');">Save & Next</button>                               
+                                <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="HideShowProvider('UploadPackageImages','basicpackagecriteriadetails','STEP2');">{{Localization.SaveNextKey}}</button>                               
                             </div>
                         </div>
                     </section>
@@ -150,20 +148,20 @@
 
                 <fieldset id="UploadPackageImages" style="display:none">
                     <legend>
-                        Add/Remove Package Images
+                        {{Localization.AddRemovePackageImagesKey}}
                     </legend>
                     <section>
                         <div class="row">
-                            <div class="col-sm-3 col-md-3 col-lg-3">Image Name</div>
+                            <div class="col-sm-3 col-md-3 col-lg-3">{{Localization.ImageNameKey}}</div>
                             <div class="col-sm-8 col-md-8 col-lg-8"><input type="text" class="form-control" required autocomplete="off" ng-model="PackageDetails.PackageImages.ImageName" id="ImageName" /><!--Column right--></div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-3 col-md-3 col-lg-3">Image Title</div>
+                            <div class="col-sm-3 col-md-3 col-lg-3">{{Localization.ImageTitleKey}}</div>
                             <div class="col-sm-8 col-md-8 col-lg-8"><input type="text" class="form-control" required autocomplete="off" ng-model="PackageDetails.PackageImages.ImageTitle" id="ImageTitle" /><!--Column right--></div>
                         </div>
 
                         <div class="row">
-                            <div class="col-sm-3 col-md-3 col-lg-3"><span>Attachemtn(s)</span></div>
+                            <div class="col-sm-3 col-md-3 col-lg-3"><span>{{Localization.AttachmentsKey}}</span></div>
                             <div class="col-sm-8 col-md-8 col-lg-8">
                                 <div class="attach-field">
                                     <div class="btn btn-primary waves-effect waves-light">
@@ -171,7 +169,7 @@
                                         <input type="file" id="crmfileattach">
                                     </div>
                                     <div class="file-path-wrapper">
-                                        <input class="file-path validate" id="filesize" type="text" placeholder="(up to 2 MB)">
+                                        <input class="file-path validate" id="filesize" type="text" placeholder="({{Localization.UptoTwoMBKey}})">
                                         <span id="servermessage"></span>
                                     </div>
                                 </div>                            
@@ -181,16 +179,16 @@
                             <div class="col-sm-12 remove1">
                                 <div id="image-holder"> </div>
                                 <div class="row" style="margin-top:10px;">
-                                    <div class="col-sm-5 col-md-5 col-lg-5"><button type="button" id="AddPackageImage"  class="btn btn-primary btn-lg btn-block">Add Image</button></div>
+                                    <div class="col-sm-5 col-md-5 col-lg-5"><button type="button" id="AddPackageImage"  class="btn btn-primary btn-lg btn-block">{{Localization.AddImageKey}}</button></div>
                                     <div class="col-sm-5 col-md-5 col-lg-5">
-                                        <button type="button" id="removeattachment" style="display:none" class="btn btn-primary btn-lg btn-block">Remove Image</button>
+                                        <button type="button" id="removeattachment" style="display:none" class="btn btn-primary btn-lg btn-block">{{Localization.RemoveImageKey}}</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div id="preattachparent" style="display:none">
-                                <span>All attachments</span>
+                                <span>{{Localization.AllAttachmentsKey}}</span>
                                 <div id="preattach" class="row"></div>
                             </div>
                         </div>

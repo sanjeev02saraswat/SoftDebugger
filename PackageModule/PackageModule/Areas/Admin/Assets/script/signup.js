@@ -71,7 +71,7 @@ var app = angular.module('Signupapp', []).controller('signupcontroller', functio
         var request = $http({
             method: "post",
             contentType: "application/json; charset=utf-8",
-            url: "http://localhost:2849/Home/PostSignupuser",
+            url: "" + $("#listenerurl").val() + "Home/PostSignupuser",
             data: JSON.stringify(data)
         }).then(function (success) {
             debugger;
@@ -102,7 +102,7 @@ return status;
         var request = $http({
             method: "post",
             contentType: "application/json; charset=utf-8",
-            url: "http://localhost:2849/Home/Loginuser",
+            url: "" + $("#listenerurl").val() + "Home/Loginuser",
             data: JSON.stringify(data)
         }).then(function (success) {
             var returnData = success;
@@ -110,11 +110,11 @@ return status;
                 $http({
                     method: "Get",
                     contentType: "application/json; charset=utf-8",
-                    url: "CreateTokenCookie?TokenID=" + success.data.tokenid + "&CompanyID=" + success.data.companyID + "&AgentName=" + success.data.fullName + "&LanguageCode="+success.data.Language,
+                    url: "CreateTokenCookie?TokenID=" + success.data.tokenid + "&CompanyID=" + success.data.companyID + "&AgentName=" + success.data.fullName + "&LanguageCode="+success.data.language,
 
                 }).then(function (success) {
                     debugger;
-                    if (returnData.data.defaultPage != "" && returnData.data.defaultPage != undefined) {
+                    if (returnData.data.defaultPage != "" && returnData.data.defaultPage != undefined && returnData.data.defaultPage!="N/A") {
                         window.location.href = returnData.data.defaultPage;
                     } else {
                         window.location.href = "/Admin/Package/CreateNewPackage";

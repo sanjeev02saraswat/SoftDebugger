@@ -16,13 +16,13 @@ function BlankChecker(IDCollection) {
 }
 
 function ScopeBlankChecker(scopedata,IDCollection) {
-    debugger;
-    var IDCollection = scopedata;
+     
     var status = true;
-    for (var i = 0; i < IDCollection.length; i++) {
-        if (scopedata + "." + IDCollection[i] == "" || scopedata + "." + IDCollection[i] == undefined) {
+    for (var key in scopedata) {
+        debugger;
+        if ((scopedata[key] == "" || scopedata[key] == undefined) && IDCollection.indexOf(key)>=0) {
             status = false;
-            $("#" + IDCollection[i]).addClass("errorClass");
+            $("#" + key + "ModelRequiredError").removeClass("hiddenmessages");
         }
     }
     return status;
@@ -31,11 +31,13 @@ function ScopeBlankChecker(scopedata,IDCollection) {
 
 $('html').click(function (e) {
     
-    if ($(e.target).hasClass('btn-block') || $(e.target).hasClass('button-block')) {
+    if ($(e.target).hasClass('btn-block') || $(e.target).hasClass('button-block') || $(e.target).hasClass('btn-primary')) {
         return;
     }
     $("#spnValidationError").css("display", "none");
     $("#spnSignUPValidationError").css("display", "none");
+    $(".modelerror").addClass("hiddenmessages");
+    $(".modelSuccess").addClass("hiddenmessages");
     $('input').removeClass('errorClass');
 });
 

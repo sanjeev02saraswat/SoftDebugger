@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PackageModule.Utility;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -17,6 +18,7 @@ namespace PackageModule.Areas.Admin.Controllers
 
         public ActionResult CreateNewPackage()
         {
+            ViewBag.AddLocalizationLangFile = CommonFunction.GetResources("CreateNewPackage");
             return View();
         }
 

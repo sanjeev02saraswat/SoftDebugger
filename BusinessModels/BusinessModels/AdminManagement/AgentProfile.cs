@@ -9,10 +9,10 @@ namespace BusinessModels.AdminManagement
 {
   public class AgentProfile
     {
-        [Required]
+        
         public string TokenID { get; set; }
 
-        [Required]
+       
         [MaxLength(2)]
         public string CompanyID { get; set; }
 

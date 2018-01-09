@@ -20,6 +20,7 @@ var app = angular.module('AddLocalizationApp', ['ejangular']).controller('Create
         PageID: '',
         PageName: '',
         LanguageCode: '',
+        LanguageName:'',
         ResourceID: '',
         ResourceValue: '',
         CompanyID: '' + $("#CompanyID").val() + ''
@@ -27,10 +28,9 @@ var app = angular.module('AddLocalizationApp', ['ejangular']).controller('Create
     };
     $scope.AddNewResource = function () {
         debugger;
-        var validate = true;
-        if ($scope.AddLocalization.ResourceID == "" || $scope.AddLocalization.ResourceValue == "") {
-            validate = false;
-        }
+        var validate = true;        
+        var IDcollection = ['ResourceID', 'ResourceValue'];
+        validate = ScopeBlankChecker($scope.AddLocalization, IDcollection)
         if (validate) {
             $http({
                 method: "post",
@@ -56,21 +56,22 @@ var app = angular.module('AddLocalizationApp', ['ejangular']).controller('Create
     }
     $scope.HideShowProvider = function (showdiv, hidediv, STEP1) {
         var validate = true;
-        if (STEP1 == "STEP1") {
-            if ($scope.AddLocalization.ApplicationID == "") {
-                validate = false;
-            }
+        if (STEP1 == "STEP1") {           
+            var IDcollection = ['ApplicationID'];
+            validate = ScopeBlankChecker($scope.AddLocalization, IDcollection)
             if (validate) {
                 getPages();
             }
         } else if (STEP1 == "STEP2") {
-            if ($scope.AddLocalization.PageID == "") {
-                validate = false;
-            }
+            var IDcollection = ['PageName'];
+            validate = ScopeBlankChecker($scope.AddLocalization, IDcollection)
             if (validate) {
                 getLanguage();
             }
-        }
+        } else if (STEP1 == "STEP3") {
+            var IDcollection = ['LanguageCode'];
+            validate = ScopeBlankChecker($scope.AddLocalization, IDcollection)
+           }
         if (validate) {
             $("#" + showdiv).css("display", "block");
             $("#" + hidediv).css("display", "none");
@@ -155,6 +156,7 @@ var app = angular.module('AddLocalizationApp', ['ejangular']).controller('Create
         for (var i = 0; i < LanguageList.length; i++) {
             if ($("#PackageLanguage").val() == LanguageList[i].languageName) {
                 $scope.AddLocalization.LanguageCode = LanguageList[i].languageCode;
+                $scope.AddLocalization.LanguageName = LanguageList[i].languageName;
             }
         }
     }

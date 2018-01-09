@@ -24,7 +24,7 @@
                             <div class="col-sm-8 col-md-8 col-lg-8">
                                 <input type="text" id="ApplicationName" ng-model="AddLocalization.ApplicationName" ej-autocomplete e-width="100%" e-fields-key="ApplicationName" e-fields-text="ApplicationName" e-datasource="applicationList" />
                                 <input type="hidden" id="hdnApplicationName" ng-model="AddLocalization.ApplicationID" />
-                                <span class="modelerror hiddenmessages">{{Localization.errorSelectApplication}}</span>
+                                <span class="modelerror hiddenmessages" id="ApplicationIDModelRequiredError">{{Localization.errorSelectApplication}}</span>
                             </div>
 
                         </div>
@@ -46,6 +46,7 @@
                             <div class="col-sm-8 col-md-8 col-lg-8">
                                 <input type="text" id="PageName" ej-autocomplete e-width="100%" e-fields-key="PageID" ng-model="AddLocalization.PageName"  e-fields-text="PageName" e-datasource="pageList" />
                                 <input type="hidden" id="hdnPageID" ng-model="AddLocalization.PageID" />
+                                <span class="modelerror hiddenmessages" id="PageNameModelRequiredError">{{Localization.errorSelectPageNameKey}}</span>
                             </div>
 
                         </div>
@@ -69,13 +70,14 @@
                             <div class="col-sm-8 col-md-8 col-lg-8">
                                 <input type="text" id="PackageLanguage" ej-autocomplete e-width="100%" e-fields-key="languageCode" e-fields-text="languageName" e-datasource="dataList" />
                                 <input type="hidden" id="hdnPackageLanguage" ng-model="AddLocalization.LanguageCode" />
+                                <span class="modelerror hiddenmessages" id="LanguageCodeModelRequiredError">{{Localization.errorSelectLanguageKey}}</span>
                             </div>
 
                         </div>
                         <div class="row" style="margin-top:10px;">
                             <div class="col-sm-5 col-md-5 col-lg-5"></div>
                             <div class="col-sm-5 col-md-5 col-lg-5">
-                                <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="AddLanguageCode();HideShowProvider('LocalizationResourceGroup','SelectLanguage','STEP1')">{{Localization.NextStepKey}}</button>
+                                <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="AddLanguageCode();HideShowProvider('LocalizationResourceGroup','SelectLanguage','STEP3')">{{Localization.NextStepKey}}</button>
                             </div>
                         </div>
                     </section>
@@ -86,11 +88,14 @@
                         {{Localization.AddNewResources}}
                     </legend>
                     <section>
-
+                        <div class="row">
+                            <div class="col-sm-3 col-md-3 col-lg-3">{{Localization.SelectedCultureKey}}<span>&nbsp;{{AddLocalization.LanguageName}}&nbsp;</span>{{Localization.CultureResourceKey}}</div>
+                        </div>
                         <div class="row">
                             <div class="col-sm-3 col-md-3 col-lg-3">{{Localization.EnterResourceKey}}</div>
                             <div class="col-sm-8 col-md-8 col-lg-8">
                                 <input type="text" class="form-control" required autocomplete="off" ng-model="AddLocalization.ResourceID" />
+                                <span class="modelerror hiddenmessages" id="ResourceIDModelRequiredError">{{Localization.errorSelectResourceIDKey}}</span>
                             </div>
 
                         </div>
@@ -98,6 +103,7 @@
                             <div class="col-sm-3 col-md-3 col-lg-3">{{Localization.EnterResourceValue}}</div>
                             <div class="col-sm-8 col-md-8 col-lg-8">
                                 <input type="text" class="form-control" required autocomplete="off" ng-model="AddLocalization.ResourceValue" />
+                                <span class="modelerror hiddenmessages" id="ResourceValueModelRequiredError">{{Localization.errorSelectResourceValueKey}}</span>
                             </div>
 
                         </div>

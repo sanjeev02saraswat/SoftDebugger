@@ -59,18 +59,20 @@ var app = angular.module('UpdateAgentApp', ['ejangular', 'ngMessages']).controll
     $scope.UpdateAgentProfile = function () {
         debugger;
         var validate = true;
-        
-        validate = ScopeBlankChecker($scope.AgentDetails, $scope.ModelValidator)
+        var IDcollection = ['LastName', 'FirstName', 'Email', 'Phone', 'Country', 'Address', 'DefaultPage', 'Language'];
+        validate = ScopeBlankChecker($scope.AgentDetails, IDcollection)
        
         if (validate) {
+            $scope.AgentDetails.CompanyID = $("#CompanyID").val();
+            $scope.AgentDetails.TokenID = $("#listenertoken").val();
             $http({
                 method: "post",
                 contentType: "application/json; charset=utf-8",
                 headers: { "tokenid": "" + $("#listenertoken").val() + "", "CompanyID": "" + $("#CompanyID").val() + "" },
-                url: "http://localhost:2849/Admin/UpdateAgentProfile",
+                url: "" + $("#listenerurl").val() + "Admin/UpdateAgentProfile",
                 data: JSON.stringify($scope.AgentDetails)
             }).then(function (success) {
-                alert('Agent details updated successfully.');
+                $("#UpdateAgentProfileMessage").removeClass("hiddenmessages");
             }, function (error) {
                 debugger;
                 if (error.status == 401) {

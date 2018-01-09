@@ -59,7 +59,7 @@
 var LanguageList = [];
 var app = angular.module('CreateNewPackageapp', ['ejangular']).controller('CreateNewPackagecontroller', function ($scope, $http) {
     $scope.selectedCountries = [];
-
+    $scope.Localization = GetParseResources("hdnResources");
     $scope.PackageDetails = {
         CompanyID: '' + $("#CompanyID").val() + ''
     }
@@ -320,7 +320,7 @@ function GetPackageImages() {
     $.ajax({
         type: "GET",
         headers: { "tokenid": "" + $("#listenertoken").val() + "", "CompanyID": "" + $("#CompanyID").val() + "" },
-        url: "" + $("#listenerurl").val() + "Package/GetPackageImages?PackageCode=" + $("#PackageCode").val() + "&CompanyID=" + $("#CompanyID").val() + "",
+        url: "" + $("#listenerurl").val() + "Package/GetPackageImages?PackageCode=" + $("#PackageCode").val() + "&CompanyID=" + $("#CompanyID").val() + "&PackageLanguage=" + $("#hdnPackageLanguage").val() + "",
         contentType: "application/json; charset=utf-8",
 
         success: function (response) {

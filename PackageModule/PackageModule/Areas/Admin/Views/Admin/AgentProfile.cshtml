@@ -1,12 +1,12 @@
 ﻿@{ string Resources = Convert.ToString(ViewBag.AddLocalizationLangFile);}
 
 
-<div class="content-wrapper"  ng-app="UpdateAgentApp" ng-controller="UpdateAgentProfilecontroller" ng-init="GetAgentProfile()">
+<div class="content-wrapper" ng-app="UpdateAgentApp" ng-controller="UpdateAgentProfilecontroller" ng-init="GetAgentProfile()">
     <title>{{Localization.UpdateAgentProfileKey}}</title>
     <div class="content-header">
         <h1>
-            Agent Profile
-            <small>Update Agent Profile</small>
+            {{Localization.AgentProfileKey}}
+            <small>{{Localization.UpdateAgentProfileKey}}</small>
         </h1>
     </div>
     <!-- Main content -->
@@ -15,103 +15,81 @@
             <input type="hidden" id="hdnResources" value="@Resources" />
             <section id="basicuserdetail">
                 <div class="row">
-                    <div class="col-sm-3 col-md-3 col-lg-3">Agent Id<!--Column left--></div>
+                    <div class="col-sm-3 col-md-3 col-lg-3">{{Localization.AgentIDKey}}<!--Column left--></div>
                     <div class="col-sm-8 col-md-8 col-lg-8">
-                    <input type="text" readonly="readonly" class="form-control" required autocomplete="off" ng-model="AgentDetails.AgentID" id="AgentID"/><!--Column right--></div>
+                        <input type="text" readonly="readonly" class="form-control" required autocomplete="off" ng-model="AgentDetails.AgentID" id="AgentID" /><!--Column right-->
+                    </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-3 col-md-3 col-lg-3">First Name</div>
+                    <div class="col-sm-3 col-md-3 col-lg-3">{{Localization.FirstNameKey}}</div>
                     <div class="col-sm-8 col-md-8 col-lg-8">
-                    <input type="text"  class="form-control"  autocomplete="off" ng-model="AgentDetails.FirstName" id="FirstName" required />
-                        @*<div class="error-container"
-                             ng-show="AgentDetails.FirstName.$dirty && AgentDetails.FirstName.$invalid">
-                            <small class="text-danger"
-                                   ng-show="AgentDetails.FirstName.$error.required">
-                                Your name is required.
-                            </small>
-                            <small class="text-danger"
-                                   ng-show="AgentDetails.FirstName.$error.minlength">
-                                Your name is required to be at least 3 characters
-                            </small>
-                            <small class="text-danger"
-                                   ng-show="AgentDetails.FirstName.$error.maxlength">
-                                Your name cannot be longer than 20 characters
-                            </small>
-                        </div>*@
+                        <input type="text" class="form-control" autocomplete="off" ng-model="AgentDetails.FirstName" id="FirstName" required />
 
-                        <div ng-messages="AgentDetails.FirstName.$error" role="alert">
-                            <div ng-message="required">Please enter a value for this field.</div>
-                            @*<div ng-message="email">This field must be a valid email address.</div>
-                            <div ng-message="maxlength">This field can be at most 15 characters long.</div>*@
-                        </div>
-                        <span class="modelerror" ng-show="AgentDetails.FirstName==''">{{Localization.errorSelectApplication}}</span>
+                        <span class="modelerror hiddenmessages" id="FirstNameModelRequiredError">{{Localization.FirstNameValidationKey}}</span>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-3 col-md-3 col-lg-3">Last Name<!--Column left--></div>
+                    <div class="col-sm-3 col-md-3 col-lg-3">{{Localization.LastNameKey}}<!--Column left--></div>
                     <div class="col-sm-8 col-md-8 col-lg-8">
-                    <input type="text"  class="form-control" required autocomplete="off" ng-model="AgentDetails.LastName" id="LastName" />
-                    
-                        <span class="modelerror" ng-show="AgentDetails.LastName==''">{{Localization.errorSelectApplication}}</span>
-                        <span style="color:red" ng-show="AgentDetails.LastName.$dirty && AgentDetails.LastName.$invalid">
-                            <span ng-show="AgentDetails.LastName.$error.required">Username is required.</span>
-                        </span>
+                        <input type="text" class="form-control" required autocomplete="off" ng-model="AgentDetails.LastName" id="LastName" />
+
+                        <span class="modelerror hiddenmessages" id="LastNameModelRequiredError">{{Localization.LastNameValidationKey}}</span>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-3 col-md-3 col-lg-3">Email<!--Column left--></div>
+                    <div class="col-sm-3 col-md-3 col-lg-3">{{Localization.EmailKey}}<!--Column left--></div>
                     <div class="col-sm-8 col-md-8 col-lg-8">
-                    <input type="text" class="form-control" required autocomplete="off" ng-model="AgentDetails.Email" id="Email" />
-                        <span class="modelerror" ng-show="AgentDetails.Email==''">{{Localization.errorSelectApplication}}</span>
+                        <input type="text" class="form-control" required autocomplete="off" ng-model="AgentDetails.Email" id="Email" />
+                        <span class="modelerror hiddenmessages" id="EmailModelRequiredError">{{Localization.EmailValidationKey}}</span>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-3 col-md-3 col-lg-3">Phone<!--Column left--></div>
+                    <div class="col-sm-3 col-md-3 col-lg-3">{{Localization.PhoneKey}}<!--Column left--></div>
                     <div class="col-sm-8 col-md-8 col-lg-8">
-                    <input type="text" class="form-control" required autocomplete="off" ng-model="AgentDetails.Phone" id="Phone" />
-                        <span class="modelerror hiddenmessages">{{Localization.errorSelectApplication}}</span>
+                        <input type="text" class="form-control" required autocomplete="off" ng-model="AgentDetails.Phone" id="Phone" />
+                        <span class="modelerror hiddenmessages" id="PhoneModelRequiredError">{{Localization.PhoneValidationKey}}</span>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-3 col-md-3 col-lg-3">DashBoard Language<!--Column left--></div>
+                    <div class="col-sm-3 col-md-3 col-lg-3">{{Localization.DashBoardLanguageKey}}</div>
                     <div class="col-sm-8 col-md-8 col-lg-8">
-                        <input type="text" id="Language" ej-autocomplete e-width="100%"  e-fields-key="languageCode" e-fields-text="languageName" e-datasource="dataList" />
+                        <input type="text" id="Language" ej-autocomplete e-width="100%" e-fields-key="languageCode" e-fields-text="languageName" e-datasource="dataList" />
                         <input type="hidden" id="hdnPackageLanguage" ng-model="AgentDetails.Language" />
-                        <span class="modelerror hiddenmessages">{{Localization.errorSelectApplication}}</span>
-                </div>
+                        <span class="modelerror hiddenmessages" id="LanguageModelRequiredError">{{Localization.DashBoardLanguageValidationKey}}</span>
                     </div>
+                </div>
                 <div class="row">
-                    <div class="col-sm-3 col-md-3 col-lg-3">Default Page<!--Column left--></div>
+                    <div class="col-sm-3 col-md-3 col-lg-3">{{Localization.DefaultPageKey}}</div>
                     <div class="col-sm-8 col-md-8 col-lg-8">
-                    <input type="text" class="form-control" required autocomplete="off" ng-model="AgentDetails.DefaultPage" id="DefaultPage"/>
-                        <span class="modelerror hiddenmessages">{{Localization.errorSelectApplication}}</span>
+                        <input type="text" class="form-control" required autocomplete="off" ng-model="AgentDetails.DefaultPage" id="DefaultPage" />
+                        <span class="modelerror hiddenmessages" id="DefaultPageModelRequiredError">{{Localization.DefaultPageValidationKey}}</span>
                     </div>
                 </div>
 
                 <div class="row">
-                    <div class="col-sm-3 col-md-3 col-lg-3">Address<!--Column left--></div>
+                    <div class="col-sm-3 col-md-3 col-lg-3">{{Localization.AddressKey}}</div>
                     <div class="col-sm-8 col-md-8 col-lg-8">
-                    <input type="text" class="form-control" required autocomplete="off" ng-model="AgentDetails.Address" id="Address" />
-                        <span class="modelerror hiddenmessages">{{Localization.errorSelectApplication}}</span>
+                        <input type="text" class="form-control" required autocomplete="off" ng-model="AgentDetails.Address" id="Address" />
+                        <span class="modelerror hiddenmessages" id="AddressModelRequiredError">{{Localization.AddressValidationKey}}</span>
                     </div>
                 </div>
 
                 <div class="row">
-                    <div class="col-sm-3 col-md-3 col-lg-3">Country</div>
+                    <div class="col-sm-3 col-md-3 col-lg-3">{{Localization.CountryKey}}</div>
                     <div class="col-sm-8 col-md-8 col-lg-8">
                         <input type="text" id="Country" ej-autocomplete e-width="100%" e-fields-key="countryCode" e-fields-text="countryName" e-datasource="countryList" />
                         <input type="hidden" id="hdnAgentCountry" ng-model="AgentDetails.Country" />
-                        <span class="modelerror hiddenmessages">{{Localization.errorSelectApplication}}</span>
-                    
+                        <span class="modelerror hiddenmessages" id="CountryModelRequiredError">{{Localization.CountryValidationKey}}</span>
+
                     </div>
                 </div>
 
-               
+
                 <div class="row" style="margin-top:10px;">
                     <div class="col-sm-3 col-md-3 col-lg-3"></div>
                     <div class="col-sm-8 col-md-8 col-lg-8">
-                        <button ng-click="AddLanguageCode();AddCountryCode();UpdateAgentProfile(AgentDetails);" type="button" class="btn btn-primary btn-lg btn-block">Update</button>
-                        <span class="modelSuccess hiddenmessages">{{Localization.errorSelectApplication}}</span>
+                        <button ng-click="AddLanguageCode();AddCountryCode();UpdateAgentProfile(AgentDetails);" type="button" class="btn btn-primary btn-lg btn-block">{{Localization.UpdateKey}}</button>
+                        <span class="modelSuccess hiddenmessages" id="UpdateAgentProfileMessage">{{Localization.UpdatedAgentProfileMessageKey}}</span>
                     </div>
                 </div>
             </section>

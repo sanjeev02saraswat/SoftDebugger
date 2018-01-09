@@ -47,7 +47,7 @@ namespace SoftdebuggerWebsite.Filters
             }else { languageCulture = "en-US"; }
 
             objWrapper.CultureCode = languageCulture;
-            languageCulture = lang;
+           // languageCulture = lang;
             
             Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(languageCulture);
             filterContext.RouteData.Values["lang"] = languageCulture;
