@@ -85,7 +85,7 @@ namespace PackageModule.Utility
                             err = sr.ReadToEnd();
                         }
                     }
-                    return ((HttpWebResponse)rx.Response).StatusDescription + ((HttpWebResponse)rx.Response).StatusCode + err + rx.ToString();
+                    return null; //((HttpWebResponse)rx.Response).StatusDescription + ((HttpWebResponse)rx.Response).StatusCode + err + rx.ToString();
                 }
             }
             return strTemp;
@@ -113,7 +113,11 @@ namespace PackageModule.Utility
             if (!string.IsNullOrEmpty(TokenID))
             {
                 string Response = CommonFunction.HITAPI("", LocalizationServiceurl, "GET", objparamlist);
-                return JsonConvert.DeserializeObject(Response);
+                if (!string.IsNullOrEmpty(Response))
+                {
+                    return JsonConvert.DeserializeObject(Response);
+
+                }
 
             }
             return null;

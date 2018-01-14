@@ -1,11 +1,67 @@
 ﻿$(document).ready(function () {
-    $("#PackageValidityStartDate,#PackageValidityEndDate,#PackageBookingStartDate,#PackageBookingEndDate").datepicker({
+    $("#PackageBookingEndDate").datepicker({
         dateFormat: "yy-mm-dd",
         closeText: "Close",
         changeYear: true,
         changeMonth: true,
-        autoSize: true
+        autoSize: true,
+        onSelect: function (selected) {
+            $("#PackageBookingStartDate").datepicker("option", "maxDate", selected);
+            $("#PackageValidityEndDate").datepicker("option", "minDate", selected);
+        }
+
     });
+
+    $("#PackageBookingStartDate").datepicker({
+        numberOfMonths: 2,
+        dateFormat: "yy-mm-dd",
+        closeText: "Close",
+        changeYear: false,
+        changeMonth: false,
+        autoSize: true,
+        minDate: new Date(),
+        onSelect: function (selected) {
+            $("#PackageBookingEndDate").datepicker("option", "minDate", selected)
+        }
+
+    });
+
+    $("#PackageValidityStartDate").datepicker({
+        numberOfMonths: 2,
+        dateFormat: "yy-mm-dd",
+        closeText: "Close",
+        changeYear: false,
+        changeMonth: false,
+        autoSize: true,
+        minDate: new Date(),
+        onSelect: function (selected) {
+            $("#PackageValidityEndDate").datepicker("option", "minDate", selected)
+        }
+
+    });
+
+
+
+    $("#PackageValidityEndDate").datepicker({
+        numberOfMonths: 2,
+        dateFormat: "yy-mm-dd",
+        closeText: "Close",
+        changeYear: false,
+        changeMonth: false,
+        autoSize: true,
+            onSelect: function(selected) {
+                $("#PackageValidityStartDate").datepicker("option", "maxDate", selected)
+            }
+
+    });
+
+    //$("#PackageValidityStartDate,#PackageValidityEndDate,#PackageBookingStartDate,#PackageBookingEndDate").datepicker({
+    //    dateFormat: "yy-mm-dd",
+    //    closeText: "Close",
+    //    changeYear: true,
+    //    changeMonth: true,
+    //    autoSize: true
+    //});
     $("li").removeClass("active");
     $("#CreateNewPackageli").addClass("active");
     $("#removeattachment").click(function () {

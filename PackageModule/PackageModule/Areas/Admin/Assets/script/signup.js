@@ -30,7 +30,7 @@
     });
 
     $('.tab a').on('click', function (e) {
-        debugger;
+        
         e.preventDefault();
 
         $(this).parent().addClass('active');
@@ -74,10 +74,10 @@ var app = angular.module('Signupapp', []).controller('signupcontroller', functio
             url: "" + $("#listenerurl").val() + "Home/PostSignupuser",
             data: JSON.stringify(data)
         }).then(function (success) {
-            debugger;
+           
             alert(success.data);
         }, function (error) {
-            debugger;
+            
             alert(error.data);
         });
     }
@@ -113,7 +113,7 @@ return status;
                     url: "CreateTokenCookie?TokenID=" + success.data.tokenid + "&CompanyID=" + success.data.companyID + "&AgentName=" + success.data.fullName + "&LanguageCode="+success.data.language,
 
                 }).then(function (success) {
-                    debugger;
+                 
                     if (returnData.data.defaultPage != "" && returnData.data.defaultPage != undefined && returnData.data.defaultPage!="N/A") {
                         window.location.href = returnData.data.defaultPage;
                     } else {
@@ -132,7 +132,7 @@ return status;
                 alert('Login attempt Failed....');
             }
         }, function (error) {
-            debugger;
+          
             alert(error.data);
         });
     }

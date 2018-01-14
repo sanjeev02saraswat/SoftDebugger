@@ -1,7 +1,7 @@
 ﻿using Listener.Filters;
 using Listener.Models.PackageModel;
 using PackageBusinessModel.Models;
-using PackageModule.Filters;
+using SoftLoggerAPI;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,7 +11,7 @@ using System.Net.Http;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Cors;
-using WEBAPI2.Utilities;
+using PackageModule.Utilities;
 
 
 
@@ -222,6 +222,39 @@ namespace Listener.Controllers
 
             }
             return CommonUtility.CreateResponse(HttpStatusCode.OK, objPackageImages);
+
+        }
+
+
+
+        //FSP_GetAvailableProductForPackage
+
+        [HttpGet]
+        [Tokenizer]
+        [Route("GetPackageProducts")]
+        public HttpResponseMessage GetPackageProducts(string CompanyID, string TokenID)
+        {
+            List<PackageProduct> objPackageProducts = null;
+            try
+            {
+                _logger.addMessage.Add("GetPackageProducts", "GetPackageProducts Method is goint to Execute");
+                _logger.addMessage.Add("TokenID", TokenID);
+                _logger.addMessage.Add("CompanyID", CompanyID);
+               
+
+
+            }
+            catch (Exception ex)
+            {
+                _logger.ExceptionError = true;
+                _logger.addMessage.Add("GetPackageProducts", "Error During getting Package Products" + ex.ToString());
+            }
+            finally
+            {
+                AsyncLogger.LogMessage(_logger);
+
+            }
+            return CommonUtility.CreateResponse(HttpStatusCode.OK, objPackageProducts);
 
         }
     }

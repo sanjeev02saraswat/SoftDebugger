@@ -50,7 +50,10 @@
     </Reference>
     <Reference Include="BusinessModels, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\BusinessModels\BusinessModels\bin\Debug\BusinessModels.dll</HintPath>
+      <HintPath>..\..\..\Working Folder\Shortcut\SoftDebugger\BusinessModels\BusinessModels\bin\Debug\BusinessModels.dll</HintPath>
+    </Reference>
+    <Reference Include="CommonUtilities">
+      <HintPath>..\..\..\Working Folder\Shortcut\SoftDebugger\CommonUtilities\CommonUtilities\bin\Debug\CommonUtilities.dll</HintPath>
     </Reference>
     <Reference Include="Connector, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -69,12 +72,14 @@
       <HintPath>..\packages\MultipartDataMediaFormatter.V2.2.0.0\lib\net45\MultipartDataMediaFormatter.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="PackageModuleLayer">
+      <HintPath>..\..\..\Working Folder\Shortcut\SoftDebugger\PackageModuleLayer\PackageModuleLayer\bin\Debug\PackageModuleLayer.dll</HintPath>
+    </Reference>
     <Reference Include="SendMail">
       <HintPath>..\..\SendMail\SendMail\bin\Debug\SendMail.dll</HintPath>
     </Reference>
-    <Reference Include="SoftLogger, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\SoftLogger\bin\Debug\SoftLogger.dll</HintPath>
+    <Reference Include="SoftLogger">
+      <HintPath>..\..\..\Working Folder\Shortcut\SoftDebugger\SoftLogger\bin\Debug\SoftLogger.dll</HintPath>
     </Reference>
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Net.Http" />
@@ -175,7 +180,6 @@
     <Compile Include="Controllers\LocalizationController.cs" />
     <Compile Include="Controllers\PackageController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
-    <Compile Include="Filters\AsyncLogger.cs" />
     <Compile Include="Filters\ModelValidator.cs" />
     <Compile Include="Filters\Tokenizer.cs" />
     <Compile Include="Global.asax.cs">
@@ -186,14 +190,9 @@
     <Compile Include="Models\AdminManagement\ManageAdminProfile.cs" />
     <Compile Include="Models\CountryList.cs" />
     <Compile Include="Models\LocalizationManagement\ManageLocalization.cs" />
-    <Compile Include="Models\PackageModel\CreatePackage.cs" />
-    <Compile Include="Models\PackageModel\ManagePackageImages.cs" />
-    <Compile Include="Models\PackageModel\PackageInfo.cs" />
-    <Compile Include="Models\PackageModel\PackageListAutoComplete.cs" />
     <Compile Include="Models\SignUpUserModel.cs" />
     <Compile Include="Models\TokenManagement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Utilities\CommonUtility.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

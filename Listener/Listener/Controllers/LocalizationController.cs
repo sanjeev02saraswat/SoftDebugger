@@ -1,6 +1,6 @@
 ﻿using BusinessModels.LocalizationModel;
 using Listener.Models.LocalizationManagement;
-using PackageModule.Filters;
+using SoftLoggerAPI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using Listener.Filters;
-using WEBAPI2.Utilities;
+using PackageModule.Utilities;
 
 namespace Listener.Controllers
 {

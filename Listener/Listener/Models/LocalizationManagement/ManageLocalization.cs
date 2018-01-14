@@ -1,12 +1,12 @@
 ﻿using BusinessModels.LocalizationModel;
 using ConnectorAPI;
-using PackageModule.Filters;
+using SoftLoggerAPI;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Web;
-using WEBAPI2.Utilities;
+using PackageModule.Utilities;
 
 namespace Listener.Models.LocalizationManagement
 {
