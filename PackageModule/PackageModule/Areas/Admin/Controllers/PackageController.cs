@@ -1,4 +1,5 @@
 ﻿using PackageModule.Utility;
+using SoftdebuggerWebsite.Filters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +8,7 @@ using System.Web.Mvc;
 
 namespace PackageModule.Areas.Admin.Controllers
 {
+    [LocalizationFilter]
     public class PackageController : Controller
     {
         // GET: Admin/Package
@@ -24,10 +26,12 @@ namespace PackageModule.Areas.Admin.Controllers
 
         public ActionResult UpdatePackage()
         {
+            ViewBag.AddLocalizationLangFile = CommonFunction.GetResources("UpdatePackage");
             return View();
         }
 
-        public ActionResult AddPackageProduct()
+        [ActionName("ActivePackageProduct")]
+        public ActionResult ActivePackageProduct()
         {
             return View();
         }

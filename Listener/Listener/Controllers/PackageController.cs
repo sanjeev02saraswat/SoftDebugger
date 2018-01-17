@@ -12,8 +12,7 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using PackageModule.Utilities;
-
-
+using PackageModuleLayer.Models.PackageModel;
 
 namespace Listener.Controllers
 {
@@ -67,7 +66,7 @@ namespace Listener.Controllers
                 _logger.addMessage.Add("GetPackages", "GetPackages Method is goint to Execute");
                 PackageListAutoComplete objPackageListAutoComplete = new PackageListAutoComplete();
 
-                 JSONResult = objPackageListAutoComplete.GetPackageList(objPackageList);
+                JSONResult = objPackageListAutoComplete.GetPackageList(objPackageList);
 
 
 
@@ -192,13 +191,13 @@ namespace Listener.Controllers
                 AsyncLogger.LogMessage(_logger);
 
             }
-         
+
         }
 
         [HttpGet]
         [Tokenizer]
         [Route("GetPackageImages")]
-        public HttpResponseMessage GetPackageImages(string PackageCode,string CompanyID,string PackageLanguage)
+        public HttpResponseMessage GetPackageImages(string PackageCode, string CompanyID, string PackageLanguage)
         {
             List<PackageImages> objPackageImages = null;
             try
@@ -207,8 +206,8 @@ namespace Listener.Controllers
                 _logger.addMessage.Add("PackageCode", PackageCode);
                 _logger.addMessage.Add("CompanyID", CompanyID);
                 ManagePackageImages objManagePackageImages = new ManagePackageImages();
-               objPackageImages = objManagePackageImages.GetPackageImages(PackageCode, CompanyID);
-               
+                objPackageImages = objManagePackageImages.GetPackageImages(PackageCode, CompanyID);
+
 
             }
             catch (Exception ex)
@@ -226,6 +225,34 @@ namespace Listener.Controllers
         }
 
 
+        [HttpPost]
+        [Tokenizer]
+        [Route("InsertPackageCancellationPolicy")]
+        public HttpResponseMessage InsertPackageCancellationPolicy(PackageDetails objPackageCancellationPolicy)
+        {
+            try
+            {
+                _logger.addMessage.Add("InsertPackageCancellationPolicy", "InsertPackageCancellationPolicy Method is goint to Execute");
+
+                ManagePackageCancellationPolicy objManagePackageCancellationPolicy = new ManagePackageCancellationPolicy();
+                 objManagePackageCancellationPolicy.InsertPackageCancellationPolicy(objPackageCancellationPolicy);
+
+
+            }
+            catch (Exception ex)
+            {
+                _logger.ExceptionError = true;
+                _logger.addMessage.Add("InsertPackageCancellationPolicy", "Error During inserting Package Cancellation Policy :" + ex.ToString());
+            }
+            finally
+            {
+                AsyncLogger.LogMessage(_logger);
+
+            }
+            return CommonUtility.CreateResponse(HttpStatusCode.OK, null);
+
+        }
+
 
         //FSP_GetAvailableProductForPackage
 
@@ -240,7 +267,7 @@ namespace Listener.Controllers
                 _logger.addMessage.Add("GetPackageProducts", "GetPackageProducts Method is goint to Execute");
                 _logger.addMessage.Add("TokenID", TokenID);
                 _logger.addMessage.Add("CompanyID", CompanyID);
-               
+
 
 
             }

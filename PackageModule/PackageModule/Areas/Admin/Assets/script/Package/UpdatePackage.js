@@ -137,6 +137,22 @@ var app = angular.module('CreateNewPackageapp', ['ejangular']).controller('Creat
             }
         });
     }
+
+    $scope.SaveCancellationPolicy = function (data) {
+        var request = $http({
+            method: "post",
+            contentType: "application/json; charset=utf-8",
+            headers: { "tokenid": "" + $("#listenertoken").val() + "", "CompanyID": "" + $("#CompanyID").val() + "" },
+            url: "" + $("#listenerurl").val() + "Package/InsertPackageCancellationPolicy",
+            data: JSON.stringify(data)
+        }).then(function (success) {
+            alert('Package cancellation policy saved successfully.');
+        }, function (error) {
+            if (error.status == 401) {
+                SessionEndManager();
+            }
+        });
+    }
     $scope.dataList = LanguageList;
     $scope.packageList = PackageList;
     //$scope.nameField = { text: "languageName" };
@@ -170,6 +186,7 @@ var app = angular.module('CreateNewPackageapp', ['ejangular']).controller('Creat
             $("#PackageLanguage").val(GetLanguageName(PackageData.BasicPackageDetails[0].PackageLanguage, LanguageList));
             $("#hdnSelectLanguage").val(PackageData.BasicPackageDetails[0].PackageLanguage);
             $scope.PackageDetails.BasicPackageCreteria = PackageData.BasicPackageCreteria[0];
+            $scope.PackageDetails.PackageCancellationPolicy = PackageData.PackageCancellationPolicy[0];
             $("#PackageLanguage").attr("readonly","readonly");
             $("#PackageFilter").css("display", "none"); 
             $("#basicuserdetail").css("display", "block");

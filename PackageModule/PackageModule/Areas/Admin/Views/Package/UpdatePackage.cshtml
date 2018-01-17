@@ -230,11 +230,49 @@
                                 <div class="row" style="margin-top:10px;">
                                     <div class="col-sm-5 col-md-5 col-lg-5"><button type="button" ng-click="HideShowProvider('basicpackagecriteriadetails','UploadPackageImages','')" class="btn btn-primary btn-lg btn-block">Previous Step</button></div>
                                     <div class="col-sm-5 col-md-5 col-lg-5">
-                                        <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="HideShowProvider('UploadPackageImages','basicpackagecriteriadetails','')">Next Step</button>
+                                        <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="HideShowProvider('addpackagecancellationpolicy','UploadPackageImages','')">Next Step</button>
                                     </div>
                                 </div>
                             </section>
                         </fieldset>
+
+
+                <fieldset id="addpackagecancellationpolicy" style="display:none">
+                    <legend>
+                        Add Package Cancellation Policy
+                    </legend>
+                    <section>
+                        <div class="row">
+                            <div class="col-sm-3 col-md-3 col-lg-3">Cancellation Policy Format</div>
+                            <div class="col-sm-8 col-md-8 col-lg-8">
+                                <select class="form-control" id="CancellationPolicyFormat" required autocomplete="off" ng-model="PackageDetails.PackageCancellationPolicy.ViewFormat">
+                                    <option value="text">text/plain</option>
+                                    <option value="html">text/html</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3 col-md-3 col-lg-3">Cancellation Policy Text</div>
+                            <div class="col-sm-8 col-md-8 col-lg-8">
+                                <textarea class="form-control" style="height:100px;overflow-y: scroll;resize: none;" ng-model="PackageDetails.PackageCancellationPolicy.CancellationPolicyText" name="CancellationPolicyText" id="CancellationPolicyText"></textarea>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top:10px;">
+                            <div class="col-sm-5 col-md-5 col-lg-5"></div>
+                            <div class="col-sm-5 col-md-5 col-lg-5">
+                                <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="SaveCancellationPolicy(PackageDetails);">Add Package Cancellation Policy</button>
+                            </div>
+                        </div>
+
+                        <div class="row" style="margin-top:10px;">
+                            <div class="col-sm-5 col-md-5 col-lg-5"><button type="button" class="btn btn-primary btn-lg btn-block">Previous Step</button></div>
+                            <div class="col-sm-5 col-md-5 col-lg-5">
+                                <button type="button" class="btn btn-primary btn-lg btn-block">Next Step</button>
+                            </div>
+                        </div>
+
+                    </section>
+                </fieldset>
             </div>
         </form>
     </div>

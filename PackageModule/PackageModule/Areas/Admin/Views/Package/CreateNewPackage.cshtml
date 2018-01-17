@@ -11,11 +11,11 @@
 
 
     <!-- Main content -->
-    <div class="content body" >
+    <div class="content body">
         <form name="exampleForm" class="elegant-aero">
             <div class="container">
                 <input type="hidden" id="hdnResources" value="@Resources" />
-                <fieldset id="basicuserdetail">
+                <fieldset id="basicuserdetail" style="display:block;">
                     <legend>
                         {{Localization.BasicPackageDetailKey}}
                     </legend>
@@ -35,7 +35,7 @@
                             <div class="col-sm-3 col-md-3 col-lg-3">{{Localization.LanguageKey}}</div>
                             <div class="col-sm-8 col-md-8 col-lg-8">
                                 <input type="text" id="PackageLanguage" ej-autocomplete e-width="100%" e-fields-key="languageCode" e-fields-text="languageName" e-datasource="dataList" />
-                                <input type="hidden" id="hdnPackageLanguage"  ng-model="PackageDetails.BasicPackageDetails.PackageLanguage" />
+                                <input type="hidden" id="hdnPackageLanguage" ng-model="PackageDetails.BasicPackageDetails.PackageLanguage" />
                             </div>
 
                         </div>
@@ -121,7 +121,7 @@
 
                         <div class="row">
                             <div class="col-sm-3 col-md-3 col-lg-3">{{Localization.ChildMaxAgeKey}}</div>
-                            <div class="col-sm-8 col-md-8 col-lg-8"><input type="text" class="form-control" required autocomplete="off" ng-model="PackageDetails.BasicPackageCreteria.ChildMaxAge"  max="12" id="ChildMaxAge" /><!--Column right--></div>
+                            <div class="col-sm-8 col-md-8 col-lg-8"><input type="text" class="form-control" required autocomplete="off" ng-model="PackageDetails.BasicPackageCreteria.ChildMaxAge" max="12" id="ChildMaxAge" /><!--Column right--></div>
                         </div>
                         <div class="row">
                             <div class="col-sm-3 col-md-3 col-lg-3">{{Localization.PackageLastPaymentDueKey}}</div>
@@ -140,7 +140,7 @@
                         <div class="row" style="margin-top:10px;">
                             <div class="col-sm-5 col-md-5 col-lg-5"><button type="button" ng-click="HideShowProvider('basicuserdetail','basicpackagecriteriadetails','')" class="btn btn-primary btn-lg btn-block">{{Localization.PreviousStepKey}}</button></div>
                             <div class="col-sm-5 col-md-5 col-lg-5">
-                                <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="HideShowProvider('UploadPackageImages','basicpackagecriteriadetails','STEP2');">{{Localization.SaveNextKey}}</button>                               
+                                <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="HideShowProvider('UploadPackageImages','basicpackagecriteriadetails','STEP2');">{{Localization.SaveNextKey}}</button>
                             </div>
                         </div>
                     </section>
@@ -172,14 +172,14 @@
                                         <input class="file-path validate" id="filesize" type="text" placeholder="({{Localization.UptoTwoMBKey}})">
                                         <span id="servermessage"></span>
                                     </div>
-                                </div>                            
+                                </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-12 remove1">
                                 <div id="image-holder"> </div>
                                 <div class="row" style="margin-top:10px;">
-                                    <div class="col-sm-5 col-md-5 col-lg-5"><button type="button" id="AddPackageImage"  class="btn btn-primary btn-lg btn-block">{{Localization.AddImageKey}}</button></div>
+                                    <div class="col-sm-5 col-md-5 col-lg-5"><button type="button" id="AddPackageImage" class="btn btn-primary btn-lg btn-block">{{Localization.AddImageKey}}</button></div>
                                     <div class="col-sm-5 col-md-5 col-lg-5">
                                         <button type="button" id="removeattachment" style="display:none" class="btn btn-primary btn-lg btn-block">{{Localization.RemoveImageKey}}</button>
                                     </div>
@@ -195,29 +195,46 @@
                         <div class="row" style="margin-top:10px;">
                             <div class="col-sm-5 col-md-5 col-lg-5"><button type="button" ng-click="HideShowProvider('basicpackagecriteriadetails','UploadPackageImages','')" class="btn btn-primary btn-lg btn-block">Previous Step</button></div>
                             <div class="col-sm-5 col-md-5 col-lg-5">
-                                <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="HideShowProvider('addpackagecosting','UploadPackageImages','')">{{Localization.AddPackageCostingKey}}</button>
+                                <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="HideShowProvider('addpackagecancellationpolicy','UploadPackageImages','')">{{Localization.addpackagecancellationpolicyKey}}</button>
                             </div>
                         </div>
                     </section>
                 </fieldset>
 
-                <fieldset id="addpackagecosting" style="display:none">
+                <fieldset id="addpackagecancellationpolicy" style="display:none">
                     <legend>
-                        Add Package Costing
+                        Add Package Cancellation Policy
                     </legend>
                     <section>
                         <div class="row">
-                            <div class="col-sm-3 col-md-3 col-lg-3">Select Product Type</div>
+                            <div class="col-sm-3 col-md-3 col-lg-3">Cancellation Policy Format</div>
                             <div class="col-sm-8 col-md-8 col-lg-8">
-                                <select class="form-control" required autocomplete="off" id="PackageMarket" ng-model="PackageDetails.BasicPackageCreteria.PackageMarket">
-                                    <option value="">Select</option>
-                                    <option value="DOM">Domestic</option>
-                                    <option value="INT">International</option>
+                                <select class="form-control" id="CancellationPolicyFormat" required autocomplete="off" ng-model="PackageDetails.PackageCancellationPolicy.ViewFormat">
+                                   <option value="text">text/plain</option>
+                                    <option value="html">text/html</option>
                                 </select>
-
                             </div>
                         </div>
-                        
+                        <div class="row">
+                            <div class="col-sm-3 col-md-3 col-lg-3">Cancellation Policy Text</div>
+                            <div class="col-sm-8 col-md-8 col-lg-8">
+                                <textarea class="form-control" style="height:100px;overflow-y: scroll;resize: none;" ng-model="PackageDetails.PackageCancellationPolicy.CancellationPolicyText" name="CancellationPolicyText" id="CancellationPolicyText"></textarea>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top:10px;">
+                            <div class="col-sm-5 col-md-5 col-lg-5"></div>
+                            <div class="col-sm-5 col-md-5 col-lg-5">
+                                <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="SaveCancellationPolicy(PackageDetails);">Add Package Cancellation Policy</button>
+                            </div>
+                        </div>
+
+                        <div class="row" style="margin-top:10px;">
+                            <div class="col-sm-5 col-md-5 col-lg-5"><button type="button" class="btn btn-primary btn-lg btn-block">Previous Step</button></div>
+                            <div class="col-sm-5 col-md-5 col-lg-5">
+                                <button type="button" class="btn btn-primary btn-lg btn-block">Next Step</button>
+                            </div>
+                        </div>
+
                     </section>
                 </fieldset>
             </div>

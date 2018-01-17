@@ -147,6 +147,12 @@ var app = angular.module('CreateNewPackageapp', ['ejangular']).controller('Creat
         PackageType: ''
 
     };
+
+    //$scope.PackageDetails.CancellationPolicy = {
+    //    CancellationPolicyText: ''
+
+    //};
+
     $scope.PackageDetails.BasicPackageCreteria = {
         PackageMarket: '',
         PackageSaleMarket: '',
@@ -170,10 +176,26 @@ var app = angular.module('CreateNewPackageapp', ['ejangular']).controller('Creat
             method: "post",
             contentType: "application/json; charset=utf-8",
             headers: { "tokenid": "" + $("#listenertoken").val() + "", "CompanyID": "" + $("#CompanyID").val() + "" },
-            url: "http://localhost:2849/Package/CreateNewPackage",
+            url: "" + $("#listenerurl").val() + "Package/CreateNewPackage",
             data: JSON.stringify(data)
         }).then(function (success) {
             alert('Package create successfully.');
+        }, function (error) {
+            if (error.status == 401) {
+                SessionEndManager();
+            }
+        });
+    }
+
+    $scope.SaveCancellationPolicy = function (data) {
+        var request = $http({
+            method: "post",
+            contentType: "application/json; charset=utf-8",
+            headers: { "tokenid": "" + $("#listenertoken").val() + "", "CompanyID": "" + $("#CompanyID").val() + "" },
+            url: "" + $("#listenerurl").val() + "Package/InsertPackageCancellationPolicy",
+            data: JSON.stringify(data)
+        }).then(function (success) {
+            alert('Package cancellation policy saved successfully.');
         }, function (error) {
             if (error.status == 401) {
                 SessionEndManager();
