@@ -82,6 +82,38 @@ namespace Listener.Controllers
             return CommonUtility.CreateResponse(HttpStatusCode.OK, PagesList);
         }
 
+        [HttpPost]
+        [Tokenizer]
+        [Route("GetExistingResource")]
+        public HttpResponseMessage GetExistingResource(LocalizationModel objLocalizationModel)
+        {
+            LocalizationModel ResourceValueLocalization = null;
+            try
+            {
+                _logger.addMessage.Add("GetExistingResource", "GetExistingResource Method is goint to Execute");
+
+                ManageLocalization objManageLocalization = new ManageLocalization();
+                 ResourceValueLocalization = objManageLocalization.GetExistingResourceValue(objLocalizationModel);
+                if (string.IsNullOrEmpty(ResourceValueLocalization.ResourceValue))
+                {
+                    _logger.addMessage.Add("GetExistingResource", "No Resource Value Exist Against Resource Key: "+ResourceValueLocalization.ResourceID+"and Culture : "+ResourceValueLocalization.LanguageCode+"and Application Name: "+ResourceValueLocalization.ApplicationName+"("+ResourceValueLocalization.ApplicationID+") and Page Name : "+ResourceValueLocalization.PageName+"and Page ID:"+ResourceValueLocalization.PageID);
+                }else
+                {
+                    _logger.addMessage.Add("GetExistingResource", "Resource Value:- "+ResourceValueLocalization.ResourceValue+" - Exist Against Resource Key: " + ResourceValueLocalization.ResourceID + "and Culture : " + ResourceValueLocalization.LanguageCode + "and Application Name: " + ResourceValueLocalization.ApplicationName + "(" + ResourceValueLocalization.ApplicationID + ") and Page Name : " + ResourceValueLocalization.PageName + "and Page ID:" + ResourceValueLocalization.PageID);
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.ExceptionError = true;
+                _logger.addMessage.Add("GetExistingResource", "Error During  GetExistingResource" + ex.ToString());
+            }
+            finally
+            {
+                AsyncLogger.LogMessage(_logger);
+
+            }
+            return CommonUtility.CreateResponse(HttpStatusCode.OK, ResourceValueLocalization);
+        }
 
 
         [Tokenizer]
@@ -138,6 +170,62 @@ namespace Listener.Controllers
             }
             return CommonUtility.CreateResponse(HttpStatusCode.OK, status);
         }
+
+        [Tokenizer]
+        [Route("UpdateResource")]
+        [HttpPost]
+        public HttpResponseMessage UpdateResource(LocalizationModel objLocalizationModel)
+        {
+
+            bool status = false;
+            try
+            {
+                _logger.addMessage.Add("UpdateResource", "UpdateResource Method is goint to Execute");
+
+                ManageLocalization objManageLocalization = new ManageLocalization();
+                status = objManageLocalization.UpdateResourceValue(objLocalizationModel);
+            }
+            catch (Exception ex)
+            {
+                _logger.ExceptionError = true;
+                _logger.addMessage.Add("AddNewResource", "Error During  UpdateResource" + ex.ToString());
+            }
+            finally
+            {
+                AsyncLogger.LogMessage(_logger);
+
+            }
+            return CommonUtility.CreateResponse(HttpStatusCode.OK, status);
+        }
+
+
+        [Tokenizer]
+        [Route("getResources")]
+        [HttpPost]
+        public HttpResponseMessage getResources(LocalizationModel objLocalizationModel)
+        {
+
+            string ResourcesContent = string.Empty;
+            try
+            {
+                _logger.addMessage.Add("getResources", "getResources Method is goint to Execute");
+
+                ManageLocalization objManageLocalization = new ManageLocalization();
+                ResourcesContent = objManageLocalization.GetResourceList(objLocalizationModel);
+            }
+            catch (Exception ex)
+            {
+                _logger.ExceptionError = true;
+                _logger.addMessage.Add("getResources", "Error During  getResources" + ex.ToString());
+            }
+            finally
+            {
+                AsyncLogger.LogMessage(_logger);
+
+            }
+            return CommonUtility.CreateResponse(HttpStatusCode.OK, ResourcesContent);
+        }
+
 
     }
 }

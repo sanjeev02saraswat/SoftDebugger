@@ -38,6 +38,25 @@ namespace PackageModule.Areas.Admin.Controllers
         }
 
         [LocalizationFilter]
+        public ActionResult UpdateLocalization()
+        {
+            string LangConversion = string.Empty;
+            ViewBag.AddLocalizationLangFile = CommonFunction.GetResources("UpdateLocalization");
+
+            return View();
+        }
+
+
+        [LocalizationFilter]
+        public ActionResult ManageLocalization()
+        {
+            string LangConversion = string.Empty;
+            ViewBag.AddLocalizationLangFile = CommonFunction.GetResources("ManageLocalization");
+
+            return View();
+        }
+
+        [LocalizationFilter]
         public ActionResult AgentProfile()
         {
             string LangConversion = string.Empty;

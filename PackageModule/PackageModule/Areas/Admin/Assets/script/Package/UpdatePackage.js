@@ -1,4 +1,5 @@
-﻿var LanguageList = [];
+﻿var LocalizationResources = [];
+var LanguageList = [];
 var PackageList = [];
 var PackageFilterModel = [];
 $(document).ready(function () {
@@ -53,7 +54,7 @@ $(document).ready(function () {
             $("#removeattachment").css("display", "none");
         }
     });
-
+    
 });
 
 
@@ -153,9 +154,10 @@ var app = angular.module('CreateNewPackageapp', ['ejangular']).controller('Creat
             }
         });
     }
+
+
     $scope.dataList = LanguageList;
-    $scope.packageList = PackageList;
-    //$scope.nameField = { text: "languageName" };
+    $scope.packageList = PackageList;  
 
     $scope.SearchFilteredPackage = function (data) {
         data.PackageCode = $("#SelectPackageCode").val();
@@ -368,6 +370,64 @@ $("#crmfileattach").change(function () {
 
 });
 
+
+function DeletePackageImage(imagename) {
+    debugger;
+    var data = {
+        PackageVirtualImage: true,
+        PackageImageName: imagename,
+        CompanyID: "" + $("#CompanyID").val() + "",
+        PackageCode: "" + $("#PackageCode").val() + ""
+    }
+
+    $.ajax({
+        type: "POST",
+        headers: { "tokenid": "" + $("#listenertoken").val() + "", "CompanyID": "" + $("#CompanyID").val() + "" },
+        url: "" + $("#listenerurl").val() + "Package/DeletePackageImage",
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify(data),
+        success: function (response) {
+            alert('Package Image deleted successfully.');
+            GetPackageImages();
+        },
+        error: function (response) {
+            if (response.status == 401) {
+                SessionEndManager();
+            }
+        }
+
+    });
+
+}
+function SetDefaultImage(imagename) {
+    debugger;
+    var data = {
+        PackageVirtualImage: true,
+        PackageImageName: imagename,
+        CompanyID: "" + $("#CompanyID").val() + "",
+        PackageCode: "" + $("#PackageCode").val() + ""
+    }
+
+    $.ajax({
+        type: "POST",
+        headers: { "tokenid": "" + $("#listenertoken").val() + "", "CompanyID": "" + $("#CompanyID").val() + "" },
+        url: "" + $("#listenerurl").val() + "Package/SetDefaultVirtualImage",
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify(data),
+        success: function (response) {          
+            alert('Package Default Image selected successfully.');
+            GetPackageImages();
+        },
+        error: function (response) {
+            if (response.status == 401) {
+                SessionEndManager();
+            }
+        }
+
+    });
+
+}
+
 function RemoveImageTile() {
     $("#removeattachment").css("display", "none");
     $("#filesize").val('');
@@ -431,7 +491,14 @@ function GetPackageImages() {
                     divcnt++;
 
                     image_holder += "<div class='col-sm-3 col-md-3 col-lg-3'>";
-                    image_holder += "<a href='" + $("#listenerurl").val() + "/PackageImages/" + $("#CompanyID").val() + "/" + $("#PackageCode").val() + "/" + response[i].packageImageName + "' download><img src= '" + $("#listenerurl").val() + "/PackageImages/" + $("#CompanyID").val() + "/" + $("#PackageCode").val() + "/" + response[i].packageImageName + "' title='" + response[i].packageImageTitle + "' class='thumb-image'/></a></div>";
+                    image_holder += "<a href='" + $("#listenerurl").val() + "/PackageImages/" + $("#CompanyID").val() + "/" + $("#PackageCode").val() + "/" + response[i].packageImageName + "' download><img src= '" + $("#listenerurl").val() + "/PackageImages/" + $("#CompanyID").val() + "/" + $("#PackageCode").val() + "/" + response[i].packageImageName + "' title='" + response[i].packageImageTitle + "' class='thumb-image'/></a>";
+                    if (!response[i].packageVirtualImage) {
+                        image_holder += "<input style='margin-top:10px;' type='button' class='Defaultimageselector' onClick='SetDefaultImage(\"" + response[i].packageImageName + "\")' value='DefaultImage'>";
+                        image_holder += "<input style='margin-top:10px;' type='button' class='Defaultimageselector' onClick='DeletePackageImage(\"" + response[i].packageImageName + "\")' value='Delete Image'></div>";
+                    } else {
+                        image_holder += "<span style='margin-top:10px;color:green'>This is your Default Image</span>";
+                        image_holder += "<input style='margin-top:10px;' type='button' class='Defaultimageselector' onClick='DeletePackageImage(\"" + response[i].packageImageName + "\")' value='Delete Image'></div>";
+                    }
                     image_holder += "</div>";
                 }
                 $("#preattach").css("display", "block");
@@ -439,6 +506,10 @@ function GetPackageImages() {
                 if (image_holder != "") {
                     $("#preattachparent").css("display", "block");
                 }
+            }
+            else if (response == "" && response.status != 401) {
+                $("#preattach").css("display", "none");
+                $("#preattach").html("");
             }
             else if (response.status == 401) {
                 SessionEndManager();

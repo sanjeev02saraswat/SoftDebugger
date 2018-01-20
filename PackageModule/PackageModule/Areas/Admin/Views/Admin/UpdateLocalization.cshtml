@@ -2,17 +2,17 @@
 
 
 <div class="content-wrapper" ng-app="AddLocalizationApp" ng-controller="CreateNewLocalizationcontroller">
-    <title>{{Localization.AddLocalizationKey}}</title>
+    <title>{{Localization.UpdateLocalizationKey}}</title>
     <div class="content-header">
         <h1>
-            {{Localization.AddLocalizationKey}}
-            <small>{{Localization.AddLocalizationForAvailableResources}}</small>
+            {{Localization.UpdateLocalizationKey}}
+            <small>{{Localization.UpdateLocalizationForAvailableResources}}</small>
         </h1>
     </div>
 
-    <div class="content body" >
+    <div class="content body">
         <form name="exampleForm" class="elegant-aero">
-            <div class="container" >
+            <div class="container">
                 <input type="hidden" id="hdnResources" value="@Resources" />
                 <fieldset id="SelectApplication">
                     <legend>
@@ -44,7 +44,7 @@
                         <div class="row">
                             <div class="col-sm-3 col-md-3 col-lg-3">{{Localization.ResourcePageKey}}</div>
                             <div class="col-sm-8 col-md-8 col-lg-8">
-                                <input type="text" id="PageName" ej-autocomplete e-width="100%" e-fields-key="PageID" ng-model="AddLocalization.PageName"  e-fields-text="PageName" e-datasource="pageList" />
+                                <input type="text" id="PageName" ej-autocomplete e-width="100%" e-fields-key="PageID" ng-model="AddLocalization.PageName" e-fields-text="PageName" e-datasource="pageList" />
                                 <input type="hidden" id="hdnPageID" ng-model="AddLocalization.PageID" />
                                 <span class="modelerror hiddenmessages" id="PageNameModelRequiredError">{{Localization.errorSelectPageNameKey}}</span>
                             </div>
@@ -64,7 +64,7 @@
                         {{Localization.SelectCultureLanguageKey}}
                     </legend>
                     <section>
-                        
+
                         <div class="row">
                             <div class="col-sm-3 col-md-3 col-lg-3">{{Localization.LanguageKey}}</div>
                             <div class="col-sm-8 col-md-8 col-lg-8">
@@ -91,9 +91,9 @@
                         <div class="row">
                             <div class="col-sm-8 col-md-8 col-lg-8"><b>{{Localization.SelectedCultureKey}}<span>&nbsp;{{AddLocalization.PageName}} &nbsp;{{Localization.PageKey}} &nbsp;{{AddLocalization.LanguageName}}&nbsp;</span>{{Localization.CultureResourceKey}}</b></div>
                         </div>
-                        <div class="row">
-                            <div class="col-sm-8 col-md-8 col-lg-8">
-                                <span><a style="cursor:pointer"  ng-click="HideShowProvider('SelectPageName','LocalizationResourceGroup','STEP1')">{{Localization.wanttochanngeResourcePage}}</a></span>
+                        <div class="row">                           
+                            <div class="col-sm-8 col-md-8 col-lg-8">                               
+                                <span><a style="cursor:pointer" ng-click="HideShowProvider('SelectPageName','LocalizationResourceGroup','STEP1')">{{Localization.wanttochanngeResourcePage}}</a></span>
                             </div>
                         </div>
                         <div class="row">
@@ -106,6 +106,7 @@
                             <div class="col-sm-8 col-md-8 col-lg-8">
                                 <input type="text" class="form-control" required autocomplete="off" ng-model="AddLocalization.ResourceID" />
                                 <span class="modelerror hiddenmessages" id="ResourceIDModelRequiredError">{{Localization.errorSelectResourceIDKey}}</span>
+                                <span class="modelerror hiddenmessages" id="ResourceIDNotExistError">{{Localization.errorNoResourceKeyexistKey}}</span>
                             </div>
 
                         </div>
@@ -118,13 +119,22 @@
 
                         </div>
                         <div class="row" style="margin-top:10px;">
-                            <div class="col-sm-5 col-md-5 col-lg-5"></div>
-                            <div class="col-sm-5 col-md-5 col-lg-5">
-                                <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="AddNewResource()">{{Localization.SubmitResource}}</button>
-                                <span class="modelSuccess hiddenmessages" id="ResourceAddSuccessMessage">{{Localization.RecordExistKey}}</span>
-                                <span class="modelerror hiddenmessages" id="ResourcealreadyexistMessage">{{Localization.RecordAlreadyExist}}</span>
-                                <span class="modelerror hiddenmessages" id="ResourceAddErrorMessage">{{Localization.ResourceAddErrorKey}}</span>
+                            <div class="col-sm-3 col-md-3 col-lg-3"></div>
+                                <div class="col-sm-3 col-md-3 col-lg-3">
+                                    <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="GetExistingResource()">{{Localization.GetResourcesKey}}</button>
+                                </div>
+                                <div class="col-sm-3 col-md-3 col-lg-3">
+                                    <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="UpdateResource()">{{Localization.UpdateResourceValue}}</button>
+                                </div>
                             </div>
+                        <div class="row" style="margin-top:10px;">
+                            <div class="col-sm-3 col-md-3 col-lg-3"></div>
+                            <div class="col-sm-8 col-md-8 col-lg-8">
+                                <span class="modelerror hiddenmessages" id="UpdatedLocalizationResourceMessage">{{Localization.errorSelectResourceValueKey}}</span>
+                                <span class="modelerror hiddenmessages" id="UpdatedLocalizationResourceErroMessage">{{Localization.RecordUpdateErrorKey}}</span>
+                                <span class="modelSuccess hiddenmessages" id="UpdatedLocalizationResourceSuccessMessage">{{Localization.RecordUpdateKey}}</span>
+                            </div>
+                           
                         </div>
                     </section>
                 </fieldset>
@@ -133,4 +143,4 @@
     </div>
 </div>
 
-<script src="~/Areas/Admin/Assets/script/Admin/AddLocalization.js"></script>
+<script src="~/Areas/Admin/Assets/script/Admin/UpdateLocalization.js"></script>

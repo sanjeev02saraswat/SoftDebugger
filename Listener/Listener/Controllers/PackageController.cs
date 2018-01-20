@@ -114,6 +114,57 @@ namespace Listener.Controllers
             return CommonUtility.CreateResponse(HttpStatusCode.OK, JSONResult);
         }
 
+        [HttpPost]
+        [Tokenizer]
+        [Route("SetDefaultVirtualImage")]
+        public HttpResponseMessage SetDefaultVirtualImage(PackageImages objPackageImages)
+        {
+            try
+            {
+                _logger.addMessage.Add("SetDefaultVirtualImage", "SetDefaultVirtualImage Method is goint to Execute");
+                ManagePackageImages objManagePackageImages = new ManagePackageImages();
+
+                objManagePackageImages.SetDefaultVirtualImage(objPackageImages);               
+
+            }
+            catch (Exception ex)
+            {
+                _logger.addMessage.Add("SetDefaultVirtualImage", "Error during SetDefaultVirtualImage  Method Execution:" + ex.ToString());
+                _logger.ExceptionError = true;
+
+            }
+            finally
+            {
+                AsyncLogger.LogMessage(_logger);
+            }
+            return CommonUtility.CreateResponse(HttpStatusCode.OK, null);
+        }
+
+        [HttpPost]
+        [Tokenizer]
+        [Route("DeletePackageImage")]
+        public HttpResponseMessage DeletePackageImage(PackageImages objPackageImages)
+        {
+            try
+            {
+                _logger.addMessage.Add("DeletePackageImage", "DeletePackageImage Method is goint to Execute");
+                ManagePackageImages objManagePackageImages = new ManagePackageImages();
+
+                objManagePackageImages.DeletePackageImage(objPackageImages);
+
+            }
+            catch (Exception ex)
+            {
+                _logger.addMessage.Add("DeletePackageImage", "Error during DeletePackageImage  Method Execution:" + ex.ToString());
+                _logger.ExceptionError = true;
+
+            }
+            finally
+            {
+                AsyncLogger.LogMessage(_logger);
+            }
+            return CommonUtility.CreateResponse(HttpStatusCode.OK, null);
+        }
 
 
         [HttpGet]
@@ -160,7 +211,8 @@ namespace Listener.Controllers
                 {
                     // Get the uploaded image from the Files collection
                     var httpPostedPackageFile = HttpContext.Current.Request.Files["UploadedImage"];
-
+                    string autoid = Guid.NewGuid().ToString();
+                    objPackageImages.PackageImageName = objPackageImages.PackageImageName + "_" + autoid;
                     if (httpPostedPackageFile != null)
                     {
                         string fname;
@@ -235,7 +287,7 @@ namespace Listener.Controllers
                 _logger.addMessage.Add("InsertPackageCancellationPolicy", "InsertPackageCancellationPolicy Method is goint to Execute");
 
                 ManagePackageCancellationPolicy objManagePackageCancellationPolicy = new ManagePackageCancellationPolicy();
-                 objManagePackageCancellationPolicy.InsertPackageCancellationPolicy(objPackageCancellationPolicy);
+                objManagePackageCancellationPolicy.InsertPackageCancellationPolicy(objPackageCancellationPolicy);
 
 
             }

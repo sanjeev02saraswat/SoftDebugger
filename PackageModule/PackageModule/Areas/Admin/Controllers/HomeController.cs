@@ -52,6 +52,14 @@ namespace PackageModule.Areas.Admin.Controllers
             return View();
         }
 
+        [LocalizationFilter]
+        // GET: Admin/Home
+        public ActionResult CompanyDetails()
+        {
+            ViewBag.AddLocalizationLangFile = CommonFunction.GetResources("CompanyDetails");
+            return View();
+        }
+
         [HttpGet]
 
         public bool CreateTokenCookie(string TokenID,string CompanyID,string AgentName,string LanguageCode)

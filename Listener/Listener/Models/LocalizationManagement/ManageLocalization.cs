@@ -52,7 +52,44 @@ namespace Listener.Models.LocalizationManagement
             return AppList;
         }
 
+        public string GetResourceList(LocalizationModel objLocalizationModel)
+        {
+            string ResourceList = string.Empty;
+            try
+            {
+                _logger.addMessage.Add("GetResourceList", "GetResourceList Method is going to Execute");
+                Dictionary<string, object> objparamlist = new Dictionary<string, object>();
 
+                _logger.addMessage.Add("CompanyID", objLocalizationModel.CompanyID);
+                objparamlist.Add("CompanyID", objLocalizationModel.CompanyID);
+                _logger.addMessage.Add("ApplicationID", objLocalizationModel.ApplicationID);
+                objparamlist.Add("ApplicationID", objLocalizationModel.ApplicationID);
+                _logger.addMessage.Add("PageID", objLocalizationModel.PageID);
+                objparamlist.Add("PageID", objLocalizationModel.PageID);
+                _logger.addMessage.Add("Culture", objLocalizationModel.LanguageCode);
+                objparamlist.Add("Culture", objLocalizationModel.LanguageCode);
+
+             
+
+                IConnector objConnector = new Connector();
+                DataTable dtResourceList = objConnector.ExecuteDataTable("Localization", "FSP_GetResourceList", objparamlist);
+                _logger.addMessage.Add("GetResourceList", "GetResourceList Method executed  successfully");
+                ResourceList = CommonUtility.GetDataTableToJSONWithAddedIndex(dtResourceList);
+                _logger.addMessage.Add("GetResourceList", "ResourceList List: " + ResourceList);
+            }
+            catch (Exception ex)
+            {
+                _logger.ExceptionError = true;
+                _logger.addMessage.Add("GetApplications", "Error during Get Applications Method Execution:" + ex.ToString());
+
+            }
+            finally
+            {
+                AsyncLogger.LogMessage(_logger);
+
+            }
+            return ResourceList;
+        }
         public string GetPageList(string CompanyID,string ApplicationID)
         {
             string PageList = string.Empty;
@@ -165,6 +202,93 @@ namespace Listener.Models.LocalizationManagement
 
             }
             return InsertedResource;
+        }
+
+
+        public bool UpdateResourceValue(LocalizationModel objLocalizationModel)
+        {
+            bool InsertedResource = false;
+
+
+            try
+            {
+                _logger.addMessage.Add("UpdateResourceValue", "UpdateResourceValue Method is going to Execute");
+                Dictionary<string, object> objparamlist = new Dictionary<string, object>();
+
+                _logger.addMessage.Add("CompanyID", objLocalizationModel.CompanyID);
+                objparamlist.Add("CompanyID", objLocalizationModel.CompanyID);
+                _logger.addMessage.Add("ApplicationID", objLocalizationModel.ApplicationID);
+                objparamlist.Add("ApplicationID", objLocalizationModel.ApplicationID);
+                _logger.addMessage.Add("PageID", objLocalizationModel.PageID);
+                objparamlist.Add("PageID", objLocalizationModel.PageID);
+                _logger.addMessage.Add("Culture", objLocalizationModel.LanguageCode);
+                objparamlist.Add("Culture", objLocalizationModel.LanguageCode);
+
+                _logger.addMessage.Add("ResourceID", objLocalizationModel.ResourceID);
+                objparamlist.Add("ResourceID", objLocalizationModel.ResourceID);
+
+                _logger.addMessage.Add("ResourceValue", objLocalizationModel.ResourceValue);
+                objparamlist.Add("ResourceValue", objLocalizationModel.ResourceValue);
+
+                IConnector objConnector = new Connector();
+                InsertedResource = Convert.ToBoolean(objConnector.ExecuteScalar("Localization", "FSP_UpdateResources", objparamlist));
+                _logger.addMessage.Add("UpdateResourceValue", "UpdateResourceValue Method executed  successfully");
+
+            }
+            catch (Exception ex)
+            {
+                _logger.addMessage.Add("UpdateResourceValue", "Error during UpdateResourceValue Method Execution:" + ex.ToString());
+
+            }
+            finally
+            {
+                AsyncLogger.LogMessage(_logger);
+
+            }
+            return InsertedResource;
+        }
+
+
+        public LocalizationModel GetExistingResourceValue(LocalizationModel objLocalizationModel)
+        {
+            bool InsertedResource = false;
+
+
+            try
+            {
+                _logger.addMessage.Add("GetExistingResourceValue", "GetExistingResourceValue Method is going to Execute");
+                Dictionary<string, object> objparamlist = new Dictionary<string, object>();
+
+                _logger.addMessage.Add("CompanyID", objLocalizationModel.CompanyID);
+                objparamlist.Add("CompanyID", objLocalizationModel.CompanyID);
+                _logger.addMessage.Add("ApplicationID", objLocalizationModel.ApplicationID);
+                objparamlist.Add("ApplicationID", objLocalizationModel.ApplicationID);
+                _logger.addMessage.Add("PageID", objLocalizationModel.PageID);
+                objparamlist.Add("PageID", objLocalizationModel.PageID);
+                _logger.addMessage.Add("Culture", objLocalizationModel.LanguageCode);
+                objparamlist.Add("Culture", objLocalizationModel.LanguageCode);
+
+                _logger.addMessage.Add("ResourceID", objLocalizationModel.ResourceID);
+                objparamlist.Add("ResourceID", objLocalizationModel.ResourceID);
+
+               
+
+                IConnector objConnector = new Connector();
+                objLocalizationModel.ResourceValue = Convert.ToString(objConnector.ExecuteScalar("Localization", "FSP_GetExistingResourcesValue", objparamlist));
+                _logger.addMessage.Add("GetResourcesContent", "GetResourcesContent Method executed  successfully");
+
+            }
+            catch (Exception ex)
+            {
+                _logger.addMessage.Add("GetResourcesContent", "Error during Get Resources Method Execution:" + ex.ToString());
+
+            }
+            finally
+            {
+                AsyncLogger.LogMessage(_logger);
+
+            }
+            return objLocalizationModel;
         }
 
 

@@ -105,7 +105,10 @@
     <Content Include="Areas\Admin\Assets\css\Package\NewPackage.css" />
     <Content Include="Areas\Admin\Assets\script\Admin\AddLocalization.js" />
     <Content Include="Areas\Admin\Assets\script\Admin\AgentProfile.js" />
+    <Content Include="Areas\Admin\Assets\script\Admin\ManageLocalization.js" />
+    <Content Include="Areas\Admin\Assets\script\Admin\UpdateLocalization.js" />
     <Content Include="Areas\Admin\Assets\script\CreateNewUser.js" />
+    <Content Include="Areas\Admin\Assets\script\Home\CompanyDetails.js" />
     <Content Include="Areas\Admin\Assets\script\Package\CreateNewPackage.js" />
     <Content Include="Areas\Admin\Assets\script\Package\UpdatePackage.js" />
     <Content Include="Areas\Admin\Assets\script\signup.js" />
@@ -162,6 +165,9 @@
     <Content Include="Areas\Admin\Views\Admin\UpdateDetails.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\AgentProfile.cshtml" />
     <Content Include="Areas\Admin\Views\Home\Error.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\CompanyDetails.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\UpdateLocalization.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\ManageLocalization.cshtml" />
     <None Include="Properties\PublishProfiles\PackageModule.pubxml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\Error.cshtml" />

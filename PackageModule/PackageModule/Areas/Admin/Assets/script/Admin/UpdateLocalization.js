@@ -12,7 +12,7 @@ var app = angular.module('AddLocalizationApp', ['ejangular']).controller('Create
     $scope.Resourcemodel = {
         hdnResources:''
     }
-    debugger;
+    
     $scope.Localization = GetParseResources("hdnResources");
     $scope.AddLocalization = {
         ApplicationName: '',
@@ -26,7 +26,38 @@ var app = angular.module('AddLocalizationApp', ['ejangular']).controller('Create
         CompanyID: '' + $("#CompanyID").val() + ''
 
     };
-    $scope.AddNewResource = function () {
+
+    $scope.GetExistingResource = function () {
+        debugger;
+        var validate = true;
+        var IDcollection = ['ResourceID'];
+        validate = ScopeBlankChecker($scope.AddLocalization, IDcollection)
+        if (validate) {
+            $http({
+                method: "post",
+                contentType: "application/json; charset=utf-8",
+                headers: { "tokenid": "" + $("#listenertoken").val() + "", "CompanyID": "" + $("#CompanyID").val() + "" },
+                url: "http://localhost:2849/Localization/GetExistingResource",
+                data: JSON.stringify($scope.AddLocalization)
+            }).then(function (success) {
+                debugger;
+                if (success.data.resourceValue == '') {
+                    $("#ResourceIDNotExistError").removeClass("hiddenmessages");
+                } else {
+                    $scope.AddLocalization.ResourceValue = success.data.resourceValue;
+                }
+              
+               
+
+            }, function (error) {
+                if (error.status == 401) {
+                    SessionEndManager();
+                }
+            });
+        }
+    }
+
+    $scope.UpdateResource = function () {
         debugger;
         var validate = true;        
         var IDcollection = ['ResourceID', 'ResourceValue'];
@@ -36,17 +67,15 @@ var app = angular.module('AddLocalizationApp', ['ejangular']).controller('Create
                 method: "post",
                 contentType: "application/json; charset=utf-8",
                 headers: { "tokenid": "" + $("#listenertoken").val() + "", "CompanyID": "" + $("#CompanyID").val() + "" },
-                url: "http://localhost:2849/Localization/AddNewResource",
+                url: "http://localhost:2849/Localization/UpdateResource",
                 data: JSON.stringify($scope.AddLocalization)
             }).then(function (success) {
                 if (success.data==true) {
-                    $("#ResourceAddSuccessMessage").removeClass("hiddenmessages");
-                } else if(success.data==false) {
-                    $("#ResourcealreadyexistMessage").removeClass("hiddenmessages");
+                    $("#UpdatedLocalizationResourceSuccessMessage").removeClass("hiddenmessages");
                 } else {
-                    $("#ResourceAddErrorMessage").removeClass("hiddenmessages");
+                    $("#UpdatedLocalizationResourceErroMessage").removeClass("hiddenmessages");
                 }
-               // $scope.AddLocalization.ResourceID = '';
+                $scope.AddLocalization.ResourceID = '';
                 $scope.AddLocalization.ResourceValue = '';
                 
             }, function (error) {

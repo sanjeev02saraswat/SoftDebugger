@@ -1,0 +1,4 @@
+ [
+     { "CurrencyCode": "USD", "CurrencyName": "American Dollor", "CurrencySymbol": "$" },
+     { "CurrencyCode": "INR", "CurrencyName": "Indian Rupee", "CurrencySymbol": "₹" }
+ ]

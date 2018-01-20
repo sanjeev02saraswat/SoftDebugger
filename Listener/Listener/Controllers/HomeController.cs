@@ -12,6 +12,8 @@ using System.Web.Http.Cors;
 using Listener.Filters;
 using WEBAPI2.Models;
 using PackageModule.Utilities;
+using BusinessModels.AdminManagement;
+using Listener.Models.AdminManagement;
 
 namespace WEBAPI2.Controllers
 {
@@ -59,13 +61,68 @@ namespace WEBAPI2.Controllers
 
         }
 
+        [HttpPost]
+        [Tokenizer]
+        [Route("UpdateCompanyDetails")]
+        public HttpResponseMessage UpdateCompanyDetails(CompanyDetails objCompanyDetails)
+        {
+            try
+            {
+                _logger.addMessage.Add("UpdateCompanyDetails", "UpdateCompanyDetails Method is goint to Execute");
+                ManageCompanyProfile objManageCompanyProfile = new ManageCompanyProfile();
+                bool status = objManageCompanyProfile.UpdateCompanyDetails(objCompanyDetails);
+                if (status)
+                {
+                    return CommonUtility.CreateResponse(HttpStatusCode.OK, null);
+                }
+                else { return CommonUtility.CreateResponse(HttpStatusCode.InternalServerError, null); }
+
+            }
+            catch (System.Exception ex)
+            {
+
+                _logger.addMessage.Add("UpdateCompanyDetails", "Error during UpdateCompanyDetails Method Execution:" + ex.ToString());
+                return CommonUtility.CreateResponse(HttpStatusCode.InternalServerError, null);
+            }
+            finally
+            {
+                AsyncLogger.LogMessage(_logger);
+            }
+
+        }
+
+        [HttpGet]
+        [Tokenizer]
+        [Route("GetCompanyDetails")]
+        public HttpResponseMessage GetCompanyDetails(string CompanyID,string TokenID)
+        {
+            try
+            {
+                _logger.addMessage.Add("GetCompanyDetails", "GetCompanyDetails Method is goint to Execute");
+                ManageCompanyProfile objManageCompanyProfile = new ManageCompanyProfile();
+                string CompanyDetails = objManageCompanyProfile.GetCompanyDetails(CompanyID, TokenID);
+
+                return CommonUtility.CreateResponse(HttpStatusCode.OK, CompanyDetails);
+            }
+            catch (System.Exception ex)
+            {
+
+                _logger.addMessage.Add("UpdateCompanyDetails", "Error during UpdateCompanyDetails Method Execution:" + ex.ToString());
+                return CommonUtility.CreateResponse(HttpStatusCode.InternalServerError, null);
+            }
+            finally
+            {
+                AsyncLogger.LogMessage(_logger);
+            }
+
+        }
 
         [HttpGet]
         [Tokenizer]
         [Route("GetLanguages")]
         public HttpResponseMessage GetLanguages()
         {
-           
+
             string LangConversion = "";
             string mapPath = System.Web.HttpContext.Current.Server.MapPath(@"~/App_Data/Language.json");
             using (StreamReader r = new StreamReader(mapPath))
@@ -73,6 +130,22 @@ namespace WEBAPI2.Controllers
                 LangConversion = r.ReadToEnd();
             }
             List<LanguageList> objAllList = JsonConvert.DeserializeObject<List<LanguageList>>(LangConversion);
+            return CommonUtility.CreateResponse(HttpStatusCode.OK, objAllList);
+        }
+
+        [HttpGet]
+        [Tokenizer]
+        [Route("GetCurrency")]
+        public HttpResponseMessage GetCurrency()
+        {
+
+            string CurrencyConversion = "";
+            string mapPath = System.Web.HttpContext.Current.Server.MapPath(@"~/App_Data/Currency.json");
+            using (StreamReader r = new StreamReader(mapPath))
+            {
+                CurrencyConversion = r.ReadToEnd();
+            }
+            List<CurrencyList> objAllList = JsonConvert.DeserializeObject<List<CurrencyList>>(CurrencyConversion);
             return CommonUtility.CreateResponse(HttpStatusCode.OK, objAllList);
         }
 
@@ -102,17 +175,17 @@ namespace WEBAPI2.Controllers
             try
             {
                 _logger.addMessage.Add("Loginuser", "Loginuser Method is goint to Execute");
-               
-                    string Token = Guid.NewGuid().ToString();
+
+                string Token = Guid.NewGuid().ToString();
                 //will save same token against the user
                 TokenManagement objTokenManagement = new TokenManagement();
-                 objSignupuser = objTokenManagement.CreateTokenforAgent(objSignupuser,Token);
+                objSignupuser = objTokenManagement.CreateTokenforAgent(objSignupuser, Token);
                 if (objSignupuser.LoginStatus)
                 {
                     objSignupuser.Tokenid = Token;
                 }
-                    return CommonUtility.CreateResponse(HttpStatusCode.OK, objSignupuser);
-               
+                return CommonUtility.CreateResponse(HttpStatusCode.OK, objSignupuser);
+
             }
             catch (System.Exception ex)
             {

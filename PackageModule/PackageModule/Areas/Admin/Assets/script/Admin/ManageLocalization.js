@@ -1,4 +1,4 @@
-﻿
+﻿var ResourceList=[]
 var LanguageList = [];
 var ApplicationList = [];
 var PageList = [];
@@ -12,7 +12,7 @@ var app = angular.module('AddLocalizationApp', ['ejangular']).controller('Create
     $scope.Resourcemodel = {
         hdnResources:''
     }
-    debugger;
+    
     $scope.Localization = GetParseResources("hdnResources");
     $scope.AddLocalization = {
         ApplicationName: '',
@@ -26,8 +26,36 @@ var app = angular.module('AddLocalizationApp', ['ejangular']).controller('Create
         CompanyID: '' + $("#CompanyID").val() + ''
 
     };
-    $scope.AddNewResource = function () {
-        debugger;
+
+    $scope.GetExistingResource = function () {       
+        var validate = true;
+        var IDcollection = ['ResourceID'];
+        validate = ScopeBlankChecker($scope.AddLocalization, IDcollection)
+        if (validate) {
+            $http({
+                method: "post",
+                contentType: "application/json; charset=utf-8",
+                headers: { "tokenid": "" + $("#listenertoken").val() + "", "CompanyID": "" + $("#CompanyID").val() + "" },
+                url: "http://localhost:2849/Localization/GetExistingResource",
+                data: JSON.stringify($scope.AddLocalization)
+            }).then(function (success) {                
+                if (success.data.resourceValue == '') {
+                    $("#ResourceIDNotExistError").removeClass("hiddenmessages");
+                } else {
+                    $scope.AddLocalization.ResourceValue = success.data.resourceValue;
+                }
+              
+               
+
+            }, function (error) {
+                if (error.status == 401) {
+                    SessionEndManager();
+                }
+            });
+        }
+    }
+
+    $scope.UpdateResource = function () {
         var validate = true;        
         var IDcollection = ['ResourceID', 'ResourceValue'];
         validate = ScopeBlankChecker($scope.AddLocalization, IDcollection)
@@ -36,18 +64,18 @@ var app = angular.module('AddLocalizationApp', ['ejangular']).controller('Create
                 method: "post",
                 contentType: "application/json; charset=utf-8",
                 headers: { "tokenid": "" + $("#listenertoken").val() + "", "CompanyID": "" + $("#CompanyID").val() + "" },
-                url: "http://localhost:2849/Localization/AddNewResource",
+                url: "http://localhost:2849/Localization/UpdateResource",
                 data: JSON.stringify($scope.AddLocalization)
             }).then(function (success) {
                 if (success.data==true) {
-                    $("#ResourceAddSuccessMessage").removeClass("hiddenmessages");
-                } else if(success.data==false) {
-                    $("#ResourcealreadyexistMessage").removeClass("hiddenmessages");
+                    $("#UpdatedLocalizationResourceSuccessMessage").removeClass("hiddenmessages");
+                    getResources();
                 } else {
-                    $("#ResourceAddErrorMessage").removeClass("hiddenmessages");
+                    $("#UpdatedLocalizationResourceErroMessage").removeClass("hiddenmessages");
                 }
-               // $scope.AddLocalization.ResourceID = '';
+                $scope.AddLocalization.ResourceID = '';
                 $scope.AddLocalization.ResourceValue = '';
+                $("#UpdateResourcePanel").hide();
                 
             }, function (error) {
                 if (error.status == 401) {
@@ -56,6 +84,17 @@ var app = angular.module('AddLocalizationApp', ['ejangular']).controller('Create
             });
         }
     }
+
+
+    $scope.SelectResource = function (Index, event) {
+        debugger;
+        $scope.AddLocalization.ResourceID = $scope.AddLocalization.ResourceList[Index].ResourceID;
+        $scope.AddLocalization.ResourceValue = $scope.AddLocalization.ResourceList[Index].ResourceValue;
+        $("#UpdateResourcePanel").show();
+    }
+
+
+
     $scope.HideShowProvider = function (showdiv, hidediv, STEP1) {
         var validate = true;
         if (STEP1 == "STEP1") {           
@@ -73,15 +112,39 @@ var app = angular.module('AddLocalizationApp', ['ejangular']).controller('Create
         } else if (STEP1 == "STEP3") {
             var IDcollection = ['LanguageCode'];
             validate = ScopeBlankChecker($scope.AddLocalization, IDcollection)
+            if (validate) {
+                getResources();
+            }
            }
         if (validate) {
             $("#" + showdiv).css("display", "block");
             $("#" + hidediv).css("display", "none");
+          
         } else {
             return false;
         }
     }
+    function getResources() {
 
+        $http({
+            method: "post",
+            contentType: "application/json; charset=utf-8",
+            headers: { "tokenid": "" + $("#listenertoken").val() + "", "CompanyID": "" + $("#CompanyID").val() + "" },
+            url: "" + $("#listenerurl").val() + "Localization/getResources",
+            data: JSON.stringify($scope.AddLocalization)
+        }).then(function (success) {
+         
+            ResourceList = JSON.parse(success.data);
+            $scope.AddLocalization.ResourceList = ResourceList;
+
+        }, function (error) {
+           
+            if (error.status == 401) {
+                SessionEndManager();
+            }
+        });
+
+    };
     function getPages() {
 
         $http({
@@ -90,11 +153,11 @@ var app = angular.module('AddLocalizationApp', ['ejangular']).controller('Create
             headers: { "tokenid": "" + $("#listenertoken").val() + "", "CompanyID": "" + $("#CompanyID").val() + "" },
             url: "" + $("#listenerurl").val() + "Localization/GetPageList?CompanyID=" + $("#CompanyID").val() + "&ApplicationID="+$scope.AddLocalization.ApplicationID+""
         }).then(function (success) {
-            debugger;
+          
             PageList = JSON.parse(success.data);
 
         }, function (error) {
-            debugger;
+            
             if (error.status == 401) {
                 SessionEndManager();
             }

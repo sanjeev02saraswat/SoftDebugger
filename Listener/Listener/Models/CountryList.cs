@@ -14,6 +14,15 @@ namespace WEBAPI2.Models
         public string nativeLanguageName { get; set; }
     }
 
+    public class CurrencyList
+    {
+        public string CurrencyCode { get; set; }
+
+        public string CurrencyName { get; set; }
+
+        public string CurrencySymbol { get; set; }
+    }
+
     public class CountryList
     {
         public string CountryCode { get; set; }

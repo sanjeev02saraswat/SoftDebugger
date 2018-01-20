@@ -1,0 +1,210 @@
+﻿@{ string Resources = Convert.ToString(ViewBag.AddLocalizationLangFile);}
+<style>
+    .bookings_table.inner_btable.deal_table {
+        padding-bottom: 80px;
+    }
+
+    .bookings_table .table {
+        border-bottom: 1px solid #eaecef;
+        margin-bottom: 0;
+        font-size: 12px;
+    }
+
+    *, body {
+        font-family: "Lato", Helvetica, Arial, sans-serif;
+    }
+
+    .bookings_table .table th {
+        background: #eaeef0;
+        color: #353435;
+        font-weight: normal;
+        border-top: none;
+        padding: 10px 10px;
+        font-size: 14px;
+        font-family: 'Lato-Regular';
+    }
+
+    .bookings_table .table-striped > tbody > tr:nth-of-type(2n+1) {
+        background: #fff;
+    }
+
+    .bookings_table .table tr td {
+        border-color: #eaecef;
+        color: #353435;
+        padding: 8px 10px;
+        vertical-align: middle;
+        height: 40px;
+        font-size: 13px;
+        cursor: pointer;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+</style>
+
+<div class="content-wrapper" ng-app="AddLocalizationApp" ng-controller="CreateNewLocalizationcontroller">
+    <title>{{Localization.ManageLocalizationKey}}</title>
+    <div class="content-header">
+        <h1>
+            {{Localization.ManageLocalizationKey}}
+            <small>{{Localization.ManageLocalizationForAvailableResources}}</small>
+        </h1>
+    </div>
+
+    <div class="content body">
+        <form name="exampleForm" class="elegant-aero">
+            <div class="container">
+                <input type="hidden" id="hdnResources" value="@Resources" />
+                <fieldset id="SelectApplication">
+                    <legend>
+                        {{Localization.SelectApplicationKey}}
+                    </legend>
+                    <section>
+                        <div class="row">
+                            <div class="col-sm-3 col-md-3 col-lg-3">{{Localization.ApplicationNameKey}}</div>
+                            <div class="col-sm-8 col-md-8 col-lg-8">
+                                <input type="text" id="ApplicationName" ng-model="AddLocalization.ApplicationName" ej-autocomplete e-width="100%" e-fields-key="ApplicationName" e-fields-text="ApplicationName" e-datasource="applicationList" />
+                                <input type="hidden" id="hdnApplicationName" ng-model="AddLocalization.ApplicationID" />
+                                <span class="modelerror hiddenmessages" id="ApplicationIDModelRequiredError">{{Localization.errorSelectApplication}}</span>
+                            </div>
+
+                        </div>
+                        <div class="row" style="margin-top:10px;">
+                            <div class="col-sm-5 col-md-5 col-lg-5"></div>
+                            <div class="col-sm-5 col-md-5 col-lg-5">
+                                <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="AddApplicationID();HideShowProvider('SelectPageName','SelectApplication','STEP1')">{{Localization.NextStepKey}}</button>
+                            </div>
+                        </div>
+                    </section>
+                </fieldset>
+                <fieldset id="SelectPageName" style="display:none;">
+                    <legend>
+                        {{Localization.SelectResourcePageKey}}
+                    </legend>
+                    <section>
+                        <div class="row">
+                            <div class="col-sm-3 col-md-3 col-lg-3">{{Localization.ResourcePageKey}}</div>
+                            <div class="col-sm-8 col-md-8 col-lg-8">
+                                <input type="text" id="PageName" ej-autocomplete e-width="100%" e-fields-key="PageID" ng-model="AddLocalization.PageName" e-fields-text="PageName" e-datasource="pageList" />
+                                <input type="hidden" id="hdnPageID" ng-model="AddLocalization.PageID" />
+                                <span class="modelerror hiddenmessages" id="PageNameModelRequiredError">{{Localization.errorSelectPageNameKey}}</span>
+                            </div>
+
+                        </div>
+                        <div class="row" style="margin-top:10px;">
+                            <div class="col-sm-5 col-md-5 col-lg-5"></div>
+                            <div class="col-sm-5 col-md-5 col-lg-5">
+                                <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="AddPageID();HideShowProvider('SelectLanguage','SelectPageName','STEP2')">{{Localization.NextStepKey}}</button>
+                            </div>
+                        </div>
+                    </section>
+                </fieldset>
+
+                <fieldset id="SelectLanguage" style="display:none;">
+                    <legend>
+                        {{Localization.SelectCultureLanguageKey}}
+                    </legend>
+                    <section>
+
+                        <div class="row">
+                            <div class="col-sm-3 col-md-3 col-lg-3">{{Localization.LanguageKey}}</div>
+                            <div class="col-sm-8 col-md-8 col-lg-8">
+                                <input type="text" id="PackageLanguage" ej-autocomplete e-width="100%" e-fields-key="languageCode" e-fields-text="languageName" e-datasource="dataList" />
+                                <input type="hidden" id="hdnPackageLanguage" ng-model="AddLocalization.LanguageCode" />
+                                <span class="modelerror hiddenmessages" id="LanguageCodeModelRequiredError">{{Localization.errorSelectLanguageKey}}</span>
+                            </div>
+
+                        </div>
+                        <div class="row" style="margin-top:10px;">
+                            <div class="col-sm-5 col-md-5 col-lg-5"></div>
+                            <div class="col-sm-5 col-md-5 col-lg-5">
+                                <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="AddLanguageCode();HideShowProvider('LocalizationResourceGroup','SelectLanguage','STEP3')">{{Localization.NextStepKey}}</button>
+                            </div>
+                        </div>
+                    </section>
+                </fieldset>
+
+                <fieldset id="LocalizationResourceGroup" style="display:none;">
+                    <legend>
+                        {{Localization.ManageResources}}
+                    </legend>
+                    <section>
+                        <div class="row">
+                            <div class="col-sm-8 col-md-8 col-lg-8"><b>{{Localization.SelectedCultureKey}}<span>&nbsp;{{AddLocalization.PageName}} &nbsp;{{Localization.PageKey}} &nbsp;{{AddLocalization.LanguageName}}&nbsp;</span>{{Localization.CultureResourceKey}}</b></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-8 col-md-8 col-lg-8">
+                                <span><a style="cursor:pointer" ng-click="HideShowProvider('SelectPageName','LocalizationResourceGroup','STEP1')">{{Localization.wanttochanngeResourcePage}}</a></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-8 col-md-8 col-lg-8">
+                                <span><a style="cursor:pointer" ng-click="HideShowProvider('SelectLanguage','LocalizationResourceGroup','STEP2')">{{Localization.wanttochanngeResourceCulture}}</a></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-1 col-md-1 col-lg-1">
+                                </div>
+                                <div class="col-sm-10 col-md-10 col-lg-10">
+                                    <div class="table-responsive bookings_table inner_btable deal_table">
+                                        <table class="table table-hover table-striped" id="tblCrmdatarecords">
+                                            <tbody>
+                                                <tr>
+                                                    <th><b>{{Localization.ResourceIDKey}}</b></th>
+                                                    <th><b>{{Localization.ResourceValueKey}}</b></th>
+                                                    <th><b>{{Localization.ActionKey}}</b></th>
+                                                </tr>
+                                                <tr id="resourceselect_{{resources.Index}}" ng-repeat="resources in AddLocalization.ResourceList">
+                                                    @*| orderBy : 'values.id'*@
+
+                                                    <td>{{resources.ResourceID}}</td>
+                                                    <td>{{resources.ResourceValue}}</td>
+                                                    <td><a href="#UpdateResourcePanel" ng-click="SelectResource(resources.Index,this)">{{Localization.EditResourceKey}}</a></td>
+                                                    @*<td>{{resources.joinDate | date : 'dd/MM/yyyy'}}</td>*@
+                                                </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        <div class="row" style="display:none" id="UpdateResourcePanel">
+                            <div class="row">
+                                <div class="col-sm-3 col-md-3 col-lg-3">{{Localization.EnterResourceKey}}</div>
+                                <div class="col-sm-8 col-md-8 col-lg-8">
+                                    <input type="text" class="form-control" required autocomplete="off" ng-model="AddLocalization.ResourceID" />
+                                    <span class="modelerror hiddenmessages" id="ResourceIDModelRequiredError">{{Localization.errorSelectResourceIDKey}}</span>
+                                    <span class="modelerror hiddenmessages" id="ResourceIDNotExistError">{{Localization.errorNoResourceKeyexistKey}}</span>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-3 col-md-3 col-lg-3">{{Localization.EnterResourceValue}}</div>
+                                <div class="col-sm-8 col-md-8 col-lg-8">
+                                    <input type="text" class="form-control" required autocomplete="off" ng-model="AddLocalization.ResourceValue" />
+                                    <span class="modelerror hiddenmessages" id="ResourceValueModelRequiredError">{{Localization.errorSelectResourceValueKey}}</span>
+                                </div>
+
+                            </div>
+                            <div class="row" style="margin-top:10px;">
+                                <div class="col-sm-3 col-md-3 col-lg-3"></div>
+                                <div class="col-sm-5 col-md-5 col-lg-5">
+                                    <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="UpdateResource()">{{Localization.UpdateResourceValue}}</button>
+                                </div>
+
+                            </div>                           
+                        </div>
+                        <div class="row" style="margin-top:10px;">
+                            <div class="col-sm-3 col-md-3 col-lg-3"></div>
+                            <div class="col-sm-8 col-md-8 col-lg-8">
+                                <span class="modelerror hiddenmessages" id="UpdatedLocalizationResourceMessage">{{Localization.errorSelectResourceValueKey}}</span>
+                                <span class="modelerror hiddenmessages" id="UpdatedLocalizationResourceErroMessage">{{Localization.RecordUpdateErrorKey}}</span>
+                                <span class="modelSuccess hiddenmessages" id="UpdatedLocalizationResourceSuccessMessage">{{Localization.RecordUpdateKey}}</span>
+                            </div>
+
+                        </div>
+                    </section>
+                </fieldset>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="~/Areas/Admin/Assets/script/Admin/ManageLocalization.js"></script>

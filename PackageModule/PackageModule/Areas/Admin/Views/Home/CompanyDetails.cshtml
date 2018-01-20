@@ -1,0 +1,121 @@
+﻿@{ string Resources = Convert.ToString(ViewBag.AddLocalizationLangFile);}
+
+<div class="content-wrapper" ng-app="CompanyDetailsApp" ng-controller="AddCompanyDetailscontroller" ng-init="GetCompanyDetails()">
+    <title>{{Localization.CompanyDetailsKey}}</title>
+    <div class="content-header">
+        <h1>
+            {{Localization.CompanyDetailsKey}}
+            <small>{{Localization.BasicCompanyDetailsKey}}</small>
+        </h1>
+    </div>
+    <!-- Main content -->
+    <div class="content body">
+        <div class="container">
+            <input type="hidden" id="hdnResources" value="@Resources" />
+            <section id="CompanyDetails">
+                <div class="row">
+                    <div class="col-sm-3 col-md-3 col-lg-3">Company Code</div>
+                    <div class="col-sm-8 col-md-8 col-lg-8">
+                        <input type="text" readonly="readonly" class="form-control" autocomplete="off" value="{{CompanyDetails.CompanyID}}" id="CompanyCode" required />
+                    </div>
+                </div>
+                 <div class="row">
+                    <div class="col-sm-3 col-md-3 col-lg-3">Company Name</div>
+                    <div class="col-sm-8 col-md-8 col-lg-8">
+                        <input type="text"  class="form-control" required autocomplete="off" ng-model="CompanyDetails.CompanyName" id="CompanyName" />
+                        <span class="modelerror hiddenmessages" id="CompanyNameModelRequiredError">{{Localization.CompanyNameValidationKey}}</span>
+                    </div>
+                </div>
+              
+                <div class="row">
+                    <div class="col-sm-3 col-md-3 col-lg-3">Company Address</div>
+                    <div class="col-sm-8 col-md-8 col-lg-8">
+                        <input type="text" class="form-control" required autocomplete="off" ng-model="CompanyDetails.CompanyAddress" id="CompanyAddress" />
+
+                        <span class="modelerror hiddenmessages" id="CompanyAddressModelRequiredError">{{Localization.CompanyAddressValidationKey}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3 col-md-3 col-lg-3">Company Country</div>
+                    <div class="col-sm-8 col-md-8 col-lg-8">
+                        <input type="text" id="Country" ej-autocomplete e-width="100%" e-fields-key="countryCode" e-fields-text="countryName" e-datasource="countryList" />
+                        <input type="hidden" id="hdnCompanyCountry" ng-model="CompanyDetails.Country" />
+                        <span class="modelerror hiddenmessages" id="CountryModelRequiredError">{{Localization.CountryValidationKey}}</span>
+
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-3 col-md-3 col-lg-3">Company Email</div>
+                    <div class="col-sm-8 col-md-8 col-lg-8">
+                        <input type="text" class="form-control" required autocomplete="off" ng-model="CompanyDetails.CompanyEmail" id="Email" />
+                        <span class="modelerror hiddenmessages" id="EmailModelRequiredError">{{Localization.EmailValidationKey}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3 col-md-3 col-lg-3">Company Phone</div>
+                    <div class="col-sm-8 col-md-8 col-lg-8">
+                        <input type="text" class="form-control" required autocomplete="off" ng-model="CompanyDetails.Phone" id="Phone" />
+                        <span class="modelerror hiddenmessages" id="PhoneModelRequiredError">{{Localization.PhoneValidationKey}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3 col-md-3 col-lg-3">Company Fax</div>
+                    <div class="col-sm-8 col-md-8 col-lg-8">
+                        <input type="text" class="form-control" required autocomplete="off" ng-model="CompanyDetails.FAX" id="Phone" />
+                        <span class="modelerror hiddenmessages" id="PhoneModelRequiredError">{{Localization.PhoneValidationKey}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3 col-md-3 col-lg-3">Company Currency</div>
+                    <div class="col-sm-8 col-md-8 col-lg-8">
+                        <input type="text" id="Currency" ej-autocomplete e-width="100%" e-fields-key="currencyCode" e-fields-text="currencyName" e-datasource="dataList" />
+                        <input type="hidden" id="hdnCurrencyCode" ng-model="CompanyDetails.CurrencyCode" />
+                        <span class="modelerror hiddenmessages" id="CurrencyCodeModelRequiredError">{{Localization.DashBoardLanguageValidationKey}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3 col-md-3 col-lg-3">Company Website</div>
+                    <div class="col-sm-8 col-md-8 col-lg-8">
+                        <input type="text" class="form-control" required autocomplete="off" ng-model="CompanyDetails.CompanyWebsite" id="CompanyWebsite" />                        
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-3 col-md-3 col-lg-3">Company PAN Number</div>
+                    <div class="col-sm-8 col-md-8 col-lg-8">
+                        <input type="text" class="form-control" required autocomplete="off" ng-model="CompanyDetails.CompanyPANNumber" id="CompanyPANNumber" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3 col-md-3 col-lg-3">Company TAN Number</div>
+                    <div class="col-sm-8 col-md-8 col-lg-8">
+                        <input type="text" class="form-control" required autocomplete="off" ng-model="CompanyDetails.CompanyTANNumber" id="CompanyTANNumber" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3 col-md-3 col-lg-3">Company Logo</div>
+                    <div class="col-sm-8 col-md-8 col-lg-8">
+                        <input type="text" class="form-control" required autocomplete="off" ng-model="CompanyDetails.CompanyLogo" id="CompanyLogo" />
+                    </div>
+                </div>
+
+
+
+
+                <div class="row" style="margin-top:10px;">
+                    <div class="col-sm-3 col-md-3 col-lg-3"></div>
+                    <div class="col-sm-8 col-md-8 col-lg-8">
+                        <button ng-click="AddCurrencyCode();AddCountryCode();UpdateCompanyDetails(CompanyDetails);" type="button" class="btn btn-primary btn-lg btn-block">{{Localization.UpdateKey}}</button>
+                        <span class="modelSuccess hiddenmessages" id="UpdatedCompanyDetailsMessage">{{Localization.UpdatedCompanyDetailsMessageKey}}</span>
+                        <span class="modelerror hiddenmessages" id="UpdatedCompanyDetailsErrorMessage">{{Localization.UpdatedCompanyDetailsErrorMessageKey}}</span>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+    </div>
+
+</div>
+
+<script src="~/Areas/Admin/Assets/script/Home/CompanyDetails.js"></script>

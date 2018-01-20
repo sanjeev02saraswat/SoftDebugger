@@ -1,4 +1,30 @@
-﻿//This function will call when session or Token will finish
+﻿//$(document).on({
+//    ajaxStart: function () { $body.addClass("loading"); },
+//    ajaxStop: function () { $body.removeClass("loading"); }
+//});
+
+function startCycle() {
+           $.ajax({
+            type: "GET",
+            headers: { "tokenid": "" + $("#listenertoken").val() + "", "CompanyID": "" + $("#CompanyID").val() + "" },
+            url: "" + $("#listenerurl").val() + "Home/GetCompanyDetails?CompanyID=" + $("#CompanyID").val() + "&TokenID=" + $("#listenertoken").val() + "",
+            contentType: "application/json; charset=utf-8",
+            success: function (success) {
+                var data = JSON.parse(success);
+                debugger;
+                $("#spnAgentName").html(data.AgentName)
+                $("#spnCompanyName").html(data.CompanyName)
+            },
+            error: function (response) {
+                if (response.status == 401) {
+                    SessionEndManager();
+                }
+            }
+        });
+}
+
+
+//This function will call when session or Token will finish
 function SessionEndManager() {
     window.location.href = "/Admin/Home/Signup";
 }
@@ -19,7 +45,7 @@ function ScopeBlankChecker(scopedata,IDCollection) {
      
     var status = true;
     for (var key in scopedata) {
-        debugger;
+       
         if ((scopedata[key] == "" || scopedata[key] == undefined) && IDCollection.indexOf(key)>=0) {
             status = false;
             $("#" + key + "ModelRequiredError").removeClass("hiddenmessages");
@@ -53,6 +79,20 @@ function GetLanguageName(LanguageCode, LanguageList) {
     }
 
 }
+
+
+function GetCurrencyName(CurrencyCode, CurrencyList) {
+    if (CurrencyList != null) {
+        for (var i = 0; i < CurrencyList.length; i++) {
+            if (CurrencyCode == CurrencyList[i].currencyCode) {
+                return CurrencyList[i].currencyName;
+            }
+        }
+
+    }
+
+}
+
 
 function GetCountryName(CountryCode, CountryList) {
     if (CountryList != null) {
