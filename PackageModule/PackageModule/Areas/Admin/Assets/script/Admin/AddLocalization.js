@@ -12,7 +12,7 @@ var app = angular.module('AddLocalizationApp', ['ejangular']).controller('Create
     $scope.Resourcemodel = {
         hdnResources:''
     }
-    debugger;
+   
     $scope.Localization = GetParseResources("hdnResources");
     $scope.AddLocalization = {
         ApplicationName: '',
@@ -27,7 +27,7 @@ var app = angular.module('AddLocalizationApp', ['ejangular']).controller('Create
 
     };
     $scope.AddNewResource = function () {
-        debugger;
+       
         var validate = true;        
         var IDcollection = ['ResourceID', 'ResourceValue'];
         validate = ScopeBlankChecker($scope.AddLocalization, IDcollection)
@@ -90,11 +90,11 @@ var app = angular.module('AddLocalizationApp', ['ejangular']).controller('Create
             headers: { "tokenid": "" + $("#listenertoken").val() + "", "CompanyID": "" + $("#CompanyID").val() + "" },
             url: "" + $("#listenerurl").val() + "Localization/GetPageList?CompanyID=" + $("#CompanyID").val() + "&ApplicationID="+$scope.AddLocalization.ApplicationID+""
         }).then(function (success) {
-            debugger;
+           
             PageList = JSON.parse(success.data);
 
         }, function (error) {
-            debugger;
+           
             if (error.status == 401) {
                 SessionEndManager();
             }

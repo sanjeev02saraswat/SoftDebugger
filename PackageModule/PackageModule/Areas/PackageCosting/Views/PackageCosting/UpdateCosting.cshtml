@@ -1,0 +1,82 @@
+﻿@using PackageBusinessModel.Models;
+@{
+    List<PackageProduct> objPackageProductlst = ViewBag.objPackageProductlst;
+}
+<title>Update Package Costing</title>
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <h1>
+            Update Package Costing
+            <small>Add Package Product Costing</small>
+        </h1>
+    </div>
+    <!-- Main content -->
+    <div class="content body">
+        <div class="container">
+            <section id="basicuserdetail">
+                <div class="row">
+                    @if (objPackageProductlst.Count(m => m.ProductCode == "AIR") > 0)
+                    {
+                        <div class="col-sm-5 col-md-5 col-lg-5"><img src="~/Images//ProductImages/flight.png" title="Add Flight Costing" style="height:50%;width:50%;cursor:pointer" /></div>
+                    }
+                    @if (objPackageProductlst.Count(m => m.ProductCode == "HHL") > 0)
+                    {
+                        <div class="col-sm-5 col-md-5 col-lg-5"><img src="~/Images//ProductImages/hotel.png" title="Add Hotel Costing" style="height:50%;width:50%;cursor:pointer" /></div>
+                    }
+
+                </div>
+                <div class="row" style="margin-top:10px;">
+                    @if (objPackageProductlst.Count(m => m.ProductCode == "HHL") > 0)
+                    {
+                        <div class="col-sm-5 col-md-5 col-lg-5"><img src="~/Images//ProductImages/train.png" title="Add Train Costing" style="height:50%;width:50%;cursor:pointer" /></div>
+                    }
+
+                    @if (objPackageProductlst.Count(m => m.ProductCode == "BUS") > 0)
+                    {                <div class="col-sm-5 col-md-5 col-lg-5"><img src="~/Images//ProductImages/bus.png" title="Add Bus Costing" style="height:50%;width:50%;cursor:pointer" /></div>
+
+                    }
+
+
+                </div>
+                <div class="row" style="margin-top:10px;">
+                    @if (objPackageProductlst.Count(m => m.ProductCode == "TRF") > 0)
+                    {
+                        <div class="col-sm-5 col-md-5 col-lg-5"><img src="~/Images//ProductImages/transfer.png" title="Add Transfer Costing" style="height:50%;width:50%;cursor:pointer" /></div>
+                    }
+                    @if (objPackageProductlst.Count(m => m.ProductCode == "SSG") > 0)
+                    {
+                        <div class="col-sm-5 col-md-5 col-lg-5"><img src="~/Images//ProductImages/sightseeing.png" title="Add Sightseeing Costing" style="height:50%;width:50%;cursor:pointer" /></div>
+                    }
+
+                </div>
+
+            </section>
+            @if (objPackageProductlst.Count(m => m.ProductCode == "AIR") > 0)
+            {
+                <fieldset id="FlightCostingSection" style="display:block;">
+                    <legend>
+                        Manage Flight Costing
+                    </legend>
+                    <section>
+                        <div class="row">
+                            <div class="col-sm-3 col-md-3 col-lg-3"><input type="text" class="form-control" required autocomplete="off" placeholder="Airport From" /></div>
+                            <div class="col-sm-3 col-md-3 col-lg-3"><input type="text" class="form-control" required autocomplete="off" placeholder="Airport To" /></div>
+                            <div class="col-sm-3 col-md-3 col-lg-3"><input type="text" class="form-control" required autocomplete="off" placeholder="Departure Date" /></div>
+                            <div class="col-sm-3 col-md-3 col-lg-3"><input type="text" class="form-control" required autocomplete="off" placeholder="Arrival Date" /></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3 col-md-3 col-lg-3"><input type="text" class="form-control" required autocomplete="off" placeholder="Departure Time" /></div>
+                            <div class="col-sm-3 col-md-3 col-lg-3"><input type="text" class="form-control" required autocomplete="off" placeholder="Arrival Time" /></div>
+                            <div class="col-sm-3 col-md-3 col-lg-3"><input type="text" class="form-control" required autocomplete="off" placeholder="Select Currency" /></div>
+                            <div class="col-sm-3 col-md-3 col-lg-3"><input type="text" class="form-control" required autocomplete="off" placeholder="Arrival Date" /></div>
+                        </div>
+                    </section>
+                </fieldset>
+            }
+        </div>
+
+    </div>
+
+</div>

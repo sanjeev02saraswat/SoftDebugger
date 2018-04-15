@@ -35,7 +35,7 @@ var app = angular.module('CompanyDetailsApp', ['ejangular', 'ngMessages']).contr
            
             var data=JSON.parse(success.data);
             $scope.CompanyDetails = data;
-            debugger;
+            
             if (CurrencyList.length == 0) {
                 getCurrency(data.CurrencyCode);
             } else {
@@ -60,7 +60,7 @@ var app = angular.module('CompanyDetailsApp', ['ejangular', 'ngMessages']).contr
     $scope.UpdateCompanyDetails = function () {
        
         var validate = true;
-        var IDcollection = ['CompanyCode', 'CompanyAddress', 'Email', 'Phone', 'Country', 'Currency'];
+        var IDcollection = ['CompanyCode', 'CompanyAddress', 'Email', 'Phone', 'Country', 'Currency', 'CompanyName'];
         validate = ScopeBlankChecker($scope.CompanyDetails, IDcollection)
        
         if (validate) {

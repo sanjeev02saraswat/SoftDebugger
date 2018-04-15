@@ -180,6 +180,34 @@ var app = angular.module('CreateNewPackageapp', ['ejangular']).controller('Creat
         });
     }
  
+
+    $scope.AddPackageCosting = function (data) {
+        debugger;
+        var CostRequest={
+            PackageCode: $("#PackageCode").val(),
+            PackageLanguage: $("#hdnPackageLanguage").val(),
+            CompanyID: $("#CompanyID").val(),
+            TokenID: $("#listenertoken").val(),
+            RequestTo: "AddCosing"
+        }
+        //data.BasicPackageDetails.PackageCode = $("#PackageCode").val();
+        //data.BasicPackageDetails.PackageLanguage = $("#hdnPackageLanguage").val();
+        var request = $http({
+            method: "post",
+            contentType: "application/json; charset=utf-8",
+            //headers: { "tokenid": "" + $("#listenertoken").val() + "", "CompanyID": "" + $("#CompanyID").val() + "" },
+            url: "/PackageCosting/PackageCosting/Index",
+            data: JSON.stringify(CostRequest)
+        }).then(function (success) {
+            window.location.href = "/PackageCosting/PackageCosting/ManagePackageCosing";
+        }, function (error) {
+            if (error.status == 401) {
+                SessionEndManager();
+            }
+        });
+    }
+
+
     $scope.SaveCancellationPolicy = function (data) {
         var request = $http({
             method: "post",

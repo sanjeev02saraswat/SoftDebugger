@@ -1,0 +1,149 @@
+﻿@using PackageBusinessModel.Models;
+@using BusinessModels.PackageBusinessModel;
+@{
+    List<PackageProduct> objPackageProductlst = ViewBag.objPackageProductlst;
+    PackageCostingRequestBridgeModel objPackageCostingRequestBridgeModel = ViewBag.BridgeModel;
+}
+<title>Update Package Costing</title>
+
+<div class="content-wrapper" ng-app="AddPackageCostingApp" ng-controller="AddPackageCostingController">
+    <input type="hidden" id="hdnPackageCode" value="@objPackageCostingRequestBridgeModel.PackageCode" />
+
+    <input type="hidden" id="hdnPackageLanguage" value="@objPackageCostingRequestBridgeModel.PackageLanguage" />
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <h1>
+            Update Package Costing
+            <small>Add Package Product Costing</small>
+        </h1>
+    </div>
+    <!-- Main content -->
+    <div class="content body">
+        <div class="container">
+            <section id="basicuserdetail">
+
+
+                @if (objPackageProductlst.Count(m => m.ProductCode == "HHL") > 0)
+                { <div class="row">
+                      <div class="well clearfix">
+                          <fieldset class="scheduler-border">
+                              <legend class="scheduler-border">Add Hotel</legend>
+                              <form class="form-inline">
+                                  <div class="form-group">
+                                      <label for="exampleInputName">Hotel Name</label>
+                                      <input type="text" class="form-control" id="exampleInputName" ng-model="name" placeholder="Name">
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="exampleInputage">Hotel City</label>
+                                      <input type="number" class="form-control" id="exampleInputAge" ng-model="age" placeholder="age" />
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="exampleInputSalary">Cost</label>
+                                      <input type="number" class="form-control" id="exampleInputSalary" ng-model="salary" placeholder="salary">
+                                  </div>
+                                  <button type="button" class="btn btn-primary" ng-click="addEmployee()"><i class="glyphicon glyphicon-plus"></i>&nbsp;Add Hotel</button>
+                              </form>
+                          </fieldset>
+                      </div>
+                      <div class="container" style="padding:10px 10px;">
+                          <h2>Add Hotel Costing</h2>
+                          <table class="table table-bordered" id="tbl_employees">
+                              <thead>
+                                  <tr>
+                                      <th>#</th>
+                                      <th>Hotel Name</th>
+                                      <th>Hotel City</th>
+                                      <th>Salary</th>
+                                      <th>Action</th>
+                                  </tr>
+                              </thead>
+                              <tbody id="tbl_posts_body">
+                                  <tr ng-repeat="emp in employees track by $index">
+                                      <td><span class="sn">{{emp.id}}</span>.</td>
+                                      <td>{{emp.employee_name}}</td>
+                                      <td>{{emp.employee_age}}</td>
+                                      <td>{{emp.employee_salary}}</td>
+                                      <td><a class="btn btn-xs delete-record" ng-click="removeRow($index)"><i class="glyphicon glyphicon-trash"></i></a></td>
+                                  </tr>
+                              </tbody>
+                          </table>
+                      </div>
+                      
+                </div> }
+
+
+                <div class="row" style="margin-top:10px;">
+                    @if (objPackageProductlst.Count(m => m.ProductCode == "HHL") > 0)
+                    {
+                        <div class="col-sm-5 col-md-5 col-lg-5"><img src="~/Images//ProductImages/train.png" title="Add Train Costing" style="height:50%;width:50%;cursor:pointer" /></div>
+                    }
+
+                    @if (objPackageProductlst.Count(m => m.ProductCode == "BUS") > 0)
+                    {                <div class="col-sm-5 col-md-5 col-lg-5"><img src="~/Images//ProductImages/bus.png" title="Add Bus Costing" style="height:50%;width:50%;cursor:pointer" /></div>
+
+                    }
+
+
+                </div>
+                <div class="row" style="margin-top:10px;">
+                    @if (objPackageProductlst.Count(m => m.ProductCode == "TRF") > 0)
+                    {
+                        <div class="col-sm-5 col-md-5 col-lg-5"><img src="~/Images//ProductImages/transfer.png" title="Add Transfer Costing" style="height:50%;width:50%;cursor:pointer" /></div>
+                    }
+                    @if (objPackageProductlst.Count(m => m.ProductCode == "SSG") > 0)
+                    {
+                        <div class="col-sm-5 col-md-5 col-lg-5"><img src="~/Images//ProductImages/sightseeing.png" title="Add Sightseeing Costing" style="height:50%;width:50%;cursor:pointer" /></div>
+                    }
+
+                </div>
+
+            </section>
+            @if (objPackageProductlst.Count(m => m.ProductCode == "AIR") > 0)
+            {
+                <fieldset id="FlightCostingSection" style="display:block;">
+                    <legend>
+                        Manage Flight Costing
+                    </legend>
+                    <section>
+                        <div class="row">
+                            <div class="col-sm-3 col-md-3 col-lg-3" style="margin-top:10px;">
+
+                                <input type="text" class="form-control" id="DepartureAirport" required ej-autocomplete e-width="100%" ng-keyup="GetAirportList();" e-fields-key="airportCode" e-fields-text="airportText" e-datasource="airportList" placeholder="Airport From" />
+                                <input type="hidden" id="hdnDepartureAirport" ng-model="FlightCosting.DepartureAirport" />
+
+                            </div>
+                            <div class="col-sm-3 col-md-3 col-lg-3" style="margin-top:10px;"><input type="text" class="form-control" required autocomplete="off" placeholder="Airport To" /></div>
+                            <div class="col-sm-3 col-md-3 col-lg-3" style="margin-top:10px;">
+
+                                <input type="text" id="DepartureDate" class="form-control" required autocomplete="off" placeholder="Departure Date" />
+
+                            </div>
+                            <div class="col-sm-3 col-md-3 col-lg-3" style="margin-top:10px;"><input type="text" class="form-control" required autocomplete="off" placeholder="Arrival Date" /></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3 col-md-3 col-lg-3" style="margin-top:10px;"><input type="text" class="form-control" required autocomplete="off" placeholder="Departure Time" /></div>
+                            <div class="col-sm-3 col-md-3 col-lg-3" style="margin-top:10px;"><input type="text" class="form-control" required autocomplete="off" placeholder="Arrival Time" /></div>
+
+                        </div>
+                    </section>
+                    <legend>
+                        Add/Update Costing
+                    </legend>
+                    <section>
+
+                        <div class="row">
+                            <div class="col-sm-3 col-md-3 col-lg-3" style="margin-top:10px;"><input type="text" class="form-control" required autocomplete="off" placeholder="Select Currency" /></div>
+                            <div class="col-sm-3 col-md-3 col-lg-3" style="margin-top:10px;"><input type="text" class="form-control" required autocomplete="off" placeholder="Adult Price" /></div>
+                            <div class="col-sm-3 col-md-3 col-lg-3" style="margin-top:10px;"><input type="text" class="form-control" required autocomplete="off" placeholder="Child Price" /></div>
+                            <div class="col-sm-3 col-md-3 col-lg-3" style="margin-top:10px;"><button type="button" class="btn btn-primary btn-lg btn-block">Add Flight</button></div>
+                        </div>
+                    </section>
+                </fieldset>
+            }
+        </div>
+
+    </div>
+
+</div>
+<script src="~/Areas/PackageCosting/Assets/AddPackageCosting.js"></script>
+

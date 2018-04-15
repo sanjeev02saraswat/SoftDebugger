@@ -2,18 +2,37 @@
 //    ajaxStart: function () { $body.addClass("loading"); },
 //    ajaxStop: function () { $body.removeClass("loading"); }
 //});
+function checksession(){
+    if ($("#listenertoken").val() == "" || $("#listenertoken").val()==undefined) {
+        SessionEndManager();
+    }
+}
 
 function startCycle() {
-           $.ajax({
+    var Getdata;
+    $.ajax({
             type: "GET",
             headers: { "tokenid": "" + $("#listenertoken").val() + "", "CompanyID": "" + $("#CompanyID").val() + "" },
             url: "" + $("#listenerurl").val() + "Home/GetCompanyDetails?CompanyID=" + $("#CompanyID").val() + "&TokenID=" + $("#listenertoken").val() + "",
             contentType: "application/json; charset=utf-8",
             success: function (success) {
-                var data = JSON.parse(success);
-                debugger;
-                $("#spnAgentName").html(data.AgentName)
-                $("#spnCompanyName").html(data.CompanyName)
+                 Getdata = JSON.parse(success);
+                
+                $("#spnAgentName").html(Getdata.AgentName)
+                $("#spnCompanyName").html(Getdata.CompanyName)
+                $.ajax({
+                    type: "GET",
+                    url: "../Home/CreateTokenCookie?TokenID=" + $("#listenertoken").val() + "&CompanyID=" + $("#CompanyID").val() + "&AgentName=" + Getdata.AgentName + "&LanguageCode=" + Getdata.DefaultLanguage + "&CompanyName=" + Getdata.CompanyName,
+                    contentType: "application/json; charset=utf-8",
+
+                    success: function (response) {
+
+                    },
+                    error: function (response) {
+                        SessionEndManager();
+                    }
+
+                });
             },
             error: function (response) {
                 if (response.status == 401) {
@@ -116,7 +135,7 @@ function GetParseResources(elementID) {
 
 $(document).ready(function () {
 
-    $("#ChildMinAge,#ChildMaxAge,#PackageLastPaymentDue,#PackageDuration,#PackagePaymentCutOffDay,#PopupISD2,#PopupISD3,#PopupPhoneNo1,#PopupPhoneNo2,#PopupPhoneNo3").keydown(function (e) {
+    $("#ChildMinAge,#ChildMaxAge,#PackageLastPaymentDue,#PackageDuration,#PackagePaymentCutOffDay,#PopupISD2,#PopupISD3,#PopupPhoneNo1,#PopupPhoneNo2,#PopupPhoneNo3,#Phone").keydown(function (e) {
         // Allow: backspace, delete, tab, escape, enter and .
         if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
             // Allow: Ctrl+A, Command+A

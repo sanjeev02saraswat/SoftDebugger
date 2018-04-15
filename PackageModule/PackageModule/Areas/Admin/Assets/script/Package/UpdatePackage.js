@@ -155,7 +155,31 @@ var app = angular.module('CreateNewPackageapp', ['ejangular']).controller('Creat
         });
     }
 
-
+    $scope.UpdatePackageCosting = function (data) {
+        debugger;
+        var CostRequest = {
+            PackageCode: $("#PackageCode").val(),
+            PackageLanguage: $("#hdnSelectLanguage").val(),
+            CompanyID: $("#CompanyID").val(),
+            TokenID: $("#listenertoken").val(),
+            RequestTo: "UpdateCosing"
+        }
+        //data.BasicPackageDetails.PackageCode = $("#PackageCode").val();
+        //data.BasicPackageDetails.PackageLanguage = $("#hdnPackageLanguage").val();
+        var request = $http({
+            method: "post",
+            contentType: "application/json; charset=utf-8",
+            //headers: { "tokenid": "" + $("#listenertoken").val() + "", "CompanyID": "" + $("#CompanyID").val() + "" },
+            url: "/PackageCosting/PackageCosting/Index",
+            data: JSON.stringify(CostRequest)
+        }).then(function (success) {
+            window.location.href = "/PackageCosting/PackageCosting/ManagePackageCosing";
+        }, function (error) {
+            if (error.status == 401) {
+                SessionEndManager();
+            }
+        });
+    }
     $scope.dataList = LanguageList;
     $scope.packageList = PackageList;  
 
@@ -210,6 +234,7 @@ var app = angular.module('CreateNewPackageapp', ['ejangular']).controller('Creat
             headers: { "tokenid": "" + $("#listenertoken").val() + "", "CompanyID": "" + $("#CompanyID").val() + "" },
             url: "" + $("#listenerurl").val() + "Home/GetLanguages"
         }).then(function (success) {
+            debugger;
             LanguageList = success.data;
         }, function (error) {
             if (error.status == 401) {
@@ -479,7 +504,7 @@ function GetPackageImages() {
     $.ajax({
         type: "GET",
         headers: { "tokenid": "" + $("#listenertoken").val() + "", "CompanyID": "" + $("#CompanyID").val() + "" },
-        url: "" + $("#listenerurl").val() + "Package/GetPackageImages?PackageCode=" + $("#PackageCode").val() + "&CompanyID=" + $("#CompanyID").val() + "&PackageLanguage=" + $("#hdnPackageLanguage").val() + "",
+        url: "" + $("#listenerurl").val() + "Package/GetPackageImages?PackageCode=" + $("#PackageCode").val() + "&CompanyID=" + $("#CompanyID").val() + "&PackageLanguage=" + $("#hdnSelectLanguage").val() + "",
         contentType: "application/json; charset=utf-8",
 
         success: function (response) {

@@ -13,7 +13,7 @@ namespace PackageModule.Controllers
 
         public ActionResult Login()
         {
-            return View();
+            return RedirectToAction("Singup","Home","Admin");
         }
 
 

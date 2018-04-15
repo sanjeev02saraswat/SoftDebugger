@@ -122,6 +122,23 @@ namespace PackageModule.Utility
             }
             return null;
         }
+
+        public static bool ValidateToken(string TokenID,string CompanyID)
+        {
+           
+            string ValidationTokenURL = System.Configuration.ConfigurationManager.AppSettings["ListnerUrl"].ToString() + "Home/ValidateToken?TokenID=" + TokenID+ "&CompanyID="+CompanyID;
+            if (!string.IsNullOrEmpty(TokenID))
+            {
+                string Response = CommonFunction.HITAPI("", ValidationTokenURL, "GET");
+                if (!string.IsNullOrEmpty(Response) && Convert.ToBoolean(Response))
+                {
+                    return true;
+
+                }
+
+            }
+            return false;
+        }
     }
 }
 

@@ -22,7 +22,18 @@
             alert(error.data);
         });
     }
+    
 
+    
 });
+$(document).ready(function () {
 
+    CheckSession();
+});
+function CheckSession() {
 
+    if ($("#listenertoken").val() == "" || $("#listenertoken").val()==undefined) {
+        SessionEndManager();
+
+    }
+}

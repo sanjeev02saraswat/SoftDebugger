@@ -62,7 +62,7 @@ namespace PackageModule.Areas.Admin.Controllers
 
         [HttpGet]
 
-        public bool CreateTokenCookie(string TokenID,string CompanyID,string AgentName,string LanguageCode)
+        public bool CreateTokenCookie(string TokenID,string CompanyID,string AgentName,string LanguageCode,string CompanyName="")
         {
             HttpCookie myCookie = new HttpCookie("PackageModule");
             myCookie["listenertoken"] = TokenID;
@@ -74,6 +74,10 @@ namespace PackageModule.Areas.Admin.Controllers
             Session["AgentName"] = AgentName;
             Session["Localization"] = "en-US";
             Session["langCode"] = LanguageCode;
+            if (CompanyName!="")
+            {
+                Session["CompanyName"] = CompanyName;
+            }
             return true;
            
         }
