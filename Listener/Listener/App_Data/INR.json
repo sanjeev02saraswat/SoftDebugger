@@ -1,0 +1,13 @@
+[{
+        "CurrencyCode": "USD",
+        "CurrencyName": "US Dollor",
+        "ROE": 0.0156370
+
+    },
+    {
+        "CurrencyCode": "INR",
+        "CurrencyName": "Indian Rupee",
+        "ROE": 1
+
+    }
+]

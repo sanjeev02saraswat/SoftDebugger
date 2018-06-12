@@ -14,6 +14,8 @@ using WEBAPI2.Models;
 using PackageModule.Utilities;
 using BusinessModels.AdminManagement;
 using Listener.Models.AdminManagement;
+using BusinessModels.PackageBusinessModel;
+using Listener.Models.PackageModel;
 
 namespace WEBAPI2.Controllers
 {
@@ -21,12 +23,18 @@ namespace WEBAPI2.Controllers
     [RoutePrefix("Home")]
     public class HomeController : ApiController
     {
+        private readonly PackageListAutoComplete _objPackageListAutoComplete;
         private AsyncLogger _logger = null;
-        public HomeController()
+        public HomeController() : this(new PackageListAutoComplete())
         {
             _logger = new AsyncLogger();
             _logger.FileCollector = "WEBAPI2.Controllers.HomeController";
             _logger.addMessage = new System.Collections.Specialized.NameValueCollection();
+        }
+        public HomeController(PackageListAutoComplete objPackageListAutoComplete)
+        {
+            
+            _objPackageListAutoComplete = objPackageListAutoComplete;
         }
 
         [HttpPost]
@@ -118,7 +126,7 @@ namespace WEBAPI2.Controllers
         }
 
         [HttpGet]
-        [Tokenizer]
+       // [Tokenizer]
         [Route("GetLanguages")]
         public HttpResponseMessage GetLanguages()
         {
@@ -165,6 +173,29 @@ namespace WEBAPI2.Controllers
             return CommonUtility.CreateResponse(HttpStatusCode.OK, objAllList);
         }
 
+        [HttpPost]
+        [Tokenizer]
+        [Route("GetAirports")]
+        public HttpResponseMessage GetAirports(AirportList objAirportList)
+        {
+            string JSONResult = "";
+            try
+            {
+                _logger.addMessage.Add("GetAirports", "GetAirports Method is goint to Execute");
+                JSONResult = _objPackageListAutoComplete.GetAirportList(objAirportList);
+            }
+            catch (Exception ex)
+            {
+                _logger.addMessage.Add("GetAirports", "Error during GetAirports  Method Execution:" + ex.ToString());
+                _logger.ExceptionError = true;
+
+            }
+            finally
+            {
+                AsyncLogger.LogMessage(_logger);
+            }
+            return CommonUtility.CreateResponse(HttpStatusCode.OK, JSONResult);
+        }
 
 
 
@@ -202,7 +233,7 @@ namespace WEBAPI2.Controllers
 
         [HttpGet]
         [Route("ValidateToken")]
-        public HttpResponseMessage ValidateToken(string TokenID)
+        public HttpResponseMessage ValidateToken(string TokenID,string CompanyID)
         {
             //here we will check user is passing same token that we create for him
             bool Status = false;
@@ -210,7 +241,7 @@ namespace WEBAPI2.Controllers
             {
                 _logger.addMessage.Add("ValidateToken", "ValidateToken Method is goint to Execute");
                 TokenManagement objTokenManagement = new TokenManagement();
-                Status = objTokenManagement.ValidateToken(TokenID);
+                Status = objTokenManagement.VALIDATETokenforAgent(TokenID, CompanyID);
                 if (Status)
                 {
 

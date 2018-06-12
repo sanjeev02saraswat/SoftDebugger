@@ -25,51 +25,71 @@
 
                 @if (objPackageProductlst.Count(m => m.ProductCode == "HHL") > 0)
                 { <div class="row">
-                      <div class="well clearfix">
-                          <fieldset class="scheduler-border">
-                              <legend class="scheduler-border">Add Hotel</legend>
-                              <form class="form-inline">
-                                  <div class="form-group">
-                                      <label for="exampleInputName">Hotel Name</label>
-                                      <input type="text" class="form-control" id="exampleInputName" ng-model="name" placeholder="Name">
-                                  </div>
-                                  <div class="form-group">
-                                      <label for="exampleInputage">Hotel City</label>
-                                      <input type="number" class="form-control" id="exampleInputAge" ng-model="age" placeholder="age" />
-                                  </div>
-                                  <div class="form-group">
-                                      <label for="exampleInputSalary">Cost</label>
-                                      <input type="number" class="form-control" id="exampleInputSalary" ng-model="salary" placeholder="salary">
-                                  </div>
-                                  <button type="button" class="btn btn-primary" ng-click="addEmployee()"><i class="glyphicon glyphicon-plus"></i>&nbsp;Add Hotel</button>
-                              </form>
-                          </fieldset>
-                      </div>
-                      <div class="container" style="padding:10px 10px;">
-                          <h2>Add Hotel Costing</h2>
-                          <table class="table table-bordered" id="tbl_employees">
-                              <thead>
-                                  <tr>
-                                      <th>#</th>
-                                      <th>Hotel Name</th>
-                                      <th>Hotel City</th>
-                                      <th>Salary</th>
-                                      <th>Action</th>
-                                  </tr>
-                              </thead>
-                              <tbody id="tbl_posts_body">
-                                  <tr ng-repeat="emp in employees track by $index">
-                                      <td><span class="sn">{{emp.id}}</span>.</td>
-                                      <td>{{emp.employee_name}}</td>
-                                      <td>{{emp.employee_age}}</td>
-                                      <td>{{emp.employee_salary}}</td>
-                                      <td><a class="btn btn-xs delete-record" ng-click="removeRow($index)"><i class="glyphicon glyphicon-trash"></i></a></td>
-                                  </tr>
-                              </tbody>
-                          </table>
-                      </div>
-                      
-                </div> }
+                    <div class="well clearfix">
+                        <fieldset class="scheduler-border">
+                            <legend class="scheduler-border">Add Hotel</legend>
+                            <form class="form-inline">
+                                <div class="form-group">
+                                    <input type="hidden" ng-model="PackageCode" value="@objPackageCostingRequestBridgeModel.PackageCode" />
+                                    <label for="exampleInputName">Hotel Name</label>
+                                    <input type="text" class="form-control" ng-model="HotelName" placeholder="Hotel Name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputage">Hotel City</label>
+                                    <input type="text" class="form-control" ng-model="HotelCityName" placeholder="Hotel City" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputSalary">Adult Cost</label>
+                                    <input type="text" class="form-control" ng-model="AdultCost" placeholder="Adult Cost">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputSalary">Child Cost</label>
+                                    <input type="text" class="form-control" ng-model="ChildCost" placeholder="Child Cost">
+                                </div>
+
+                                <div class="row" style="margin-top:10px;">
+                                    <div class="col-sm-3 col-md-3 col-lg-3">
+                                        </div>
+                                        <div class="col-sm-5 col-md-5 col-lg-5">
+                                            <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="addHotel()"><i class="glyphicon glyphicon-plus"></i>&nbsp;Add Hotel</button>
+                                        </div>
+                                    </div>
+                            </form>
+                        </fieldset>
+                    </div>
+                    <div class="container" style="padding:10px 10px;">
+                        <h2>Add Hotel Costing</h2>
+                        <table class="table table-bordered" id="tbl_employees">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Package Code</th>
+                                    <th>Hotel Name</th>
+                                    <th>Hotel City</th>
+                                    <th>Adult Cost</th>
+                                    <th>Child Cost</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbl_posts_body">
+                                <tr ng-repeat="emp in employees track by $index">
+                                    <td><span class="sn">{{emp.id}}</span>.</td>
+                                    <td>{{emp.PackageCode}}</td>
+                                    <td>{{emp.HotelName}}</td>
+                                    <td>{{emp.HotelCityName}}</td>
+                                    <td>{{emp.AdultCost}}</td>
+                                    <td>{{emp.ChildCost}}</td>
+                                    <td><a class="btn btn-xs delete-record" ng-click="removeRow($index)"><i class="glyphicon glyphicon-trash"></i></a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-sm-5 col-md-5 col-lg-5"><button type="button" readonly="readonly" ng-disabled="employees.length==0" ng-click="AddHotelCosting(employees)" class="btn btn-primary btn-lg btn-block">Update Hotels</button></div>
+                    @*<div class="col-sm-5 col-md-5 col-lg-5"><button type="button" class="btn btn-primary btn-lg btn-block">Clear</button></div>*@
+                </div>
+                }
 
 
                 <div class="row" style="margin-top:10px;">

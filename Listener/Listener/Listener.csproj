@@ -55,9 +55,11 @@
     <Reference Include="CommonUtilities">
       <HintPath>..\..\..\Working Folder\Shortcut\SoftDebugger\CommonUtilities\CommonUtilities\bin\Debug\CommonUtilities.dll</HintPath>
     </Reference>
-    <Reference Include="Connector, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Working Folder\Shortcut\SoftDebugger\PackageModuleLayer\PackageModuleLayer\bin\Debug\Connector.dll</HintPath>
+    <Reference Include="Connector">
+      <HintPath>..\..\..\Working Folder\Shortcut\SoftDebugger\Connector\bin\Debug\Connector.dll</HintPath>
+    </Reference>
+    <Reference Include="CurrencyConvertor">
+      <HintPath>..\..\..\Working Folder\Shortcut\SoftDebugger\CurrencyConvertor\CurrencyConvertor\bin\Debug\CurrencyConvertor.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
@@ -78,8 +80,9 @@
     <Reference Include="SendMail">
       <HintPath>..\..\SendMail\SendMail\bin\Debug\SendMail.dll</HintPath>
     </Reference>
-    <Reference Include="SoftLogger">
-      <HintPath>..\..\..\Working Folder\Shortcut\SoftDebugger\SoftLogger\bin\Debug\SoftLogger.dll</HintPath>
+    <Reference Include="SoftLogger, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Working Folder\Shortcut\SoftDebugger\CurrencyConvertor\CurrencyConvertor\bin\Debug\SoftLogger.dll</HintPath>
     </Reference>
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Net.Http" />
@@ -176,6 +179,8 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\AutoCompleteController.cs" />
+    <Compile Include="Controllers\CurrencyManagerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LocalizationController.cs" />
     <Compile Include="Controllers\PackageController.cs" />
@@ -208,6 +213,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Localization\PackageModule\" />
+    <Folder Include="Views\AutoComplete\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

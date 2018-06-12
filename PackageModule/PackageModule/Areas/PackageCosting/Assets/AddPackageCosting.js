@@ -8,14 +8,18 @@ var app = angular.module('AddPackageCostingApp', ['ejangular']).controller('AddP
     }
 
     $scope.employees = [];
-    $scope.addEmployee = function () {
+    $scope.addHotel = function () {
         debugger;
         //Add the new item to the Array.
         var employee = {
             id: $scope.employees.length + 1,
-            employee_name: $scope.name,
-            employee_age: $scope.age,
-            employee_salary: $scope.salary
+            HotelName: $scope.HotelName,
+            HotelCityName: $scope.HotelCityName,
+            AdultCost: $scope.AdultCost,
+            ChildCost: $scope.ChildCost,
+            PackageCode: $("#hdnPackageCode").val(),
+            CompanyID: $("#CompanyID").val()
+
         };
         $scope.employees.push(employee);
     }
@@ -28,7 +32,10 @@ var app = angular.module('AddPackageCostingApp', ['ejangular']).controller('AddP
             $scope.employees.splice(index, 1);
         }
     }
-
+    $scope.AddHotelCosting = function (employees) {
+        debugger;
+        var data = JSON.parse(employees);
+    }
     $scope.GetAirportList = function () {
         AirportListmodel = {
             query: '' + $("#DepartureAirport").val() + '',
@@ -41,6 +48,25 @@ var app = angular.module('AddPackageCostingApp', ['ejangular']).controller('AddP
             headers: { "tokenid": "" + $("#listenertoken").val() + "", "CompanyID": "" + $("#CompanyID").val() + "" },
             url: "" + $("#listenerurl").val() + "Home/GetAirports",
             data: JSON.stringify(AirportListmodel)
+        }).then(function (success) {
+
+            AirportList = JSON.parse(success.data);
+        }, function (error) {
+            if (error.status == 401) {
+                SessionEndManager();
+            }
+        });
+    }
+
+
+    $scope.AddHotelsCosting = function () {       
+
+        $http({
+            method: "post",
+            contentType: "application/json; charset=utf-8",
+            headers: { "tokenid": "" + $("#listenertoken").val() + "", "CompanyID": "" + $("#CompanyID").val() + "" },
+            url: "" + $("#listenerurl").val() + "Package/AddHotelCosting",
+            data: JSON.stringify($scope.employees)
         }).then(function (success) {
 
             AirportList = JSON.parse(success.data);

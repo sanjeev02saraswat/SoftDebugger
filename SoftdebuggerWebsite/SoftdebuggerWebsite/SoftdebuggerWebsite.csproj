@@ -156,6 +156,47 @@
     <Content Include="Areas\Globalization\js\main.js" />
     <Content Include="Areas\Globalization\js\templatemo_script.js" />
     <Content Include="Areas\Globalization\js\unslider.min.js" />
+    <Content Include="Areas\Profile\css\bootstrap.min.css" />
+    <Content Include="Areas\Profile\css\font-awesome.min.css" />
+    <Content Include="Areas\Profile\css\style.css" />
+    <Content Include="Areas\Profile\images\ab5.jpg" />
+    <Content Include="Areas\Profile\images\ab7.jpg" />
+    <Content Include="Areas\Profile\images\arrow.png" />
+    <Content Include="Areas\Profile\images\ban661.jpg" />
+    <Content Include="Areas\Profile\images\ban6666.jpg" />
+    <Content Include="Areas\Profile\images\c2.jpg" />
+    <Content Include="Areas\Profile\images\dott.png" />
+    <Content Include="Areas\Profile\images\g1.jpg" />
+    <Content Include="Areas\Profile\images\g2.jpg" />
+    <Content Include="Areas\Profile\images\g31.jpg" />
+    <Content Include="Areas\Profile\images\g333.jpg" />
+    <Content Include="Areas\Profile\images\g4.jpg" />
+    <Content Include="Areas\Profile\images\g5.jpg" />
+    <Content Include="Areas\Profile\images\g6.jpg" />
+    <Content Include="Areas\Profile\images\g7.jpg" />
+    <Content Include="Areas\Profile\images\g8.jpg" />
+    <Content Include="Areas\Profile\images\g9.jpg" />
+    <Content Include="Areas\Profile\images\gal11.jpg" />
+    <Content Include="Areas\Profile\images\gal22.jpg" />
+    <Content Include="Areas\Profile\images\gal33.jpg" />
+    <Content Include="Areas\Profile\images\gal4.jpg" />
+    <Content Include="Areas\Profile\images\gal44.jpg" />
+    <Content Include="Areas\Profile\images\gal66.jpg" />
+    <Content Include="Areas\Profile\images\gal77.jpg" />
+    <Content Include="Areas\Profile\images\gal88.jpg" />
+    <Content Include="Areas\Profile\images\gal99.jpg" />
+    <Content Include="Areas\Profile\images\skill2.jpg" />
+    <Content Include="Areas\Profile\js\bars.js" />
+    <Content Include="Areas\Profile\js\bootstrap.min.js" />
+    <Content Include="Areas\Profile\js\easing.js" />
+    <Content Include="Areas\Profile\js\jquery-2.1.4.min.js" />
+    <Content Include="Areas\Profile\js\jquery.filterizr.js" />
+    <Content Include="Areas\Profile\js\jquery.textFx.js" />
+    <Content Include="Areas\Profile\js\jquery.transit.js" />
+    <Content Include="Areas\Profile\js\menu.js" />
+    <Content Include="Areas\Profile\js\modernizr.js" />
+    <Content Include="Areas\Profile\js\move-top.js" />
+    <Content Include="Areas\Profile\js\SmoothScroll.min.js" />
     <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" />
     <Content Include="bin\Microsoft.Web.Infrastructure.dll" />
     <Content Include="bin\Newtonsoft.Json.dll" />
@@ -236,11 +277,56 @@
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="web\css\bootstrap.min.css" />
+    <Content Include="web\css\font-awesome.min.css" />
+    <Content Include="web\css\style.css" />
+    <Content Include="web\images\ab5.jpg" />
+    <Content Include="web\images\ab7.jpg" />
+    <Content Include="web\images\arrow.png" />
+    <Content Include="web\images\ban661.jpg" />
+    <Content Include="web\images\ban6666.jpg" />
+    <Content Include="web\images\c2.jpg" />
+    <Content Include="web\images\dott.png" />
+    <Content Include="web\images\g1.jpg" />
+    <Content Include="web\images\g2.jpg" />
+    <Content Include="web\images\g31.jpg" />
+    <Content Include="web\images\g333.jpg" />
+    <Content Include="web\images\g4.jpg" />
+    <Content Include="web\images\g5.jpg" />
+    <Content Include="web\images\g6.jpg" />
+    <Content Include="web\images\g7.jpg" />
+    <Content Include="web\images\g8.jpg" />
+    <Content Include="web\images\g9.jpg" />
+    <Content Include="web\images\gal11.jpg" />
+    <Content Include="web\images\gal22.jpg" />
+    <Content Include="web\images\gal33.jpg" />
+    <Content Include="web\images\gal4.jpg" />
+    <Content Include="web\images\gal44.jpg" />
+    <Content Include="web\images\gal66.jpg" />
+    <Content Include="web\images\gal77.jpg" />
+    <Content Include="web\images\gal88.jpg" />
+    <Content Include="web\images\gal99.jpg" />
+    <Content Include="web\images\skill2.jpg" />
+    <Content Include="web\index.html" />
+    <Content Include="web\js\bars.js" />
+    <Content Include="web\js\bootstrap.min.js" />
+    <Content Include="web\js\easing.js" />
+    <Content Include="web\js\jquery-2.1.4.min.js" />
+    <Content Include="web\js\jquery.filterizr.js" />
+    <Content Include="web\js\jquery.textFx.js" />
+    <Content Include="web\js\jquery.transit.js" />
+    <Content Include="web\js\menu.js" />
+    <Content Include="web\js\modernizr.js" />
+    <Content Include="web\js\move-top.js" />
+    <Content Include="web\js\SmoothScroll.min.js" />
+    <Content Include="web\w3layouts-License.txt" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Globalization\Controllers\GlobalizationController.cs" />
     <Compile Include="Areas\Globalization\GlobalizationAreaRegistration.cs" />
+    <Compile Include="Areas\Profile\Controllers\ProfileController.cs" />
+    <Compile Include="Areas\Profile\ProfileAreaRegistration.cs" />
     <Compile Include="BusinessModels\ContactUsEnquiry.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -282,6 +368,17 @@
     <Content Include="Areas\Globalization\Views\Globalization\Login.cshtml" />
     <Content Include="Areas\Globalization\Views\Shared\_Header.cshtml" />
     <Content Include="LangConversion\SoftDebugger\Contactus\Contactus_en-US.json" />
+    <Content Include="Areas\Profile\Views\web.config" />
+    <Content Include="Areas\Profile\fonts\fontawesome-webfont.eot" />
+    <Content Include="Areas\Profile\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Areas\Profile\fonts\fontawesome-webfont.woff" />
+    <Content Include="Areas\Profile\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Areas\Profile\fonts\FontAwesome.otf" />
+    <Content Include="Areas\Profile\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Areas\Profile\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Areas\Profile\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Areas\Profile\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Areas\Profile\Views\Profile\Index.cshtml" />
     <None Include="Properties\PublishProfiles\SoftDebugger.pubxml" />
     <None Include="Properties\PublishProfiles\Webste.pubxml" />
     <Content Include="Views\_Shared\_Footer.cshtml" />
@@ -295,11 +392,23 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+    <Content Include="web\fonts\fontawesome-webfont.eot" />
+    <Content Include="web\fonts\fontawesome-webfont.ttf" />
+    <Content Include="web\fonts\fontawesome-webfont.woff" />
+    <Content Include="web\fonts\fontawesome-webfont.woff2" />
+    <Content Include="web\fonts\FontAwesome.otf" />
+    <Content Include="web\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="web\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="web\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="web\fonts\glyphicons-halflings-regular.woff2" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Globalization\images\BG_IMG\" />
     <Folder Include="Areas\Globalization\Models\" />
+    <Folder Include="Areas\Profile\Assets\" />
+    <Folder Include="Areas\Profile\Models\" />
+    <Folder Include="Areas\Profile\Views\Shared\" />
     <Folder Include="images\BG_IMG\" />
   </ItemGroup>
   <PropertyGroup>

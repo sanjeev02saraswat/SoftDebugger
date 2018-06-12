@@ -13,6 +13,8 @@ using System.Web.Http;
 using System.Web.Http.Cors;
 using PackageModule.Utilities;
 using PackageModuleLayer.Models.PackageModel;
+using Newtonsoft.Json;
+using BusinessModels.PackageBusinessModel;
 
 namespace Listener.Controllers
 {
@@ -21,13 +23,19 @@ namespace Listener.Controllers
     [RoutePrefix("Package")]
     public class PackageController : ApiController
     {
-
+        private readonly ManagePackageProducts _objManagePackageProducts;
+        private readonly PackageListAutoComplete _objPackageListAutoComplete;
         private AsyncLogger _logger = null;
-        public PackageController()
+        public PackageController() : this(new ManagePackageProducts(), new PackageListAutoComplete())
         {
             _logger = new AsyncLogger();
             _logger.FileCollector = "WEBAPI2.Controllers.PackageController";
             _logger.addMessage = new System.Collections.Specialized.NameValueCollection();
+        }
+        public PackageController(ManagePackageProducts objManagePackageProducts, PackageListAutoComplete objPackageListAutoComplete)
+        {
+            _objManagePackageProducts = objManagePackageProducts;
+            _objPackageListAutoComplete = objPackageListAutoComplete;
         }
 
         [HttpPost]
@@ -57,8 +65,65 @@ namespace Listener.Controllers
 
         [HttpPost]
         [Tokenizer]
+        //[ModelValidator]
+        [Route("AddHotelCosting")]
+        public HttpResponseMessage AddHotelCosting(HotelCosting objHotelCosting)
+        {
+            try
+            {
+                _logger.addMessage.Add("CreatePackage", "CreatePackage Method is goint to Execute");
+                CreatePackage objCreatePackage = new CreatePackage();
+
+                objCreatePackage.AddPackage(objPackageDetails);
+            }
+            catch (Exception ex)
+            {
+                _logger.ExceptionError = true;
+
+            }
+            finally
+            {
+                AsyncLogger.LogMessage(_logger);
+            }
+            return CommonUtility.CreateResponse(HttpStatusCode.OK, null);
+        }
+
+        [HttpPost]
+        [Tokenizer]
         [Route("GetPackages")]
-        public HttpResponseMessage GetPackages(PackageList objPackageList)
+        public HttpResponseMessage GetPackages(PackageList objAirportList)
+        {
+            string JSONResult = "";
+            try
+            {
+                _logger.addMessage.Add("GetPackages", "GetPackages Method is goint to Execute");
+                JSONResult = _objPackageListAutoComplete.GetPackageList(objAirportList);
+
+
+
+            }
+            catch (Exception ex)
+            {
+                _logger.addMessage.Add("GetPackages", "Error during GetPackages  Method Execution:" + ex.ToString());
+                _logger.ExceptionError = true;
+
+            }
+            finally
+            {
+                AsyncLogger.LogMessage(_logger);
+            }
+            return CommonUtility.CreateResponse(HttpStatusCode.OK, JSONResult);
+        }
+
+        /// <summary>
+        /// for test Purpose
+        /// </summary>
+        /// <param name="objPackageList"></param>
+        /// <returns></returns>
+        [HttpGet]
+        // [Tokenizer]
+        [Route("GetPackages")]
+        public HttpResponseMessage GetPackages(string CompanyID)
         {
             string JSONResult = "";
             try
@@ -66,7 +131,7 @@ namespace Listener.Controllers
                 _logger.addMessage.Add("GetPackages", "GetPackages Method is goint to Execute");
                 PackageListAutoComplete objPackageListAutoComplete = new PackageListAutoComplete();
 
-                JSONResult = objPackageListAutoComplete.GetPackageList(objPackageList);
+                // JSONResult = objPackageListAutoComplete.GetPackageList(objPackageList);
 
 
 
@@ -124,7 +189,7 @@ namespace Listener.Controllers
                 _logger.addMessage.Add("SetDefaultVirtualImage", "SetDefaultVirtualImage Method is goint to Execute");
                 ManagePackageImages objManagePackageImages = new ManagePackageImages();
 
-                objManagePackageImages.SetDefaultVirtualImage(objPackageImages);               
+                objManagePackageImages.SetDefaultVirtualImage(objPackageImages);
 
             }
             catch (Exception ex)
@@ -311,17 +376,17 @@ namespace Listener.Controllers
         [HttpGet]
         [Tokenizer]
         [Route("GetPackageProducts")]
-        public HttpResponseMessage GetPackageProducts(string CompanyID, string TokenID)
+        public HttpResponseMessage GetPackageProducts(string CompanyID, string LanguageCode)
         {
-            List<PackageProduct> objPackageProducts = null;
+            string AvailableProducts = string.Empty;
             try
             {
                 _logger.addMessage.Add("GetPackageProducts", "GetPackageProducts Method is goint to Execute");
-                _logger.addMessage.Add("TokenID", TokenID);
+                _logger.addMessage.Add("LanguageCode", LanguageCode);
                 _logger.addMessage.Add("CompanyID", CompanyID);
-
-
-
+                AvailableProducts = _objManagePackageProducts.GetAvailableProducts(CompanyID, LanguageCode);
+                List<PackageProduct> objPackageProductlst = JsonConvert.DeserializeObject<List<PackageProduct>>(AvailableProducts);
+                return CommonUtility.CreateResponse(HttpStatusCode.OK, objPackageProductlst);
             }
             catch (Exception ex)
             {
@@ -333,7 +398,7 @@ namespace Listener.Controllers
                 AsyncLogger.LogMessage(_logger);
 
             }
-            return CommonUtility.CreateResponse(HttpStatusCode.OK, objPackageProducts);
+            return CommonUtility.CreateResponse(HttpStatusCode.OK, null);
 
         }
     }

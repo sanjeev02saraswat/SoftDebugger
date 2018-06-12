@@ -189,13 +189,10 @@ var app = angular.module('CreateNewPackageapp', ['ejangular']).controller('Creat
             CompanyID: $("#CompanyID").val(),
             TokenID: $("#listenertoken").val(),
             RequestTo: "AddCosing"
-        }
-        //data.BasicPackageDetails.PackageCode = $("#PackageCode").val();
-        //data.BasicPackageDetails.PackageLanguage = $("#hdnPackageLanguage").val();
+        }        
         var request = $http({
             method: "post",
-            contentType: "application/json; charset=utf-8",
-            //headers: { "tokenid": "" + $("#listenertoken").val() + "", "CompanyID": "" + $("#CompanyID").val() + "" },
+            contentType: "application/json; charset=utf-8",           
             url: "/PackageCosting/PackageCosting/Index",
             data: JSON.stringify(CostRequest)
         }).then(function (success) {
