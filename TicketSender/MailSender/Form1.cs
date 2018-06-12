@@ -155,7 +155,7 @@ table td[class=template-img] img {
                           <tbody>
 						  <tr><td><a href='http://www.SoftDebugger.Com/'><img src='https://4.downloader.disk.yandex.ru/preview/7406790c0fe271af3cc851e2172dc72cdca67c34b7c48dd0d08df0dd52cce1e9/inf/33Jr3Ua0Z_0VfnnL-WhbfiTPqRoQqkbFhWYiPJiauDJVDs0GAgIRMpqHn5UL9bSbAcK_csl8MVz0h8o7od380g%3D%3D?uid=0&filename=logo.JPG&disposition=inline&hash=&limit=0&content_type=image%2Fjpeg&tknv=v2&size=XXL&crop=0' height='100px' width='100px' /></a></td></tr>
 						  <tr>
-                            <td style='font:bold 27px Arial, Helvetica, sans-serif; border-right:1px solid #dbdbdb;' class='smallfont'>SoftDebugger Ticketing Notification-"+txtFirstContent.Text+@"</td>
+                            <td style='font:bold 27px Arial, Helvetica, sans-serif; border-right:1px solid #dbdbdb;' class='smallfont'>SoftDebugger Ticketing Notification-"+txtFirstContent.Text+ @"</td>
                           </tr>
                           <tr>
                             <td height='20'>&nbsp;</td>
@@ -163,9 +163,9 @@ table td[class=template-img] img {
                         </tbody></table>
                         <table width='22%' border='0' cellspacing='0' cellpadding='0' align='right' class='inner' style='border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;'>
                           <tbody><tr>
-                               <td align='center'><a href='#' style='margin-top:5px; display:inline-block;'><img src='https://s1.postimg.org/9en7r4vlfj/facebook.png' width='32' height='atuo' alt='Social Media'></a></td>
-                            <td align='center'><a href='#' style='margin-top:5px; display:inline-block;'><img src='https://s1.postimg.org/65o3uh8bin/google.png' width='32' height='atuo' alt='Social Media'></a></td>
-                            <td align='center'><a href='#' style='margin-top:5px; display:inline-block;'><img src='https://s1.postimg.org/20siidaq0f/twitter.png' width='32' height='atuo' alt='Social Media'></a></td>
+                               <td align='center'><a href='#' style='margin-top:5px; display:inline-block;'><img src='https://s19.postimg.cc/6b9pmw0c3/facebook.png' width='32' height='atuo' alt='Social Media'></a></td>
+                            <td align='center'><a href='#' style='margin-top:5px; display:inline-block;'><img src='https://s19.postimg.cc/7qbabm94z/google.png' width='32' height='atuo' alt='Social Media'></a></td>
+                            <td align='center'><a href='#' style='margin-top:5px; display:inline-block;'><img src='https://s19.postimg.cc/4w84y6eoj/twitter.png' width='32' height='atuo' alt='Social Media'></a></td>
                           </tr>
                           <tr>
                             <td height='20'>&nbsp;</td>
@@ -179,7 +179,7 @@ table td[class=template-img] img {
                   <table width='100%' border='0' cellspacing='0' cellpadding='0' align='center'>
                     <tbody><tr>
                       <td width='3.33%' class='sidespace'>&nbsp;</td>
-                      <td width='93.33%'><img class='imgresponsive' src='https://s1.postimg.org/8iqqbol9u7/banner.jpg' width='554' height='atuo' alt='Banner'></td>
+                      <td width='93.33%'><img class='imgresponsive' src='https://s19.postimg.cc/hz3rhskfn/banner.jpg' width='554' height='atuo' alt='Banner'></td>
                       <td width='3.33%' class='sidespace'>&nbsp;</td>
                     </tr>
                     <tr>
@@ -196,7 +196,7 @@ table td[class=template-img] img {
                           <tbody><tr>
                             <td style='font:14px/19px Arial, Helvetica, sans-serif; color:#333332;'>
 							
-							Dear "+cmbAssignTo.SelectedItem.ToString()+@",<br/><br/>
+							Dear " + cmbAssignTo.SelectedItem.ToString()+@",<br/><br/>
 							Below Ticket has been "+ cmbTicketMainStatus.SelectedItem.ToString()+@" for You.
 							Please find Ticket Description.
 							</td>
@@ -294,27 +294,10 @@ table td[class=template-img] img {
 </tbody></table>
 </body>
 </html>";
-                //DataSet ds = null;
-                //using (SqlConnection scon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultWebsite"].ToString()))
-                //{
-                //    using (SqlCommand scmd = new SqlCommand("GetMailTeplate", scon))
-                //    {
-                //        scmd.CommandType = CommandType.StoredProcedure;
-                //        scmd.Parameters.AddWithValue("@ApplicationName", "SoftDebugger");
-                //        scmd.Parameters.AddWithValue("@MailType", "TicketSender");
-                //        SqlDataAdapter da = new SqlDataAdapter(scmd);
-                //        ds = new DataSet();
-                //        da.Fill(ds);
-
-                //    }
-                //}
+             
                 string MailSubject ="Ticket-"+txtFirstContent.Text.ToString()+" has been "+cmbTicketMainStatus.SelectedItem.ToString()+".";
                 string MailBody = bodyhtml;
-                //if (ds != null && ds.Tables.Count > 0)
-                //{
-                //    MailSubject = ds.Tables[0].Rows[0]["MAILSUBJECT"].ToString();
-                //    MailBody = ds.Tables[0].Rows[0]["MAILBODY"].ToString();
-                //    string updatedMailBody = "";// MailBody.Replace("MailFirst", txtFirstContent.Text).Replace("MailSecound", txtSecondContent.Text).Replace("MailThird", txtcontent3.Text);
+               
                     SendMail.SendMail objSendMail = new SendMail.SendMail();
                     bool status = objSendMail.SendMailtoUser(cmbmailto.SelectedItem.ToString(), MailSubject, MailBody, txtCCMail.Text,true);
                     if (status)
@@ -322,12 +305,7 @@ table td[class=template-img] img {
                         MessageBox.Show("Message sent successfully...");
 
                     }else { MessageBox.Show("Message could not sent successfully..."); }
-                //}
-                //else
-                //{
-                //   // SoftLogger.SoftLogger.WriteLogImmediate("No Template Found", "Customer Enquiry", AssemblyName);
-                //    //log no ecord found for smtp
-                //}
+               
               
             }
         }
