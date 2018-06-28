@@ -188,7 +188,7 @@ var app = angular.module('CreateNewPackageapp', ['ejangular']).controller('Creat
             PackageLanguage: $("#hdnPackageLanguage").val(),
             CompanyID: $("#CompanyID").val(),
             TokenID: $("#listenertoken").val(),
-            RequestTo: "AddCosing"
+            RequestTo: 1
         }        
         var request = $http({
             method: "post",

@@ -1,10 +1,15 @@
 ﻿@using PackageBusinessModel.Models;
+@using BusinessModels.PackageBusinessModel;
 @{
     List<PackageProduct> objPackageProductlst = ViewBag.objPackageProductlst;
+    PackageCostingRequestBridgeModel objPackageCostingRequestBridgeModel = ViewBag.BridgeModel;
 }
 <title>Update Package Costing</title>
 
-<div class="content-wrapper">
+<div class="content-wrapper" ng-app="AddPackageCostingApp" ng-controller="AddPackageCostingController">
+    <input type="hidden" id="hdnPackageCode" value="@objPackageCostingRequestBridgeModel.PackageCode" />
+
+    <input type="hidden" id="hdnPackageLanguage" value="@objPackageCostingRequestBridgeModel.PackageLanguage" />
     <!-- Content Header (Page header) -->
     <div class="content-header">
         <h1>
@@ -16,25 +21,103 @@
     <div class="content body">
         <div class="container">
             <section id="basicuserdetail">
-                <div class="row">
-                    @if (objPackageProductlst.Count(m => m.ProductCode == "AIR") > 0)
-                    {
-                        <div class="col-sm-5 col-md-5 col-lg-5"><img src="~/Images//ProductImages/flight.png" title="Add Flight Costing" style="height:50%;width:50%;cursor:pointer" /></div>
-                    }
-                    @if (objPackageProductlst.Count(m => m.ProductCode == "HHL") > 0)
-                    {
-                        <div class="col-sm-5 col-md-5 col-lg-5"><img src="~/Images//ProductImages/hotel.png" title="Add Hotel Costing" style="height:50%;width:50%;cursor:pointer" /></div>
-                    }
 
-                </div>
+
+                @if (objPackageProductlst.Count(m => m.ProductCode == "HHL") > 0)
+                {
+                    <input type="hidden" id="hdnHotelProduct" value="true" />
+                    <div class="row">
+                        <div class="well clearfix">
+                            <fieldset class="scheduler-border">
+                                <legend class="scheduler-border">Add Hotel</legend>
+                                <form class="form-inline">
+                                    <div class="form-group">
+                                        <input type="hidden" ng-model="packageCode" value="@objPackageCostingRequestBridgeModel.PackageCode" />
+                                        <label for="exampleInputName">Hotel Name</label>
+                                        <input type="text" class="form-control" ng-model="hotelName" placeholder="Hotel Name">
+                                    </div>
+                                    <div class="form-group divmargin">
+                                        <label for="exampleInputage">Hotel City</label>
+                                        <input type="text" class="form-control" ng-model="hotelCityName" placeholder="Hotel City" />
+                                    </div>
+                                    <div class="form-group divmargin">
+                                        <label for="exampleInputage">Room Type</label>
+                                        <select class="form-control" required autocomplete="off" id="RoomType" ng-model="RoomType">
+                                            <option value="SINGLE">Single</option>
+                                            <option value="Double">Double</option>
+                                            <option value="TRIPLE">Triple</option>
+                                            <option value="QUAD">Quad</option>
+                                            <option value="QUEEN">Queen</option>
+                                            <option value="KING">King</option>
+                                            <option value="TWIN">Twin</option>
+                                        </select>
+
+                                    </div>
+                                    <div class="form-group divmargin">
+                                        <label for="exampleInputSalary">Adult Cost</label>
+                                        <input type="text" class="form-control" ng-model="adultCost" placeholder="Adult Cost">
+                                    </div>
+                                    <div class="form-group divmargin">
+                                        <label for="exampleInputSalary">Child Cost</label>
+                                        <input type="text" class="form-control" ng-model="childCost" placeholder="Child Cost">
+                                    </div>
+
+                                    <div class="row" style="margin-top:10px;">
+                                        <div class="col-sm-3 col-md-3 col-lg-3">
+                                        </div>
+                                        <div class="col-sm-5 col-md-5 col-lg-5">
+                                            <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="addHotel()"><i class="glyphicon glyphicon-plus"></i>&nbsp;Add Hotel</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </fieldset>
+                        </div>
+                        <div class="container" style="padding:10px 10px;">
+                            <h2>Add Hotel Costing</h2>
+                            <table class="table table-bordered" id="tbl_employees">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Package Code</th>
+                                        <th>Hotel Name</th>
+                                        <th>Hotel City</th>
+                                        <th>Room Type</th>
+                                        <th>Adult Cost</th>
+                                        <th>Child Cost</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbl_posts_body">
+                                    <tr ng-repeat="emp in HotelData track by $index">
+                                        <td><span class="sn">{{emp.id}}</span>.</td>
+                                        <td>{{emp.packageCode}}</td>
+                                        <td>{{emp.hotelName}}</td>
+                                        <td>{{emp.hotelCityName}}</td>
+                                        <td>{{emp.roomType}}</td>
+                                        <td>{{emp.adultCost}}</td>
+                                        <td>{{emp.childCost}}</td>
+                                        <td><a class="btn btn-xs delete-record" ng-click="removeRow($index)"><i class="glyphicon glyphicon-trash"></i></a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3 col-md-3 col-lg-3"></div>
+
+                        <div class="col-sm-5 col-md-5 col-lg-5"><button type="button" readonly="readonly" ng-disabled="HotelData.length==0" ng-click="AddHotelsCosting()" class="btn btn-primary btn-lg btn-block">Add Hotels</button></div>
+                    </div>
+                }
+
+
                 <div class="row" style="margin-top:10px;">
-                    @if (objPackageProductlst.Count(m => m.ProductCode == "HHL") > 0)
+                    @if (objPackageProductlst.Count(m => m.ProductCode == "IRL") > 0)
                     {
                         <div class="col-sm-5 col-md-5 col-lg-5"><img src="~/Images//ProductImages/train.png" title="Add Train Costing" style="height:50%;width:50%;cursor:pointer" /></div>
                     }
 
                     @if (objPackageProductlst.Count(m => m.ProductCode == "BUS") > 0)
-                    {                <div class="col-sm-5 col-md-5 col-lg-5"><img src="~/Images//ProductImages/bus.png" title="Add Bus Costing" style="height:50%;width:50%;cursor:pointer" /></div>
+                    {<div class="col-sm-5 col-md-5 col-lg-5"><img src="~/Images//ProductImages/bus.png" title="Add Bus Costing" style="height:50%;width:50%;cursor:pointer" /></div>
 
                     }
 
@@ -61,16 +144,36 @@
                     </legend>
                     <section>
                         <div class="row">
-                            <div class="col-sm-3 col-md-3 col-lg-3"><input type="text" class="form-control" required autocomplete="off" placeholder="Airport From" /></div>
-                            <div class="col-sm-3 col-md-3 col-lg-3"><input type="text" class="form-control" required autocomplete="off" placeholder="Airport To" /></div>
-                            <div class="col-sm-3 col-md-3 col-lg-3"><input type="text" class="form-control" required autocomplete="off" placeholder="Departure Date" /></div>
-                            <div class="col-sm-3 col-md-3 col-lg-3"><input type="text" class="form-control" required autocomplete="off" placeholder="Arrival Date" /></div>
+                            <div class="col-sm-3 col-md-3 col-lg-3" style="margin-top:10px;">
+
+                                <input type="text" class="form-control" id="DepartureAirport" required ej-autocomplete e-width="100%" ng-keyup="GetAirportList();" e-fields-key="airportCode" e-fields-text="airportText" e-datasource="airportList" placeholder="Airport From" />
+                                <input type="hidden" id="hdnDepartureAirport" ng-model="FlightCosting.DepartureAirport" />
+
+                            </div>
+                            <div class="col-sm-3 col-md-3 col-lg-3" style="margin-top:10px;"><input type="text" class="form-control" required autocomplete="off" placeholder="Airport To" /></div>
+                            <div class="col-sm-3 col-md-3 col-lg-3" style="margin-top:10px;">
+
+                                <input type="text" id="DepartureDate" class="form-control" required autocomplete="off" placeholder="Departure Date" />
+
+                            </div>
+                            <div class="col-sm-3 col-md-3 col-lg-3" style="margin-top:10px;"><input type="text" class="form-control" required autocomplete="off" placeholder="Arrival Date" /></div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-3 col-md-3 col-lg-3"><input type="text" class="form-control" required autocomplete="off" placeholder="Departure Time" /></div>
-                            <div class="col-sm-3 col-md-3 col-lg-3"><input type="text" class="form-control" required autocomplete="off" placeholder="Arrival Time" /></div>
-                            <div class="col-sm-3 col-md-3 col-lg-3"><input type="text" class="form-control" required autocomplete="off" placeholder="Select Currency" /></div>
-                            <div class="col-sm-3 col-md-3 col-lg-3"><input type="text" class="form-control" required autocomplete="off" placeholder="Arrival Date" /></div>
+                            <div class="col-sm-3 col-md-3 col-lg-3" style="margin-top:10px;"><input type="text" class="form-control" required autocomplete="off" placeholder="Departure Time" /></div>
+                            <div class="col-sm-3 col-md-3 col-lg-3" style="margin-top:10px;"><input type="text" class="form-control" required autocomplete="off" placeholder="Arrival Time" /></div>
+
+                        </div>
+                    </section>
+                    <legend>
+                        Add/Update Costing
+                    </legend>
+                    <section>
+
+                        <div class="row">
+                            <div class="col-sm-3 col-md-3 col-lg-3" style="margin-top:10px;"><input type="text" class="form-control" required autocomplete="off" placeholder="Select Currency" /></div>
+                            <div class="col-sm-3 col-md-3 col-lg-3" style="margin-top:10px;"><input type="text" class="form-control" required autocomplete="off" placeholder="Adult Price" /></div>
+                            <div class="col-sm-3 col-md-3 col-lg-3" style="margin-top:10px;"><input type="text" class="form-control" required autocomplete="off" placeholder="Child Price" /></div>
+                            <div class="col-sm-3 col-md-3 col-lg-3" style="margin-top:10px;"><button type="button" class="btn btn-primary btn-lg btn-block">Add Flight</button></div>
                         </div>
                     </section>
                 </fieldset>
@@ -80,3 +183,5 @@
     </div>
 
 </div>
+<script src="~/Areas/PackageCosting/Assets/UpdatePackageCosting.js"></script>
+

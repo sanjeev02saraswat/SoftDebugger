@@ -7,6 +7,7 @@ namespace WEBAPI2.Models
 {
     public class LanguageList
     {
+        public int key { get; set; }
         public string LanguageCode { get; set; }
 
         public string LanguageName { get; set; }

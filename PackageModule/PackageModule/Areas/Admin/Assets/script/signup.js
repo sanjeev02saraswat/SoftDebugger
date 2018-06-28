@@ -86,7 +86,7 @@ var app = angular.module('Signupapp', []).controller('signupcontroller', functio
 
     $scope.Loginuser = {
 
-        Email: '',
+        Email: 'Sanjeev02Saraswat@Yandex.com',
         Password: '',
         CompanyID: ''
     };

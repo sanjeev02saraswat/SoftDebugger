@@ -27,7 +27,7 @@ namespace SoftdebuggerWebsite.Filters
             // = (Wrapper)(HttpContext.Current.Session["ObjectWrapper"]);
             HttpContextBase context = filterContext.HttpContext;
             string lang = "GB";
-            if (objWrapper.LanguageCode != null && objWrapper.LanguageCode.ToString().ToUpperInvariant() != "UNDEFINED")
+            if (objWrapper.LanguageCode != null && objWrapper.LanguageCode != "null" && objWrapper.LanguageCode.ToString().ToUpperInvariant() != "UNDEFINED")
             {
                 lang = objWrapper.LanguageCode;
             }

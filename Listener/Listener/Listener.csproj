@@ -25,6 +25,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <TargetFrameworkProfile />
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -74,15 +75,8 @@
       <HintPath>..\packages\MultipartDataMediaFormatter.V2.2.0.0\lib\net45\MultipartDataMediaFormatter.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="PackageModuleLayer">
-      <HintPath>..\..\..\Working Folder\Shortcut\SoftDebugger\PackageModuleLayer\PackageModuleLayer\bin\Debug\PackageModuleLayer.dll</HintPath>
-    </Reference>
     <Reference Include="SendMail">
       <HintPath>..\..\SendMail\SendMail\bin\Debug\SendMail.dll</HintPath>
-    </Reference>
-    <Reference Include="SoftLogger, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Working Folder\Shortcut\SoftDebugger\CurrencyConvertor\CurrencyConvertor\bin\Debug\SoftLogger.dll</HintPath>
     </Reference>
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Net.Http" />
@@ -214,6 +208,16 @@
     <Folder Include="App_Data\" />
     <Folder Include="Localization\PackageModule\" />
     <Folder Include="Views\AutoComplete\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Working Folder\Shortcut\SoftDebugger\PackageModuleLayer\PackageModuleLayer\PackageModuleLayer.csproj">
+      <Project>{e7450536-4863-4ae6-8026-952ae3f06e56}</Project>
+      <Name>PackageModuleLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Working Folder\Shortcut\SoftDebugger\SoftLogger\SoftLogger.csproj">
+      <Project>{c9dd7933-602b-4b09-a066-4365e7a8611a}</Project>
+      <Name>SoftLogger</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

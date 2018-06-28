@@ -25,6 +25,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <TargetFrameworkProfile />
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -130,6 +131,7 @@
     <Content Include="Areas\Admin\Assets\script\Package\UpdatePackage.js" />
     <Content Include="Areas\Admin\Assets\script\signup.js" />
     <Content Include="Areas\PackageCosting\Assets\AddPackageCosting.js" />
+    <Content Include="Areas\PackageCosting\Assets\UpdatePackageCosting.js" />
     <Content Include="Global.asax" />
     <Content Include="Images\issue-log.jpg" />
     <Content Include="Images\user_01.PNG" />

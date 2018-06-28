@@ -44,6 +44,13 @@
 
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-sm-3 col-md-3 col-lg-3">Company Postal Code</div>
+                    <div class="col-sm-8 col-md-8 col-lg-8">
+                        <input type="text" class="form-control" required autocomplete="off" ng-model="CompanyDetails.CompanyPostalCode" id="CompanyPostalCode" />
+                        <span class="modelerror hiddenmessages" id="EmailModelRequiredError">{{Localization.CountryPostalCodeValidationKey}}</span>
+                       </div>
+                </div>
 
                 <div class="row">
                     <div class="col-sm-3 col-md-3 col-lg-3">Company Email</div>
@@ -106,7 +113,7 @@
                 <div class="row" style="margin-top:10px;">
                     <div class="col-sm-3 col-md-3 col-lg-3"></div>
                     <div class="col-sm-8 col-md-8 col-lg-8">
-                        <button ng-click="AddCurrencyCode();AddCountryCode();UpdateCompanyDetails(CompanyDetails);" type="button" class="btn btn-primary btn-lg btn-block">{{Localization.UpdateKey}}</button>
+                        <button ng-click="AddCurrencyCode();AddCountryCode();UpdateCompanyDetails(CompanyDetails);" type="button" class="btn btn-primary btn-lg btn-block">Update</button>
                         <span class="modelSuccess hiddenmessages" id="UpdatedCompanyDetailsMessage">{{Localization.UpdatedCompanyDetailsMessageKey}}</span>
                         <span class="modelerror hiddenmessages" id="UpdatedCompanyDetailsErrorMessage">{{Localization.UpdatedCompanyDetailsErrorMessageKey}}</span>
                     </div>

@@ -1,57 +1,60 @@
 ﻿var LocalizationResources = [];
 var AirportList = [];
-var app = angular.module('AddPackageCostingApp', ['ejangular']).controller('AddPackageCostingController', function ($scope, $http,$window) {
+var app = angular.module('AddPackageCostingApp', ['ejangular']).controller('AddPackageCostingController', function ($scope, $http, $window) {
 
     $scope.airportList = AirportList;
     $scope.FlightCosting = {
 
     }
+    //get already saved product data section
 
-    function HotelProduct() {
-
-        var HotelCostingRequest = {
-            PackageCode: $("#hdnPackageCode").val(),
-            PackageLanguage: $("#hdnPackageLanguage").val(),
-            CompanyID: $("#CompanyID").val()
-        }
-        $http({
-            method: "post",
-            contentType: "application/json; charset=utf-8",
-            headers: { "tokenid": "" + $("#listenertoken").val() + "", "CompanyID": "" + $("#CompanyID").val() + "" },
-            url: "" + $("#listenerurl").val() + "Package/GetHotelCosting",
-            data: JSON.stringify(HotelCostingRequest)
-        }).then(function (success) {
-
-            $scope.HotelData = success.data;
-        }, function (error) {
-            if (error.status == 401) {
-                SessionEndManager();
+        function HotelProduct() {
+        
+            var HotelCostingRequest = {
+                PackageCode: $("#hdnPackageCode").val(),
+                PackageLanguage: $("#hdnPackageLanguage").val(),
+                CompanyID: $("#CompanyID").val()
             }
-        });
-    }
+            $http({
+                method: "post",
+                contentType: "application/json; charset=utf-8",
+                headers: { "tokenid": "" + $("#listenertoken").val() + "", "CompanyID": "" + $("#CompanyID").val() + "" },
+                url: "" + $("#listenerurl").val() + "Package/GetHotelCosting",
+                data: JSON.stringify(HotelCostingRequest)
+            }).then(function (success) {
 
-   
+                $scope.HotelData = success.data;
+            }, function (error) {
+                if (error.status == 401) {
+                    SessionEndManager();
+                }
+            });
+        }
+
+
+    //end section
+
     $scope.addHotel = function () {
-        debugger;
+       
         //Add the new item to the Array.
         var HotelDetail = {
             id: $scope.HotelData.length + 1,
-            HotelName: $scope.HotelName,
-            HotelCityName: $scope.HotelCityName,
-            RoomType: $scope.RoomType,
-            AdultCost: $scope.AdultCost,
-            ChildCost: $scope.ChildCost,
-            PackageCode: $("#hdnPackageCode").val(),
+            hotelName: $scope.hotelName,
+            hotelCityName: $scope.hotelCityName,
+            roomType: $scope.roomType,
+            adultCost: $scope.adultCost,
+            childCost: $scope.childCost,
+            packageCode: $("#hdnPackageCode").val(),
             CompanyID: $("#CompanyID").val(),
-            PackageLanguage: $("#hdnPackageLanguage").val()
+            packageLanguage: $("#hdnPackageLanguage").val()
 
         };
         $scope.HotelData.push(HotelDetail);
     }
     $scope.removeRow = function (index) {
-        debugger;
+        
         //Find the record using Index from Array.
-        var name = $scope.HotelData[index].HotelName;
+        var name = $scope.HotelData[index].hotelName;
         if ($window.confirm("Do you want to delete: " + name)) {
             //Remove the item from Array using Index.
             $scope.HotelData.splice(index, 1);
@@ -84,8 +87,8 @@ var app = angular.module('AddPackageCostingApp', ['ejangular']).controller('AddP
     }
 
 
-    $scope.AddHotelsCosting = function () {       
-        debugger;
+    $scope.AddHotelsCosting = function () {
+        
         $http({
             method: "post",
             contentType: "application/json; charset=utf-8",
@@ -93,8 +96,11 @@ var app = angular.module('AddPackageCostingApp', ['ejangular']).controller('AddP
             url: "" + $("#listenerurl").val() + "Package/AddHotelCosting",
             data: JSON.stringify($scope.HotelData)
         }).then(function (success) {
-
-            AirportList = JSON.parse(success.data);
+            
+            if (success.status==200) {
+                alert('Your hotel data saved successfully.');
+            }
+           
         }, function (error) {
             if (error.status == 401) {
                 SessionEndManager();
@@ -113,11 +119,11 @@ $('#DepartureAirport').ejAutocomplete({
 });
 var today = new Date(), year = today.getFullYear(), month = today.getMonth();
 var specialDays = [
-           { date: new Date(year, month, 8), tooltip: "In Australia", iconClass: "flags sprite-Australia" },
-           { date: new Date(year, month, 21), tooltip: "In France", iconClass: "flags sprite-France" },
-           { date: new Date(year, month, 17), tooltip: "In USA", iconClass: "flags sprite-USA" },
-           { date: new Date(year, month + 1, 15), tooltip: "In Germany", iconClass: "flags sprite-Germany" },
-           { date: new Date(year, month - 1, 22), tooltip: "In India", iconClass: "flags sprite-India" },
+    { date: new Date(year, month, 8), tooltip: "In Australia", iconClass: "flags sprite-Australia" },
+    { date: new Date(year, month, 21), tooltip: "In France", iconClass: "flags sprite-France" },
+    { date: new Date(year, month, 17), tooltip: "In USA", iconClass: "flags sprite-USA" },
+    { date: new Date(year, month + 1, 15), tooltip: "In Germany", iconClass: "flags sprite-Germany" },
+    { date: new Date(year, month - 1, 22), tooltip: "In India", iconClass: "flags sprite-India" },
 ]
 $("#DepartureDate").ejDatePicker({
     cssClass: "gradient-lime",

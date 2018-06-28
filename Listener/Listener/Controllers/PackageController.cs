@@ -67,26 +67,61 @@ namespace Listener.Controllers
         [Tokenizer]
         //[ModelValidator]
         [Route("AddHotelCosting")]
-        public HttpResponseMessage AddHotelCosting(HotelCosting objHotelCosting)
+        public HttpResponseMessage AddHotelCosting(List<HotelCosting> objHotelCosting)
         {
             try
-            {
-                _logger.addMessage.Add("CreatePackage", "CreatePackage Method is goint to Execute");
-                CreatePackage objCreatePackage = new CreatePackage();
+            {              
+                ManagePackageHotelCosting objManagePackageHotelCosting = new ManagePackageHotelCosting();
+                bool status = objManagePackageHotelCosting.UpdatePackageHotelCosting(objHotelCosting);
+                if (status)
+                {
+                    return CommonUtility.CreateResponse(HttpStatusCode.OK, null);
+                }
+                else
+                {
+                    return CommonUtility.CreateResponse(HttpStatusCode.InternalServerError, null);
+                }
 
-                objCreatePackage.AddPackage(objPackageDetails);
             }
             catch (Exception ex)
             {
                 _logger.ExceptionError = true;
-
+                _logger.addMessage.Add("AddHotelCosting", "Error during add Package hotel costing Method Execution:" + ex.ToString());
             }
             finally
             {
                 AsyncLogger.LogMessage(_logger);
             }
-            return CommonUtility.CreateResponse(HttpStatusCode.OK, null);
+            return CommonUtility.CreateResponse(HttpStatusCode.InternalServerError, null);
         }
+
+        [HttpPost]
+        [Tokenizer]
+        [Route("GetHotelCosting")]
+        public HttpResponseMessage GetHotelCosting(HotelCostingRequest objHotelCostingRequest)
+        {
+            List<HotelCosting> objHotelCosting = null;
+            try
+            {
+                _logger.addMessage.Add("GetHotelCosting", "GetHotelCosting Method is going to excute");
+                ManagePackageHotelCosting objManagePackageHotelCosting = new ManagePackageHotelCosting();
+                objHotelCosting = objManagePackageHotelCosting.GetPackageHotelCosting(objHotelCostingRequest);
+                _logger.addMessage.Add("GetHotelCosting", "GetHotelCosting Method result" + JsonConvert.SerializeObject(objHotelCosting));
+
+            }
+            catch (Exception ex)
+            {
+                _logger.ExceptionError = true;
+                _logger.addMessage.Add("GetHotelCosting", "Error during add get hotel costing Method Execution:" + ex.ToString());
+            }
+            finally
+            {
+                AsyncLogger.LogMessage(_logger);
+            }
+            return CommonUtility.CreateResponse(HttpStatusCode.OK, objHotelCosting);
+        }
+
+
 
         [HttpPost]
         [Tokenizer]
@@ -113,6 +148,35 @@ namespace Listener.Controllers
                 AsyncLogger.LogMessage(_logger);
             }
             return CommonUtility.CreateResponse(HttpStatusCode.OK, JSONResult);
+        }
+
+        [HttpGet]        
+        [Route("GetPackagesAutocomplete")]
+        public HttpResponseMessage GetPackagesAutocomplete(string query,string companyid,string packagelanguage)
+        {
+            PackageList objPackageList = new PackageList();
+            string JSONResult = "";
+            List<PackageList> objallPackageList = new List<PackageList>();
+            try
+            {
+                objPackageList.query = query;
+                objPackageList.CompanyID = companyid;
+                objPackageList.PackageLanguage = packagelanguage;
+                _logger.addMessage.Add("GetPackages", "GetPackages Method is goint to Execute");
+                JSONResult = _objPackageListAutoComplete.GetPackageList(objPackageList);
+                objallPackageList = JsonConvert.DeserializeObject<List<PackageList>>(JSONResult);
+            }
+            catch (Exception ex)
+            {
+                _logger.addMessage.Add("GetPackages", "Error during GetPackages  Method Execution:" + ex.ToString());
+                _logger.ExceptionError = true;
+
+            }
+            finally
+            {
+                AsyncLogger.LogMessage(_logger);
+            }
+            return CommonUtility.CreateResponse(HttpStatusCode.OK, objallPackageList);
         }
 
         /// <summary>

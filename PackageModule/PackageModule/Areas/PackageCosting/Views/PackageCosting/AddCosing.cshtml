@@ -38,23 +38,36 @@
                                     <label for="exampleInputage">Hotel City</label>
                                     <input type="text" class="form-control" ng-model="HotelCityName" placeholder="Hotel City" />
                                 </div>
-                                <div class="form-group">
-                                    <label for="exampleInputSalary">Adult Cost</label>
-                                    <input type="text" class="form-control" ng-model="AdultCost" placeholder="Adult Cost">
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputSalary">Child Cost</label>
-                                    <input type="text" class="form-control" ng-model="ChildCost" placeholder="Child Cost">
-                                </div>
+                                <div class="form-group"> 
+                                    <label for="exampleInputage">Room Type</label>
+                                    <select class="form-control" required autocomplete="off" id="RoomType" ng-model="RoomType">
+                                        <option value="SINGLE">Single</option>
+                                        <option value="Double">Double</option>
+                                        <option value="TRIPLE">Triple</option>
+                                        <option value="QUAD">Quad</option>
+                                        <option value="QUEEN">Queen</option>
+                                        <option value="KING">King</option>
+                                        <option value="TWIN">Twin</option>                                        
+                                    </select>
 
-                                <div class="row" style="margin-top:10px;">
-                                    <div class="col-sm-3 col-md-3 col-lg-3">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputSalary">Adult Cost</label>
+                                        <input type="text" class="form-control" ng-model="AdultCost" placeholder="Adult Cost">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputSalary">Child Cost</label>
+                                        <input type="text" class="form-control" ng-model="ChildCost" placeholder="Child Cost">
+                                    </div>
+
+                                    <div class="row" style="margin-top:10px;">
+                                        <div class="col-sm-3 col-md-3 col-lg-3">
                                         </div>
                                         <div class="col-sm-5 col-md-5 col-lg-5">
                                             <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="addHotel()"><i class="glyphicon glyphicon-plus"></i>&nbsp;Add Hotel</button>
                                         </div>
                                     </div>
-                            </form>
+</form>
                         </fieldset>
                     </div>
                     <div class="container" style="padding:10px 10px;">
@@ -66,18 +79,20 @@
                                     <th>Package Code</th>
                                     <th>Hotel Name</th>
                                     <th>Hotel City</th>
+                                    <th>Room Type</th>
                                     <th>Adult Cost</th>
                                     <th>Child Cost</th>
                                 </tr>
                             </thead>
                             <tbody id="tbl_posts_body">
-                                <tr ng-repeat="emp in employees track by $index">
+                                <tr ng-repeat="emp in HotelData track by $index">
                                     <td><span class="sn">{{emp.id}}</span>.</td>
-                                    <td>{{emp.PackageCode}}</td>
-                                    <td>{{emp.HotelName}}</td>
-                                    <td>{{emp.HotelCityName}}</td>
-                                    <td>{{emp.AdultCost}}</td>
-                                    <td>{{emp.ChildCost}}</td>
+                                    <td>{{emp.packageCode}}</td>
+                                    <td>{{emp.hotelName}}</td>
+                                    <td>{{emp.hotelCityName}}</td>
+                                    <td>{{emp.roomType}}</td>
+                                    <td>{{emp.adultCost}}</td>
+                                    <td>{{emp.childCost}}</td>
                                     <td><a class="btn btn-xs delete-record" ng-click="removeRow($index)"><i class="glyphicon glyphicon-trash"></i></a></td>
                                 </tr>
                             </tbody>
@@ -86,14 +101,15 @@
 
                 </div>
                 <div class="row">
-                    <div class="col-sm-5 col-md-5 col-lg-5"><button type="button" readonly="readonly" ng-disabled="employees.length==0" ng-click="AddHotelCosting(employees)" class="btn btn-primary btn-lg btn-block">Update Hotels</button></div>
-                    @*<div class="col-sm-5 col-md-5 col-lg-5"><button type="button" class="btn btn-primary btn-lg btn-block">Clear</button></div>*@
+                    <div class="col-sm-3 col-md-3 col-lg-3"></div>
+
+                    <div class="col-sm-5 col-md-5 col-lg-5"><button type="button" readonly="readonly" ng-disabled="HotelData.length==0" ng-click="AddHotelsCosting()" class="btn btn-primary btn-lg btn-block">Add Hotels</button></div>
                 </div>
                 }
 
 
                 <div class="row" style="margin-top:10px;">
-                    @if (objPackageProductlst.Count(m => m.ProductCode == "HHL") > 0)
+                    @if (objPackageProductlst.Count(m => m.ProductCode == "IRL") > 0)
                     {
                         <div class="col-sm-5 col-md-5 col-lg-5"><img src="~/Images//ProductImages/train.png" title="Add Train Costing" style="height:50%;width:50%;cursor:pointer" /></div>
                     }

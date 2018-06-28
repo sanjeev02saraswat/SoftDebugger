@@ -162,7 +162,7 @@ var app = angular.module('CreateNewPackageapp', ['ejangular']).controller('Creat
             PackageLanguage: $("#hdnSelectLanguage").val(),
             CompanyID: $("#CompanyID").val(),
             TokenID: $("#listenertoken").val(),
-            RequestTo: "UpdateCosing"
+            RequestTo: 2
         }
         //data.BasicPackageDetails.PackageCode = $("#PackageCode").val();
         //data.BasicPackageDetails.PackageLanguage = $("#hdnPackageLanguage").val();
