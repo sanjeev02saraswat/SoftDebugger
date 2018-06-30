@@ -8,9 +8,7 @@
 
 <div class="content-wrapper" ng-app="AddPackageCostingApp" ng-controller="AddPackageCostingController">
     <input type="hidden" id="hdnPackageCode" value="@objPackageCostingRequestBridgeModel.PackageCode" />
-
     <input type="hidden" id="hdnPackageLanguage" value="@objPackageCostingRequestBridgeModel.PackageLanguage" />
-    <!-- Content Header (Page header) -->
     <div class="content-header">
         <h1>
             Update Package Costing
@@ -30,20 +28,20 @@
                         <div class="well clearfix">
                             <fieldset class="scheduler-border">
                                 <legend class="scheduler-border">Add Hotel</legend>
-                                <form class="form-inline">
+                                <form class="form-inline" name="addpackagecosting">
                                     <div class="form-group">
                                         <input type="hidden" ng-model="packageCode" value="@objPackageCostingRequestBridgeModel.PackageCode" />
                                         <label for="exampleInputName">Hotel Name</label>
-                                        <input type="text" class="form-control" ng-model="hotelName" placeholder="Hotel Name">
+                                        <input type="text" class="form-control" required ng-model="hotelName" name="HotelName"  placeholder="Hotel Name">
                                     </div>
                                     <div class="form-group divmargin">
                                         <label for="exampleInputage">Hotel City</label>
-                                        <input type="text" class="form-control" ng-model="hotelCityName" placeholder="Hotel City" />
+                                        <input type="text" class="form-control" required ng-model="hotelCityName" name="HotelCityName"  placeholder="Hotel City" />
                                     </div>
                                     <div class="form-group divmargin">
                                         <label for="exampleInputage">Room Type</label>
                                         <select class="form-control" required autocomplete="off" id="RoomType" ng-model="RoomType">
-                                            <option value="SINGLE">Single</option>
+                                            <option value="SINGLE" selected="selected">Single</option>
                                             <option value="Double">Double</option>
                                             <option value="TRIPLE">Triple</option>
                                             <option value="QUAD">Quad</option>
@@ -55,24 +53,28 @@
                                     </div>
                                     <div class="form-group divmargin">
                                         <label for="exampleInputSalary">Adult Cost</label>
-                                        <input type="text" class="form-control" ng-model="adultCost" placeholder="Adult Cost">
+                                        <input type="text" class="form-control" required name="AdultCost" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01" ng-model="adultCost" placeholder="Adult Cost">
                                     </div>
                                     <div class="form-group divmargin">
                                         <label for="exampleInputSalary">Child Cost</label>
-                                        <input type="text" class="form-control" ng-model="childCost" placeholder="Child Cost">
+                                        <input type="text" class="form-control" required ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01" name="ChildCost"  ng-model="childCost" placeholder="Child Cost">
                                     </div>
 
                                     <div class="row" style="margin-top:10px;">
                                         <div class="col-sm-3 col-md-3 col-lg-3">
                                         </div>
                                         <div class="col-sm-5 col-md-5 col-lg-5">
-                                            <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="addHotel()"><i class="glyphicon glyphicon-plus"></i>&nbsp;Add Hotel</button>
+                                            <button type="button" class="btn btn-primary btn-lg btn-block" ng-disabled="addpackagecosting.$invalid" ng-click="addHotel()"><i class="glyphicon glyphicon-plus"></i>&nbsp;Add Hotel</button>
                                         </div>
                                     </div>
                                 </form>
+                                <span ng-show="addpackagecosting.HotelName.$touched && addpackagecosting.HotelName.$invalid" class="modelformerror">The Hotel Name is required.</span><br />
+                                <span ng-show="addpackagecosting.HotelCityName.$touched && addpackagecosting.HotelCityName.$invalid" class="modelformerror">The Hotel City Name is required.</span><br />
+                                <span ng-show="addpackagecosting.AdultCost.$touched && addpackagecosting.AdultCost.$invalid" class="modelformerror">Kindly provide valid 2 digit money amount into adult cost.</span><br />
+                                <span ng-show="addpackagecosting.ChildCost.$touched && addpackagecosting.ChildCost.$invalid" class="modelformerror">Kindly provide valid 2 digit money amount into child cost.</span><br />
                             </fieldset>
                         </div>
-                        <div class="container" style="padding:10px 10px;">
+                        <div class="container" style="overflow-y:scroll;padding:10px 10px;height:400px;">
                             <h2>Add Hotel Costing</h2>
                             <table class="table table-bordered" id="tbl_employees">
                                 <thead>
@@ -84,17 +86,18 @@
                                         <th>Room Type</th>
                                         <th>Adult Cost</th>
                                         <th>Child Cost</th>
+                                        <th>Delete</th>
                                     </tr>
                                 </thead>
                                 <tbody id="tbl_posts_body">
-                                    <tr ng-repeat="emp in HotelData track by $index">
-                                        <td><span class="sn">{{emp.id}}</span>.</td>
-                                        <td>{{emp.packageCode}}</td>
-                                        <td>{{emp.hotelName}}</td>
-                                        <td>{{emp.hotelCityName}}</td>
-                                        <td>{{emp.roomType}}</td>
-                                        <td>{{emp.adultCost}}</td>
-                                        <td>{{emp.childCost}}</td>
+                                    <tr ng-repeat="hotel in HotelData track by $index">
+                                        <td><span class="sn">{{hotel.id}}</span>.</td>
+                                        <td>{{hotel.packageCode}}</td>
+                                        <td>{{hotel.hotelName}}</td>
+                                        <td>{{hotel.hotelCityName}}</td>
+                                        <td>{{hotel.roomType}}</td>
+                                        <td>{{hotel.adultCost}}</td>
+                                        <td>{{hotel.childCost}}</td>
                                         <td><a class="btn btn-xs delete-record" ng-click="removeRow($index)"><i class="glyphicon glyphicon-trash"></i></a></td>
                                     </tr>
                                 </tbody>

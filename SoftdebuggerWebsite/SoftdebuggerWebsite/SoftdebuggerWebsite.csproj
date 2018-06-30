@@ -24,6 +24,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -379,6 +380,7 @@
     <Content Include="Areas\Profile\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Areas\Profile\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Areas\Profile\Views\Profile\Index.cshtml" />
+    <Content Include="Areas\Profile\Views\Profile\TaskTaker.cshtml" />
     <None Include="Properties\PublishProfiles\SoftDebugger.pubxml" />
     <None Include="Properties\PublishProfiles\Webste.pubxml" />
     <Content Include="Views\_Shared\_Footer.cshtml" />

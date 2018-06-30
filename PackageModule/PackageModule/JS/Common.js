@@ -20,15 +20,17 @@ function startCycle() {
                 
                 $("#spnAgentName").html(Getdata.AgentName)
                 $("#spnCompanyName").html(Getdata.CompanyName)
+                
                 $.ajax({
                     type: "GET",
-                    url: "../Home/CreateTokenCookie?TokenID=" + $("#listenertoken").val() + "&CompanyID=" + $("#CompanyID").val() + "&AgentName=" + Getdata.AgentName + "&LanguageCode=" + Getdata.DefaultLanguage + "&CompanyName=" + Getdata.CompanyName,
+                    url: "Home/CreateTokenCookie?TokenID=" + $("#listenertoken").val() + "&CompanyID=" + $("#CompanyID").val() + "&AgentName=" + Getdata.AgentName + "&LanguageCode=" + Getdata.DefaultLanguage + "&CompanyName=" + Getdata.CompanyName,
                     contentType: "application/json; charset=utf-8",
 
                     success: function (response) {
-
+                       
                     },
                     error: function (response) {
+                      
                         SessionEndManager();
                     }
 
@@ -135,6 +137,12 @@ function GetParseResources(elementID) {
 
 $(document).ready(function () {
 
+    //to expand collapse packagemanagment
+
+    $("#CreateNewPackageli").click(function () {
+        $("#CreateNewPackageli").toggleClass('active');
+    });
+
     $("#ChildMinAge,#ChildMaxAge,#PackageLastPaymentDue,#PackageDuration,#PackagePaymentCutOffDay,#PopupISD2,#PopupISD3,#PopupPhoneNo1,#PopupPhoneNo2,#PopupPhoneNo3,#Phone").keydown(function (e) {
         // Allow: backspace, delete, tab, escape, enter and .
         if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
@@ -160,17 +168,19 @@ $(document).ready(function () {
 
 function SetCookie()
 {
-
+    
     $.ajax({
+        
         type: "GET",
         headers: { "tokenid": "" + $("#listenertoken").val() + "", "CompanyID": "" + $("#CompanyID").val() + "" },
-        url: "CreateTokenCookie?TokenID=" + tokenid + "&CompanyID=" + companyID + "&AgentName=" + fullName,
+        url: "Home/CreateTokenCookie?TokenID=" + tokenid + "&CompanyID=" + companyID + "&AgentName=" + fullName,
         contentType: "application/json; charset=utf-8",
 
         success: function (response) {
             
         },
         error: function (response) {
+            
             SessionEndManager();
         }
 
